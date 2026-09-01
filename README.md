@@ -21,9 +21,13 @@ across visits.
 **Search** is a fourth, compendium-only pill: a single box that searches
 Windows events, Linux events, and every Threat Detection entry (detections
 and validations) at once, grouped by source with up to 40 results per
-source. It's a thin layer on top of the three apps, not a fourth schema —
-each app exposes a small `{items, open}` index (id, title, a short meta
-line, and a lowercased haystack of its own already-existing fields) on
+source. A **Sources** filter row toggles Microsoft Events/Linux
+Events/Threat Detection in or out of the results, and a **Threat Detection
+type** row (only meaningful when that source is on) separately toggles
+Detections and Validations — both default to everything on. It's a thin
+layer on top of the three apps, not a fourth schema — each app exposes a
+small `{items, open}` index (id, title, a short meta line, and a
+lowercased haystack of its own already-existing fields) on
 `window.__compHub` for this to search over; clicking a result switches to
 that catalogue's own tab and calls back into its own existing
 selection/detail-opening code (`jumpToEvent`-style for Windows/Linux,
