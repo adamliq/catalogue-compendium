@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/fortinet-detection.schema.json",
+  "title": "Threat Detection Library - Fortinet Detection Entry",
+  "description": "Schema for a single detection entry in data/fortinet-detections.json (FortiGate, FortiManager, FortiAnalyzer, FortiAuthenticator, FortiClient/EMS, FortiEDR, FortiWeb, FortiMail, FortiProxy, FortiSandbox, and FNT-X cross-product Security Fabric correlations). Splunk SPL, structurally similar to schema/redhat-detection.schema.json but with Fortinet-specific fields (fortinet_product, required_log_type, cim mapping).",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "fortinet_product", "component", "severity", "confidence",
+    "detection_type", "mitre_attack", "required_log_type", "data_sources", "required_fields",
+    "detection_logic", "spl", "tuning_guidance", "investigation_steps", "response_guidance",
+    "telemetry_requirement", "detection_maturity", "false_positive_rating",
+    "risk_scoring", "references", "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^(FGT|FMG|FAZ|FAC|FCT|EMS|FEDR|FWB|FML|FPX|FSB|FNT-X)-[0-9]{3}$", "description": "Namespaced sequential ID." },
+    "title": { "type": "string" },
+    "description": { "type": "string", "description": "What is detected, why it's suspicious, how it could be abused, and what legitimate activity might resemble it." },
+    "fortinet_product": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "string", "enum": [
+        "FortiGate", "FortiManager", "FortiAnalyzer", "FortiAuthenticator", "FortiClient", "FortiClient EMS",
+        "FortiEDR", "FortiWeb", "FortiMail", "FortiProxy", "FortiSandbox", "Fortinet Security Fabric"
+      ] }
+    },
+    "component": { "type": "string", "description": "Specific component/subsystem, e.g. Administrative Authentication, Firewall Policy, SSL VPN, IPS, Application Control, Script, Policy Package, Lifecycle Log, Token Management, Virtual Console-equivalent EMS isolation, WAF Policy, DLP, Antispam." },
+    "severity": { "type": "string", "enum": ["informational", "low", "medium", "high", "critical"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "detection_type": { "type": "string", "enum": ["Atomic", "Threshold", "Behavioral", "Anomaly", "Sequence", "Correlation", "Configuration change", "Authentication", "Network", "Administrative abuse", "Threat intelligence"] },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "required_log_type": { "type": "array", "items": { "type": "string" }, "description": "Fortinet log type(s) this depends on, e.g. Traffic, Event, UTM, VPN, IPS, Application Control, Web Filter, DNS Filter, Antivirus, DLP, SSL, WAF, Authentication, Admin, FortiManager, FortiAnalyzer." },
+    "data_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } }
+      }
+    },
+    "required_fields": { "type": "array", "items": { "type": "string" }, "description": "Fields the SPL depends on." },
+    "detection_logic": { "type": "string", "description": "Why the SPL works." },
+    "spl": { "type": "string" },
+    "threshold": {
+      "type": "object",
+      "description": "Present only for Threshold/Behavioral/Correlation-type detections.",
+      "properties": {
+        "count": { "type": ["string", "number"] },
+        "distinct_count": { "type": ["string", "number"] },
+        "time_window": { "type": "string" },
+        "baseline_condition": { "type": "string" }
+      }
+    },
+    "tuning_guidance": { "type": "string" },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "response_guidance": { "type": "string" },
+    "telemetry_requirement": { "type": "string", "enum": ["Essential", "Recommended", "Optional"] },
+    "cim_compatible": { "type": "boolean" },
+    "cim_data_model": { "type": "string", "description": "Splunk CIM data model this maps to, when cim_compatible is true, e.g. Network_Traffic, Authentication, Web, Intrusion_Detection, Malware, Endpoint, Change, Data_Access." },
+    "detection_maturity": { "type": "string", "enum": ["Level 1 - simple indicator", "Level 2 - threshold", "Level 3 - behavioral", "Level 4 - correlation", "Level 5 - multi-platform attack sequence"] },
+    "false_positive_rating": { "type": "string", "enum": ["Low", "Medium", "High"] },
+    "risk_scoring": {
+      "type": "object",
+      "required": ["severity", "confidence", "impact", "score"],
+      "properties": {
+        "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "score": { "type": "integer", "minimum": 1, "maximum": 125, "description": "severity * confidence * impact" }
+      }
+    },
+    "risk_object": { "type": "string", "description": "Optional Splunk ES risk-based-alerting object field name, e.g. user, src_ip, device." },
+    "risk_object_type": { "type": "string", "enum": ["user", "system", "other"] },
+    "references": { "type": "array", "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } } },
+    "related_detections": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}

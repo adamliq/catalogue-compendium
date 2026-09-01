@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/splunk-platform-detection.schema.json",
+  "title": "Threat Detection Library - Splunk Platform Detection Entry",
+  "description": "Schema for a single detection entry in data/splunk-detections.json. Detections here target attacks against, abuse of, compromise of, or suspicious administrative activity within the Splunk platform itself (Splunk Cloud, Splunk Enterprise, Splunk Enterprise Security, Splunk SOAR, forwarders, management tier) - not detections that merely use Splunk to find threats elsewhere.",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "platform", "component", "deployment_applicability",
+    "severity", "confidence", "detection_type", "mitre_attack", "required_data_sources",
+    "data_sources", "required_fields", "detection_logic", "spl", "search_cost",
+    "false_positive_rating", "tuning_guidance", "investigation_steps", "response_guidance",
+    "telemetry_requirement", "detection_maturity", "risk_scoring", "references",
+    "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^(SPL-AUTH|SPL-RBAC|SPL-SEARCH|SPL-KO|SPL-APP|SPL-API|SPL-HEC|SPL-DATA|SPL-FWD|SPL-DS|SPL-IDX|SPL-SH|SPL-CM|SPL-CLOUD|SPL-ENT|SPL-ES|SPL-KV|SPL-CONF|SPL-INT|SPL-X)-[0-9]{3}$", "description": "Namespaced sequential ID." },
+    "title": { "type": "string" },
+    "description": { "type": "string", "description": "What activity is being detected, why it is suspicious, how an attacker could abuse it, and what legitimate administrative activity may resemble it." },
+    "platform": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "string", "enum": [
+        "Splunk Cloud", "Splunk Enterprise", "Hybrid", "Splunk Enterprise Security",
+        "Splunk SOAR", "Splunk Forwarder", "Splunk Management Tier"
+      ] }
+    },
+    "component": { "type": "string" },
+    "deployment_applicability": { "type": "string", "enum": ["Cloud", "On-premises", "Both", "Hybrid only"] },
+    "severity": { "type": "string", "enum": ["informational", "low", "medium", "high", "critical"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "detection_type": { "type": "string", "enum": [
+      "Atomic", "Threshold", "Behavioral", "Sequence", "Correlation", "Integrity",
+      "Configuration change", "Authentication", "Administrative abuse",
+      "Data exfiltration", "Defense evasion", "Persistence", "Availability"
+    ] },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "attack_mapping_note": { "type": "string", "description": "Used when Splunk-platform-specific activity does not map cleanly onto ATT&CK; explains the closest-fit rationale." },
+    "required_data_sources": { "type": "array", "items": { "type": "string" } },
+    "data_sources": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name", "description"], "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } } }
+    },
+    "required_fields": { "type": "array", "items": { "type": "string" } },
+    "detection_logic": { "type": "string" },
+    "spl": { "type": "string" },
+    "threshold": {
+      "type": "object",
+      "properties": {
+        "count": { "type": ["string", "number"] },
+        "distinct_count": { "type": ["string", "number"] },
+        "time_window": { "type": "string" },
+        "baseline_condition": { "type": "string" }
+      }
+    },
+    "search_cost": { "type": "string", "enum": ["Low cost", "Medium cost", "High cost"] },
+    "performance_guidance": { "type": "string", "description": "Optimization guidance, required for High cost searches." },
+    "false_positive_rating": { "type": "string", "enum": ["Low", "Medium", "High"] },
+    "tuning_guidance": { "type": "string" },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "response_guidance": { "type": "string" },
+    "telemetry_requirement": { "type": "string", "enum": ["Essential", "Recommended", "Optional"] },
+    "cim_compatible": { "type": "boolean" },
+    "cim_data_model": { "type": "string" },
+    "detection_maturity": { "type": "string", "enum": ["Level 1 - indicator", "Level 2 - threshold", "Level 3 - behavioral", "Level 4 - correlation", "Level 5 - multi-component attack sequence"] },
+    "risk_scoring": {
+      "type": "object",
+      "required": ["severity", "confidence", "impact", "score"],
+      "properties": {
+        "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "score": { "type": "integer", "minimum": 1, "maximum": 125 }
+      }
+    },
+    "risk_object": { "type": "string" },
+    "risk_object_type": { "type": "string", "enum": ["user", "system", "other"] },
+    "risk_message": { "type": "string" },
+    "references": { "type": "array", "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } } },
+    "related_detections": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}

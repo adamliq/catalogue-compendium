@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/redhat-detection.schema.json",
+  "title": "Threat Detection Library - Red Hat Detection Entry",
+  "description": "Schema for a single detection entry in data/redhat-detections.json (RHEL, IdM/IPA/FreeIPA, Ansible Automation Platform, Satellite, and RH-X cross-platform correlations). Splunk SPL, like schema/detection.schema.json, but with the richer per-entry fields (component, detection type, threshold, risk scoring, maturity, telemetry requirement) the Red Hat catalogue is built around.",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "platform", "component", "severity", "confidence",
+    "detection_type", "mitre_attack", "data_sources", "required_fields", "detection_logic",
+    "spl", "tuning_guidance", "investigation_steps", "response_guidance",
+    "telemetry_requirement", "requires_auditd", "detection_maturity", "false_positive_rating",
+    "risk_scoring", "references", "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^(RHEL|IPA|AAP|SAT|RH-X)-[0-9]{3}$", "description": "Namespaced sequential ID: RHEL-###, IPA-###, AAP-###, SAT-###, or RH-X-### for cross-platform correlations." },
+    "title": { "type": "string" },
+    "description": { "type": "string", "description": "What is detected, why it's suspicious, how it could be abused, and what legitimate activity might resemble it." },
+    "platform": { "type": "array", "items": { "type": "string", "enum": ["RHEL", "IdM/IPA/FreeIPA", "Ansible Automation Platform", "Satellite", "Cross-platform"] }, "minItems": 1 },
+    "component": { "type": "string", "description": "Specific component, e.g. sshd, sudo, PAM, auditd, SELinux, fapolicyd, SSSD, Kerberos, IPA Server, Dogtag PKI, 389 Directory Server, Ansible Controller, Automation Hub, Event-Driven Ansible, receptor, Satellite Server, Capsule, Pulp, Candlepin, Foreman, Katello, Hammer CLI." },
+    "severity": { "type": "string", "enum": ["informational", "low", "medium", "high", "critical"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "detection_type": { "type": "string", "enum": ["Atomic", "Threshold", "Behavioral", "Anomaly", "Sequence", "Correlation", "Configuration change", "Integrity", "Authentication", "Administrative abuse"] },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "data_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } }
+      }
+    },
+    "required_fields": { "type": "array", "items": { "type": "string" }, "description": "Fields the SPL depends on." },
+    "detection_logic": { "type": "string", "description": "Why the SPL works." },
+    "spl": { "type": "string" },
+    "threshold": {
+      "type": "object",
+      "description": "Present only for Threshold/Behavioral/Correlation-type detections.",
+      "properties": {
+        "count": { "type": ["string", "number"] },
+        "distinct_count": { "type": ["string", "number"] },
+        "time_window": { "type": "string" },
+        "baseline_condition": { "type": "string" }
+      }
+    },
+    "tuning_guidance": { "type": "string", "description": "Likely false positives, allowlisting, service/automation accounts, jump hosts, maintenance windows." },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "response_guidance": { "type": "string" },
+    "telemetry_requirement": { "type": "string", "enum": ["Essential", "Recommended", "Optional"] },
+    "requires_auditd": { "type": "boolean", "description": "True if the detection cannot reliably work without Linux auditd (EXECVE/SYSCALL) telemetry." },
+    "audit_rules": { "type": "array", "items": { "type": "string" }, "description": "auditd -w/-a rules required to produce the telemetry this detection depends on, if any." },
+    "detection_maturity": { "type": "string", "enum": ["Level 1 - simple indicator", "Level 2 - threshold", "Level 3 - behavioral", "Level 4 - correlation", "Level 5 - multi-platform attack sequence"] },
+    "false_positive_rating": { "type": "string", "enum": ["Low", "Medium", "High"] },
+    "risk_scoring": {
+      "type": "object",
+      "required": ["severity", "confidence", "impact", "score"],
+      "properties": {
+        "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "score": { "type": "integer", "minimum": 1, "maximum": 125, "description": "severity * confidence * impact" }
+      }
+    },
+    "references": { "type": "array", "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } } },
+    "related_detections": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}

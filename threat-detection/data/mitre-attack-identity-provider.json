@@ -1,0 +1,3262 @@
+{
+  "metadata": {
+    "title": "MITRE ATT&CK Enterprise - Identity Provider Platform Analytics",
+    "description": "Techniques and formal MITRE ATT&CK Detection Analytics scoped to MITRE's 'Identity Provider' platform (dedicated and cloud-native identity/authentication services -- SSO, MFA, federation, directory, and consent/authorization layers -- as distinct from the SaaS/IaaS applications that rely on them). Extracted from the official MITRE ATT&CK Enterprise STIX dataset. Loaded by the Threat Detection Library app to show ATT&CK coverage for this library's genuinely identity-provider-layer ESCU content -- the 'Okta', 'PingID', 'Cisco Duo', 'Azure' (Azure AD/Entra ID sign-in, MFA, conditional access, service principal, and admin consent events), 'Microsoft 365' (the subset of O365 content covering Entra ID-backed authentication, MFA, service principal, and consent events, not the catalogue's email/collaboration content), 'AWS' (IAM/STS credential, MFA, and SAML identity-provider-federation events), and 'Google Cloud Platform' (GCP authentication/MFA events) components (259 entries) -- deliberately excluding this catalogue's endpoint-OS and generic-infrastructure components (Windows Endpoint, Linux, macOS, Cisco Network/ASA/IOS XE, Kubernetes, and others) even where a shared, broadly-applicable technique ID (e.g. T1078 Valid Accounts) would otherwise inflate the coverage count without those entries actually detecting identity-provider telemetry.",
+    "source": "https://github.com/mitre/cti (enterprise-attack/enterprise-attack.json)",
+    "attack_version_reference": "https://attack.mitre.org/resources/updates/",
+    "attack_spec_version": "3.3.0",
+    "platform": "Identity Provider",
+    "retrieved": "2026-08-20",
+    "technique_count": 48,
+    "analytic_count": 45,
+    "techniques_covered_by_library": 27,
+    "tactic_breakdown": {
+      "Initial Access": 8,
+      "Execution": 2,
+      "Persistence": 13,
+      "Privilege Escalation": 11,
+      "Stealth": 4,
+      "Defense Impairment": 7,
+      "Credential Access": 16,
+      "Discovery": 7,
+      "Lateral Movement": 3
+    }
+  },
+  "techniques": [
+    {
+      "attack_id": "T1021.007",
+      "name": "Cloud Services",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may log into accessible cloud services within a compromised environment using [Valid Accounts](https://attack.mitre.org/techniques/T1078) that are synchronized with or federated to on-premises user identities. The adversary may then perform management actions or access cloud-hosted resources as the logged-on user. ",
+      "url": "https://attack.mitre.org/techniques/T1021/007",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1036.010",
+      "name": "Masquerade Account Name",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may match or approximate the names of legitimate accounts to make newly created ones appear benign. This will typically occur during [Create Account](https://attack.mitre.org/techniques/T1136), although accounts may also be renamed at a later date. This may also coincide with [Account Access Removal](https://attack.mitre.org/techniques/T1531) if the actor first deletes an account befor",
+      "url": "https://attack.mitre.org/techniques/T1036/010",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1059",
+      "name": "Command and Scripting Interpreter",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities, for example, macOS and Linux distributions include some flavor of [Unix Shel",
+      "url": "https://attack.mitre.org/techniques/T1059",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1059.009",
+      "name": "Cloud API",
+      "is_subtechnique": true,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may abuse cloud APIs to execute malicious commands. APIs available in cloud environments provide various functionalities and are a feature-rich method for programmatic access to nearly all aspects of a tenant. These APIs may be utilized through various methods such as command line interpreters (CLIs), in-browser Cloud Shells, [PowerShell](https://attack.mitre.org/techniques/T1059/001) ",
+      "url": "https://attack.mitre.org/techniques/T1059/009",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1069",
+      "name": "Permission Groups Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to discover group and permission settings. This information can help adversaries determine which user accounts and groups are available, the membership of users in particular groups, and which users and groups have elevated permissions.",
+      "url": "https://attack.mitre.org/techniques/T1069",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1069.003",
+      "name": "Cloud Groups",
+      "is_subtechnique": true,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "SaaS",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may attempt to find cloud groups and permission settings. The knowledge of cloud permission groups can help adversaries determine the particular roles of users and groups within an environment, as well as which users are associated with a particular group.",
+      "url": "https://attack.mitre.org/techniques/T1069/003",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078",
+      "name": "Valid Accounts",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Compromised credentials may be used to bypass access controls placed on various resources on systems within the network and may even be used for persistent access to remote systems and externally available services, such as VPNs, Outlook Web",
+      "url": "https://attack.mitre.org/techniques/T1078",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078.001",
+      "name": "Default Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Default accounts are those that are built-into an OS, such as the Guest or Administrator accounts on Windows systems. Default accounts also include default factory/provider set accounts on other types of systems, software, or devices, includ",
+      "url": "https://attack.mitre.org/techniques/T1078/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078.004",
+      "name": "Cloud Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Valid accounts in cloud environments may allow adversaries to perform actions to achieve Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application. Cloud Accounts can exist solely in the cl",
+      "url": "https://attack.mitre.org/techniques/T1078/004",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1087",
+      "name": "Account Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to get a listing of valid accounts, usernames, or email addresses on a system or within a compromised environment. This information can help adversaries determine which accounts exist, which can aid in follow-on behavior such as brute-forcing, spear-phishing attacks, or account takeovers (e.g., [Valid Accounts](https://attack.mitre.org/techniques/T1078)).",
+      "url": "https://attack.mitre.org/techniques/T1087",
+      "analytic_count_total": 8,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1087.004",
+      "name": "Cloud Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may attempt to get a listing of cloud accounts. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application.",
+      "url": "https://attack.mitre.org/techniques/T1087/004",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098",
+      "name": "Account Manipulation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may manipulate accounts to maintain and/or elevate access to victim systems. Account manipulation may consist of any action that preserves or modifies adversary access to a compromised account, such as modifying credentials or permission groups.(Citation: FireEye SMOKEDHAM June 2021) These actions could also include account activity designed to subvert security policies, such as perfor",
+      "url": "https://attack.mitre.org/techniques/T1098",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098.001",
+      "name": "Additional Cloud Credentials",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "SaaS"
+      ],
+      "description": "Adversaries may add adversary-controlled credentials to a cloud account to maintain persistent access to victim accounts and instances within the environment.",
+      "url": "https://attack.mitre.org/techniques/T1098/001",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098.003",
+      "name": "Additional Cloud Roles",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "An adversary may add additional roles or permissions to an adversary-controlled cloud account to maintain persistent access to a tenant. For example, adversaries may update IAM policies in cloud-based environments or add a new global administrator in Office 365 environments.(Citation: AWS IAM Policies and Permissions)(Citation: Google Cloud IAM Policies)(Citation: Microsoft Support O365 Add Anothe",
+      "url": "https://attack.mitre.org/techniques/T1098/003",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098.005",
+      "name": "Device Registration",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Windows",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may register a device to an adversary-controlled account. Devices may be registered in a multifactor authentication (MFA) system, which handles authentication to the network, or in a device management system, which handles device access and compliance.",
+      "url": "https://attack.mitre.org/techniques/T1098/005",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110",
+      "name": "Brute Force",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained.(Citation: TrendMicro Pawn Storm Dec 2020) Without knowledge of the password for an account or set of accounts, an adversary may systematically guess the password using a repetitive or iterative mechanism.(Citation: Dragos Crashoverride 2018) Brute forcing passwords",
+      "url": "https://attack.mitre.org/techniques/T1110",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.001",
+      "name": "Password Guessing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries with no prior knowledge of legitimate credentials within the system or environment may guess passwords to attempt access to accounts. Without knowledge of the password for an account, an adversary may opt to systematically guess the password using a repetitive or iterative mechanism. An adversary may guess login credentials without prior knowledge of system or environment passwords dur",
+      "url": "https://attack.mitre.org/techniques/T1110/001",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.002",
+      "name": "Password Cracking",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may use password cracking to attempt to recover usable credentials, such as plaintext passwords, when credential material such as password hashes are obtained. [OS Credential Dumping](https://attack.mitre.org/techniques/T1003) can be used to obtain password hashes, this may only get an adversary so far when [Pass the Hash](https://attack.mitre.org/techniques/T1550/002) is not an option",
+      "url": "https://attack.mitre.org/techniques/T1110/002",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1110.003",
+      "name": "Password Spraying",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "description": "Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid account credentials. Password spraying uses one password (e.g. 'Password01'), or a small list of commonly used passwords, that may match the complexity policy of the domain. Logins are attempted with that password against many different accounts on a network to avoid ac",
+      "url": "https://attack.mitre.org/techniques/T1110/003",
+      "analytic_count_total": 8,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.004",
+      "name": "Credential Stuffing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use credentials obtained from breach dumps of unrelated accounts to gain access to target accounts through credential overlap. Occasionally, large numbers of username and password pairs are dumped online when a website or service is compromised and the user account credentials accessed. The information may be useful to an adversary attempting to compromise accounts by taking advant",
+      "url": "https://attack.mitre.org/techniques/T1110/004",
+      "analytic_count_total": 9,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1136",
+      "name": "Create Account",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider",
+        "ESXi"
+      ],
+      "description": "Adversaries may create an account to maintain access to victim systems.(Citation: Symantec WastedLocker June 2020) With a sufficient level of access, creating such accounts may be used to establish secondary credentialed access that do not require persistent remote access tools to be deployed on the system.",
+      "url": "https://attack.mitre.org/techniques/T1136",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1136.003",
+      "name": "Cloud Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may create a cloud account to maintain access to victim systems. With a sufficient level of access, such accounts may be used to establish secondary credentialed access that does not require persistent remote access tools to be deployed on the system.(Citation: Microsoft O365 Admin Roles)(Citation: Microsoft Support O365 Add Another Admin, October 2019)(Citation: AWS Create IAM User)(C",
+      "url": "https://attack.mitre.org/techniques/T1136/003",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1189",
+      "name": "Drive-by Compromise",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. Multiple ways of delivering exploit code to a browser exist (i.e., [Drive-by Target](https://attack.mitre.org/techniques/T1608/004)), including:",
+      "url": "https://attack.mitre.org/techniques/T1189",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1199",
+      "name": "Trusted Relationship",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may breach or otherwise leverage organizations who have access to intended victims. Access through trusted third party relationship abuses an existing connection that may not be protected or receives less scrutiny than standard mechanisms of gaining access to a network.",
+      "url": "https://attack.mitre.org/techniques/T1199",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1201",
+      "name": "Password Policy Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "IaaS",
+        "Network Devices",
+        "Identity Provider",
+        "SaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may attempt to access detailed information about the password policy used within an enterprise network or cloud environment. Password policies are a way to enforce complex passwords that are difficult to guess or crack through [Brute Force](https://attack.mitre.org/techniques/T1110). This information may help the adversary to create a list of common passwords and launch dictionary and/",
+      "url": "https://attack.mitre.org/techniques/T1201",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1212",
+      "name": "Exploitation for Credential Access",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may exploit software vulnerabilities in an attempt to collect credentials. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. ",
+      "url": "https://attack.mitre.org/techniques/T1212",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1484",
+      "name": "Domain or Tenant Policy Modification",
+      "is_subtechnique": false,
+      "tactics": [
+        "Defense Impairment",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Windows",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may modify the configuration settings of a domain or identity tenant to evade defenses and/or escalate privileges in centrally managed environments. Such services provide a centralized means of managing identity resources such as devices and accounts, and often include configuration settings that may apply between domains or tenants such as trust relationships, identity syncing, or ide",
+      "url": "https://attack.mitre.org/techniques/T1484",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1484.002",
+      "name": "Trust Modification",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Windows"
+      ],
+      "description": "Adversaries may add new domain trusts, modify the properties of existing domain trusts, or otherwise change the configuration of trust relationships between domains and tenants to evade defenses and/or elevate privileges.Trust details, such as whether or not user identities are federated, allow authentication and authorization properties to apply between domains or tenants for the purpose of acces",
+      "url": "https://attack.mitre.org/techniques/T1484/002",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1526",
+      "name": "Cloud Service Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "An adversary may attempt to enumerate the cloud services running on a system after gaining access. These methods can differ from platform-as-a-service (PaaS), to infrastructure-as-a-service (IaaS), or software-as-a-service (SaaS). Many services exist throughout the various cloud providers and can include Continuous Integration and Continuous Delivery (CI/CD), Lambda Functions, Entra ID, etc. They ",
+      "url": "https://attack.mitre.org/techniques/T1526",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1528",
+      "name": "Steal Application Access Token",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries can steal application access tokens as a means of acquiring credentials to access remote systems and resources.",
+      "url": "https://attack.mitre.org/techniques/T1528",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1538",
+      "name": "Cloud Service Dashboard",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "An adversary may use a cloud service dashboard GUI with stolen credentials to gain useful information from an operational cloud environment, such as specific services, resources, and features. For example, the GCP Command Center can be used to view all assets, review findings of potential security risks, and run additional queries, such as finding public IP addresses and open ports.(Citation: Goog",
+      "url": "https://attack.mitre.org/techniques/T1538",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1548",
+      "name": "Abuse Elevation Control Mechanism",
+      "is_subtechnique": false,
+      "tactics": [
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may circumvent mechanisms designed to control privilege elevation to gain higher-level permissions. Most modern systems contain native elevation control mechanisms that are intended to limit privileges that a user can perform on a machine. Authorization has to be granted to specific users in order to perform tasks that can be considered of higher risk.(Citation: TechNet How UAC Works)(",
+      "url": "https://attack.mitre.org/techniques/T1548",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1548.005",
+      "name": "Temporary Elevated Cloud Access",
+      "is_subtechnique": true,
+      "tactics": [
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may abuse permission configurations that allow them to gain temporarily elevated access to cloud resources. Many cloud environments allow administrators to grant user or service accounts permission to request just-in-time access to roles, impersonate other accounts, pass roles onto resources and services, or otherwise gain short-term access to a set of privileges that may be distinct f",
+      "url": "https://attack.mitre.org/techniques/T1548/005",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550",
+      "name": "Use Alternate Authentication Material",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use alternate authentication material, such as password hashes, Kerberos tickets, and application access tokens, in order to move laterally within an environment and bypass normal system access controls. ",
+      "url": "https://attack.mitre.org/techniques/T1550",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1550.001",
+      "name": "Application Access Token",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may use stolen application access tokens to bypass the typical authentication process and access restricted accounts, information, or services on remote systems. These tokens are typically stolen from users or services and used in lieu of login credentials.",
+      "url": "https://attack.mitre.org/techniques/T1550/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1552",
+      "name": "Unsecured Credentials",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers",
+        "Network Devices",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may search compromised systems to find and obtain insecurely stored credentials. These credentials can be stored and/or misplaced in many locations on a system, including plaintext files (e.g. [Shell History](https://attack.mitre.org/techniques/T1552/003)), operating system or application-specific repositories (e.g. [Credentials in Registry](https://attack.mitre.org/techniques/T1552/00",
+      "url": "https://attack.mitre.org/techniques/T1552",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1556",
+      "name": "Modify Authentication Process",
+      "is_subtechnique": false,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may modify authentication mechanisms and processes to access user credentials or enable otherwise unwarranted access to accounts. The authentication process is handled by mechanisms, such as the Local Security Authentication Server (LSASS) process and the Security Accounts Manager (SAM) on Windows, pluggable authentication modules (PAM) on Unix-based systems, and authorization plugins ",
+      "url": "https://attack.mitre.org/techniques/T1556",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1556.006",
+      "name": "Multi-Factor Authentication",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may disable or modify multi-factor authentication (MFA) mechanisms to enable persistent access to compromised accounts.",
+      "url": "https://attack.mitre.org/techniques/T1556/006",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1556.007",
+      "name": "Hybrid Identity",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may patch, modify, or otherwise backdoor cloud authentication processes that are tied to on-premises user identities in order to bypass typical authentication mechanisms, access credentials, and enable persistent access to accounts.  ",
+      "url": "https://attack.mitre.org/techniques/T1556/007",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1556.009",
+      "name": "Conditional Access Policies",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may disable or modify conditional access policies to enable persistent access to compromised accounts. Conditional access policies are additional verifications used by identity providers and identity and access management systems to determine whether a user should be granted access to a resource.",
+      "url": "https://attack.mitre.org/techniques/T1556/009",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1566",
+      "name": "Phishing",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering. Phishing can be targeted, known as spearphishing. In spearphishing, a specific individual, company, or industry will be targeted by the adversary. More generally, adversaries can conduct non-targeted phishing, such as in mass malware spam campaigns.",
+      "url": "https://attack.mitre.org/techniques/T1566",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1566.002",
+      "name": "Spearphishing Link",
+      "is_subtechnique": true,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may send spearphishing emails with a malicious link in an attempt to gain access to victim systems. Spearphishing with a link is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of links to download malware contained in email, instead of attaching malicious files to the email itself, to avoid defenses that may inspect ema",
+      "url": "https://attack.mitre.org/techniques/T1566/002",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1566.004",
+      "name": "Spearphishing Voice",
+      "is_subtechnique": true,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may use voice communications to ultimately gain access to victim systems. Spearphishing voice is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of manipulating a user into providing access to systems through a phone call or other forms of voice communications. Spearphishing frequently involves social engineering techniq",
+      "url": "https://attack.mitre.org/techniques/T1566/004",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1606",
+      "name": "Forge Web Credentials",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Windows",
+        "macOS",
+        "Linux",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may forge credential materials that can be used to gain access to web applications or Internet services. Web applications and services (hosted in cloud SaaS environments or on-premise servers) often use session cookies, tokens, or other materials to authenticate and authorize user access.",
+      "url": "https://attack.mitre.org/techniques/T1606",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1606.002",
+      "name": "SAML Tokens",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Windows",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "An adversary may forge SAML tokens with any permissions claims and lifetimes if they possess a valid SAML token-signing certificate.(Citation: Microsoft SolarWinds Steps) The default lifetime of a SAML token is one hour, but the validity period can be specified in the <code>NotOnOrAfter</code> value of the <code>conditions ...</code> element in a token. This value can be changed using the <code>Ac",
+      "url": "https://attack.mitre.org/techniques/T1606/002",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1621",
+      "name": "Multi-Factor Authentication Request Generation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may attempt to bypass multi-factor authentication (MFA) mechanisms and gain access to accounts by generating MFA requests sent to users.",
+      "url": "https://attack.mitre.org/techniques/T1621",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1649",
+      "name": "Steal or Forge Authentication Certificates",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may steal or forge certificates used for authentication to access remote systems or resources. Digital certificates are often used to sign and encrypt messages and/or files. Certificates are also used as authentication material. For example, Entra ID device certificates and Active Directory Certificate Services (AD CS) certificates bind to an identity and can be used as credentials for",
+      "url": "https://attack.mitre.org/techniques/T1649",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1685.002",
+      "name": "Disable or Modify Cloud Log",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Identity Provider",
+        "Office Suite"
+      ],
+      "description": "An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection. Cloud environments allow for collection and analysis of audit and application logs that provide insight into what activities a user does within the environment. If an adversary has sufficient permissions, they can disable or modify logging to avoid",
+      "url": "https://attack.mitre.org/techniques/T1685/002",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    }
+  ],
+  "analytics": [
+    {
+      "analytic_id": "AN0018",
+      "name": "Analytic 0018",
+      "description": "Federated login using SSO or OAuth grant to cloud control plane, followed by directory or permissions enumeration",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1021.007",
+          "name": "Cloud Services",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1021/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "Okta:SystemLog",
+          "channel": "user.authentication.sso, app.oauth.grant",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "SSOApplicationScope",
+          "description": "Tune based on applications federated to high-priv cloud assets"
+        },
+        {
+          "field": "ClientIDScope",
+          "description": "Filter based on expected OIDC clients used for login"
+        },
+        {
+          "field": "LoginVelocity",
+          "description": "Track multiple geographic logins within short windows"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0008",
+        "name": "Behavioral Detection of Remote Cloud Logins via Valid Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0008"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0008#AN0018"
+    },
+    {
+      "analytic_id": "AN0088",
+      "name": "Analytic 0088",
+      "description": "Detects suspicious updates to conditional access or MFA enforcement policies in identity providers such as Entra ID, Okta, or JumpCloud. Focus is on removal of policy blocks, addition of broad exclusions, or registration of adversary-controlled MFA methods, followed by anomalous login activity that takes advantage of the modified policies.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556.009",
+          "name": "Conditional Access Policies",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556/009"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:activity",
+          "channel": "Update conditionalAccessPolicy",
+          "data_component": "Active Directory Object Modification"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "Conditional Access policy rule modified or MFA requirement disabled",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TargetedApplications",
+          "description": "Specific SaaS or cloud apps most sensitive to conditional access changes."
+        },
+        {
+          "field": "RiskThresholds",
+          "description": "Risk scores or signals that may be tuned for anomaly detection in login behavior."
+        },
+        {
+          "field": "UserContext",
+          "description": "Business roles or expected MFA patterns per user/group to reduce false positives."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0030",
+        "name": "Detect Conditional Access Policy Modification in Identity and Cloud Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0030"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0030#AN0088"
+    },
+    {
+      "analytic_id": "AN0103",
+      "name": "Analytic 0103",
+      "description": "Adversary registers new devices to compromised user accounts to bypass MFA or conditional access policies via Azure Entra ID, Okta, or Duo self-enrollment portals.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098.005",
+          "name": "Device Registration",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "Operation IN (\"Add device\", \"Add registered users to device\", \"Add registered owner to device\")",
+          "data_component": "User Account Modification"
+        },
+        {
+          "log_source": "ApplicationLog:EntraIDPortal",
+          "channel": "DeviceRegistration events",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "azure:audit",
+          "channel": "New device object creation",
+          "data_component": "Active Directory Object Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ActorUserPrincipalName",
+          "description": "Define expected admin users to exclude known enrollment behavior"
+        },
+        {
+          "field": "IP Address",
+          "description": "Scope internal vs. external device enrollment sources"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Adjust for expected hours of legitimate self-enrollment"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0036",
+        "name": "Suspicious Device Registration via Entra ID or MFA Platform",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0036"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0036#AN0103"
+    },
+    {
+      "analytic_id": "AN0192",
+      "name": "Analytic 0192",
+      "description": "Phishing attempts targeting IdPs often manifest as anomalous login attempts from suspicious email invitations or fake SSO prompts. Detection correlates login flows, MFA bypass attempts, and anomalous geographic patterns following phishing email delivery.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1566",
+          "name": "Phishing",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1566"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Failed MFA attempts, unusual conditional access triggers, login attempts from unexpected IP ranges",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoAnomalyThreshold",
+          "description": "Allowed distance/time delta between user sign-ins."
+        },
+        {
+          "field": "MFABypassIndicators",
+          "description": "Signals of repeated or anomalous MFA failures linked to phishing campaigns."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0070",
+        "name": "Detection Strategy for Phishing across platforms.",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0070"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0070#AN0192"
+    },
+    {
+      "analytic_id": "AN0268",
+      "name": "Analytic 0268",
+      "description": "Modifications to SSO/SAML user attributes (e.g., `isAdmin`, `role`, MFA bypass, App assignments) often through CLI, API, or rogue IdP apps.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098",
+          "name": "Account Manipulation",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:okta",
+          "channel": "User Attribute Modified / Role Assignment Changed",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RoleAssignmentBaseline",
+          "description": "Expected user-role pairings per app or org unit."
+        },
+        {
+          "field": "APIUsageContext",
+          "description": "Caller identity or IP address ranges for identity admin actions."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0096",
+        "name": "Account Manipulation Behavior Chain Detection",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0096"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0096#AN0268"
+    },
+    {
+      "analytic_id": "AN0290",
+      "name": "Analytic 0290",
+      "description": "Detects suspicious configuration changes in IdP authentication flows such as enabling reversible password encryption, MFA bypass, or policy weakening. Correlates policy modification events with unusual administrative activity.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556",
+          "name": "Modify Authentication Process",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:policy",
+          "channel": "UpdatePolicy",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-ADUser OR Set-ADAccountControl",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PolicyBaseline",
+          "description": "Expected authentication-related policy configurations to compare against."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0104",
+        "name": "Detect Modification of Authentication Processes Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0104"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0104#AN0290"
+    },
+    {
+      "analytic_id": "AN0295",
+      "name": "Analytic 0295",
+      "description": "Sudden valid logins from accounts that previously had credentials dumped but had not authenticated successfully in the past; correlated with timeline of suspected hash cracking",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.002",
+          "name": "Password Cracking",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Success logs from high-risk accounts",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PostDumpTimeWindow",
+          "description": "Detection window after credential dumping to watch for successful logins"
+        },
+        {
+          "field": "LoginLocationRisk",
+          "description": "Use IP/geolocation risk scoring to flag unusual access"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0105",
+        "name": "Post-Credential Dump Password Cracking Detection via Suspicious File Access and Hash Analysis Tools",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0105"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0105#AN0295"
+    },
+    {
+      "analytic_id": "AN0301",
+      "name": "Analytic 0301",
+      "description": "Detection of OAuth consent phishing or malicious login attempts initiated through spearphishing links. Behavior chain includes inbound email with OAuth URL → consent page visited → unusual token grants logged in IdP logs.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1566.002",
+          "name": "Spearphishing Link",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1566/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "ConsentGrant: Suspicious consent grants to non-approved or unknown applications",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AllowedApps",
+          "description": "Whitelisted apps permitted for OAuth consent grants."
+        },
+        {
+          "field": "AnomalousConsentPatterns",
+          "description": "Patterns of consent from unusual geographies, devices, or unapproved applications."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0107",
+        "name": "Detection Strategy for Spearphishing Links",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0107"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0107#AN0301"
+    },
+    {
+      "analytic_id": "AN0418",
+      "name": "Analytic 0418",
+      "description": "Forged SAML tokens can be observed as authentication attempts with valid signatures but missing expected preceding Kerberos or authentication events. Defenders may correlate SAML assertions with absent Event IDs 4769, 1200, or 1202, or tokens issued with abnormal lifetimes, issuers, or claims compared to baseline.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1606.002",
+          "name": "SAML Tokens",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1606/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "SAML-based login with anomalous issuer or NotOnOrAfter lifetime",
+          "data_component": "Logon Session Metadata"
+        },
+        {
+          "log_source": "WinEventLog:Security",
+          "channel": "EventCode=4769, 1200, 1202",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TokenLifetimeThreshold",
+          "description": "Defines the maximum expected lifetime of a SAML token (e.g., >1 hour considered anomalous)."
+        },
+        {
+          "field": "TrustedIssuerList",
+          "description": "List of approved SAML issuers and certificate thumbprints."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0148",
+        "name": "Detection Strategy for Forged SAML Tokens",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0148"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0148#AN0418"
+    },
+    {
+      "analytic_id": "AN0449",
+      "name": "Analytic 0449",
+      "description": "Monitor for excessive or anomalous MFA push notifications or token requests, especially when login attempts originate from unusual IPs or geolocations and do not correspond to legitimate user-initiated sessions.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1621",
+          "name": "Multi-Factor Authentication Request Generation",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1621"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Multiple MFA challenge requests without successful primary login",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "NSM:Connections",
+          "channel": "PushNotificationSent",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Threshold of MFA prompts per user within a short time period"
+        },
+        {
+          "field": "GeoIPAllowList",
+          "description": "Expected login locations for workforce; deviations can be tuned"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0160",
+        "name": "Detection Strategy for Multi-Factor Authentication Request Generation (T1621)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0160"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0160#AN0449"
+    },
+    {
+      "analytic_id": "AN0459",
+      "name": "Analytic 0459",
+      "description": "Chain: (1) IdP policy/read operations by a principal (e.g., Microsoft Entra/Graph requests to read password or authentication policies); (2) adjacent risky changes (role assignment, app consent) by same principal. Use IdP audit logs.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1201",
+          "name": "Password Policy Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1201"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "operation contains 'Get*Password*Policy' OR 'List*Authentication*Policy' OR 'Get-ADDefaultDomainPasswordPolicy'",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TrustedPartnerAppIds",
+          "description": "Legitimate partner apps that enumerate policies."
+        },
+        {
+          "field": "GeoRiskTolerance",
+          "description": "Raise risk for unusual geo or TOR/VPN egress."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0161",
+        "name": "Password Policy Discovery – cross-platform behavior-chain analytics",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0161"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0161#AN0459"
+    },
+    {
+      "analytic_id": "AN0496",
+      "name": "Analytic 0496",
+      "description": "Detects exploitation of vulnerabilities in cloud identity providers (IdPs) such as Azure AD or Okta for credential access. Defender perspective includes anomalous token creation or renewal, authentication bypass events, and API abuse to mint unauthorized tokens. Correlation highlights exploitation attempts tied to absent or inconsistent audit logs.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1212",
+          "name": "Exploitation for Credential Access",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1212"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "TokenIssued, TokenRenewed: Unexpected or anomalous token issuance events",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "ConsentGranted: Abuse of application integrations to mint tokens bypassing MFA",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TokenAnomalyThreshold",
+          "description": "Threshold for anomalous token creation or renewal before alerting."
+        },
+        {
+          "field": "MonitoredAppIntegrations",
+          "description": "Applications with privileged access that should be tightly monitored for misuse."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0174",
+        "name": "Detection Strategy for Exploitation for Credential Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0174"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0174#AN0496"
+    },
+    {
+      "analytic_id": "AN0501",
+      "name": "Analytic 0501",
+      "description": "Post-compromise identity & session anomalies that follow a drive-by compromise: token reuse from new/unfamiliar IPs, anomalous sign-in patterns for previously inactive users, unexpected consent/grant events, or provisioning changes. Defender sees an endpoint/browser compromise (network + endpoint signals) followed by unusual IdP events: new refresh token issuance, consent/consent-grant events, odd MFA bypass patterns, or unusual OAuth client registrations.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1189",
+          "name": "Drive-by Compromise",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1189"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "SignIn: Sign-ins flagged as atypical (new geographic region, unfamiliar device id) shortly after correlated endpoint/browser compromise times",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Application Consent grants, new OAuth client registrations, or unusual admin-level activities executed by a user account shortly after suspected drive-by compromise",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:auth",
+          "channel": "Refresh token issuance or refresh token usage from new IPs or user agents",
+          "data_component": "User Account Metadata"
+        },
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "ConsoleLogin: If IdP backed by cloud provider, Console login from new IP/agent after correlated endpoint compromise",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "IdpAlertWindow",
+          "description": "Time window to correlate IdP events to endpoint compromise alerts (default 30 minutes to 2 hours)."
+        },
+        {
+          "field": "HighRiskCountryList",
+          "description": "List of countries/IP zones considered high risk for sign-ins; used to tune geo-anomalies."
+        },
+        {
+          "field": "DeviceTrustLevel",
+          "description": "Device trust scoring thresholds that influence whether a sign-in is considered suspicious."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0176",
+        "name": "Drive-by Compromise — Behavior-based, Multi-platform Detection Strategy (T1189)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0176"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0176#AN0501"
+    },
+    {
+      "analytic_id": "AN0527",
+      "name": "Analytic 0527",
+      "description": "OAuth or SAML access tokens reused across multiple sessions or clients without corresponding MFA or login activity.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550.001",
+          "name": "Application Access Token",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "TokenIssued, RefreshTokenUsed",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Delegated permission grants without user login event",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MFAEnforcement",
+          "description": "Ensure MFA context exists prior to token issuance"
+        },
+        {
+          "field": "TokenReuseWindow",
+          "description": "Maximum acceptable window for refresh token reuse"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0185",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material: Application Access Token (T1550.001)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0185"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0185#AN0527"
+    },
+    {
+      "analytic_id": "AN0544",
+      "name": "Analytic 0544",
+      "description": "Detects conditional access policy changes, exclusion of accounts from MFA enforcement, or registration of new MFA factors by non-admin or anomalous users.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556.006",
+          "name": "Multi-Factor Authentication",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556/006"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Modify Conditional Access Policy",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "User excluded from MFA or MFA method registered",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PrivilegedRoles",
+          "description": "Roles permitted to modify MFA settings in IdP; helps tune detection of unauthorized changes."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0190",
+        "name": "Detect MFA Modification or Disabling Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0190"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0190#AN0544"
+    },
+    {
+      "analytic_id": "AN0674",
+      "name": "Analytic 0674",
+      "description": "Monitor for abnormal certificate enrollment events in identity platforms, unexpected use of token-signing certificates, and unusual CA configuration modifications.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1649",
+          "name": "Steal or Forge Authentication Certificates",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1649"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Add certificate credential, Update certificate credential",
+          "data_component": "Active Directory Object Modification"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "certificate added or modified in application credentials",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoContext",
+          "description": "Detect certificate-related changes occurring from unusual geographic locations."
+        },
+        {
+          "field": "Thresholds",
+          "description": "Adjust enrollment/issuance request volume thresholds per tenant size."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0240",
+        "name": "Detection Strategy for Steal or Forge Authentication Certificates",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0240"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0240#AN0674"
+    },
+    {
+      "analytic_id": "AN0686",
+      "name": "Analytic 0686",
+      "description": "Correlate MFA push fatigue or unusual consent grant attempts with call activity where adversaries may have socially engineered the user over voice.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1566.004",
+          "name": "Spearphishing Voice",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1566/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Unusual MFA requests or OAuth consent events temporally aligned with user-reported vishing call",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MFARequestThreshold",
+          "description": "Number of MFA push requests within a timeframe aligned to a suspicious call"
+        },
+        {
+          "field": "ConsentGrantPatterns",
+          "description": "Unusual OAuth consent URLs or delegated scopes"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0245",
+        "name": "Detection Strategy for Spearphishing Voice across OS platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0245"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0245#AN0686"
+    },
+    {
+      "analytic_id": "AN0718",
+      "name": "Analytic 0718",
+      "description": "Forged web credentials may manifest as anomalous SAML token issuance, OpenID Connect token minting, or Zimbra pre-auth key usage. Defenders may see tokens issued without normal authentication events, multiple valid tokens generated simultaneously, or signing anomalies in IdP logs.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1606",
+          "name": "Forge Web Credentials",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1606"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "SAML/OIDC tokens issued without corresponding MFA or password validation",
+          "data_component": "Web Credential Creation"
+        },
+        {
+          "log_source": "NSM:Connections",
+          "channel": "Pre-authentication keys generated or token signing anomalies",
+          "data_component": "Web Credential Usage"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TokenLifetimeThreshold",
+          "description": "Limit the maximum time temporary tokens are valid."
+        },
+        {
+          "field": "ExpectedAuthFlows",
+          "description": "Define normal authentication flows (e.g., password+MFA) to baseline token issuance."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0260",
+        "name": "Detection Strategy for Forged Web Credentials",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0260"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0260#AN0718"
+    },
+    {
+      "analytic_id": "AN0756",
+      "name": "Analytic 0756",
+      "description": "Adversary modifies tenant policy through changes to federation configuration, trust settings, or identity provider additions in Microsoft 365/AzureAD via Portal, PowerShell, or Graph API. Includes setting authentication to federated or updating federated domains.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1484",
+          "name": "Domain or Tenant Policy Modification",
+          "tactics": [
+            "Defense Impairment",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1484"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set federation settings on domain|Set domain authentication|Add federated identity provider",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "OperationName=SetDomainAuthentication OR Set-FederatedDomain",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OperationName",
+          "description": "Identify rare modification operations that are not part of standard admin lifecycle."
+        },
+        {
+          "field": "InitiatedBy",
+          "description": "Filter by known administrators or service principals. Flag unknown initiators."
+        },
+        {
+          "field": "UserAgent",
+          "description": "Detect scripted modifications (e.g., PowerShell/Graph API vs Azure Portal)."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Correlate tenant policy changes with new sign-ins or token forgery attempts."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0270",
+        "name": "Detection of Domain or Tenant Policy Modifications via AD and Identity Provider",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0270"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0270#AN0756"
+    },
+    {
+      "analytic_id": "AN0772",
+      "name": "Analytic 0772",
+      "description": "Behavioral chain of a user being granted elevated privileges or roles in Entra ID or Okta following suspicious login or account creation activity.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098.003",
+          "name": "Additional Cloud Roles",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:audit",
+          "channel": "Add member to role, Add app role assignment",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AdminRoleThreshold",
+          "description": "Number of accounts allowed to hold sensitive roles like Global Admin"
+        },
+        {
+          "field": "RoleAssignmentMethod",
+          "description": "Mechanism by which role was added (PowerShell, API, UI)"
+        },
+        {
+          "field": "GrantContext",
+          "description": "Expected user-to-role mapping defined by org policy"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0277",
+        "name": "Detection Strategy for Role Addition to Cloud Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0277"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0277#AN0772"
+    },
+    {
+      "analytic_id": "AN0802",
+      "name": "Analytic 0802",
+      "description": "Disabling or modifying sign-in or audit log collection for user activities. Defender view: policy or configuration updates removing logging coverage for critical accounts.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1685.002",
+          "name": "Disable or Modify Cloud Log",
+          "tactics": [
+            "Defense Impairment"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1685/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:policy",
+          "channel": "DisableAuditLogs or ConditionalAccess logging changes",
+          "data_component": "Cloud Service Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "CriticalAccounts",
+          "description": "Tune to prioritize logging changes that affect administrative or high-value accounts."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0289",
+        "name": "Detection Strategy for Disable or Modify Cloud Log",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0289"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0289#AN0802"
+    },
+    {
+      "analytic_id": "AN0809",
+      "name": "Analytic 0809",
+      "description": "Detects successful login to cloud identity portals (e.g., Okta, Azure AD, Google Identity) from atypical geolocations, devices, or user agents immediately followed by dashboard/portal navigation to sensitive pages such as user or app configuration.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1538",
+          "name": "Cloud Service Dashboard",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1538"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Sign-in with unfamiliar location/device + portal navigation",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "user.session.start",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "WebUI access to administrator dashboard",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoIPAnomalyThreshold",
+          "description": "Threshold for location anomalies per user profile"
+        },
+        {
+          "field": "UserAgentReputation",
+          "description": "Unknown browser/device fingerprint list"
+        },
+        {
+          "field": "PrivilegedPageAccess",
+          "description": "List of sensitive dashboard views for alerting"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0291",
+        "name": "Detection of Cloud Service Dashboard Usage via GUI-Based Cloud Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0291"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0291#AN0809"
+    },
+    {
+      "analytic_id": "AN0815",
+      "name": "Analytic 0815",
+      "description": "Detects registration of new PTA agents, conditional access changes disabling hybrid MFA enforcement, or suspicious updates to AD FS token-signing configurations.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556.007",
+          "name": "Hybrid Identity",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Register PTA Agent or Modify AD FS trust",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "New agent registration by non-admin user",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PrivilegedRoles",
+          "description": "Roles authorized to configure PTA/AD FS integrations."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0293",
+        "name": "Detect Hybrid Identity Authentication Process Modification",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0293"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0293#AN0815"
+    },
+    {
+      "analytic_id": "AN0892",
+      "name": "Analytic 0892",
+      "description": "Changes to security configurations such as disabling MFA requirements, reducing session token lifetimes, or turning off risk-based policies. Correlate admin logins with sudden policy downgrades.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [],
+      "log_sources": [
+        {
+          "log_source": "azure:policy",
+          "channel": "DisableMfaPolicy or change to ConditionalAccess rules",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PolicyList",
+          "description": "Adjust for the critical identity provider security policies to monitor."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0317",
+        "name": "Detection Strategy for Impair Defenses Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0317"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0317#AN0892"
+    },
+    {
+      "analytic_id": "AN0899",
+      "name": "Analytic 0899",
+      "description": "Adversaries create user accounts via identity provider APIs or admin portals (e.g., Azure AD, Okta). These accounts may be assigned elevated privileges or used in chained authentication. Detection monitors Add User activity from suspicious IPs or automation sources, followed by role/permission escalation.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1136.003",
+          "name": "Cloud Account",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1136/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "Add user",
+          "data_component": "User Account Creation"
+        },
+        {
+          "log_source": "azure:audit",
+          "channel": "Add member to role",
+          "data_component": "User Account Modification"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Login from newly created account",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "IPAddress",
+          "description": "Filter on IPs outside known admin networks or geographies"
+        },
+        {
+          "field": "RoleThreshold",
+          "description": "Raise alert if total admins exceeds historical baseline"
+        },
+        {
+          "field": "ServicePrincipalFlag",
+          "description": "Differentiate between user and service principal creation"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0319",
+        "name": "Detection Strategy for T1136.003 - Cloud Account Creation across IaaS, IdP, SaaS, Office",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0319"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0319#AN0899"
+    },
+    {
+      "analytic_id": "AN0956",
+      "name": "Analytic 0956",
+      "description": "Token replay or impersonation in federated logins without interactive browser session or MFA prompts.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550",
+          "name": "Use Alternate Authentication Material",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "TokenIssuanceStart, TokenIssuanceSuccess",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "login using refresh_token with no preceding authentication context",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MFAContextRequired",
+          "description": "Customize for accounts where MFA must always precede token issuance"
+        },
+        {
+          "field": "RefreshTokenReuseThreshold",
+          "description": "Threshold for number of times a refresh token is reused without re-auth"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0338",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material (T1550)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0338"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0338#AN0956"
+    },
+    {
+      "analytic_id": "AN0978",
+      "name": "Analytic 0978",
+      "description": "Monitor for unexpected privilege elevation operations via SAML assertion manipulation, role injection, or changes to identity mappings that result in access escalation.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1548",
+          "name": "Abuse Elevation Control Mechanism",
+          "tactics": [
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1548"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "unusual role assumption or elevation path",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AuthorizedRoleMappings",
+          "description": "Roles or groups that should never be assumed outside designated paths"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Time between assertion issuance and critical privilege use"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0345",
+        "name": "Detection Strategy for Abuse Elevation Control Mechanism (T1548)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0345"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0345#AN0978"
+    },
+    {
+      "analytic_id": "AN1079",
+      "name": "Analytic 1079",
+      "description": "Detects adversary creation of cloud or IdP accounts whose names resemble existing privileged or service accounts. May indicate preparation for privilege escalation or defense evasion.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1036.010",
+          "name": "Masquerade Account Name",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1036/010"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "Add user",
+          "data_component": "User Account Creation"
+        },
+        {
+          "log_source": "azure:audit",
+          "channel": "Rename user",
+          "data_component": "User Account Modification"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "User lifecycle events",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RoleScope",
+          "description": "Whether created users have privileged or scoped roles assigned at creation."
+        },
+        {
+          "field": "NamingHeuristics",
+          "description": "Regex patterns or heuristics for detecting suspicious naming conventions (e.g., helpdesk_support_, root-admin)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0383",
+        "name": "Detection Strategy for Masquerading via Account Name Similarity",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0383"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0383#AN1079"
+    },
+    {
+      "analytic_id": "AN1087",
+      "name": "Analytic 1087",
+      "description": "Enumeration of identity roles and users via API calls such as `Get-MsolRoleMember`, `az ad user list`, or Graph API tokens from unauthorized users or automation accounts.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1087.004",
+          "name": "Cloud Account",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1087/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "Microsoft Entra ID Audit Logs",
+          "channel": "RoleManagement.Read.Directory or Directory.Read.All",
+          "data_component": "User Account Metadata"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Interactive/Non-Interactive Sign-In",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "m365:defender",
+          "channel": "Activity Log: Command Invocation",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TokenScope",
+          "description": "Flags excessive or abnormal use of directory read scopes by unexpected principals."
+        },
+        {
+          "field": "AppContext",
+          "description": "Differentiate authorized automation from rogue access tokens or external tools."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Trigger correlation across short bursts of high-volume enumeration."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0386",
+        "name": "Cloud Account Enumeration via API, CLI, and Scripting Interfaces",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0386"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0386#AN1087"
+    },
+    {
+      "analytic_id": "AN1106",
+      "name": "Analytic 1106",
+      "description": "Token creation or access delegation where a user impersonates a higher-privileged service account or performs domain-wide delegation actions, such as GCP's serviceAccountTokenCreator or Workspace impersonation.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1548.005",
+          "name": "Temporary Elevated Cloud Access",
+          "tactics": [
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1548/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "gcp:iam",
+          "channel": "PrincipalEmail with serviceAccountTokenCreator impersonating new identity",
+          "data_component": "User Account Metadata"
+        },
+        {
+          "log_source": "gcp:workspaceaudit",
+          "channel": "Token Generation via Domain Delegation",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "userEmailFilter",
+          "description": "Tune based on legitimate service accounts allowed to impersonate user accounts."
+        },
+        {
+          "field": "delegatedScope",
+          "description": "Limit delegated access to specific scopes relevant to business functions."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0393",
+        "name": "Detection Strategy for Temporary Elevated Cloud Access Abuse (T1548.005)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0393"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0393#AN1106"
+    },
+    {
+      "analytic_id": "AN1128",
+      "name": "Analytic 1128",
+      "description": "Enumeration of directories, applications, or service principals through APIs such as Microsoft Graph or Okta API. Defender perspective includes unexpected listing of users, roles, applications, and abnormal access to identity management endpoints.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1526",
+          "name": "Cloud Service Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1526"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "ListApplications, ListServicePrincipals: Large-scale queries against identity or application objects",
+          "data_component": "Cloud Service Enumeration"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "InteractiveUserLogin: Discovery behavior linked to privileged logins from atypical IP ranges",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "QueryVolumeThreshold",
+          "description": "Threshold for number of object enumeration calls before triggering detection."
+        },
+        {
+          "field": "PrivilegedRoleList",
+          "description": "High-value identity roles (Global Admin, Application Admin) for targeted discovery monitoring."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0402",
+        "name": "Detection Strategy for Cloud Service Discovery",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0402"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0402#AN1128"
+    },
+    {
+      "analytic_id": "AN1157",
+      "name": "Analytic 1157",
+      "description": "Unauthorized API or console calls to retrieve or reset password credentials, download key material, or modify SSO settings.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1552",
+          "name": "Unsecured Credentials",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1552"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Reset password or download key from portal",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "GetSecretValue",
+          "data_component": "Cloud Service Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "SSOSettingScope",
+          "description": "Subset of IdP settings monitored for unauthorized changes"
+        },
+        {
+          "field": "SecretType",
+          "description": "Which secrets (passwords, keys, tokens) are monitored"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0412",
+        "name": "Detect Access or Search for Unsecured Credentials Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0412"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0412#AN1157"
+    },
+    {
+      "analytic_id": "AN1260",
+      "name": "Analytic 1260",
+      "description": "Adversary adds federated identity provider (IdP) or modifies tenant domain authentication from Managed to Federated. Detected via API, PowerShell, or Admin Portal through federation events like `Set domain authentication`, `Add federated identity provider`, or `Update-MsolFederatedDomain`.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1484.002",
+          "name": "Trust Modification",
+          "tactics": [
+            "Defense Impairment",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1484/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set federation settings on domain|Set domain authentication|Add federated identity provider",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "OperationName=SetDomainAuthentication OR Update-MsolFederatedDomain",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OperationName",
+          "description": "Identify rare trust-modification operations (SetDomainAuthentication, Update-MsolFederatedDomain)."
+        },
+        {
+          "field": "InitiatedBy",
+          "description": "Flag federated trust changes performed by unknown users, service principals, or tokens."
+        },
+        {
+          "field": "UserAgent",
+          "description": "Separate scripted/API interactions from GUI-based administrative changes."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Correlate trust change to federated login or SAML token injection within short window."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0458",
+        "name": "Detection of Trust Relationship Modifications in Domain or Tenant Policies",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0458"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0458#AN1260"
+    },
+    {
+      "analytic_id": "AN1265",
+      "name": "Analytic 1265",
+      "description": "Same source IP performing multiple authentication attempts using known breached username/password combinations across different identities in Azure AD, Okta, or Duo",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.004",
+          "name": "Credential Stuffing",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "status = failure",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "BreachedCredentialSourceMatch",
+          "description": "Optional enrichment using known leaked credentials database"
+        },
+        {
+          "field": "SSOServiceScope",
+          "description": "Targeting only federated or hybrid identity auth flows"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0460",
+        "name": "Credential Stuffing Detection via Reused Breached Credentials Across Services",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0460"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0460#AN1265"
+    },
+    {
+      "analytic_id": "AN1277",
+      "name": "Analytic 1277",
+      "description": "Password spraying or brute force attempts across user pool within short time intervals",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110",
+          "name": "Brute Force",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Sign-in logs",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UsernameSprayThreshold",
+          "description": "Max number of accounts targeted from a single IP"
+        },
+        {
+          "field": "GeoAnomaly",
+          "description": "Mismatch between user location and request location"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0463",
+        "name": "Brute Force Authentication Failures with Multi-Platform Log Correlation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0463"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0463#AN1277"
+    },
+    {
+      "analytic_id": "AN1285",
+      "name": "Analytic 1285",
+      "description": "Use of known default service accounts or root-level cloud accounts performing authentication or changes to IAM policy.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1078.001",
+          "name": "Default Accounts",
+          "tactics": [
+            "Stealth",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1078/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "ConsoleLogin or AssumeRole",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AccountList",
+          "description": "Organizations may rename or rotate default IAM accounts; detection logic should be updated with any renamed or aliased default identities."
+        },
+        {
+          "field": "GeoLocation",
+          "description": "Authentication attempts from unusual geographic regions should trigger anomaly detection."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0465",
+        "name": "Detection of Default Account Abuse Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0465"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0465#AN1285"
+    },
+    {
+      "analytic_id": "AN1339",
+      "name": "Analytic 1339",
+      "description": "Sign-in failures across enterprise SSO applications or SaaS platforms from same IP address using the same password against multiple user identities",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.003",
+          "name": "Password Spraying",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Failure Reason + UserPrincipalName",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoIPAnomalyCheck",
+          "description": "Use geolocation mismatches to strengthen signal"
+        },
+        {
+          "field": "FailedUserRatio",
+          "description": "Proportion of total user base affected to filter noise"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0487",
+        "name": "Distributed Password Spraying via Authentication Failures Across Multiple Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0487"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0487#AN1339"
+    },
+    {
+      "analytic_id": "AN1347",
+      "name": "Analytic 1347",
+      "description": "Behavioral chain: (1) delegated admin or external identity establishes session (e.g., partner/reseller DAP, B2B guest, SAML/OAuth trust); (2) role elevation or app consent/permission grant; (3) downstream privileged actions in the tenant. Correlate IdP sign-in, admin/role assignment, and consent/admin-on-behalf events.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1199",
+          "name": "Trusted Relationship",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1199"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "InteractiveUser, ServicePrincipalSignIn",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "azure:audit",
+          "channel": "Add delegated admin / Assign admin roles / Update application consent",
+          "data_component": "Logon Session Metadata"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-PartnerOfRecord / CompanyAdministrator role assignments / New-DelegatedAdminRelationship",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TrustedPartnerTenantIDs",
+          "description": "Tenant IDs of approved partners; any others are suspicious."
+        },
+        {
+          "field": "RequiredMFA",
+          "description": "Require MFA for partner sessions; alert on bypass or step-up failure."
+        },
+        {
+          "field": "RoleScopeAllowList",
+          "description": "Roles third-parties may hold (e.g., Helpdesk Admin); flag broader scopes."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0488",
+        "name": "Detect abuse of Trusted Relationships (third-party and delegated admin access)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0488"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0488#AN1347"
+    },
+    {
+      "analytic_id": "AN1425",
+      "name": "Analytic 1425",
+      "description": "Unusual OAuth app registration followed by user-granted OAuth tokens and subsequent high-privilege resource access via those tokens.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1528",
+          "name": "Steal Application Access Token",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1528"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "App registrations or consent grants by abnormal users or at unusual times",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ConsentScope",
+          "description": "Tunable based on risky or privileged scopes in the environment"
+        },
+        {
+          "field": "AppUserRatio",
+          "description": "Threshold of how many users have authorized a given app"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0515",
+        "name": "Detection Strategy for T1528 - Steal Application Access Token",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0515"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0515#AN1425"
+    },
+    {
+      "analytic_id": "AN1469",
+      "name": "Analytic 1469",
+      "description": "Addition of credentials (keys, app passwords, x.509 certs) to existing cloud accounts, service principals, or OAuth apps via portal or API by non-standard identities or IP ranges.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098.001",
+          "name": "Additional Cloud Credentials",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "Add service principal credentials, app password added, app role assignment",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MFABypassMechanism",
+          "description": "App password or legacy auth activity bypassing MFA policies."
+        },
+        {
+          "field": "SourceIPAllowlist",
+          "description": "Expected IPs allowed to perform admin identity operations."
+        },
+        {
+          "field": "ApplicationCredentialType",
+          "description": "Track types like `client_secret`, `certificate`, `password`, `federated`."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0531",
+        "name": "Detection Strategy for Additional Cloud Credentials in IaaS/IdP/SaaS",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0531"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0531#AN1469"
+    },
+    {
+      "analytic_id": "AN1503",
+      "name": "Analytic 1503",
+      "description": "Detects anomalous authentication activity such as sign-ins from impossible geolocations or legacy protocols from high-privileged accounts.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1078.004",
+          "name": "Cloud Accounts",
+          "tactics": [
+            "Stealth",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1078/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Sign-in activity",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "user.authentication.sso",
+          "data_component": "Logon Session Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AnomalousLocationThreshold",
+          "description": "Defines geographic separation (e.g., impossible travel) considered suspicious."
+        },
+        {
+          "field": "ProtocolType",
+          "description": "Filter based on legacy or deprecated authentication mechanisms."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0546",
+        "name": "Detection of Abused or Compromised Cloud Accounts for Access and Persistence",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0546"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0546#AN1503"
+    },
+    {
+      "analytic_id": "AN1524",
+      "name": "Analytic 1524",
+      "description": "Multiple failed sign-in attempts from external sources across many users followed by success from the same IP",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.001",
+          "name": "Password Guessing",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Sign-in logs",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoRiskScore",
+          "description": "Elevate anomalies from uncommon geolocations"
+        },
+        {
+          "field": "MFAStatus",
+          "description": "Elevate logins missing MFA on high-value accounts"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0551",
+        "name": "Password Guessing via Multi-Source Authentication Failure Correlation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0551"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0551#AN1524"
+    },
+    {
+      "analytic_id": "AN1546",
+      "name": "Analytic 1546",
+      "description": "Detection of valid account abuse in IdP logs via geographic anomalies, impossible travel, risky sign-ins, and multiple MFA attempts or failures.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1078",
+          "name": "Valid Accounts",
+          "tactics": [
+            "Stealth",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1078"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:okta",
+          "channel": "Sign-in logs / audit events",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MFAFailureCount",
+          "description": "Threshold of failed MFA attempts before alerting."
+        },
+        {
+          "field": "RiskScoreThreshold",
+          "description": "Custom threshold based on calculated identity risk."
+        },
+        {
+          "field": "IPGeoVelocity",
+          "description": "Detect impossible travel (logins from two distant geolocations within short time)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0560",
+        "name": "Detection of Valid Account Abuse Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0560"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0560#AN1546"
+    },
+    {
+      "analytic_id": "AN1607",
+      "name": "Analytic 1607",
+      "description": "Adversary creates users via IAM/IdP API or portal (e.g., Azure AD, Okta). Detection involves monitoring API calls, admin action logs, and correlation with role assignments.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1136",
+          "name": "Create Account",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1136"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:audit",
+          "channel": "Add user",
+          "data_component": "User Account Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AdminThreshold",
+          "description": "Trigger alert only when account is assigned privileged roles"
+        },
+        {
+          "field": "AutomationExemptions",
+          "description": "Exclude accounts from known automation processes or provisioning pipelines"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0583",
+        "name": "Detection Strategy for T1136 - Create Account across platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0583"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0583#AN1607"
+    },
+    {
+      "analytic_id": "AN1616",
+      "name": "Analytic 1616",
+      "description": "Detection of identity directory enumeration through API calls or administrative queries retrieving multiple account objects within a short interval.",
+      "platforms": [
+        "Identity Provider"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1087",
+          "name": "Account Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1087"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Graph API Query",
+          "data_component": "Cloud Service Enumeration"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "User Enumeration Events",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "QueryType",
+          "description": "Detect user vs role enumeration. Tune based on query scope."
+        },
+        {
+          "field": "AppContext",
+          "description": "Correlate enumeration with unexpected app registrations or identities."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0587",
+        "name": "Enumeration of User or Account Information Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0587"
+      },
+      "version": "1.0",
+      "modified": "2026-05-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0587#AN1616"
+    }
+  ]
+}

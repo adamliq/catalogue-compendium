@@ -1,0 +1,4349 @@
+{
+  "metadata": {
+    "title": "MITRE ATT&CK Enterprise - Office Suite Platform Analytics",
+    "description": "Techniques and formal MITRE ATT&CK Detection Analytics scoped to MITRE's 'Office Suite' platform (desktop and cloud-hosted office-productivity application behavior -- Outlook/Exchange mailbox and mail-flow rules, SharePoint, OAuth application access to mailbox/document content, and AI-copilot usage -- as distinct from the broader SaaS/Identity Provider scope of the same underlying Microsoft 365 tenant). Extracted from the official MITRE ATT&CK Enterprise STIX dataset. Loaded by the Threat Detection Library app to show ATT&CK coverage for this library's genuinely Office-Suite-scoped ESCU content -- the 'Microsoft 365', 'Microsoft 365 Copilot', and 'Microsoft SharePoint' components (91 entries) -- deliberately excluding this catalogue's non-Office components (Windows Endpoint, AWS/Azure/GCP cloud-infrastructure content, Okta/PingID identity content, and the rest) even where a shared, broadly-applicable technique ID (e.g. T1078 Valid Accounts) would otherwise inflate the coverage count; the naive, unfiltered whole-ESCU cross-reference would report 48/78 covered -- the curated, genuinely-Office-Suite-scoped set gives the accurate figure: 26/78. As with iaas/identity-provider, 'Microsoft 365' and 'Microsoft 365 Copilot' are each shared, in part, with the saas/identity-provider coverage files -- the same component can legitimately contain Office-application detections (mailbox rules, document exfiltration) alongside SaaS-collaboration and identity-layer detections, since MITRE itself scopes many underlying techniques to multiple platforms simultaneously.",
+    "source": "https://github.com/mitre/cti (enterprise-attack/enterprise-attack.json)",
+    "attack_version_reference": "https://attack.mitre.org/resources/updates/",
+    "attack_spec_version": "3.3.0",
+    "platform": "Office Suite",
+    "retrieved": "2026-08-20",
+    "technique_count": 78,
+    "analytic_count": 56,
+    "techniques_covered_by_library": 26,
+    "tactic_breakdown": {
+      "Initial Access": 6,
+      "Execution": 3,
+      "Persistence": 20,
+      "Privilege Escalation": 9,
+      "Stealth": 11,
+      "Defense Impairment": 4,
+      "Credential Access": 15,
+      "Discovery": 8,
+      "Lateral Movement": 6,
+      "Collection": 8,
+      "Exfiltration": 4,
+      "Impact": 3
+    }
+  },
+  "techniques": [
+    {
+      "attack_id": "T1021.007",
+      "name": "Cloud Services",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may log into accessible cloud services within a compromised environment using [Valid Accounts](https://attack.mitre.org/techniques/T1078) that are synchronized with or federated to on-premises user identities. The adversary may then perform management actions or access cloud-hosted resources as the logged-on user. ",
+      "url": "https://attack.mitre.org/techniques/T1021/007",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1036.010",
+      "name": "Masquerade Account Name",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may match or approximate the names of legitimate accounts to make newly created ones appear benign. This will typically occur during [Create Account](https://attack.mitre.org/techniques/T1136), although accounts may also be renamed at a later date. This may also coincide with [Account Access Removal](https://attack.mitre.org/techniques/T1531) if the actor first deletes an account befor",
+      "url": "https://attack.mitre.org/techniques/T1036/010",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1048",
+      "name": "Exfiltration Over Alternative Protocol",
+      "is_subtechnique": false,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may steal data by exfiltrating it over a different protocol than that of the existing command and control channel. The data may also be sent to an alternate network location from the main command and control server.  ",
+      "url": "https://attack.mitre.org/techniques/T1048",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1059",
+      "name": "Command and Scripting Interpreter",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities, for example, macOS and Linux distributions include some flavor of [Unix Shel",
+      "url": "https://attack.mitre.org/techniques/T1059",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1059.009",
+      "name": "Cloud API",
+      "is_subtechnique": true,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may abuse cloud APIs to execute malicious commands. APIs available in cloud environments provide various functionalities and are a feature-rich method for programmatic access to nearly all aspects of a tenant. These APIs may be utilized through various methods such as command line interpreters (CLIs), in-browser Cloud Shells, [PowerShell](https://attack.mitre.org/techniques/T1059/001) ",
+      "url": "https://attack.mitre.org/techniques/T1059/009",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1069",
+      "name": "Permission Groups Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to discover group and permission settings. This information can help adversaries determine which user accounts and groups are available, the membership of users in particular groups, and which users and groups have elevated permissions.",
+      "url": "https://attack.mitre.org/techniques/T1069",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1069.003",
+      "name": "Cloud Groups",
+      "is_subtechnique": true,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "SaaS",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may attempt to find cloud groups and permission settings. The knowledge of cloud permission groups can help adversaries determine the particular roles of users and groups within an environment, as well as which users are associated with a particular group.",
+      "url": "https://attack.mitre.org/techniques/T1069/003",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1070",
+      "name": "Indicator Removal",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may selectively delete or modify artifacts generated to reduce indications of their presence and blend in with legitimate activity. Rather than broadly removing evidence, adversaries may target specific artifacts that appear anomalous or are likely to draw scrutiny, while leaving sufficient data intact to maintain the appearance of normal system behavior.",
+      "url": "https://attack.mitre.org/techniques/T1070",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1070.008",
+      "name": "Clear Mailbox Data",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may modify mail and mail application data to remove evidence of their activity. Email applications allow users and other programs to export and delete mailbox data via command line tools or use of APIs. Mail application data can be emails, email metadata, or logs generated by the application or operating system, such as export requests. ",
+      "url": "https://attack.mitre.org/techniques/T1070/008",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078",
+      "name": "Valid Accounts",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Compromised credentials may be used to bypass access controls placed on various resources on systems within the network and may even be used for persistent access to remote systems and externally available services, such as VPNs, Outlook Web",
+      "url": "https://attack.mitre.org/techniques/T1078",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078.001",
+      "name": "Default Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Default accounts are those that are built-into an OS, such as the Guest or Administrator accounts on Windows systems. Default accounts also include default factory/provider set accounts on other types of systems, software, or devices, includ",
+      "url": "https://attack.mitre.org/techniques/T1078/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1078.004",
+      "name": "Cloud Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Valid accounts in cloud environments may allow adversaries to perform actions to achieve Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application. Cloud Accounts can exist solely in the cl",
+      "url": "https://attack.mitre.org/techniques/T1078/004",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1080",
+      "name": "Taint Shared Content",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Windows",
+        "SaaS",
+        "Linux",
+        "macOS",
+        "Office Suite"
+      ],
+      "description": "",
+      "url": "https://attack.mitre.org/techniques/T1080",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1087",
+      "name": "Account Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to get a listing of valid accounts, usernames, or email addresses on a system or within a compromised environment. This information can help adversaries determine which accounts exist, which can aid in follow-on behavior such as brute-forcing, spear-phishing attacks, or account takeovers (e.g., [Valid Accounts](https://attack.mitre.org/techniques/T1078)).",
+      "url": "https://attack.mitre.org/techniques/T1087",
+      "analytic_count_total": 8,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1087.003",
+      "name": "Email Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may attempt to get a listing of email addresses and accounts. Adversaries may try to dump Exchange address lists such as global address lists (GALs).(Citation: Microsoft Exchange Address Lists)",
+      "url": "https://attack.mitre.org/techniques/T1087/003",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1087.004",
+      "name": "Cloud Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may attempt to get a listing of cloud accounts. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application.",
+      "url": "https://attack.mitre.org/techniques/T1087/004",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1098",
+      "name": "Account Manipulation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may manipulate accounts to maintain and/or elevate access to victim systems. Account manipulation may consist of any action that preserves or modifies adversary access to a compromised account, such as modifying credentials or permission groups.(Citation: FireEye SMOKEDHAM June 2021) These actions could also include account activity designed to subvert security policies, such as perfor",
+      "url": "https://attack.mitre.org/techniques/T1098",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098.002",
+      "name": "Additional Email Delegate Permissions",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may grant additional permission levels to maintain persistent access to an adversary-controlled email account. ",
+      "url": "https://attack.mitre.org/techniques/T1098/002",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098.003",
+      "name": "Additional Cloud Roles",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "An adversary may add additional roles or permissions to an adversary-controlled cloud account to maintain persistent access to a tenant. For example, adversaries may update IAM policies in cloud-based environments or add a new global administrator in Office 365 environments.(Citation: AWS IAM Policies and Permissions)(Citation: Google Cloud IAM Policies)(Citation: Microsoft Support O365 Add Anothe",
+      "url": "https://attack.mitre.org/techniques/T1098/003",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110",
+      "name": "Brute Force",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained.(Citation: TrendMicro Pawn Storm Dec 2020) Without knowledge of the password for an account or set of accounts, an adversary may systematically guess the password using a repetitive or iterative mechanism.(Citation: Dragos Crashoverride 2018) Brute forcing passwords",
+      "url": "https://attack.mitre.org/techniques/T1110",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.001",
+      "name": "Password Guessing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries with no prior knowledge of legitimate credentials within the system or environment may guess passwords to attempt access to accounts. Without knowledge of the password for an account, an adversary may opt to systematically guess the password using a repetitive or iterative mechanism. An adversary may guess login credentials without prior knowledge of system or environment passwords dur",
+      "url": "https://attack.mitre.org/techniques/T1110/001",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.002",
+      "name": "Password Cracking",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may use password cracking to attempt to recover usable credentials, such as plaintext passwords, when credential material such as password hashes are obtained. [OS Credential Dumping](https://attack.mitre.org/techniques/T1003) can be used to obtain password hashes, this may only get an adversary so far when [Pass the Hash](https://attack.mitre.org/techniques/T1550/002) is not an option",
+      "url": "https://attack.mitre.org/techniques/T1110/002",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1110.003",
+      "name": "Password Spraying",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "description": "Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid account credentials. Password spraying uses one password (e.g. 'Password01'), or a small list of commonly used passwords, that may match the complexity policy of the domain. Logins are attempted with that password against many different accounts on a network to avoid ac",
+      "url": "https://attack.mitre.org/techniques/T1110/003",
+      "analytic_count_total": 8,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.004",
+      "name": "Credential Stuffing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use credentials obtained from breach dumps of unrelated accounts to gain access to target accounts through credential overlap. Occasionally, large numbers of username and password pairs are dumped online when a website or service is compromised and the user account credentials accessed. The information may be useful to an adversary attempting to compromise accounts by taking advant",
+      "url": "https://attack.mitre.org/techniques/T1110/004",
+      "analytic_count_total": 9,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1114",
+      "name": "Email Collection",
+      "is_subtechnique": false,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Office Suite"
+      ],
+      "description": "Adversaries may target user email to collect sensitive information. Emails may contain sensitive data, including trade secrets or personal information, that can prove valuable to adversaries. Emails may also contain details of ongoing incident response operations, which may allow adversaries to adjust their techniques in order to maintain persistence or evade defenses.(Citation: TrustedSec OOB Com",
+      "url": "https://attack.mitre.org/techniques/T1114",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1114.002",
+      "name": "Remote Email Collection",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may target an Exchange server, Office 365, or Google Workspace to collect sensitive information. Adversaries may leverage a user's credentials and interact directly with the Exchange server to acquire information from within a network. Adversaries may also access externally facing Exchange services, Office 365, or Google Workspace to access email using credentials or access tokens. Too",
+      "url": "https://attack.mitre.org/techniques/T1114/002",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1114.003",
+      "name": "Email Forwarding Rule",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may setup email forwarding rules to collect sensitive information. Adversaries may abuse email forwarding rules to monitor the activities of a victim, steal information, and further gain intelligence on the victim or the victim’s organization to use as part of further exploits or operations.(Citation: US-CERT TA18-068A 2018) Furthermore, email forwarding rules can allow adversaries to ",
+      "url": "https://attack.mitre.org/techniques/T1114/003",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1119",
+      "name": "Automated Collection",
+      "is_subtechnique": false,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Once established within a system or network, an adversary may use automated techniques for collecting internal data. Methods for performing this technique could include use of a [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059) to search for and copy information fitting set criteria such as file type, location, or name at specific time intervals. ",
+      "url": "https://attack.mitre.org/techniques/T1119",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1136",
+      "name": "Create Account",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider",
+        "ESXi"
+      ],
+      "description": "Adversaries may create an account to maintain access to victim systems.(Citation: Symantec WastedLocker June 2020) With a sufficient level of access, creating such accounts may be used to establish secondary credentialed access that do not require persistent remote access tools to be deployed on the system.",
+      "url": "https://attack.mitre.org/techniques/T1136",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1136.003",
+      "name": "Cloud Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may create a cloud account to maintain access to victim systems. With a sufficient level of access, such accounts may be used to establish secondary credentialed access that does not require persistent remote access tools to be deployed on the system.(Citation: Microsoft O365 Admin Roles)(Citation: Microsoft Support O365 Add Another Admin, October 2019)(Citation: AWS Create IAM User)(C",
+      "url": "https://attack.mitre.org/techniques/T1136/003",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1137",
+      "name": "Office Application Startup",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may leverage Microsoft Office-based applications for persistence between startups. Microsoft Office is a fairly common application suite on Windows-based operating systems within an enterprise network. There are multiple mechanisms that can be used with Office for persistence when an Office-based application is started; this can include the use of Office Template Macros and add-ins.",
+      "url": "https://attack.mitre.org/techniques/T1137",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1137.001",
+      "name": "Office Template Macros",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may abuse Microsoft Office templates to obtain persistence on a compromised system. Microsoft Office contains templates that are part of common Office applications and are used to customize styles. The base templates within the application are used each time an application starts. (Citation: Microsoft Change Normal Template)",
+      "url": "https://attack.mitre.org/techniques/T1137/001",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1137.002",
+      "name": "Office Test",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may abuse the Microsoft Office \"Office Test\" Registry key to obtain persistence on a compromised system. An Office Test Registry location exists that allows a user to specify an arbitrary DLL that will be executed every time an Office application is started. This Registry key is thought to be used by Microsoft to load DLLs for testing and debugging purposes while developing Office appl",
+      "url": "https://attack.mitre.org/techniques/T1137/002",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1137.003",
+      "name": "Outlook Forms",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may abuse Microsoft Outlook forms to obtain persistence on a compromised system. Outlook forms are used as templates for presentation and functionality in Outlook messages. Custom Outlook forms can be created that will execute code when a specifically crafted email is sent by an adversary utilizing the same custom Outlook form.(Citation: SensePost Outlook Forms)",
+      "url": "https://attack.mitre.org/techniques/T1137/003",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1137.004",
+      "name": "Outlook Home Page",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may abuse Microsoft Outlook's Home Page feature to obtain persistence on a compromised system. Outlook Home Page is a legacy feature used to customize the presentation of Outlook folders. This feature allows for an internal or external URL to be loaded and presented whenever a folder is opened. A malicious HTML page can be crafted that will execute code when loaded by Outlook Home Page",
+      "url": "https://attack.mitre.org/techniques/T1137/004",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1137.005",
+      "name": "Outlook Rules",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may abuse Microsoft Outlook rules to obtain persistence on a compromised system. Outlook rules allow a user to define automated behavior to manage email messages. A benign rule might, for example, automatically move an email to a particular folder in Outlook if it contains specific words from a specific sender. Malicious Outlook rules can be created that can trigger code execution when",
+      "url": "https://attack.mitre.org/techniques/T1137/005",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1137.006",
+      "name": "Add-ins",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "Office Suite"
+      ],
+      "description": "Adversaries may abuse Microsoft Office add-ins to obtain persistence on a compromised system. Office add-ins can be used to add functionality to Office programs. (Citation: Microsoft Office Add-ins) There are different types of add-ins that can be used by the various Office products; including Word/Excel add-in Libraries (WLL/XLL), VBA add-ins, Office Component Object Model (COM) add-ins, automati",
+      "url": "https://attack.mitre.org/techniques/T1137/006",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1199",
+      "name": "Trusted Relationship",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may breach or otherwise leverage organizations who have access to intended victims. Access through trusted third party relationship abuses an existing connection that may not be protected or receives less scrutiny than standard mechanisms of gaining access to a network.",
+      "url": "https://attack.mitre.org/techniques/T1199",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1201",
+      "name": "Password Policy Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "IaaS",
+        "Network Devices",
+        "Identity Provider",
+        "SaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may attempt to access detailed information about the password policy used within an enterprise network or cloud environment. Password policies are a way to enforce complex passwords that are difficult to guess or crack through [Brute Force](https://attack.mitre.org/techniques/T1110). This information may help the adversary to create a list of common passwords and launch dictionary and/",
+      "url": "https://attack.mitre.org/techniques/T1201",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213",
+      "name": "Data from Information Repositories",
+      "is_subtechnique": false,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "SaaS",
+        "IaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may leverage information repositories to mine valuable information. Information repositories are tools that allow for storage of information, typically to facilitate collaboration or information sharing between users, and can store a wide variety of data that may aid adversaries in further objectives, such as Credential Access, Lateral Movement, or Defense Evasion, or direct access to ",
+      "url": "https://attack.mitre.org/techniques/T1213",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213.002",
+      "name": "Sharepoint",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may leverage the SharePoint repository as a source to mine valuable information. SharePoint will often contain useful information for an adversary to learn about the structure and functionality of the internal network and systems. For example, the following is a list of example information that may hold potential value to an adversary and may also be found on SharePoint:",
+      "url": "https://attack.mitre.org/techniques/T1213/002",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1213.005",
+      "name": "Messaging Applications",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage chat and messaging applications, such as Microsoft Teams, Google Chat, and Slack, to mine valuable information.  ",
+      "url": "https://attack.mitre.org/techniques/T1213/005",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1526",
+      "name": "Cloud Service Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "An adversary may attempt to enumerate the cloud services running on a system after gaining access. These methods can differ from platform-as-a-service (PaaS), to infrastructure-as-a-service (IaaS), or software-as-a-service (SaaS). Many services exist throughout the various cloud providers and can include Continuous Integration and Continuous Delivery (CI/CD), Lambda Functions, Entra ID, etc. They ",
+      "url": "https://attack.mitre.org/techniques/T1526",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1528",
+      "name": "Steal Application Access Token",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries can steal application access tokens as a means of acquiring credentials to access remote systems and resources.",
+      "url": "https://attack.mitre.org/techniques/T1528",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1530",
+      "name": "Data from Cloud Storage",
+      "is_subtechnique": false,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may access data from cloud storage.",
+      "url": "https://attack.mitre.org/techniques/T1530",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1531",
+      "name": "Account Access Removal",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Office Suite",
+        "ESXi"
+      ],
+      "description": "Adversaries may interrupt availability of system and network resources by inhibiting access to accounts utilized by legitimate users. Accounts may be deleted, locked, or manipulated (ex: changed credentials, revoked permissions for SaaS platforms such as Sharepoint) to remove access to accounts.(Citation: Obsidian Security SaaS Ransomware June 2023) Adversaries may also subsequently log off and/or",
+      "url": "https://attack.mitre.org/techniques/T1531",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1534",
+      "name": "Internal Spearphishing",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "After they already have access to accounts or systems within the environment, adversaries may use internal spearphishing to gain access to additional information or compromise other users within the same organization. Internal spearphishing is multi-staged campaign where a legitimate account is initially compromised either by controlling the user's device or by compromising the account credentials",
+      "url": "https://attack.mitre.org/techniques/T1534",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1537",
+      "name": "Transfer Data to Cloud Account",
+      "is_subtechnique": false,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may exfiltrate data by transferring the data, including through sharing/syncing and creating backups of cloud environments, to another cloud account they control on the same service.",
+      "url": "https://attack.mitre.org/techniques/T1537",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1538",
+      "name": "Cloud Service Dashboard",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "An adversary may use a cloud service dashboard GUI with stolen credentials to gain useful information from an operational cloud environment, such as specific services, resources, and features. For example, the GCP Command Center can be used to view all assets, review findings of potential security risks, and run additional queries, such as finding public IP addresses and open ports.(Citation: Goog",
+      "url": "https://attack.mitre.org/techniques/T1538",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1539",
+      "name": "Steal Web Session Cookie",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "An adversary may steal web application or service session cookies and use them to gain access to web applications or Internet services as an authenticated user without needing credentials. Web applications and services often use session cookies as an authentication token after a user has authenticated to a website.",
+      "url": "https://attack.mitre.org/techniques/T1539",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1546",
+      "name": "Event Triggered Execution",
+      "is_subtechnique": false,
+      "tactics": [
+        "Privilege Escalation",
+        "Persistence"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may establish persistence and/or elevate privileges using system mechanisms that trigger execution based on specific events. Various operating systems have means to monitor and subscribe to events such as logons or other user activity such as running specific applications/binaries. Cloud environments may also support various functions and services that monitor and can be invoked in res",
+      "url": "https://attack.mitre.org/techniques/T1546",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1548",
+      "name": "Abuse Elevation Control Mechanism",
+      "is_subtechnique": false,
+      "tactics": [
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may circumvent mechanisms designed to control privilege elevation to gain higher-level permissions. Most modern systems contain native elevation control mechanisms that are intended to limit privileges that a user can perform on a machine. Authorization has to be granted to specific users in order to perform tasks that can be considered of higher risk.(Citation: TechNet How UAC Works)(",
+      "url": "https://attack.mitre.org/techniques/T1548",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1548.005",
+      "name": "Temporary Elevated Cloud Access",
+      "is_subtechnique": true,
+      "tactics": [
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may abuse permission configurations that allow them to gain temporarily elevated access to cloud resources. Many cloud environments allow administrators to grant user or service accounts permission to request just-in-time access to roles, impersonate other accounts, pass roles onto resources and services, or otherwise gain short-term access to a set of privileges that may be distinct f",
+      "url": "https://attack.mitre.org/techniques/T1548/005",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550",
+      "name": "Use Alternate Authentication Material",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use alternate authentication material, such as password hashes, Kerberos tickets, and application access tokens, in order to move laterally within an environment and bypass normal system access controls. ",
+      "url": "https://attack.mitre.org/techniques/T1550",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550.001",
+      "name": "Application Access Token",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may use stolen application access tokens to bypass the typical authentication process and access restricted accounts, information, or services on remote systems. These tokens are typically stolen from users or services and used in lieu of login credentials.",
+      "url": "https://attack.mitre.org/techniques/T1550/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550.004",
+      "name": "Web Session Cookie",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries can use stolen session cookies to authenticate to web applications and services. This technique bypasses some multi-factor authentication protocols since the session is already authenticated.(Citation: Pass The Cookie)",
+      "url": "https://attack.mitre.org/techniques/T1550/004",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1552",
+      "name": "Unsecured Credentials",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers",
+        "Network Devices",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may search compromised systems to find and obtain insecurely stored credentials. These credentials can be stored and/or misplaced in many locations on a system, including plaintext files (e.g. [Shell History](https://attack.mitre.org/techniques/T1552/003)), operating system or application-specific repositories (e.g. [Credentials in Registry](https://attack.mitre.org/techniques/T1552/00",
+      "url": "https://attack.mitre.org/techniques/T1552",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1552.008",
+      "name": "Chat Messages",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may directly collect unsecured credentials stored or passed through user communication services. Credentials may be sent and stored in user chat communication applications such as email, chat services like Slack or Teams, collaboration tools like Jira or Trello, and any other services that support user communication. Users may share various forms of credentials (such as usernames and p",
+      "url": "https://attack.mitre.org/techniques/T1552/008",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1556",
+      "name": "Modify Authentication Process",
+      "is_subtechnique": false,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may modify authentication mechanisms and processes to access user credentials or enable otherwise unwarranted access to accounts. The authentication process is handled by mechanisms, such as the Local Security Authentication Server (LSASS) process and the Security Accounts Manager (SAM) on Windows, pluggable authentication modules (PAM) on Unix-based systems, and authorization plugins ",
+      "url": "https://attack.mitre.org/techniques/T1556",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1556.006",
+      "name": "Multi-Factor Authentication",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may disable or modify multi-factor authentication (MFA) mechanisms to enable persistent access to compromised accounts.",
+      "url": "https://attack.mitre.org/techniques/T1556/006",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1556.007",
+      "name": "Hybrid Identity",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may patch, modify, or otherwise backdoor cloud authentication processes that are tied to on-premises user identities in order to bypass typical authentication mechanisms, access credentials, and enable persistent access to accounts.  ",
+      "url": "https://attack.mitre.org/techniques/T1556/007",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1564",
+      "name": "Hide Artifacts",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to hide artifacts associated with their behaviors to evade detection. Operating systems may have features to hide various artifacts, such as important system files and administrative task execution, to avoid disrupting user work environments and prevent users from changing files or features on the system. Adversaries may abuse these features to hide artifacts such as files,",
+      "url": "https://attack.mitre.org/techniques/T1564",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1564.008",
+      "name": "Email Hiding Rules",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may use email rules to hide inbound emails in a compromised user's mailbox. Many email clients allow users to create inbox rules for various email functions, including moving emails to other folders, marking emails as read, or deleting emails. Rules may be created or modified within email clients or through external features such as the <code>New-InboxRule</code> or <code>Set-InboxRule",
+      "url": "https://attack.mitre.org/techniques/T1564/008",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1566",
+      "name": "Phishing",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering. Phishing can be targeted, known as spearphishing. In spearphishing, a specific individual, company, or industry will be targeted by the adversary. More generally, adversaries can conduct non-targeted phishing, such as in mass malware spam campaigns.",
+      "url": "https://attack.mitre.org/techniques/T1566",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1566.002",
+      "name": "Spearphishing Link",
+      "is_subtechnique": true,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may send spearphishing emails with a malicious link in an attempt to gain access to victim systems. Spearphishing with a link is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of links to download malware contained in email, instead of attaching malicious files to the email itself, to avoid defenses that may inspect ema",
+      "url": "https://attack.mitre.org/techniques/T1566/002",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1567",
+      "name": "Exfiltration Over Web Service",
+      "is_subtechnique": false,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use an existing, legitimate external Web service to exfiltrate data rather than their primary command and control channel. Popular Web services acting as an exfiltration mechanism may give a significant amount of cover due to the likelihood that hosts within a network are already communicating with them prior to compromise. Firewall rules may also already exist to permit traffic to",
+      "url": "https://attack.mitre.org/techniques/T1567",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1567.004",
+      "name": "Exfiltration Over Webhook",
+      "is_subtechnique": true,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may exfiltrate data to a webhook endpoint rather than over their primary command and control channel. Webhooks are simple mechanisms for allowing a server to push data over HTTP/S to a client without the need for the client to continuously poll the server.(Citation: RedHat Webhooks) Many public and commercial services, such as Discord, Slack, and `webhook.site`, support the creation of",
+      "url": "https://attack.mitre.org/techniques/T1567/004",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1606",
+      "name": "Forge Web Credentials",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Windows",
+        "macOS",
+        "Linux",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may forge credential materials that can be used to gain access to web applications or Internet services. Web applications and services (hosted in cloud SaaS environments or on-premise servers) often use session cookies, tokens, or other materials to authenticate and authorize user access.",
+      "url": "https://attack.mitre.org/techniques/T1606",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1606.002",
+      "name": "SAML Tokens",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Windows",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "An adversary may forge SAML tokens with any permissions claims and lifetimes if they possess a valid SAML token-signing certificate.(Citation: Microsoft SolarWinds Steps) The default lifetime of a SAML token is one hour, but the validity period can be specified in the <code>NotOnOrAfter</code> value of the <code>conditions ...</code> element in a token. This value can be changed using the <code>Ac",
+      "url": "https://attack.mitre.org/techniques/T1606/002",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1621",
+      "name": "Multi-Factor Authentication Request Generation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may attempt to bypass multi-factor authentication (MFA) mechanisms and gain access to accounts by generating MFA requests sent to users.",
+      "url": "https://attack.mitre.org/techniques/T1621",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1648",
+      "name": "Serverless Execution",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "SaaS",
+        "IaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may abuse serverless computing, integration, and automation services to execute arbitrary code in cloud environments. Many cloud providers offer a variety of serverless resources, including compute engines, application integration services, and web servers. ",
+      "url": "https://attack.mitre.org/techniques/T1648",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1657",
+      "name": "Financial Theft",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may steal monetary resources from targets through extortion, social engineering, technical theft, or other methods aimed at their own financial gain at the expense of the availability of these resources for victims. Financial theft is the ultimate objective of several popular campaign types including extortion by ransomware,(Citation: FBI-ransomware) business email compromise (BEC) and",
+      "url": "https://attack.mitre.org/techniques/T1657",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1667",
+      "name": "Email Bombing",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Linux",
+        "Office Suite",
+        "Windows",
+        "macOS"
+      ],
+      "description": "Adversaries may flood targeted email addresses with an overwhelming volume of messages. This may bury legitimate emails in a flood of spam and disrupt business operations.(Citation: sophos-bombing)(Citation: krebs-email-bombing)",
+      "url": "https://attack.mitre.org/techniques/T1667",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1671",
+      "name": "Cloud Application Integration",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may achieve persistence by leveraging OAuth application integrations in a software-as-a-service environment. Adversaries may create a custom application, add a legitimate application into the environment, or even co-opt an existing integration to achieve malicious ends.(Citation: Push Security SaaS Persistence 2022)(Citation: SaaS Attacks GitHub Evil Twin Integrations)",
+      "url": "https://attack.mitre.org/techniques/T1671",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1684",
+      "name": "Social Engineering",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use social engineering techniques to influence users to take actions that result in unauthorized access, approval of changes, disclosure of sensitive information, or execution of adversary-supplied instructions (i.e., introduction of malicious payloads or software), while minimizing technical indicators. ",
+      "url": "https://attack.mitre.org/techniques/T1684",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1684.001",
+      "name": "Impersonation",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may impersonate a trusted person or organization in order to persuade and trick a target into performing some action on their behalf. For example, adversaries may communicate with victims (via [Phishing for Information](https://attack.mitre.org/techniques/T1598), [Phishing](https://attack.mitre.org/techniques/T1566), or [Internal Spearphishing](https://attack.mitre.org/techniques/T1534",
+      "url": "https://attack.mitre.org/techniques/T1684/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1684.002",
+      "name": "Email Spoofing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may fake, or spoof, a sender’s identity by modifying the value of relevant email headers in order to establish contact with victims under false pretenses.(Citation: Proofpoint TA427 April 2024) In addition to actual email content, email headers (such as the FROM header, which contains the email address of the sender) may also be modified. Email clients display these headers when emails",
+      "url": "https://attack.mitre.org/techniques/T1684/002",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1685.002",
+      "name": "Disable or Modify Cloud Log",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Identity Provider",
+        "Office Suite"
+      ],
+      "description": "An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection. Cloud environments allow for collection and analysis of audit and application logs that provide insight into what activities a user does within the environment. If an adversary has sufficient permissions, they can disable or modify logging to avoid",
+      "url": "https://attack.mitre.org/techniques/T1685/002",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    }
+  ],
+  "analytics": [
+    {
+      "analytic_id": "AN0019",
+      "name": "Analytic 0019",
+      "description": "Login to M365 or Google Workspace from CLI tools or unexpected source IPs, followed by mailbox or document access",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1021.007",
+          "name": "Cloud Services",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1021/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "FileAccessed, MailboxAccessed",
+          "data_component": "File Access"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "UserLoggedIn",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "DevicePlatformMismatch",
+          "description": "Raise alerts on login from CLI when user typically uses web-only"
+        },
+        {
+          "field": "SensitiveDocumentAccessPattern",
+          "description": "Track access to documents labeled as internal/confidential"
+        },
+        {
+          "field": "AccessFrequencyThreshold",
+          "description": "Tune for high-volume document reads post login"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0008",
+        "name": "Behavioral Detection of Remote Cloud Logins via Valid Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0008"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0008#AN0019"
+    },
+    {
+      "analytic_id": "AN0029",
+      "name": "Analytic 0029",
+      "description": "Detects macros or VBA triggers set to execute on document open or close events, often correlating with embedded payloads or C2 traffic shortly after execution.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1546",
+          "name": "Event Triggered Execution",
+          "tactics": [
+            "Privilege Escalation",
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1546"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:office",
+          "channel": "VBA auto_open, auto_close, or document_open events",
+          "data_component": "Script Execution"
+        },
+        {
+          "log_source": "m365:office",
+          "channel": "External HTTP/DNS connection from Office binary shortly after macro trigger",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MacroFunctionNames",
+          "description": "Names of event-bound functions like Auto_Open that initiate execution"
+        },
+        {
+          "field": "TimeDeltaMacroToC2",
+          "description": "Time threshold to correlate macro execution with outbound connections"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0010",
+        "name": "Behavioral Detection of Event Triggered Execution Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0010"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0010#AN0029"
+    },
+    {
+      "analytic_id": "AN0086",
+      "name": "Analytic 0086",
+      "description": "Outlook form execution upon message receipt or client launch results in automated code execution within user session. Form definitions deviate from standard templates and include script logic or COM object calls embedded in form fields.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1137.003",
+          "name": "Outlook Forms",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1137/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Unusual form activity within Outlook client, including load of non-default forms",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:messagetrace",
+          "channel": "Inbound email triggers execution of mailbox-stored custom form",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AuditPolicyScope",
+          "description": "Not all tenants may enable audit logs of custom form activity or COM component usage in Office"
+        },
+        {
+          "field": "MessageSenderAnomalyThreshold",
+          "description": "Ruler-style delivery may come from external accounts with forged headers or low reputation"
+        },
+        {
+          "field": "FormExecutionRate",
+          "description": "Frequency of form triggers may be anomalously high compared to baseline Outlook usage"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0029",
+        "name": "Detect Persistence via Outlook Custom Forms Triggered by Malicious Email",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0029"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0029#AN0086"
+    },
+    {
+      "analytic_id": "AN0132",
+      "name": "Analytic 0132",
+      "description": "Monitors programmatic access to user mailboxes in cloud-based email systems (e.g., O365, Exchange Online) using APIs or tokens. Focuses on OAuth misuse, suspicious MailItemsAccessed patterns, scripted keyword searches, and connections from untrusted agents or locations.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1114.002",
+          "name": "Remote Email Collection",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1114/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:purview",
+          "channel": "MailItemsAccessed, Search-Mailbox events",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Suspicious login to cloud mailbox system",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Search-Mailbox, Get-MessageTrace, eDiscovery requests",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MailAccessVolumeThreshold",
+          "description": "Number of emails accessed within time window to flag anomaly."
+        },
+        {
+          "field": "OAuthClientIDAllowList",
+          "description": "Allows tuning based on known app registrations."
+        },
+        {
+          "field": "KeywordSearchFrequency",
+          "description": "Flag high volumes of message searches using suspicious patterns."
+        },
+        {
+          "field": "LoginGeolocationVariance",
+          "description": "Trigger when IP geolocation varies significantly from user's historical profile."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0048",
+        "name": "Detect Remote Email Collection via Abnormal Login and Programmatic Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0048"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0048#AN0132"
+    },
+    {
+      "analytic_id": "AN0138",
+      "name": "Analytic 0138",
+      "description": "Malicious Office add-ins loaded via VSTO, COM, or VBA auto-load paths. Upon launch of Word/Excel/Outlook, the add-in executes code without user action. Add-in resides in trusted directory or registered via Office COM/VBE subsystem. Behavior includes unsigned add-in execution, anomalous load context, or add-in spawning interpreter process.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1137.006",
+          "name": "Add-ins",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1137/006"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "WinEventLog:Application",
+          "channel": "Office Add-in load errors, abnormal loading context, or unsigned add-in warnings",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "WinEventLog:Microsoft-Office/OutlookAddinMonitor",
+          "channel": "Outlook loading add-in via unexpected load path or non-default profile context",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UnsignedAddInBehavior",
+          "description": "Admins may allow or block unsigned add-ins depending on GPO configuration"
+        },
+        {
+          "field": "OfficeProductVersion",
+          "description": "Different Office versions store trusted paths and add-in configs in version-specific locations"
+        },
+        {
+          "field": "AddInTrigger",
+          "description": "Some add-ins only load on specific actions (new document, open file, etc.)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0050",
+        "name": "Detect Persistence via Malicious Office Add-ins",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0050"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0050#AN0138"
+    },
+    {
+      "analytic_id": "AN0151",
+      "name": "Analytic 0151",
+      "description": "Outlook or Word used to forward suspicious internal attachments with macro content. Defender observes attachment forwarding, auto-opening behaviors, or macro prompt interactions.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1534",
+          "name": "Internal Spearphishing",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1534"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "SendOnBehalf, MessageSend, AttachmentPreviewed",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "WinEventLog:Security",
+          "channel": "EventCode=4103, 4104, 4105, 4106",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MacroExecutionWindow",
+          "description": "Timing between mail open and macro invocation"
+        },
+        {
+          "field": "AttachmentNameHeuristics",
+          "description": "Patterns of known internal spearphishing lures (e.g., invoice, HR_policy)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0054",
+        "name": "Internal Spearphishing via Trusted Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0054"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0054#AN0151"
+    },
+    {
+      "analytic_id": "AN0191",
+      "name": "Analytic 0191",
+      "description": "Phishing via Office documents containing embedded macros or links that spawn processes. Detection relies on correlating Office application logs with suspicious child process execution and outbound network connections.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1566",
+          "name": "Phishing",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1566"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "FileAccessed: Access of email attachments by Office applications",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "WinEventLog:Sysmon",
+          "channel": "EventCode=1",
+          "data_component": "Process Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ParentProcessList",
+          "description": "Parent processes expected to execute child processes (e.g., Office apps)."
+        },
+        {
+          "field": "MacroExecutionThreshold",
+          "description": "Threshold for number of macros executed before raising alerts."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0070",
+        "name": "Detection Strategy for Phishing across platforms.",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0070"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0070#AN0191"
+    },
+    {
+      "analytic_id": "AN0203",
+      "name": "Analytic 0203",
+      "description": "Web session tokens reused in native Office apps (e.g., Outlook, Teams) without associated token refresh or login behavior on the endpoint.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550.004",
+          "name": "Web Session Cookie",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "UserLoggedIn",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "EndpointTokenSyncGap",
+          "description": "Allowed delta between endpoint login and cloud token reuse"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0074",
+        "name": "Detect Use of Stolen Web Session Cookies Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0074"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0074#AN0203"
+    },
+    {
+      "analytic_id": "AN0264",
+      "name": "Analytic 0264",
+      "description": "Adversary adds a new Outlook rule with modified or obfuscated PR_RULE_MSG_NAME and PR_RULE_MSG_PROVIDER attributes using MFCMapi or Ruler. Rule is triggered when email arrives, executing embedded or external code. Mailbox audit logs or Unified Audit Log shows automated rule-triggered action without user interaction.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1137.005",
+          "name": "Outlook Rules",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1137/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Creation or modification of inbox rule outside of normal user behavior",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:messagetrace",
+          "channel": "Inbound email matches crafted rule trigger pattern tied to persistence logic",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AuditPolicyScope",
+          "description": "Mailbox rule changes may not be captured unless advanced audit logging is enabled"
+        },
+        {
+          "field": "RuleProviderName",
+          "description": "Malicious rules may use spoofed or non-standard PR_RULE_MSG_PROVIDER values"
+        },
+        {
+          "field": "TriggerSubjectKeywords",
+          "description": "Triggering emails may contain uncommon but benign-looking subjects"
+        },
+        {
+          "field": "UserContext",
+          "description": "Target user account may be inactive or high-value (e.g., VIP, service account)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0095",
+        "name": "Detect Persistence via Malicious Outlook Rules",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0095"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0095#AN0264"
+    },
+    {
+      "analytic_id": "AN0309",
+      "name": "Analytic 0309",
+      "description": "Detection correlates message events in email and collaboration tools (e.g., Outlook, Teams) that contain regex-like patterns resembling credentials, API keys, or tokens. Anomalous forwarding or bulk copy activity of chat/email content containing secrets is flagged. Suspicious behavior includes users pasting secrets into direct messages or attaching config files with passwords.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1552.008",
+          "name": "Chat Messages",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1552/008"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "MessageSend, MessageRead, or FileAttached events containing credential-like patterns",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RegexPatterns",
+          "description": "Customizable credential-detection regex (e.g., API_KEY=, bearer token formats) depending on enterprise apps in use"
+        },
+        {
+          "field": "AllowedDomains",
+          "description": "Exclude known trusted domains or automated system-to-system messages"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Adjust correlation period for bulk credential sharing events"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0111",
+        "name": "Detect Unsecured Credentials Shared in Chat Messages",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0111"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0111#AN0309"
+    },
+    {
+      "analytic_id": "AN0338",
+      "name": "Analytic 0338",
+      "description": "O365 UnifiedAuditLog entries for Remove-Mailbox or Set-Mailbox with account disable or delete actions correlated with suspicious login locations or MFA bypass.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1531",
+          "name": "Account Access Removal",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1531"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Remove-Mailbox, Set-Mailbox",
+          "data_component": "User Account Deletion"
+        },
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "Sign-in from anomalous location or impossible travel condition",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RoleAssignment",
+          "description": "Determine if operation was delegated to expected admin group"
+        },
+        {
+          "field": "GeoThreshold",
+          "description": "Trigger on unusual geographic login sources"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0120",
+        "name": "Account Access Removal via Multi-Platform Audit Correlation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0120"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0120#AN0338"
+    },
+    {
+      "analytic_id": "AN0422",
+      "name": "Analytic 0422",
+      "description": "Forged SAML tokens may be leveraged to access O365 apps such as Outlook or SharePoint. Defenders should monitor for token replay across multiple clients or access attempts to privileged mailboxes without prior interactive login.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1606.002",
+          "name": "SAML Tokens",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1606/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:exchange",
+          "channel": "Mailbox access using SAML token without corresponding MFA event",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "m365:sharepoint",
+          "channel": "File access with forged or anomalous SAML claims",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ReplayDetectionThreshold",
+          "description": "Number of times a token is reused within short timeframe."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0148",
+        "name": "Detection Strategy for Forged SAML Tokens",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0148"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0148#AN0422"
+    },
+    {
+      "analytic_id": "AN0503",
+      "name": "Analytic 0503",
+      "description": "Malicious HTML or script is rendered as a Home Page for a specific Outlook folder. Outlook accesses that folder, loads remote content, and executes embedded JavaScript or ActiveX/COM logic resulting in unauthorized actions or local execution.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1137.004",
+          "name": "Outlook Home Page",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1137/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Folder configuration updated with external or HTML-formatted Home Page via Set-MailboxFolder",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:messagetrace",
+          "channel": "Inbound email triggering Outlook to auto-access folder tied to malicious Home Page",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AuditPolicyScope",
+          "description": "Home Page customization may not be audited unless detailed message or folder auditing is enabled"
+        },
+        {
+          "field": "FolderAccessRate",
+          "description": "Anomalous access to folders not usually interacted with can signal triggering of malicious view"
+        },
+        {
+          "field": "ExternalURLAllowlist",
+          "description": "Mail clients may restrict remote Home Page content unless domain is explicitly allowed"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0177",
+        "name": "Detect Persistence via Outlook Home Page Exploitation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0177"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0177#AN0503"
+    },
+    {
+      "analytic_id": "AN0525",
+      "name": "Analytic 0525",
+      "description": "Detects deletion or hiding of security-related mail rules, audit mailboxes, or calendar/log sync artifacts indicative of tampering post-intrusion.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1070",
+          "name": "Indicator Removal",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1070"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:exchange",
+          "channel": "Remove-InboxRule, Clear-Mailbox",
+          "data_component": "Scheduled Job Modification"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "PurgeAuditLogs, Remove-MailboxAuditLog",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TargetMailboxScope",
+          "description": "Limit by VIP mailboxes or external-facing users"
+        },
+        {
+          "field": "AuditLogDepth",
+          "description": "Tune for log deletion following lateral movement"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0184",
+        "name": "Behavioral Detection of Indicator Removal Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0184"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0184#AN0525"
+    },
+    {
+      "analytic_id": "AN0529",
+      "name": "Analytic 0529",
+      "description": "OAuth token usage for Exchange Online or SharePoint API access without preceding login or from unauthorized clients.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550.001",
+          "name": "Application Access Token",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "OAuthTokenIssued, FileAccessed, MailItemsAccessed",
+          "data_component": "Web Credential Usage"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ClientAppIDWhitelist",
+          "description": "Restrict trusted Office apps authorized to request tokens"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0185",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material: Application Access Token (T1550.001)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0185"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0185#AN0529"
+    },
+    {
+      "analytic_id": "AN0549",
+      "name": "Analytic 0549",
+      "description": "Detects MFA bypass attempts by modifying tenant-wide authentication policies or excluding high-value accounts from MFA enforcement.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556.006",
+          "name": "Multi-Factor Authentication",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556/006"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-CsOnlineUser or UpdateAuthPolicy",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MonitoredPolicies",
+          "description": "Specific tenant or suite policies tied to MFA enforcement."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0190",
+        "name": "Detect MFA Modification or Disabling Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0190"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0190#AN0549"
+    },
+    {
+      "analytic_id": "AN0554",
+      "name": "Analytic 0554",
+      "description": "Suspicious rule creation within Outlook or Exchange clients, including auto-move or delete conditions tied to incident or security alert keywords. Defender perspective: correlation between missing inbound emails and newly added mailbox rules.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1564.008",
+          "name": "Email Hiding Rules",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1564/008"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Transport rule or inbox rule creation events",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RuleScope",
+          "description": "Decide whether to monitor individual mailbox rules, org-wide transport rules, or both."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0192",
+        "name": "Detection Strategy for Email Hiding Rules",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0192"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0192#AN0554"
+    },
+    {
+      "analytic_id": "AN0642",
+      "name": "Analytic 0642",
+      "description": "Suspicious querying of organization-wide directory data via Google Workspace Directory API or Outlook GAL sync in high volume from abnormal users, service accounts, or unknown device contexts.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1087.003",
+          "name": "Email Account",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1087/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "gcp:audit",
+          "channel": "Directory API Access: users.list or groups.list",
+          "data_component": "User Account Metadata"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "GAL Lookup or Address Book download",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Unusual Token Usage or Application Consent",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "APIQueryVolume",
+          "description": "Set thresholds for excessive use of 'users.list' or recursive group enumerations."
+        },
+        {
+          "field": "UserContext",
+          "description": "Flag non-admin or previously unseen user agents requesting directory information."
+        },
+        {
+          "field": "AppSource",
+          "description": "Distinguish between sanctioned sync tools and unauthorized scripts or OAuth tokens."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0229",
+        "name": "Enumeration of Global Address Lists via Email Account Discovery",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0229"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0229#AN0642"
+    },
+    {
+      "analytic_id": "AN0696",
+      "name": "Analytic 0696",
+      "description": "Identifies unauthorized access or enumeration of administrative roles, security groups, or distribution groups via Exchange/SharePoint/Teams APIs or role discovery scripts.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1069.003",
+          "name": "Cloud Groups",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1069/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:exchange",
+          "channel": "Get-RoleGroup, Get-DistributionGroup",
+          "data_component": "Command Execution"
+        },
+        {
+          "log_source": "m365:sharepoint",
+          "channel": "Enumerate ACLs/role bindings",
+          "data_component": "Group Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AccessScope",
+          "description": "Adjust based on tenant-level vs. site-level group visibility."
+        },
+        {
+          "field": "ScriptExecutionContext",
+          "description": "Detect script-based role listing (e.g., Graph API call chains)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0251",
+        "name": "Behavioral Detection of Cloud Group Enumeration via API and CLI Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0251"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0251#AN0696"
+    },
+    {
+      "analytic_id": "AN0723",
+      "name": "Analytic 0723",
+      "description": "Forged web credentials in Office Suite contexts may appear as abnormal authentication headers in Outlook or Teams traffic, or unexplained OAuth grants in M365/Azure logs. Defenders should correlate token usage events with missing authentication flows and mismatched device/user context.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1606",
+          "name": "Forge Web Credentials",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1606"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:oauth",
+          "channel": "OAuth grants or tokens issued without expected user consent",
+          "data_component": "Web Credential Creation"
+        },
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "Token usage events with device/user mismatch",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OAuthAppAllowlist",
+          "description": "Approved OAuth apps and flows; flag unapproved or unexpected token grants."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0260",
+        "name": "Detection Strategy for Forged Web Credentials",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0260"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0260#AN0723"
+    },
+    {
+      "analytic_id": "AN0740",
+      "name": "Analytic 0740",
+      "description": "Detects Exchange Online or on-prem transport rule changes (e.g., header stripping) and mailbox export cleanup via `Remove-MailboxExportRequest`, as well as admin actions via Exchange PowerShell sessions.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1070.008",
+          "name": "Clear Mailbox Data",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1070/008"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:exchange",
+          "channel": "Admin Audit Logs, Transport Rules",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "WinEventLog:PowerShell",
+          "channel": "Exchange Cmdlets",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "CmdletFilter",
+          "description": "Include `New-TransportRule`, `Set-TransportRule`, `Remove-*` actions"
+        },
+        {
+          "field": "UserRoleScope",
+          "description": "Track role assignments for admins performing deletions"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0266",
+        "name": "Behavioral Detection of Mailbox Data and Log Deletion for Anti-Forensics",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0266"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0266#AN0740"
+    },
+    {
+      "analytic_id": "AN0773",
+      "name": "Analytic 0773",
+      "description": "Detection of new admin or role assignment actions within Microsoft 365/O365 environments to elevate access for persistence or lateral movement.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098.003",
+          "name": "Additional Cloud Roles",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Add member to role, Set-Mailbox",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OfficeRoleType",
+          "description": "Admin role type or application role granted"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Time between initial login and privilege change"
+        },
+        {
+          "field": "ActionOrigin",
+          "description": "Was the role assignment local or via federated SSO account"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0277",
+        "name": "Detection Strategy for Role Addition to Cloud Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0277"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0277#AN0773"
+    },
+    {
+      "analytic_id": "AN0796",
+      "name": "Analytic 0796",
+      "description": "Monitor Office Suite applications (Outlook, Word mail merge, Excel macros) for abnormal automated message sending, especially when macros or scripts trigger email delivery. Detect patterns of impersonation language (urgent, payment, executive request) combined with anomalous execution of Office macros.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1684.001",
+          "name": "Impersonation",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1684/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "SendOnBehalf/SendAs: Office Suite initiated messages using impersonated identities",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MacroExecutionThreshold",
+          "description": "Threshold for correlating macro execution with email sending activity."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0286",
+        "name": "Detection Strategy for Impersonation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0286"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0286#AN0796"
+    },
+    {
+      "analytic_id": "AN0803",
+      "name": "Analytic 0803",
+      "description": "Disabling mailbox or tenant-level audit logging, often using Set-MailboxAuditBypassAssociation or downgrading license tiers. Defender view: sudden absence of mailbox activity logging for monitored users.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1685.002",
+          "name": "Disable or Modify Cloud Log",
+          "tactics": [
+            "Defense Impairment"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1685/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-MailboxAuditBypassAssociation or disabling Advanced Auditing",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserScope",
+          "description": "Tune alerts for users where mailbox auditing should always remain enabled."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0289",
+        "name": "Detection Strategy for Disable or Modify Cloud Log",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0289"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0289#AN0803"
+    },
+    {
+      "analytic_id": "AN0810",
+      "name": "Analytic 0810",
+      "description": "Detects login to admin consoles (e.g., Microsoft 365 Admin Center) from unrecognized users, devices, or geolocations followed by non-API data review or configuration read actions that suggest GUI dashboard use.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1538",
+          "name": "Cloud Service Dashboard",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1538"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "UserLoginSuccess",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "ViewAdminReport",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Read-only configuration review from GUI",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AdminRoleList",
+          "description": "Roles allowed to access dashboard views"
+        },
+        {
+          "field": "DashboardNavigationSequence",
+          "description": "Pageview paths or clickstreams indicating use of GUI admin console"
+        },
+        {
+          "field": "GeoLocationRisk",
+          "description": "List of high-risk regions or unexpected geos"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0291",
+        "name": "Detection of Cloud Service Dashboard Usage via GUI-Based Cloud Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0291"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0291#AN0810"
+    },
+    {
+      "analytic_id": "AN0817",
+      "name": "Analytic 0817",
+      "description": "Detects tenant-wide authentication or conditional access changes that weaken hybrid identity enforcement, including disabling AD FS or bypassing hybrid MFA policies.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556.007",
+          "name": "Hybrid Identity",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Modify Federation Settings or Update Authentication Policy",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PolicyScope",
+          "description": "Scope of authentication and federation policies to be monitored."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0293",
+        "name": "Detect Hybrid Identity Authentication Process Modification",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0293"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0293#AN0817"
+    },
+    {
+      "analytic_id": "AN0881",
+      "name": "Analytic 0881",
+      "description": "Office application auto-loads a non-standard DLL during startup triggered via Office Test Registry key, often without macro warning banners. DLL persistence mechanism circumvents traditional macro defenses.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1137.002",
+          "name": "Office Test",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1137/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Non-standard Office startup component detected (e.g., unexpected DLL path)",
+          "data_component": "Module Load"
+        },
+        {
+          "log_source": "m365:office",
+          "channel": "Startup execution includes non-default component",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TrustedLocationBypass",
+          "description": "DLL may be placed in location trusted by Office configuration or signed to evade alerts"
+        },
+        {
+          "field": "AuditPolicyScope",
+          "description": "Only specific tenants or users may have Office auditing enabled at granular DLL load level"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0315",
+        "name": "Detect Persistence via Office Test Registry DLL Injection",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0315"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0315#AN0881"
+    },
+    {
+      "analytic_id": "AN0894",
+      "name": "Analytic 0894",
+      "description": "Disabling of security macros or safe mode settings within Word/Excel/Outlook. Detect registry edits or configuration file changes that weaken macro enforcement.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "MacroSecuritySettingsChanged or SafeModeDisabled",
+          "data_component": "Windows Registry Key Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ApplicationScope",
+          "description": "Specify which Office applications are monitored for macro security configuration changes."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0317",
+        "name": "Detection Strategy for Impair Defenses Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0317"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0317#AN0894"
+    },
+    {
+      "analytic_id": "AN0902",
+      "name": "Analytic 0902",
+      "description": "Adversaries leverage M365 or Google Workspace APIs to create users, service accounts, or guest accounts. Follow-on behaviors include login activity, role escalation, or service principal token generation.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1136.003",
+          "name": "Cloud Account",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1136/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Add user",
+          "data_component": "User Account Creation"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Add member to group",
+          "data_component": "Group Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GroupSensitivity",
+          "description": "Only alert on additions to high-value groups (e.g., Domain Admins)"
+        },
+        {
+          "field": "GuestFlag",
+          "description": "Tune alerts based on guest vs internal user creation"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0319",
+        "name": "Detection Strategy for T1136.003 - Cloud Account Creation across IaaS, IdP, SaaS, Office",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0319"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0319#AN0902"
+    },
+    {
+      "analytic_id": "AN0959",
+      "name": "Analytic 0959",
+      "description": "Access token reuse to connect to SharePoint or Outlook APIs without interactive user context.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550",
+          "name": "Use Alternate Authentication Material",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "TokenIssued, FileAccessed",
+          "data_component": "Web Credential Usage"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserAgentCheck",
+          "description": "Tune to detect access from CLI agents or scripts rather than interactive browsers"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0338",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material (T1550)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0338"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0338#AN0959"
+    },
+    {
+      "analytic_id": "AN1010",
+      "name": "Analytic 1010",
+      "description": "Detect abnormal use of email clients (e.g., Outlook, Thunderbird) showing mass arrival of messages or repetitive attachments being locally stored. Correlate message volume with file creation activity in mail cache directories.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1667",
+          "name": "Email Bombing",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1667"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:exchange",
+          "channel": "MailDelivery: High-frequency delivery of messages or attachments to a single recipient",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserContext",
+          "description": "Context for distinguishing between VIP or sensitive recipients and general users."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0355",
+        "name": "Detection Strategy for Email Bombing",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0355"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0355#AN1010"
+    },
+    {
+      "analytic_id": "AN1051",
+      "name": "Analytic 1051",
+      "description": "Detection of anomalous or unauthorized mailbox delegation activity (e.g., Add-MailboxPermission, Default/Anonymous mailbox permissions, Gmail delegation setup).",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098.002",
+          "name": "Additional Email Delegate Permissions",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Add-MailboxPermission, UpdateFolderPermissions",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "DelegatePermissionLevel",
+          "description": "Threshold for unexpected delegate roles such as FullAccess or SendAs."
+        },
+        {
+          "field": "FolderTargetScope",
+          "description": "Mailbox folder targeted by delegation (Inbox, Root, Calendar, etc.)."
+        },
+        {
+          "field": "DelegatorToDelegatePairing",
+          "description": "Pairings of delegate and delegator users that are expected."
+        },
+        {
+          "field": "MailflowAnomalyThreshold",
+          "description": "Spike in outbound mail after delegate addition, used to catch phishing or mass exfil."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0373",
+        "name": "Detection Strategy for Addition of Email Delegate Permissions",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0373"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0373#AN1051"
+    },
+    {
+      "analytic_id": "AN1054",
+      "name": "Analytic 1054",
+      "description": "Monitor for creation of new Power Automate flows or equivalent automation scripts that trigger on user or file events. Detect anomalous actions performed by these automations, such as email forwarding, anonymous link creation, or unexpected API calls to external endpoints.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1648",
+          "name": "Serverless Execution",
+          "tactics": [
+            "Execution"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1648"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "AddFlow / UpdateFlow: New automation or workflow creation events",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "m365:exchange",
+          "channel": "New-InboxRule: Automation that triggers abnormal forwarding or external link generation",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserContext",
+          "description": "Business units or users where automation creation is expected (developers, admins)"
+        },
+        {
+          "field": "FlowActions",
+          "description": "Specific automation actions (email forwarding, file sharing) that should be considered suspicious"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0374",
+        "name": "Detection Strategy for Serverless Execution (T1648)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0374"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0374#AN1054"
+    },
+    {
+      "analytic_id": "AN1089",
+      "name": "Analytic 1089",
+      "description": "Bulk enumeration of cloud user email identities through `Get-Recipient`, `Get-Mailbox`, `Get-User`, or Graph API directory listings by abnormal accounts or suspicious sessions.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1087.004",
+          "name": "Cloud Account",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1087/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "WinEventLog:PowerShell",
+          "channel": "CmdletName: Get-Recipient, Get-User",
+          "data_component": "Command Execution"
+        },
+        {
+          "log_source": "Microsoft Graph API Logs",
+          "channel": "users.list, directoryObjects.getByIds",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "CmdletVolume",
+          "description": "Tune threshold for recipient/mailbox queries by volume per hour."
+        },
+        {
+          "field": "UserAgent",
+          "description": "Match known admin consoles and exclude sanctioned tools like MSOL PowerShell."
+        },
+        {
+          "field": "SessionContext",
+          "description": "Elevate sessions from unmanaged or external endpoints."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0386",
+        "name": "Cloud Account Enumeration via API, CLI, and Scripting Interfaces",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0386"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0386#AN1089"
+    },
+    {
+      "analytic_id": "AN1107",
+      "name": "Analytic 1107",
+      "description": "Detection of ApplicationImpersonation role assignment or delegated mailbox access to service principals or rarely used users, especially outside of normal hours or geographic norms.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1548.005",
+          "name": "Temporary Elevated Cloud Access",
+          "tactics": [
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1548/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Add-MailboxPermission or Set-ManagementRoleAssignment",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "Unusual sign-in from service principal to user mailbox",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TargetMailbox",
+          "description": "Mailbox of interest where impersonation or access delegation occurs."
+        },
+        {
+          "field": "UserAgent",
+          "description": "Tune based on expected application or script-based mailbox access."
+        },
+        {
+          "field": "GeoLocation",
+          "description": "Restrict based on corporate geography or travel expectations."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0393",
+        "name": "Detection Strategy for Temporary Elevated Cloud Access Abuse (T1548.005)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0393"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0393#AN1107"
+    },
+    {
+      "analytic_id": "AN1117",
+      "name": "Analytic 1117",
+      "description": "Startup-based persistence mechanisms within Microsoft Office Suite like template macros and home page redirects being configured through internal automation or client-side settings.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1137",
+          "name": "Office Application Startup",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1137"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-Mailbox, Set-InboxRule, Set-MailboxFolderPermission",
+          "data_component": "User Account Modification"
+        },
+        {
+          "log_source": "m365:mailboxaudit",
+          "channel": "Outlook rule creation or custom form deployment",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RuleAction",
+          "description": "Identify rule actions that execute scripts, forward emails externally, or start external content"
+        },
+        {
+          "field": "MailboxTarget",
+          "description": "Focus on users with sensitive roles or shared mailboxes"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Detect persistence artifacts created shortly after credential access or login from an unusual location"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0398",
+        "name": "Detect Office Startup-Based Persistence via Macros, Forms, and Registry Hooks",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0398"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0398#AN1117"
+    },
+    {
+      "analytic_id": "AN1129",
+      "name": "Analytic 1129",
+      "description": "Discovery of SaaS services connected to productivity platforms (e.g., Microsoft 365, Google Workspace). Defender perspective includes unexpected enumeration of enabled services, API integrations, or OAuth applications tied to user accounts.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1526",
+          "name": "Cloud Service Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1526"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Get-MsolServicePrincipal, ListAppRoles: Service discovery operations executed by accounts not normally performing administrative tasks",
+          "data_component": "Cloud Service Enumeration"
+        },
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "UserLogin: Discovery operations shortly after account logins from new geolocations",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MonitoredAppIntegrations",
+          "description": "Specific Office Suite applications or plugins that may be enumerated or targeted."
+        },
+        {
+          "field": "GeoLocationDeviation",
+          "description": "Geographic deviation threshold for discovery actions linked to recent logins."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0402",
+        "name": "Detection Strategy for Cloud Service Discovery",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0402"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0402#AN1129"
+    },
+    {
+      "analytic_id": "AN1205",
+      "name": "Analytic 1205",
+      "description": "Correlates Office 365 or Google Workspace audit logs for spoofed sender addresses, failed email authentication, and anomalies in message delivery metadata. Defender observes failed SPF/DKIM checks and domain mismatches tied to suspicious campaigns.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1684.002",
+          "name": "Email Spoofing",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1684/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:email",
+          "channel": "AuthenticationFailures (SPF/DKIM/DMARC) OR Domain Mismatch",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MessageVolumeThreshold",
+          "description": "Defines thresholds for spoofed messages volume before alerts trigger, reducing noise for isolated misconfigs."
+        },
+        {
+          "field": "TargetedUserGroups",
+          "description": "Restricts higher-sensitivity detection to high-value groups (executives, admins, finance) for efficiency."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0431",
+        "name": "Detection Strategy for Email Spoofing",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0431"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0431#AN1205"
+    },
+    {
+      "analytic_id": "AN1269",
+      "name": "Analytic 1269",
+      "description": "Use of leaked credential pairs against Outlook Web Access (OWA), Microsoft 365, or Exchange from a single client IP with multiple failures",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.004",
+          "name": "Credential Stuffing",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:exchange",
+          "channel": "Logon failure",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PasswordSourceMatch",
+          "description": "Optional: cross-reference to haveibeenpwned or internal credential dumps"
+        },
+        {
+          "field": "MailboxLoginThreshold",
+          "description": "Tunable value for how many unique mailbox attempts trigger alert"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0460",
+        "name": "Credential Stuffing Detection via Reused Breached Credentials Across Services",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0460"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0460#AN1269"
+    },
+    {
+      "analytic_id": "AN1302",
+      "name": "Analytic 1302",
+      "description": "Detects embedded macros or scripts added to shared documents or use of external references to execute code.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1080",
+          "name": "Taint Shared Content",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1080"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:defender",
+          "channel": "OfficeTelemetry or DLP",
+          "data_component": "File Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MacroExecutionPolicy",
+          "description": "Controls macro execution based on user or group policy."
+        },
+        {
+          "field": "SuspiciousKeywordMatch",
+          "description": "Regex match on suspicious VBA function names or calls."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0471",
+        "name": "Detection of Tainted Content Written to Shared Storage",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0471"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0471#AN1302"
+    },
+    {
+      "analytic_id": "AN1312",
+      "name": "Analytic 1312",
+      "description": "Correlates unusual auto-forwarding rule creation via Exchange Web Services or Outlook rules engine, presence of X-MS-Exchange-Organization-AutoForwarded headers, and logon session anomalies from abnormal IPs.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1114",
+          "name": "Email Collection",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1114"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-Mailbox, New-InboxRule",
+          "data_component": "Command Execution"
+        },
+        {
+          "log_source": "m365:exchange",
+          "channel": "MessageTrace logs",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "azure:ad",
+          "channel": "SignInEvents",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserAgentList",
+          "description": "Restrict rules from non-browser agents"
+        },
+        {
+          "field": "ExternalSMTPDomainList",
+          "description": "Allow listing for org-sanctioned forwarding domains"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Time delta between rule creation and suspicious sign-in"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0476",
+        "name": "Email Collection via Local Email Access and Auto-Forwarding Behavior",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0476"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0476#AN1312"
+    },
+    {
+      "analytic_id": "AN1330",
+      "name": "Analytic 1330",
+      "description": "Internal user account accesses shared links outside org followed by mass file download",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1530",
+          "name": "Data from Cloud Storage",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1530"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:sharepoint",
+          "channel": "AnonymousLinkCreated, FileDownloaded",
+          "data_component": "Cloud Storage Access"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "SigninSuccess",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "LinkVisibilityScope",
+          "description": "Whether links allow anonymous/external access"
+        },
+        {
+          "field": "DownloadBurstThreshold",
+          "description": "# of files downloaded within <5 mins (e.g., >50 files)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0484",
+        "name": "Multi-Platform Cloud Storage Exfiltration Behavior Chain",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0484"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0484#AN1330"
+    },
+    {
+      "analytic_id": "AN1342",
+      "name": "Analytic 1342",
+      "description": "Failed authentication attempts across user mailboxes using identical or common passwords (e.g., OWA brute attempts)",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.003",
+          "name": "Password Spraying",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:exchange",
+          "channel": "FailedLogin",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MailboxAccessAttempts",
+          "description": "Threshold on mailbox login failures by same IP"
+        },
+        {
+          "field": "EmailPatternAnalysis",
+          "description": "Match target usernames to common spray dictionaries"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0487",
+        "name": "Distributed Password Spraying via Authentication Failures Across Multiple Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0487"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0487#AN1342"
+    },
+    {
+      "analytic_id": "AN1350",
+      "name": "Analytic 1350",
+      "description": "Behavioral chain: (1) delegated administration offers/relationships created or modified by partner tenants; (2) mailbox delegation/impersonation enabled; (3) follow-on access from partner IPs.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1199",
+          "name": "Trusted Relationship",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1199"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Add-DelegatedAdmin, Set-PartnerOfRecord, Add-MailboxPermission, Set-OrganizationRelationship",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "InteractiveUser, NonInteractiveUser",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MailboxDelegateAllowList",
+          "description": "Specific mailboxes third-parties may manage."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0488",
+        "name": "Detect abuse of Trusted Relationships (third-party and delegated admin access)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0488"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0488#AN1350"
+    },
+    {
+      "analytic_id": "AN1365",
+      "name": "Analytic 1365",
+      "description": "Monitor email and document management systems for fraudulent invoices, impersonation of vendors, or BEC-style payment redirections. Detect abnormal editing of invoice templates, or emails containing known fraud language combined with attachment delivery.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1657",
+          "name": "Financial Theft",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1657"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "MailSend: Outlook messages with suspicious subject/body terms (e.g., urgent payment, wire transfer) targeting finance teams",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:office",
+          "channel": "Anomalous editing of invoice or payment document templates",
+          "data_component": "File Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "FraudTerms",
+          "description": "Adjustable keyword list for email and document fraud detection."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0495",
+        "name": "Detection Strategy for Financial Theft",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0495"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0495#AN1365"
+    },
+    {
+      "analytic_id": "AN1388",
+      "name": "Analytic 1388",
+      "description": "Malicious macros or embedded objects hidden within Office documents by renaming streams or using hidden OLE objects. Defender view: detection of hidden macro streams or objects in documents correlated with anomalous execution.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1564",
+          "name": "Hide Artifacts",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1564"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Detection of hidden macro streams or SetHiddenAttribute actions",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MacroScope",
+          "description": "Tune detection to specific Office apps and document types where macros are disallowed."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0502",
+        "name": "Detection Strategy for Hidden Artifacts Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0502"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0502#AN1388"
+    },
+    {
+      "analytic_id": "AN1405",
+      "name": "Analytic 1405",
+      "description": "Detects automation macros or VBA scripts in documents that access browser file paths, read cookie data, or attempt to exfiltrate browser session tokens over HTTP.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1539",
+          "name": "Steal Web Session Cookie",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1539"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "RunMacro",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "WinEventLog:Sysmon",
+          "channel": "EventCode=2",
+          "data_component": "File Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MacroTargetPath",
+          "description": "Files or directories macros are attempting to access"
+        },
+        {
+          "field": "HTTPDestinationIPList",
+          "description": "List of IPs or domains that are uncommon for macro-based HTTP POSTs"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0509",
+        "name": "Detection of Web Session Cookie Theft via File, Memory, and Network Artifacts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0509"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0509#AN1405"
+    },
+    {
+      "analytic_id": "AN1426",
+      "name": "Analytic 1426",
+      "description": "Use of OAuth tokens by third-party apps to access user mail, calendar, or SharePoint resources where the token was granted recently or via spearphishing.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1528",
+          "name": "Steal Application Access Token",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1528"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "App-only or delegated access patterns where client_id != known enterprise apps",
+          "data_component": "Cloud Storage Access"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ClientAppIDAllowList",
+          "description": "Defenders may allow known app IDs, flag unknowns"
+        },
+        {
+          "field": "AccessVolumeThreshold",
+          "description": "Rate of resource access by a newly consented app"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0515",
+        "name": "Detection Strategy for T1528 - Steal Application Access Token",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0515"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0515#AN1426"
+    },
+    {
+      "analytic_id": "AN1437",
+      "name": "Analytic 1437",
+      "description": "Malicious VBA macros embedded in base templates like Normal.dotm or Personal.xlsb are automatically loaded and executed at startup. Template path may be hijacked to load a remote or attacker-controlled template via GlobalDotName registry setting.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1137.001",
+          "name": "Office Template Macros",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1137/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-Mailbox, Set-MailboxPolicy, Set-TrustedLocation",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TemplateSource",
+          "description": "Macros may be embedded in local user templates or retrieved from shared network paths"
+        },
+        {
+          "field": "MacroSecurityLevel",
+          "description": "Macro execution policy (disabled, warn, enabled) varies by tenant or user configuration"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0519",
+        "name": "Detect Persistence via Office Template Macro Injection or Registry Hijack",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0519"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0519#AN1437"
+    },
+    {
+      "analytic_id": "AN1487",
+      "name": "Analytic 1487",
+      "description": "Detects suspicious OAuth application integrations within Office 365 or Google Workspace environments, such as new app registrations, unexpected consent grants, or privilege assignments. Defenders should correlate between application creation/modification events and associated user or service principal activity to identify persistence via app integrations.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1671",
+          "name": "Cloud Application Integration",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1671"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Add app role assignment grant to user: Consent to application by privileged or unexpected accounts",
+          "data_component": "Active Directory Object Modification"
+        },
+        {
+          "log_source": "azure:audit",
+          "channel": "Consent to application: OAuth application consent granted to service principal",
+          "data_component": "Cloud Service Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PrivilegedUserList",
+          "description": "Defines which accounts are authorized to consent or register applications; deviations indicate possible adversary persistence."
+        },
+        {
+          "field": "ApplicationScopeThreshold",
+          "description": "Defines which OAuth scopes are considered risky (e.g., Mail.ReadWrite, Files.ReadWrite.All)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0539",
+        "name": "Detection Strategy for Cloud Application Integration",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0539"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0539#AN1487"
+    },
+    {
+      "analytic_id": "AN1506",
+      "name": "Analytic 1506",
+      "description": "Detects login and usage patterns deviating from typical Microsoft 365 or Google Workspace user profiles.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1078.004",
+          "name": "Cloud Accounts",
+          "tactics": [
+            "Stealth",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1078/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "UserLogin",
+          "data_component": "Logon Session Metadata"
+        },
+        {
+          "log_source": "gcp:audit",
+          "channel": "login.event",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "BusinessHours",
+          "description": "Used to identify logins outside of expected work times."
+        },
+        {
+          "field": "OfficeProductivityToolBaseline",
+          "description": "Defines expected application usage per department or role."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0546",
+        "name": "Detection of Abused or Compromised Cloud Accounts for Access and Persistence",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0546"
+      },
+      "version": "1.0",
+      "modified": "2025-11-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0546#AN1506"
+    },
+    {
+      "analytic_id": "AN1566",
+      "name": "Analytic 1566",
+      "description": "Suspicious access to Microsoft Teams chat messages via eDiscovery, Graph API, or export methods after rare or compromised sign-in. Often associated with excessive file access, sensitive content review, or anomaly from expected user behavior.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1213.005",
+          "name": "Messaging Applications",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1213/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "TeamsMessagesAccessedViaEDiscovery, TeamsGraphMessageExport",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "UserLoggedIn",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserRole",
+          "description": "Whether user is part of InfoSec, Legal, or expected to use Teams eDiscovery tools"
+        },
+        {
+          "field": "GeoRiskScore",
+          "description": "Unusual country/IP sign-in patterns prior to Teams data export"
+        },
+        {
+          "field": "AccessVolume",
+          "description": "Message or file threshold for triggering alert"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0567",
+        "name": "Detecting Unauthorized Collection from Messaging Applications in SaaS and Office Environments",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0567"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0567#AN1566"
+    },
+    {
+      "analytic_id": "AN1581",
+      "name": "Analytic 1581",
+      "description": "Detects user activity that shares or syncs files with external domains via link generation, OneDrive external sharing, or file transfer actions involving non-whitelisted partner tenants.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1537",
+          "name": "Transfer Data to Cloud Account",
+          "tactics": [
+            "Exfiltration"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1537"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "SharingSet",
+          "data_component": "Cloud Storage Modification"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "AnonymousLinkCreated",
+          "data_component": "Cloud Storage Metadata"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "FileAccessed",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ExternalDomainList",
+          "description": "Known partner or adversarial cloud identities/domains"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Duration between file access and external sharing"
+        },
+        {
+          "field": "SharingMethod",
+          "description": "Type of link (anonymous, internal, organization-wide) to alert on"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0573",
+        "name": "Cross-Platform Detection of Data Transfer to Cloud Account",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0573"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0573#AN1581"
+    },
+    {
+      "analytic_id": "AN1591",
+      "name": "Analytic 1591",
+      "description": "Creation of email forwarding/redirect rules in Exchange Online via New-InboxRule or transport rule cmdlets, including auto-forwarding address field usage.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1114.003",
+          "name": "Email Forwarding Rule",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1114/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "New-InboxRule, Set-InboxRule",
+          "data_component": "Cloud Service Metadata"
+        },
+        {
+          "log_source": "m365:messagetrace",
+          "channel": "X-MS-Exchange-Organization-AutoForwarded",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ForwardingSMTPAddress",
+          "description": "Destination domain may vary; commonly tuned per org policies."
+        },
+        {
+          "field": "ActorId",
+          "description": "Differentiate service/admin users vs standard user population."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0576",
+        "name": "Email Forwarding Rule Abuse Detection Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0576"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0576#AN1591"
+    },
+    {
+      "analytic_id": "AN1619",
+      "name": "Analytic 1619",
+      "description": "Account discovery via VBA macros, COM objects, or embedded scripting.",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1087",
+          "name": "Account Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1087"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Scripted Activity",
+          "data_component": "Script Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MacroName",
+          "description": "Alert on auto-running macros accessing directory or user info."
+        },
+        {
+          "field": "ExecutionScope",
+          "description": "Focus on macros invoking LDAP, ADODB, or WMI queries."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0587",
+        "name": "Enumeration of User or Account Information Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0587"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0587#AN1619"
+    },
+    {
+      "analytic_id": "AN2033",
+      "name": "Analytic 2033",
+      "description": "Detects suspicious inbound communications or collaboration requests followed by rapid sensitive user actions such as file sharing changes, macro enablement, OAuth consent, credential submission, or financial workflow approvals that deviate from historical relationships or normal approval patterns.\n      ",
+      "platforms": [
+        "Office Suite"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1684",
+          "name": "Social Engineering",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1684"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "MailItemsAccessed; AddedInboxRule; ConsentToApplication; SharingSet",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:exchange",
+          "channel": "External sender message followed by user action involving links or attachments",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:teams",
+          "channel": "External chat request or new tenant communication preceding approval activity",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ActionAfterMessageWindow",
+          "description": "Time window between inbound communication and sensitive action"
+        },
+        {
+          "field": "TrustedDomainAllowlist",
+          "description": "Known legitimate vendors or partner domains"
+        },
+        {
+          "field": "ApprovalAmountThreshold",
+          "description": "Monetary threshold for finance workflows"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0899",
+        "name": "Detect Social Engineering",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0899"
+      },
+      "version": "1.0",
+      "modified": "2026-05-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0899#AN2033"
+    }
+  ]
+}

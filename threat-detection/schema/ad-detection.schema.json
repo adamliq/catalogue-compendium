@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/ad-detection.schema.json",
+  "title": "Threat Detection Library - Active Directory Detection Entry",
+  "description": "Schema for a single detection entry in data/ad-detections.json. Detections here target attacks against, abuse of, or suspicious administrative activity within Active Directory Domain Services, treated as Tier-0 identity infrastructure.",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "component", "severity", "confidence",
+    "detection_type", "mitre_attack", "required_log_sources", "data_sources",
+    "required_fields", "detection_logic", "spl", "search_cost",
+    "false_positive_rating", "tuning_guidance", "investigation_steps", "response_guidance",
+    "telemetry_requirement", "detection_maturity", "risk_scoring", "references",
+    "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^(AD-AUTH|AD-KRB|AD-NTLM|AD-USER|AD-GRP|AD-COMP|AD-ACL|AD-GPO|AD-TRUST|AD-REPL|AD-DC|AD-DELEG|AD-LDAP|AD-LAPS|AD-PERSIST|AD-CRED|AD-X)-[0-9]{3}$", "description": "Namespaced sequential ID." },
+    "title": { "type": "string" },
+    "description": { "type": "string", "description": "What activity is being detected, why it is suspicious, how an attacker could abuse it, and what legitimate activity may resemble it." },
+    "component": { "type": "string" },
+    "severity": { "type": "string", "enum": ["informational", "low", "medium", "high", "critical"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "detection_type": { "type": "string", "enum": [
+      "Atomic", "Threshold", "Behavioral", "Sequence", "Correlation", "Integrity",
+      "Authentication", "Privilege escalation", "Persistence", "Credential access",
+      "Defense evasion", "Lateral movement", "Replication abuse"
+    ] },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "attack_mapping_note": { "type": "string", "description": "Used when AD-specific activity does not map cleanly onto ATT&CK, or a detection is indirect/behavioral rather than a direct signature." },
+    "required_log_sources": { "type": "array", "items": { "type": "string" } },
+    "data_sources": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name", "description"], "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } } }
+    },
+    "event_ids": { "type": "array", "items": { "type": "string" }, "description": "Windows Event IDs this detection relies on, e.g. 4768, 4769, 5136." },
+    "required_fields": { "type": "array", "items": { "type": "string" } },
+    "detection_logic": { "type": "string" },
+    "spl": { "type": "string" },
+    "threshold": {
+      "type": "object",
+      "properties": {
+        "count": { "type": ["string", "number"] },
+        "distinct_count": { "type": ["string", "number"] },
+        "time_window": { "type": "string" },
+        "baseline_condition": { "type": "string" }
+      }
+    },
+    "search_cost": { "type": "string", "enum": ["Low cost", "Medium cost", "High cost"] },
+    "performance_guidance": { "type": "string", "description": "Optimization guidance, required for High cost searches." },
+    "false_positive_rating": { "type": "string", "enum": ["Low", "Medium", "High"] },
+    "tuning_guidance": { "type": "string" },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "response_guidance": { "type": "string" },
+    "telemetry_requirement": { "type": "string", "enum": ["Essential", "Recommended", "Optional"] },
+    "cim_compatible": { "type": "boolean" },
+    "cim_data_model": { "type": "string" },
+    "detection_maturity": { "type": "string", "enum": ["Level 1 - indicator", "Level 2 - threshold", "Level 3 - behavioral", "Level 4 - correlation", "Level 5 - multi-stage identity attack chain"] },
+    "risk_scoring": {
+      "type": "object",
+      "required": ["severity", "confidence", "impact", "score"],
+      "properties": {
+        "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "score": { "type": "integer", "minimum": 1, "maximum": 125 }
+      }
+    },
+    "risk_object": { "type": "string" },
+    "risk_object_type": { "type": "string", "enum": ["user", "system", "other"] },
+    "risk_message": { "type": "string" },
+    "references": { "type": "array", "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } } },
+    "related_detections": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}
