@@ -12,10 +12,24 @@ merged into one self-contained web app with a menu to switch between them.
 
 `index.html` is a single, self-contained page (no build step) — open it
 directly in a browser. A menu bar at the top switches between **Windows
-Events**, **Linux Events**, and **Threat Detection**; each is the exact
-lookup tool from its source repo (search, filters, detail views, reference
-tables, and so on), running independently side by side on the same page.
-Your last-chosen tab is remembered (`localStorage`) across visits.
+Events**, **Linux Events**, **Threat Detection**, and **Search**; the first
+three are the exact lookup tool from their source repo (search, filters,
+detail views, reference tables, and so on), running independently side by
+side on the same page. Your last-chosen tab is remembered (`localStorage`)
+across visits.
+
+**Search** is a fourth, compendium-only pill: a single box that searches
+Windows events, Linux events, and every Threat Detection entry (detections
+and validations) at once, grouped by source with up to 40 results per
+source. It's a thin layer on top of the three apps, not a fourth schema —
+each app exposes a small `{items, open}` index (id, title, a short meta
+line, and a lowercased haystack of its own already-existing fields) on
+`window.__compHub` for this to search over; clicking a result switches to
+that catalogue's own tab and calls back into its own existing
+selection/detail-opening code (`jumpToEvent`-style for Windows/Linux,
+`openDetail`/`openValidationDetail` for Threat Detection) to actually show
+it there — so results render exactly like they do from that app's own
+search, because they *are* that app's own render path.
 
 The three catalogues are **not** merged at the data level: they keep their
 own ID schemes, column schemas, and reference tables exactly as authored in
