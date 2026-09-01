@@ -1,0 +1,137 @@
+[
+  {
+    "code": "0",
+    "name": "CAP_CHOWN",
+    "description": "Override file/group ownership restrictions"
+  },
+  {
+    "code": "1",
+    "name": "CAP_DAC_OVERRIDE",
+    "description": "Bypass file read/write/execute permission checks"
+  },
+  {
+    "code": "2",
+    "name": "CAP_DAC_READ_SEARCH",
+    "description": "Bypass file read and directory read/execute permission checks"
+  },
+  {
+    "code": "3",
+    "name": "CAP_FOWNER",
+    "description": "Bypass permission checks that normally require matching file owner UID"
+  },
+  {
+    "code": "4",
+    "name": "CAP_FSETID",
+    "description": "Don't clear set-user/group-ID bits when a file is modified"
+  },
+  {
+    "code": "5",
+    "name": "CAP_KILL",
+    "description": "Bypass permission checks for sending signals"
+  },
+  {
+    "code": "6",
+    "name": "CAP_SETGID",
+    "description": "Manipulate process GIDs and set forged GIDs on socket credentials"
+  },
+  {
+    "code": "7",
+    "name": "CAP_SETUID",
+    "description": "Manipulate process UIDs and set forged UIDs on socket credentials"
+  },
+  {
+    "code": "8",
+    "name": "CAP_SETPCAP",
+    "description": "Grant/remove capabilities to/from other processes"
+  },
+  {
+    "code": "9",
+    "name": "CAP_LINUX_IMMUTABLE",
+    "description": "Set the FS_APPEND_FL and FS_IMMUTABLE_FL i-node flags"
+  },
+  {
+    "code": "10",
+    "name": "CAP_NET_BIND_SERVICE",
+    "description": "Bind a socket to privileged ports (< 1024)"
+  },
+  {
+    "code": "11",
+    "name": "CAP_NET_BROADCAST",
+    "description": "Make socket broadcasts and listen to multicast"
+  },
+  {
+    "code": "12",
+    "name": "CAP_NET_ADMIN",
+    "description": "Perform network administration: interfaces, routing tables, firewall rules"
+  },
+  {
+    "code": "13",
+    "name": "CAP_NET_RAW",
+    "description": "Use RAW and PACKET sockets"
+  },
+  {
+    "code": "14",
+    "name": "CAP_IPC_LOCK",
+    "description": "Lock memory (mlock/mlockall/mmap/shmctl)"
+  },
+  {
+    "code": "16",
+    "name": "CAP_SYS_MODULE",
+    "description": "Load and unload kernel modules"
+  },
+  {
+    "code": "17",
+    "name": "CAP_SYS_RAWIO",
+    "description": "Perform I/O port operations; access /dev/mem, /dev/kmem, raw disk devices"
+  },
+  {
+    "code": "18",
+    "name": "CAP_SYS_CHROOT",
+    "description": "Use chroot()"
+  },
+  {
+    "code": "19",
+    "name": "CAP_SYS_PTRACE",
+    "description": "Trace arbitrary processes using ptrace()"
+  },
+  {
+    "code": "21",
+    "name": "CAP_SYS_ADMIN",
+    "description": "Broad system administration operations (the most powerful, most abused capability)"
+  },
+  {
+    "code": "22",
+    "name": "CAP_SYS_BOOT",
+    "description": "Reboot the system, or enable/disable reboot via ctrl-alt-del"
+  },
+  {
+    "code": "25",
+    "name": "CAP_SYS_TIME",
+    "description": "Set the system clock and real-time (hardware) clock"
+  },
+  {
+    "code": "29",
+    "name": "CAP_AUDIT_WRITE",
+    "description": "Write records to the kernel audit log"
+  },
+  {
+    "code": "30",
+    "name": "CAP_AUDIT_CONTROL",
+    "description": "Enable/disable auditing, change audit filter rules"
+  },
+  {
+    "code": "31",
+    "name": "CAP_SETFCAP",
+    "description": "Set file capabilities"
+  },
+  {
+    "code": "34",
+    "name": "CAP_SYSLOG",
+    "description": "Perform privileged operations on the kernel syslog (dmesg)"
+  },
+  {
+    "code": "37",
+    "name": "CAP_AUDIT_READ",
+    "description": "Read the audit log via a multicast netlink socket"
+  }
+]

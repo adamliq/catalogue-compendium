@@ -1,0 +1,16 @@
+range,purpose
+1000–1099,Bi-directional control messages
+1100–1199,User-space trusted application messages
+1200–1299,auditd daemon internal messages
+1300–1399,"Core audit event messages (SYSCALL, PATH, …)"
+1400–1499,SELinux
+1500–1599,AppArmor
+1600–1699,Kernel crypto
+1700–1799,Kernel anomaly records
+1800–1899,Kernel integrity (IMA/EVM)
+1900–1999,Future kernel use
+2100–2199,User-space anomaly records
+2200–2299,User-space responses to anomalies
+2300–2399,User-space LSPP events
+2400–2499,User-space crypto events
+2500–2599,User-space virtualization events

@@ -1,0 +1,67 @@
+[
+  {
+    "code": "0",
+    "name": "System",
+    "description": "Used only by the SYSTEM account internally; not a real interactive/network logon and rarely appears in logs."
+  },
+  {
+    "code": "2",
+    "name": "Interactive",
+    "description": "A user logged on at the local keyboard/screen of the computer (physical console logon)."
+  },
+  {
+    "code": "3",
+    "name": "Network",
+    "description": "A user or computer connected from the network, e.g. accessing a shared folder or printer. Most common logon type on servers."
+  },
+  {
+    "code": "4",
+    "name": "Batch",
+    "description": "Used by batch-queue facilities and scheduled tasks (Task Scheduler jobs run under a saved credential)."
+  },
+  {
+    "code": "5",
+    "name": "Service",
+    "description": "A service was started by the Service Control Manager using a configured service account."
+  },
+  {
+    "code": "6",
+    "name": "Proxy",
+    "description": "Deprecated logon type; not used by current Windows versions."
+  },
+  {
+    "code": "7",
+    "name": "Unlock",
+    "description": "The workstation was unlocked using the credentials of the account that locked it."
+  },
+  {
+    "code": "8",
+    "name": "NetworkCleartext",
+    "description": "A network logon like type 3, but the password was passed in cleartext (e.g. IIS Basic Authentication)."
+  },
+  {
+    "code": "9",
+    "name": "NewCredentials",
+    "description": "A caller cloned its current token and specified new credentials (e.g. RunAs /netonly). The local session keeps the original identity; the new credentials are only used for outbound network connections."
+  },
+  {
+    "code": "10",
+    "name": "RemoteInteractive",
+    "description": "A Terminal Services / Remote Desktop (RDP) logon to the computer."
+  },
+  {
+    "code": "11",
+    "name": "CachedInteractive",
+    "description": "A user logged on with cached domain credentials because a domain controller was not available (offline domain logon)."
+  },
+  {
+    "code": "12",
+    "name": "CachedRemoteInteractive",
+    "description": "Same as RemoteInteractive, but the logon used cached credentials (rare)."
+  },
+  {
+    "code": "13",
+    "name": "CachedUnlock",
+    "description": "The workstation was unlocked using cached credentials."
+  }
+]

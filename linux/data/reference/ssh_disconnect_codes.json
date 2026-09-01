@@ -1,0 +1,77 @@
+[
+  {
+    "code": "1",
+    "name": "SSH_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT",
+    "description": "The remote host is not permitted to connect (e.g. TCP wrappers / firewall at the application layer)"
+  },
+  {
+    "code": "2",
+    "name": "SSH_DISCONNECT_PROTOCOL_ERROR",
+    "description": "A malformed or out-of-sequence SSH protocol packet was received"
+  },
+  {
+    "code": "3",
+    "name": "SSH_DISCONNECT_KEY_EXCHANGE_FAILED",
+    "description": "Key exchange failed (no compatible algorithm, or the exchange itself failed)"
+  },
+  {
+    "code": "4",
+    "name": "SSH_DISCONNECT_RESERVED",
+    "description": "Reserved (also historically used for host authentication failure)"
+  },
+  {
+    "code": "5",
+    "name": "SSH_DISCONNECT_MAC_ERROR",
+    "description": "Message authentication code verification failed"
+  },
+  {
+    "code": "6",
+    "name": "SSH_DISCONNECT_COMPRESSION_ERROR",
+    "description": "Compression or decompression failed"
+  },
+  {
+    "code": "7",
+    "name": "SSH_DISCONNECT_SERVICE_NOT_AVAILABLE",
+    "description": "The requested service is not available"
+  },
+  {
+    "code": "8",
+    "name": "SSH_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED",
+    "description": "The peer's protocol version is not supported"
+  },
+  {
+    "code": "9",
+    "name": "SSH_DISCONNECT_HOST_KEY_NOT_VERIFIABLE",
+    "description": "The host key could not be verified"
+  },
+  {
+    "code": "10",
+    "name": "SSH_DISCONNECT_CONNECTION_LOST",
+    "description": "The connection was lost (network-level failure, not a clean protocol close)"
+  },
+  {
+    "code": "11",
+    "name": "SSH_DISCONNECT_BY_APPLICATION",
+    "description": "The application (client or server) initiated a normal disconnect"
+  },
+  {
+    "code": "12",
+    "name": "SSH_DISCONNECT_TOO_MANY_CONNECTIONS",
+    "description": "Too many concurrent connections from this source"
+  },
+  {
+    "code": "13",
+    "name": "SSH_DISCONNECT_AUTH_CANCELLED_BY_USER",
+    "description": "The user cancelled authentication"
+  },
+  {
+    "code": "14",
+    "name": "SSH_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE",
+    "description": "All configured authentication methods were exhausted without success"
+  },
+  {
+    "code": "15",
+    "name": "SSH_DISCONNECT_ILLEGAL_USER_NAME",
+    "description": "The requested username is not permitted by the server"
+  }
+]

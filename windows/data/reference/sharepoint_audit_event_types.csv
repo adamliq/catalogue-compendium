@@ -1,0 +1,41 @@
+audit_event_type_id,description
+Event ID,Event Description
+1,CheckOut
+2,Checkin
+3,View
+4,Delete
+5,Update
+6,Profile Change
+7,ChildDelete
+8,Schema Change
+10,Undelete
+0x10,ChildMove
+0x11,File Fragment Write
+11,Workflow
+12,Copy
+13,Move
+14,AuditMask Change
+15,Search
+16,Child object was removed
+0x20,SecGroupMemberAdd
+0x21,SecGroupMemberDel
+0x22,SecRoleDefCreate
+0x23,SecRoleDefDelete
+0x24,SecRoleDefModify
+0x25,SecRoleDefBreakInherit
+0x26,SecRoleBindUpdate
+0x27,SecRoleBindInherit
+30,SecGroupCreate
+31,Security Group Deleted
+32,Security Principal Added to a security group
+33,Security principal removed from a security group
+34,Security role was created
+35,Security role was deleted
+36,Security Role was updated
+37,Security Role break inheritance
+38,Security scope was updated
+39,Security Scope restores inheritance
+40,SecRoleBindBreakInherit
+50,Events Deleted
+100,Custom
+0x1f,SecGroupDelete

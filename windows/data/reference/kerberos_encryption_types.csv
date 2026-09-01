@@ -1,0 +1,17 @@
+code,name,note
+0x0001,DES-CBC-CRC,Deprecated — no longer supported
+0x0002,DES-CBC-MD4,Deprecated — no longer supported
+0x0003,DES-CBC-MD5,Deprecated — no longer supported
+0x0004,DES-CBC-RAW,Deprecated — no longer supported
+0x0005,DES3-CBC-SHA,Deprecated — DES-3 cbc with SHA1
+0x0006,DES3-CBC-RAW,Deprecated — DES-3 cbc mode raw
+0x0008,DES-HMAC-SHA1,Deprecated — no longer supported
+0x0010,DES3-CBC-SHA1,
+0x0011,AES128-CTS-HMAC-SHA1-96,RFC 3962
+0x0012,AES256-CTS-HMAC-SHA1-96,RFC 3962
+0x0013,AES128-CTS-HMAC-SHA256-128,RFC 8009
+0x0014,AES256-CTS-HMAC-SHA384-192,RFC 8009
+0x0017,ARCFOUR-HMAC,Also known as RC4-HMAC in Windows documentation. RFC 4757
+0x0018,ARCFOUR-HMAC-EXP,Also known as RC4-HMAC-EXP in Windows documentation. RFC 4757
+0x0019,CAMELLIA128-CTS-CMAC,RFC 6803
+0x001a,CAMELLIA256-CTS-CMAC,RFC 6803

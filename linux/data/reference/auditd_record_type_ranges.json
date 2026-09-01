@@ -1,0 +1,62 @@
+[
+  {
+    "range": "1000–1099",
+    "purpose": "Bi-directional control messages"
+  },
+  {
+    "range": "1100–1199",
+    "purpose": "User-space trusted application messages"
+  },
+  {
+    "range": "1200–1299",
+    "purpose": "auditd daemon internal messages"
+  },
+  {
+    "range": "1300–1399",
+    "purpose": "Core audit event messages (SYSCALL, PATH, …)"
+  },
+  {
+    "range": "1400–1499",
+    "purpose": "SELinux"
+  },
+  {
+    "range": "1500–1599",
+    "purpose": "AppArmor"
+  },
+  {
+    "range": "1600–1699",
+    "purpose": "Kernel crypto"
+  },
+  {
+    "range": "1700–1799",
+    "purpose": "Kernel anomaly records"
+  },
+  {
+    "range": "1800–1899",
+    "purpose": "Kernel integrity (IMA/EVM)"
+  },
+  {
+    "range": "1900–1999",
+    "purpose": "Future kernel use"
+  },
+  {
+    "range": "2100–2199",
+    "purpose": "User-space anomaly records"
+  },
+  {
+    "range": "2200–2299",
+    "purpose": "User-space responses to anomalies"
+  },
+  {
+    "range": "2300–2399",
+    "purpose": "User-space LSPP events"
+  },
+  {
+    "range": "2400–2499",
+    "purpose": "User-space crypto events"
+  },
+  {
+    "range": "2500–2599",
+    "purpose": "User-space virtualization events"
+  }
+]

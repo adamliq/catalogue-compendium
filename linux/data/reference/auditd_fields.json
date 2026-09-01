@@ -1,0 +1,2108 @@
+[
+  {
+    "field": "a0, a1, a2, a3",
+    "format": "numeric (hex)",
+    "explanation": "First four arguments of the system call, stored in hexadecimal. Useful for reconstructing what a process was trying to do.",
+    "cim_potential_name": "process_exec / raw args",
+    "supported_cim_field": "(no direct CIM)",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "a[[:digit:]+][.*]",
+    "format": "encoded",
+    "explanation": "Arguments to an execve syscall (can be more than four).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "acct",
+    "format": "encoded",
+    "explanation": "User’s account name under which the process ran.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "acl",
+    "format": "alphabet",
+    "explanation": "Access mode of a resource assigned to a VM.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "action",
+    "format": "numeric",
+    "explanation": "Netfilter packet disposition (or integrity policy action).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "added",
+    "format": "numeric",
+    "explanation": "Number of new files detected.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "addr",
+    "format": "encoded",
+    "explanation": "IPv4 or IPv6 address (often follows a hostname field).",
+    "cim_potential_name": "src / src_ip",
+    "supported_cim_field": "src / src_ip",
+    "cim_data_model_category": "Authentication, Network_Traffic",
+    "splunk_app": "Splunk Add-on for Linux"
+  },
+  {
+    "field": "apparmor",
+    "format": "encoded",
+    "explanation": "AppArmor event information.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "arch",
+    "format": "numeric (hex)",
+    "explanation": "CPU architecture of the system (e.g. c000003e = x86_64).",
+    "cim_potential_name": "(vendor-specific)",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "—",
+    "splunk_app": "—"
+  },
+  {
+    "field": "argc",
+    "format": "numeric",
+    "explanation": "Number of arguments to an execve syscall.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "audit_backlog_limit",
+    "format": "numeric",
+    "explanation": "Audit system’s backlog queue size.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "audit_backlog_wait_time",
+    "format": "numeric",
+    "explanation": "Audit system’s backlog wait time.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "audit_enabled",
+    "format": "numeric",
+    "explanation": "Audit system enable/disable status.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "audit_failure",
+    "format": "numeric",
+    "explanation": "Audit system failure mode.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "auid",
+    "format": "numeric",
+    "explanation": "Audit User ID (loginuid). Assigned at login and never changes, even after su/sudo. Most reliable identity field.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "banners",
+    "format": "alphanumeric",
+    "explanation": "Banners used on a printed page.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "bool",
+    "format": "alphanumeric",
+    "explanation": "Name of an SELinux boolean.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "bus",
+    "format": "alphanumeric",
+    "explanation": "Name of the subsystem bus a VM resource belongs to.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "capability",
+    "format": "numeric",
+    "explanation": "Number of bits used when setting a Linux capability.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_fe",
+    "format": "numeric",
+    "explanation": "File assigned effective capability map.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_fi",
+    "format": "numeric (hex)",
+    "explanation": "File inherited capability map.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_fp",
+    "format": "numeric (hex)",
+    "explanation": "File permitted capability map.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_fver",
+    "format": "numeric (hex)",
+    "explanation": "File-system capabilities version number.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_pa",
+    "format": "numeric (hex)",
+    "explanation": "Process ambient capability map.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_pe",
+    "format": "numeric (hex)",
+    "explanation": "Process effective capability map.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_pi",
+    "format": "numeric (hex)",
+    "explanation": "Process inherited capability map.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "cap_pp",
+    "format": "numeric (hex)",
+    "explanation": "Process permitted capability map.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "category",
+    "format": "alphabet",
+    "explanation": "Resource category assigned to a VM.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "cgroup",
+    "format": "encoded",
+    "explanation": "Path to the cgroup that contained the process when the event was generated.",
+    "cim_potential_name": "process",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "custom"
+  },
+  {
+    "field": "changed",
+    "format": "numeric",
+    "explanation": "Number of changed files.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "cipher",
+    "format": "alphanumeric",
+    "explanation": "Name of the crypto cipher selected.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "class",
+    "format": "alphabet",
+    "explanation": "Resource class assigned to a VM.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "cmd",
+    "format": "encoded",
+    "explanation": "Full command line executed. Especially useful with interpreters (exe may show /bin/bash while cmd shows the real script + args).",
+    "cim_potential_name": "process / process_exec",
+    "supported_cim_field": "process / process_exec",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "code",
+    "format": "numeric (hex)",
+    "explanation": "Seccomp action code.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "comm",
+    "format": "encoded",
+    "explanation": "Short command name (basename of the executable or script).",
+    "cim_potential_name": "process / process_name",
+    "supported_cim_field": "process_name",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "compat",
+    "format": "numeric",
+    "explanation": "Result of is_compat_task.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "cwd",
+    "format": "encoded",
+    "explanation": "Current working directory of the process when the system call was invoked.",
+    "cim_potential_name": "process / process_path",
+    "supported_cim_field": "process",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "daddr",
+    "format": "alphanumeric",
+    "explanation": "Remote IP address.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "data",
+    "format": "encoded",
+    "explanation": "Data associated with TTY records (often hex-encoded keystrokes).",
+    "cim_potential_name": "—",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "—",
+    "splunk_app": "—"
+  },
+  {
+    "field": "default-context",
+    "format": "alphanumeric",
+    "explanation": "Default MAC context.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "dev",
+    "format": "numeric (hex-tuple) / alphanumeric",
+    "explanation": "Major:minor device numbers (path records) or device name as found in /dev (AVC).",
+    "cim_potential_name": "file / file_path",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "devmajor",
+    "format": "numeric",
+    "explanation": "Major device number.",
+    "cim_potential_name": "file / file_path",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "devminor",
+    "format": "numeric",
+    "explanation": "Minor device number.",
+    "cim_potential_name": "file / file_path",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "device",
+    "format": "encoded",
+    "explanation": "Device name.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "dir",
+    "format": "encoded",
+    "explanation": "Directory name.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "direction",
+    "format": "alphanumeric",
+    "explanation": "Direction of a crypto operation.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "dmac",
+    "format": "numeric",
+    "explanation": "Remote MAC address.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "dport",
+    "format": "numeric",
+    "explanation": "Remote port number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "egid",
+    "format": "numeric",
+    "explanation": "Effective Group ID of the process.",
+    "cim_potential_name": "user / user_group",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "enforcing",
+    "format": "numeric",
+    "explanation": "New MAC enforcement status.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "entries",
+    "format": "numeric",
+    "explanation": "Number of entries in a netfilter table.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "errno",
+    "format": "numeric",
+    "explanation": "Error code of the audited operation.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "euid",
+    "format": "numeric",
+    "explanation": "Effective User ID of the process.",
+    "cim_potential_name": "user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "exe",
+    "format": "encoded",
+    "explanation": "Full path to the executable that was invoked.",
+    "cim_potential_name": "process / process_path / process_exec",
+    "supported_cim_field": "process / process_exec",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "exit",
+    "format": "numeric",
+    "explanation": "Exit / return code of the system call. Use ausearch -i --exit to decode.",
+    "cim_potential_name": "action / status",
+    "supported_cim_field": "action / status",
+    "cim_data_model_category": "Authentication, Change, Endpoint",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "fam",
+    "format": "alphanumeric",
+    "explanation": "Socket address family.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "family",
+    "format": "numeric",
+    "explanation": "Netfilter protocol / address family (IPv4 or IPv6).",
+    "cim_potential_name": "transport",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Network_Traffic",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "fd",
+    "format": "numeric",
+    "explanation": "File descriptor number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "file",
+    "format": "encoded",
+    "explanation": "File name (often integrity-related).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "filetype",
+    "format": "alphanumeric",
+    "explanation": "Type of the file.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "flags",
+    "format": "numeric (hex)",
+    "explanation": "File-system name flags or mmap flags.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "fe",
+    "format": "numeric",
+    "explanation": "File assigned effective capability map (short form).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "feature",
+    "format": "alphanumeric",
+    "explanation": "Kernel feature being changed.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "fi",
+    "format": "numeric (hex)",
+    "explanation": "File assigned inherited capability map (short form).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "fp",
+    "format": "numeric (hex) / alphanumeric",
+    "explanation": "File permitted capability map or crypto key fingerprint.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "format",
+    "format": "alphanumeric",
+    "explanation": "Audit log’s format.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "fsgid",
+    "format": "numeric",
+    "explanation": "File-system Group ID of the process.",
+    "cim_potential_name": "user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "fsuid",
+    "format": "numeric",
+    "explanation": "File-system User ID of the process.",
+    "cim_potential_name": "user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "fver",
+    "format": "numeric (hex)",
+    "explanation": "File-system capabilities version number (short form).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "gid",
+    "format": "numeric",
+    "explanation": "Real Group ID of the process.",
+    "cim_potential_name": "user / user_group",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "grantors",
+    "format": "alphanumeric",
+    "explanation": "PAM modules that approved the action.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "grp",
+    "format": "encoded",
+    "explanation": "Group name.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "hook",
+    "format": "numeric",
+    "explanation": "Netfilter hook the packet came from.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "hostname",
+    "format": "alphanumeric",
+    "explanation": "Hostname associated with the event (often the remote host).",
+    "cim_potential_name": "src / dest / host",
+    "supported_cim_field": "src / dest",
+    "cim_data_model_category": "Authentication, Network_Traffic",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "icmp_type / icmptype",
+    "format": "numeric",
+    "explanation": "ICMP message type (usually from iptables).",
+    "cim_potential_name": "transport",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Network_Traffic",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "id",
+    "format": "numeric",
+    "explanation": "User ID of an account that was changed.",
+    "cim_potential_name": "object / object_id",
+    "supported_cim_field": "object / object_id",
+    "cim_data_model_category": "Change (Account_Management)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "igid",
+    "format": "numeric",
+    "explanation": "IPC object’s group ID.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "img-ctx",
+    "format": "alphanumeric",
+    "explanation": "VM’s disk image context string.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "inif",
+    "format": "numeric",
+    "explanation": "Incoming interface number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ip",
+    "format": "alphanumeric",
+    "explanation": "Network address of a printer (or instruction pointer in seccomp).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ipid",
+    "format": "numeric",
+    "explanation": "IP datagram fragment identifier.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ino / inode",
+    "format": "numeric",
+    "explanation": "Inode number of the referenced file/directory.",
+    "cim_potential_name": "file / file_hash / file_path",
+    "supported_cim_field": "file_path",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "inode_gid",
+    "format": "numeric",
+    "explanation": "Group ID of the inode’s owner.",
+    "cim_potential_name": "file / file_hash / file_path",
+    "supported_cim_field": "file_path",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "inode_uid",
+    "format": "numeric",
+    "explanation": "User ID of the inode’s owner.",
+    "cim_potential_name": "file / file_hash / file_path",
+    "supported_cim_field": "file_path",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "invalid_context",
+    "format": "encoded",
+    "explanation": "Invalid SELinux context.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ioctlcmd",
+    "format": "numeric (hex)",
+    "explanation": "Request argument to the ioctl syscall.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ipx-net",
+    "format": "numeric",
+    "explanation": "IPX network number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "item",
+    "format": "numeric",
+    "explanation": "Which item (path record) is being recorded.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "items",
+    "format": "numeric",
+    "explanation": "Number of PATH records attached to this event.",
+    "cim_potential_name": "—",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "—",
+    "splunk_app": "—"
+  },
+  {
+    "field": "iuid",
+    "format": "numeric",
+    "explanation": "IPC object’s user ID.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "kernel",
+    "format": "alphanumeric",
+    "explanation": "Kernel version number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "key",
+    "format": "encoded",
+    "explanation": "Arbitrary string attached to the audit rule that generated the event. Extremely useful for filtering.",
+    "cim_potential_name": "signature / vendor_action",
+    "supported_cim_field": "signature",
+    "cim_data_model_category": "Change, Endpoint, Intrusion_Detection",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "kind",
+    "format": "alphabet",
+    "explanation": "Server or client in a crypto operation.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ksize",
+    "format": "numeric",
+    "explanation": "Key size used in a crypto operation.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "laddr",
+    "format": "alphanumeric",
+    "explanation": "Local network address.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "len",
+    "format": "numeric",
+    "explanation": "Length.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "lport",
+    "format": "numeric",
+    "explanation": "Local network port.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "list",
+    "format": "numeric",
+    "explanation": "Audit filter list ID (0=user, 1=task, 4=exit, 5=exclude).",
+    "cim_potential_name": "—",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "—",
+    "splunk_app": "—"
+  },
+  {
+    "field": "mac",
+    "format": "alphanumeric",
+    "explanation": "Crypto MAC algorithm selected.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "macproto",
+    "format": "numeric",
+    "explanation": "Ethernet packet type ID field.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "maj / major",
+    "format": "numeric",
+    "explanation": "Device major number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "minor",
+    "format": "numeric",
+    "explanation": "Device minor number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "mode",
+    "format": "numeric (octal)",
+    "explanation": "File or directory permissions.",
+    "cim_potential_name": "file_permissions",
+    "supported_cim_field": "file_permissions",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "model",
+    "format": "alphanumeric",
+    "explanation": "Security model used for virtualization.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "msg",
+    "format": "alphanumeric",
+    "explanation": "Timestamp + unique event ID, or additional name=value pairs.",
+    "cim_potential_name": "—",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "—",
+    "splunk_app": "—"
+  },
+  {
+    "field": "msgtype",
+    "format": "alphanumeric",
+    "explanation": "Message type for user-space AVC denials (usually from D-Bus).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "nargs",
+    "format": "numeric",
+    "explanation": "Number of arguments to a socket call.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "name",
+    "format": "encoded",
+    "explanation": "Full path of the file/directory passed as an argument.",
+    "cim_potential_name": "file_path / object / object_path",
+    "supported_cim_field": "file_path / object",
+    "cim_data_model_category": "Endpoint (Filesystem), Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "nametype",
+    "format": "alphabet",
+    "explanation": "Kind of file operation being referenced.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "net",
+    "format": "alphanumeric",
+    "explanation": "Network MAC address.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "new",
+    "format": "numeric",
+    "explanation": "New value being set for a feature.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "new-chardev",
+    "format": "encoded",
+    "explanation": "New character device assigned to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-disk",
+    "format": "encoded",
+    "explanation": "Name of a new disk resource assigned to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-enabled",
+    "format": "numeric",
+    "explanation": "New TTY audit enabled setting.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-fs",
+    "format": "encoded",
+    "explanation": "File system being added to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new_gid",
+    "format": "numeric",
+    "explanation": "New group ID assigned to a user.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-level",
+    "format": "alphanumeric",
+    "explanation": "New run level.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new_lock",
+    "format": "numeric",
+    "explanation": "New value of a feature lock.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-log_passwd",
+    "format": "numeric",
+    "explanation": "New value for TTY password logging.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-mem",
+    "format": "numeric",
+    "explanation": "New amount of memory (KB) assigned to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-net",
+    "format": "encoded",
+    "explanation": "MAC address of a new network interface assigned to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new_pe / new_pi / new_pp",
+    "format": "numeric",
+    "explanation": "New process capability maps (deprecated forms).",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-range",
+    "format": "alphanumeric",
+    "explanation": "New SELinux range.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-rng",
+    "format": "encoded",
+    "explanation": "Device name of an RNG being added to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-role",
+    "format": "alphanumeric",
+    "explanation": "New SELinux role.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-seuser",
+    "format": "alphanumeric",
+    "explanation": "New SELinux user.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "new-vcpu",
+    "format": "numeric",
+    "explanation": "New number of virtual CPUs assigned to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "nlnk-fam",
+    "format": "numeric",
+    "explanation": "Netlink protocol number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "nlnk-grp",
+    "format": "numeric",
+    "explanation": "Netlink group number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "nlnk-pid",
+    "format": "numeric",
+    "explanation": "PID of the netlink packet sender.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "oauid",
+    "format": "numeric",
+    "explanation": "Audit UID of the user who originally logged in and started the target process (OBJ_PID records only).",
+    "cim_potential_name": "dest_user / dest_process",
+    "supported_cim_field": "dest_user",
+    "cim_data_model_category": "Endpoint, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj",
+    "format": "alphanumeric",
+    "explanation": "SELinux context of the object (the thing being acted upon).",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj_gid",
+    "format": "numeric",
+    "explanation": "Group ID of the object.",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj_lev_high",
+    "format": "alphanumeric",
+    "explanation": "High SELinux sensitivity level of the object.",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj_lev_low",
+    "format": "alphanumeric",
+    "explanation": "Low SELinux sensitivity level of the object.",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj_role",
+    "format": "alphanumeric",
+    "explanation": "SELinux role of the object.",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj_type",
+    "format": "alphanumeric",
+    "explanation": "SELinux type of the object.",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj_uid",
+    "format": "numeric",
+    "explanation": "User ID of the object.",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "obj_user",
+    "format": "alphanumeric",
+    "explanation": "SELinux user associated with the object.",
+    "cim_potential_name": "object / object_category",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change, Endpoint",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "oflag",
+    "format": "numeric",
+    "explanation": "Flags passed to the open syscall.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ogid",
+    "format": "numeric",
+    "explanation": "Group ID of the object’s owner.",
+    "cim_potential_name": "object",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "ocomm",
+    "format": "encoded",
+    "explanation": "Command name of the target process (OBJ_PID records only).",
+    "cim_potential_name": "dest_user / dest_process",
+    "supported_cim_field": "dest_user",
+    "cim_data_model_category": "Endpoint, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old",
+    "format": "numeric",
+    "explanation": "Previous / present value of a kernel feature or audit setting.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "old-auid",
+    "format": "numeric",
+    "explanation": "Previous auid value.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-chardev",
+    "format": "encoded",
+    "explanation": "Previous character device assigned to a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-disk",
+    "format": "encoded",
+    "explanation": "Previous disk resource of a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-enabled",
+    "format": "numeric",
+    "explanation": "Previous TTY audit enabled setting.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old_enforcing",
+    "format": "numeric",
+    "explanation": "Previous MAC enforcement status.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-fs",
+    "format": "encoded",
+    "explanation": "Previous file system of a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-level",
+    "format": "alphanumeric",
+    "explanation": "Previous run level.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old_lock",
+    "format": "numeric",
+    "explanation": "Previous value of a feature lock.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-log_passwd",
+    "format": "numeric",
+    "explanation": "Previous TTY password logging setting.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-mem",
+    "format": "numeric",
+    "explanation": "Previous memory allocation of a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-net",
+    "format": "encoded",
+    "explanation": "Previous MAC address of a VM network interface.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old_pa / old_pe / old_pi / old_pp",
+    "format": "numeric (hex)",
+    "explanation": "Previous process capability maps.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old_prom",
+    "format": "numeric",
+    "explanation": "Previous network promiscuity flag.",
+    "cim_potential_name": "—",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Network_Traffic",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-range",
+    "format": "alphanumeric",
+    "explanation": "Previous SELinux range.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-rng",
+    "format": "encoded",
+    "explanation": "Previous RNG device of a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-role",
+    "format": "alphanumeric",
+    "explanation": "Previous SELinux role.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-ses",
+    "format": "numeric",
+    "explanation": "Previous session ID.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-seuser",
+    "format": "alphanumeric",
+    "explanation": "Previous SELinux user.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old_val",
+    "format": "numeric",
+    "explanation": "Previous value of an SELinux boolean.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "old-vcpu",
+    "format": "numeric",
+    "explanation": "Previous number of virtual CPUs of a VM.",
+    "cim_potential_name": "object / object_attrs",
+    "supported_cim_field": "object",
+    "cim_data_model_category": "Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "op",
+    "format": "alphanumeric",
+    "explanation": "Operation being performed that is audited.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "opid",
+    "format": "numeric",
+    "explanation": "Process ID of the target process (OBJ_PID records only).",
+    "cim_potential_name": "dest_user / dest_process",
+    "supported_cim_field": "dest_user",
+    "cim_data_model_category": "Endpoint, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "oses",
+    "format": "numeric",
+    "explanation": "Session ID of the target process (OBJ_PID records only).",
+    "cim_potential_name": "dest_user / dest_process",
+    "supported_cim_field": "dest_user",
+    "cim_data_model_category": "Endpoint, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "ouid",
+    "format": "numeric",
+    "explanation": "Real user ID of the target process / object owner.",
+    "cim_potential_name": "dest_user / dest_process",
+    "supported_cim_field": "dest_user",
+    "cim_data_model_category": "Endpoint, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "outif",
+    "format": "numeric",
+    "explanation": "Outgoing interface number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "pa / pe / pi / pp",
+    "format": "numeric (hex)",
+    "explanation": "Process ambient / effective / inherited / permitted capability maps.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "parent",
+    "format": "numeric",
+    "explanation": "Inode number of the parent file.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "path",
+    "format": "encoded",
+    "explanation": "Full path of the file/directory (especially in AVC events).",
+    "cim_potential_name": "file_path / object_path",
+    "supported_cim_field": "file_path",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "per",
+    "format": "numeric (hex)",
+    "explanation": "Linux personality.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "perm",
+    "format": "numeric",
+    "explanation": "File permission that triggered the event (read/write/execute/attribute).",
+    "cim_potential_name": "file_access_permission / action",
+    "supported_cim_field": "action",
+    "cim_data_model_category": "Endpoint (Filesystem)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "perm_mask",
+    "format": "numeric",
+    "explanation": "File permission mask that triggered a watch event.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "permissive",
+    "format": "numeric",
+    "explanation": "Whether SELinux is in permissive mode.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "pfs",
+    "format": "alphanumeric",
+    "explanation": "Perfect forward secrecy method.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "pid",
+    "format": "numeric",
+    "explanation": "Process ID (userspace) or Thread ID (kernel). For single-threaded processes they are equal. This is the kernel TID (gettid), not a pthread_t.",
+    "cim_potential_name": "process_id",
+    "supported_cim_field": "process_id",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "ppid",
+    "format": "numeric",
+    "explanation": "Parent Process ID.",
+    "cim_potential_name": "parent_process_id",
+    "supported_cim_field": "parent_process_id",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "printer",
+    "format": "alphanumeric",
+    "explanation": "Printer name.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "prom",
+    "format": "numeric",
+    "explanation": "Current network interface promiscuity flag.",
+    "cim_potential_name": "—",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Network_Traffic",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "proctitle",
+    "format": "encoded",
+    "explanation": "Full process title + command-line parameters (hex-encoded).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "proto",
+    "format": "numeric",
+    "explanation": "Networking protocol (iptables / netfilter).",
+    "cim_potential_name": "transport / protocol",
+    "supported_cim_field": "transport",
+    "cim_data_model_category": "Network_Traffic",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "qbytes",
+    "format": "numeric (hex)",
+    "explanation": "Quantity of bytes of an IPC object.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "range",
+    "format": "alphanumeric",
+    "explanation": "User’s SELinux range.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "rdev",
+    "format": "numeric (hex-tuple)",
+    "explanation": "Device identifier (special files only).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "reason",
+    "format": "alphanumeric",
+    "explanation": "Text string explaining the reason for the action.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "removed",
+    "format": "numeric",
+    "explanation": "Number of deleted files.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "res / result",
+    "format": "numeric / alphanumeric",
+    "explanation": "Result of the audited operation (success/fail).",
+    "cim_potential_name": "action / status",
+    "supported_cim_field": "action / status",
+    "cim_data_model_category": "Authentication, Change, Endpoint",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "resrc",
+    "format": "alphanumeric",
+    "explanation": "Resource being assigned.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "role",
+    "format": "alphanumeric",
+    "explanation": "User’s SELinux role.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "rport",
+    "format": "numeric",
+    "explanation": "Remote port number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "saddr",
+    "format": "encoded",
+    "explanation": "Socket address structure (often hex-encoded).",
+    "cim_potential_name": "src / dest / src_ip / dest_ip",
+    "supported_cim_field": "src / dest",
+    "cim_data_model_category": "Network_Traffic",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "sauid",
+    "format": "numeric",
+    "explanation": "Sender’s Audit UID (provided by D-Bus).",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "scontext",
+    "format": "alphanumeric",
+    "explanation": "Subject’s SELinux context string.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "selected-context",
+    "format": "alphanumeric",
+    "explanation": "New MAC context assigned to a session.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "seperm",
+    "format": "alphanumeric",
+    "explanation": "SELinux permission being decided on.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "seqno",
+    "format": "numeric",
+    "explanation": "Sequence number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "seperms",
+    "format": "alphabet",
+    "explanation": "SELinux permissions being used.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "seresult",
+    "format": "alphabet",
+    "explanation": "SELinux AVC decision (granted / denied).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ses",
+    "format": "numeric",
+    "explanation": "Session ID from which the process was started.",
+    "cim_potential_name": "session_id",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Authentication",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "seuser",
+    "format": "alphanumeric",
+    "explanation": "User’s SELinux user account.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "sgid",
+    "format": "numeric",
+    "explanation": "Set-Group-ID of the process.",
+    "cim_potential_name": "user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "sig / sigev_signo",
+    "format": "numeric",
+    "explanation": "Signal number that caused abnormal termination.",
+    "cim_potential_name": "action",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "smac",
+    "format": "numeric",
+    "explanation": "Local MAC address.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "spid",
+    "format": "numeric",
+    "explanation": "Sent process ID.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "sport",
+    "format": "numeric",
+    "explanation": "Local port number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "state",
+    "format": "alphanumeric",
+    "explanation": "Resulting state of the audit daemon configuration.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "subj",
+    "format": "alphanumeric",
+    "explanation": "SELinux context of the subject (the actor).",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "subj_clr",
+    "format": "alphanumeric",
+    "explanation": "SELinux clearance of the subject.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "subj_role",
+    "format": "alphanumeric",
+    "explanation": "SELinux role of the subject.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "subj_sen",
+    "format": "alphanumeric",
+    "explanation": "SELinux sensitivity of the subject.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "subj_type",
+    "format": "alphanumeric",
+    "explanation": "SELinux type of the subject.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "subj_user",
+    "format": "alphanumeric",
+    "explanation": "SELinux user associated with the subject.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "success",
+    "format": "alphanumeric",
+    "explanation": "Whether the system call succeeded (yes) or failed (no).",
+    "cim_potential_name": "action / status",
+    "supported_cim_field": "action (success/failure)",
+    "cim_data_model_category": "Authentication, Change, Endpoint",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "suid",
+    "format": "numeric",
+    "explanation": "Set-User-ID of the process.",
+    "cim_potential_name": "user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "syscall",
+    "format": "numeric",
+    "explanation": "Numeric system-call number that was executed.",
+    "cim_potential_name": "process / command",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Endpoint (Processes)",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "table",
+    "format": "alphanumeric",
+    "explanation": "Netfilter table name.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "tclass",
+    "format": "alphanumeric",
+    "explanation": "Target’s object classification.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "tcontext",
+    "format": "alphanumeric",
+    "explanation": "Target’s / object’s SELinux context string.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "terminal",
+    "format": "alphanumeric",
+    "explanation": "Terminal name (without /dev/).",
+    "cim_potential_name": "src / src_nt_host",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Authentication",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "tty",
+    "format": "alphanumeric",
+    "explanation": "Controlling terminal device. Value (none) means no controlling terminal.",
+    "cim_potential_name": "src / src_nt_host",
+    "supported_cim_field": "—",
+    "cim_data_model_category": "Authentication",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "type",
+    "format": "alphanumeric",
+    "explanation": "The audit record’s type (SYSCALL, PATH, EXECVE, AVC, etc.).",
+    "cim_potential_name": "vendor_action / signature",
+    "supported_cim_field": "vendor_action",
+    "cim_data_model_category": "Change, Endpoint, Intrusion_Detection",
+    "splunk_app": "TA-linux_auditd"
+  },
+  {
+    "field": "uid",
+    "format": "numeric",
+    "explanation": "Real User ID of the process.",
+    "cim_potential_name": "user / src_user",
+    "supported_cim_field": "user",
+    "cim_data_model_category": "Authentication, Change, Endpoint",
+    "splunk_app": "Splunk Add-on for Linux, TA-linux_auditd"
+  },
+  {
+    "field": "unit",
+    "format": "alphanumeric",
+    "explanation": "systemd unit name.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "uri",
+    "format": "alphanumeric",
+    "explanation": "URI pointing to a printer.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "user",
+    "format": "alphanumeric",
+    "explanation": "Account submitted for authentication.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "uuid",
+    "format": "alphanumeric",
+    "explanation": "A UUID.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "val",
+    "format": "alphanumeric / numeric",
+    "explanation": "Generic value associated with the operation (or new SELinux boolean value).",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "ver",
+    "format": "numeric",
+    "explanation": "Audit daemon’s version number.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "virt",
+    "format": "alphanumeric",
+    "explanation": "Kind of virtualization being referenced.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "vm",
+    "format": "encoded",
+    "explanation": "Name of the virtual machine from which the event originated.",
+    "cim_potential_name": "dest / dest_host",
+    "supported_cim_field": "dest",
+    "cim_data_model_category": "Change, Inventory",
+    "splunk_app": "TA-linux_auditd / custom"
+  },
+  {
+    "field": "vm-ctx",
+    "format": "alphanumeric",
+    "explanation": "VM’s context string.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "vm-pid",
+    "format": "numeric",
+    "explanation": "VM’s process ID.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  },
+  {
+    "field": "watch",
+    "format": "encoded",
+    "explanation": "File name in a watch record.",
+    "cim_potential_name": "",
+    "supported_cim_field": "",
+    "cim_data_model_category": "",
+    "splunk_app": ""
+  }
+]

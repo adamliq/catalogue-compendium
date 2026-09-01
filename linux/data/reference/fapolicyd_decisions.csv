@@ -1,0 +1,12 @@
+keyword,category,explanation
+allow,Decision,Permit the access.
+deny,Decision,Block the access.
+allow_audit,Decision,Permit the access and generate a kernel FANOTIFY audit event (visible via ausearch -m fanotify / type=FANOTIFY in the audit log). At least one audit rule must be loaded for this to actually produce an event.
+deny_audit,Decision,Block the access and generate a kernel FANOTIFY audit event.
+allow_syslog,Decision,Permit the access and send a notification to syslog.
+deny_syslog,Decision,Block the access and send a notification to syslog.
+allow_log,Decision,Permit the access and generate both a FANOTIFY audit event and a syslog notification.
+deny_log,Decision,Block the access and generate both a FANOTIFY audit event and a syslog notification.
+open,Permission (perm=),File access/read. This is the default permission if perm= is omitted from a rule.
+execute,Permission (perm=),Program execution.
+any,Permission (perm=),Applies the rule to both open and execute.

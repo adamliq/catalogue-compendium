@@ -1,0 +1,12 @@
+reason_code,reason,related_event_id
+0x00000001,The disconnection was initiated by an administrative tool on the server in another session.,40
+0x00000002,The disconnection was due to a forced logoff initiated by an administrative tool on the server in another session.,40
+0x00000003,The idle session limit timer on the server has elapsed.,40
+0x00000004,The active session limit timer on the server has elapsed.,40
+0x00000005,"Another user connected to the server, forcing the disconnection of the current connection.",40
+0x00000006,The server ran out of available memory resources.,40
+0x00000007,The server denied the connection.,40
+0x00000009,The user cannot connect to the server due to insufficient access privileges.,40
+0x0000000A (10),The server does not accept saved user credentials and requires that the user enter their credentials for each connection.,40
+0x0000000B (11),The disconnection was initiated by the user disconnecting his or her session on the server or by an administrative tool on the server.,40
+0x0000000C (12),The disconnection was initiated by the user logging off his or her session on the server.,40

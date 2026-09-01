@@ -1,0 +1,8 @@
+path,purpose
+/etc/fapolicyd/fapolicyd.conf,Daemon configuration
+/etc/fapolicyd/rules.d/,"Source rule files (numbered, concatenated at daemon start)"
+/etc/fapolicyd/compiled.rules,Compiled rules the daemon actually evaluates (generated)
+/etc/fapolicyd/fapolicyd.trust,File-based trust list (used when trust = file in fapolicyd.conf)
+/etc/fapolicyd/trust.d/,Additional named trust files
+/var/log/fapolicyd-access.log,Startup/shutdown usage statistics report (do_stat_report)
+/var/run/fapolicyd.state,Internal statistics dump (SIGUSR1)

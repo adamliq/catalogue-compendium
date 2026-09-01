@@ -1,0 +1,18 @@
+token,category,field,description
+%%2304,SubStatus,Sub Status,The user account has expired.
+%%2305,SubStatus,Sub Status,The user account is currently disabled.
+%%2307,SubStatus,Sub Status,The user tried to log on outside of authorized hours or days.
+%%2308,SubStatus,Sub Status,Workstation restriction (the user is not allowed to log on from this machine).
+%%2309,SubStatus,Sub Status,The user's password has expired.
+%%2310,SubStatus,Sub Status,The user must change their password at the next logon.
+%%2311,SubStatus,Sub Status,The user account is currently locked out.
+%%2312,SubStatus,Sub Status,An internal SAM (Security Accounts Manager) logon database error occurred.
+%%2313,SubStatus,Sub Status,The time difference between the client and server is too large (clock skew error).
+%%2314,SubStatus,Sub Status,The domain security identifier (SID) is inconsistent.
+%%2315,SubStatus,Sub Status,A source domain trust relationship failure occurred.
+%%1832,Logon Process/Package,Logon Process,Advapi (Advanced API logon process).
+%%1833,Logon Process/Package,Authentication Package,NtLmSsp (NTLM Security Support Provider).
+%%1841,Logon Process/Package,Authentication Package,Kerberos authentication package.
+%%1843,Logon Process/Package,Authentication Package,Negotiate package.
+%%4624,Logon Process/Package,Reference marker,Reference marker pointing directly back to the system logon-success message header (Event 4624).
+%%4625,Logon Process/Package,Reference marker,Reference marker pointing directly back to the system logon-failure message header (Event 4625).

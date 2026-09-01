@@ -1,0 +1,1418 @@
+technique_id,technique,tactics,audit_category,audit_sub_category,event_id
+T1021,Remote Services,lateral-movement,Logon/Logoff,Logon,4624
+T1021.001,Remote Desktop Protocol,lateral-movement,Logon/Logoff,Logon,4624
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Logon/Logoff,Logon,4624
+T1021.004,SSH,lateral-movement,Logon/Logoff,Logon,4624
+T1021.005,VNC,lateral-movement,Logon/Logoff,Logon,4624
+T1021.006,Windows Remote Management,lateral-movement,Logon/Logoff,Logon,4624
+T1070,Indicator Removal on Host,defense-evasion,Logon/Logoff,Logon,4624
+T1070.005,Network Share Connection Removal,defense-evasion,Logon/Logoff,Logon,4624
+T1078,Valid Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4624
+T1078.001,Default Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4624
+T1078.002,Domain Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4624
+T1078.003,Local Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4624
+T1078.004,Cloud Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4624
+T1110,Brute Force,credential-access,Logon/Logoff,Logon,4624
+T1110.001,Password Guessing,credential-access,Logon/Logoff,Logon,4624
+T1110.002,Password Cracking,credential-access,Logon/Logoff,Logon,4624
+T1110.003,Password Spraying,credential-access,Logon/Logoff,Logon,4624
+T1110.004,Credential Stuffing,credential-access,Logon/Logoff,Logon,4624
+T1114,Email Collection,collection,Logon/Logoff,Logon,4624
+T1114.002,Remote Email Collection,collection,Logon/Logoff,Logon,4624
+T1185,Browser Session Hijacking,collection,Logon/Logoff,Logon,4624
+T1199,Trusted Relationship,initial-access,Logon/Logoff,Logon,4624
+T1207,Rogue Domain Controller,defense-evasion,Logon/Logoff,Logon,4624
+T1213,Data from Information Repositories,collection,Logon/Logoff,Logon,4624
+T1213.001,Confluence,collection,Logon/Logoff,Logon,4624
+T1213.002,Sharepoint,collection,Logon/Logoff,Logon,4624
+T1213.003,Code Repositories,collection,Logon/Logoff,Logon,4624
+T1538,Cloud Service Dashboard,discovery,Logon/Logoff,Logon,4624
+T1550,Use Alternate Authentication Material,defense-evasion; lateral-movement,Logon/Logoff,Logon,4624
+T1550.002,Pass the Hash,defense-evasion; lateral-movement,Logon/Logoff,Logon,4624
+T1550.003,Pass the Ticket,defense-evasion; lateral-movement,Logon/Logoff,Logon,4624
+T1552,Unsecured Credentials,credential-access,Logon/Logoff,Logon,4624
+T1552.005,Cloud Instance Metadata API,credential-access,Logon/Logoff,Logon,4624
+T1552.007,Container API,credential-access,Logon/Logoff,Logon,4624
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Logon/Logoff,Logon,4624
+T1556.001,Domain Controller Authentication,persistence; defense-evasion; credential-access,Logon/Logoff,Logon,4624
+T1556.003,Pluggable Authentication Modules,persistence; defense-evasion; credential-access,Logon/Logoff,Logon,4624
+T1563,Remote Service Session Hijacking,lateral-movement,Logon/Logoff,Logon,4624
+T1563.001,SSH Hijacking,lateral-movement,Logon/Logoff,Logon,4624
+T1563.002,RDP Hijacking,lateral-movement,Logon/Logoff,Logon,4624
+T1606,Forge Web Credentials,credential-access,Logon/Logoff,Logon,4624
+T1606.001,Web Cookies,credential-access,Logon/Logoff,Logon,4624
+T1606.002,SAML Tokens,credential-access,Logon/Logoff,Logon,4624
+T1070,Indicator Removal on Host,defense-evasion,Logon/Logoff,Account Lockout,4625
+T1070.005,Network Share Connection Removal,defense-evasion,Logon/Logoff,Account Lockout,4625
+T1078,Valid Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Account Lockout,4625
+T1078.001,Default Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Account Lockout,4625
+T1078.002,Domain Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Account Lockout,4625
+T1078.003,Local Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Account Lockout,4625
+T1078.004,Cloud Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Account Lockout,4625
+T1110,Brute Force,credential-access,Logon/Logoff,Account Lockout,4625
+T1110.001,Password Guessing,credential-access,Logon/Logoff,Account Lockout,4625
+T1110.002,Password Cracking,credential-access,Logon/Logoff,Account Lockout,4625
+T1110.003,Password Spraying,credential-access,Logon/Logoff,Account Lockout,4625
+T1110.004,Credential Stuffing,credential-access,Logon/Logoff,Account Lockout,4625
+T1207,Rogue Domain Controller,defense-evasion,Logon/Logoff,Account Lockout,4625
+T1538,Cloud Service Dashboard,discovery,Logon/Logoff,Account Lockout,4625
+T1550,Use Alternate Authentication Material,defense-evasion; lateral-movement,Logon/Logoff,Account Lockout,4625
+T1550.002,Pass the Hash,defense-evasion; lateral-movement,Logon/Logoff,Account Lockout,4625
+T1550.003,Pass the Ticket,defense-evasion; lateral-movement,Logon/Logoff,Account Lockout,4625
+T1552,Unsecured Credentials,credential-access,Logon/Logoff,Account Lockout,4625
+T1552.005,Cloud Instance Metadata API,credential-access,Logon/Logoff,Account Lockout,4625
+T1552.007,Container API,credential-access,Logon/Logoff,Account Lockout,4625
+T1070,Indicator Removal on Host,defense-evasion,Logon/Logoff,Logon,4648
+T1070.005,Network Share Connection Removal,defense-evasion,Logon/Logoff,Logon,4648
+T1078,Valid Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4648
+T1078.001,Default Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4648
+T1078.002,Domain Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4648
+T1078.003,Local Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4648
+T1078.004,Cloud Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Logon,4648
+T1110,Brute Force,credential-access,Logon/Logoff,Logon,4648
+T1110.001,Password Guessing,credential-access,Logon/Logoff,Logon,4648
+T1110.002,Password Cracking,credential-access,Logon/Logoff,Logon,4648
+T1110.003,Password Spraying,credential-access,Logon/Logoff,Logon,4648
+T1110.004,Credential Stuffing,credential-access,Logon/Logoff,Logon,4648
+T1207,Rogue Domain Controller,defense-evasion,Logon/Logoff,Logon,4648
+T1538,Cloud Service Dashboard,discovery,Logon/Logoff,Logon,4648
+T1550,Use Alternate Authentication Material,defense-evasion; lateral-movement,Logon/Logoff,Logon,4648
+T1550.002,Pass the Hash,defense-evasion; lateral-movement,Logon/Logoff,Logon,4648
+T1550.003,Pass the Ticket,defense-evasion; lateral-movement,Logon/Logoff,Logon,4648
+T1552,Unsecured Credentials,credential-access,Logon/Logoff,Logon,4648
+T1552.005,Cloud Instance Metadata API,credential-access,Logon/Logoff,Logon,4648
+T1552.007,Container API,credential-access,Logon/Logoff,Logon,4648
+T1003,OS Credential Dumping,credential-access,Object Access,File System,4656
+T1003,OS Credential Dumping,credential-access,Object Access,Kernel Object,4656
+T1003,OS Credential Dumping,credential-access,Object Access,Registry,4656
+T1003.001,LSASS Memory,credential-access,Object Access,Kernel Object,4656
+T1003.002,Security Account Manager,credential-access,Object Access,File System,4656
+T1003.002,Security Account Manager,credential-access,Object Access,Registry,4656
+T1003.003,NTDS,credential-access,Object Access,File System,4656
+T1003.004,LSA Secrets,credential-access,Object Access,Registry,4656
+T1003.007,Proc Filesystem,credential-access,Object Access,File System,4656
+T1003.008,/etc/passwd and /etc/shadow,credential-access,Object Access,File System,4656
+T1005,Data from Local System,collection,Object Access,File System,4656
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,File System,4656
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,File System,4656
+T1012,Query Registry,discovery,Object Access,Registry,4656
+T1018,Remote System Discovery,discovery,Object Access,File System,4656
+T1020,Automated Exfiltration,exfiltration,Object Access,File System,4656
+T1025,Data from Removable Media,collection,Object Access,File System,4656
+T1039,Data from Network Shared Drive,collection,Object Access,File System,4656
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,File System,4656
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,File System,4656
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,File System,4656
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,File System,4656
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,File System,4656
+T1052,Exfiltration Over Physical Medium,exfiltration,Object Access,File System,4656
+T1052.001,Exfiltration over USB,exfiltration,Object Access,File System,4656
+T1055,Process Injection,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1055.001,Dynamic-link Library Injection,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1055.002,Portable Executable Injection,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1055.003,Thread Execution Hijacking,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1055.004,Asynchronous Procedure Call,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1055.005,Thread Local Storage,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1055.008,Ptrace System Calls,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1055.012,Process Hollowing,defense-evasion; privilege-escalation,Object Access,Kernel Object,4656
+T1074,Data Staged,collection,Object Access,File System,4656
+T1074.001,Local Data Staging,collection,Object Access,File System,4656
+T1074.002,Remote Data Staging,collection,Object Access,File System,4656
+T1087,Account Discovery,discovery,Object Access,File System,4656
+T1087.001,Local Account,discovery,Object Access,File System,4656
+T1091,Replication Through Removable Media,lateral-movement; initial-access,Object Access,File System,4656
+T1114,Email Collection,collection,Object Access,File System,4656
+T1114.001,Local Email Collection,collection,Object Access,File System,4656
+T1119,Automated Collection,collection,Object Access,File System,4656
+T1185,Browser Session Hijacking,collection,Object Access,Kernel Object,4656
+T1187,Forced Authentication,credential-access,Object Access,File System,4656
+T1217,Browser Bookmark Discovery,discovery,Object Access,File System,4656
+T1539,Steal Web Session Cookie,credential-access,Object Access,File System,4656
+T1539,Steal Web Session Cookie,credential-access,Object Access,Kernel Object,4656
+T1552,Unsecured Credentials,credential-access,Object Access,File System,4656
+T1552,Unsecured Credentials,credential-access,Object Access,Registry,4656
+T1552.001,Credentials In Files,credential-access,Object Access,File System,4656
+T1552.002,Credentials in Registry,credential-access,Object Access,Registry,4656
+T1552.003,Bash History,credential-access,Object Access,File System,4656
+T1552.004,Private Keys,credential-access,Object Access,File System,4656
+T1552.006,Group Policy Preferences,credential-access,Object Access,File System,4656
+T1552.007,Container API,credential-access,Object Access,File System,4656
+T1555,Credentials from Password Stores,credential-access,Object Access,File System,4656
+T1555,Credentials from Password Stores,credential-access,Object Access,Kernel Object,4656
+T1555.001,Keychain,credential-access,Object Access,File System,4656
+T1555.002,Securityd Memory,credential-access,Object Access,Kernel Object,4656
+T1555.003,Credentials from Web Browsers,credential-access,Object Access,File System,4656
+T1555.003,Credentials from Web Browsers,credential-access,Object Access,Kernel Object,4656
+T1555.004,Windows Credential Manager,credential-access,Object Access,File System,4656
+T1555.005,Password Managers,credential-access,Object Access,File System,4656
+T1555.005,Password Managers,credential-access,Object Access,Kernel Object,4656
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Object Access,Kernel Object,4656
+T1556.001,Domain Controller Authentication,persistence; defense-evasion; credential-access,Object Access,Kernel Object,4656
+T1558,Steal or Forge Kerberos Tickets,credential-access,Object Access,File System,4656
+T1567,Exfiltration Over Web Service,exfiltration,Object Access,File System,4656
+T1567.001,Exfiltration to Code Repository,exfiltration,Object Access,File System,4656
+T1567.002,Exfiltration to Cloud Storage,exfiltration,Object Access,File System,4656
+T1614.001,System Language Discovery,discovery,Object Access,Registry,4656
+T1056,Input Capture,collection; credential-access,Object Access,Registry,4657
+T1056.001,Keylogging,collection; credential-access,Object Access,Registry,4657
+T1070,Indicator Removal on Host,defense-evasion,Object Access,Registry,4657
+T1111,Two-Factor Authentication Interception,credential-access,Object Access,Registry,4657
+T1112,Modify Registry,defense-evasion,Object Access,Registry,4657
+T1137,Office Application Startup,persistence,Object Access,Registry,4657
+T1137.001,Office Template Macros,persistence,Object Access,Registry,4657
+T1137.002,Office Test,persistence,Object Access,Registry,4657
+T1137.006,Add-ins,persistence,Object Access,Registry,4657
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Registry,4657
+T1218.002,Control Panel,defense-evasion,Object Access,Registry,4657
+T1489,Service Stop,impact,Object Access,Registry,4657
+T1490,Inhibit System Recovery,impact,Object Access,Registry,4657
+T1543,Create or Modify System Process,persistence; privilege-escalation,Object Access,Registry,4657
+T1543.003,Windows Service,persistence; privilege-escalation,Object Access,Registry,4657
+T1546,Event Triggered Execution,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.001,Change Default File Association,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.002,Screensaver,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.007,Netsh Helper DLL,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.008,Accessibility Features,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.009,AppCert DLLs,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.010,AppInit DLLs,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.011,Application Shimming,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.012,Image File Execution Options Injection,persistence; privilege-escalation,Object Access,Registry,4657
+T1546.015,Component Object Model Hijacking,persistence; privilege-escalation,Object Access,Registry,4657
+T1547,Boot or Logon Autostart Execution,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.001,Registry Run Keys / Startup Folder,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.002,Authentication Package,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.003,Time Providers,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.004,Winlogon Helper DLL,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.005,Security Support Provider,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.010,Port Monitors,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.012,Print Processors,persistence; privilege-escalation,Object Access,Registry,4657
+T1547.014,Active Setup,persistence; privilege-escalation,Object Access,Registry,4657
+T1548,Abuse Elevation Control Mechanism,defense-evasion; privilege-escalation,Object Access,Registry,4657
+T1548.002,Bypass User Account Control,defense-evasion; privilege-escalation,Object Access,Registry,4657
+T1553,Subvert Trust Controls,defense-evasion,Object Access,Registry,4657
+T1553.003,SIP and Trust Provider Hijacking,defense-evasion,Object Access,Registry,4657
+T1553.004,Install Root Certificate,defense-evasion,Object Access,Registry,4657
+T1553.006,Code Signing Policy Modification,defense-evasion,Object Access,Registry,4657
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Object Access,Registry,4657
+T1556.002,Password Filter DLL,persistence; defense-evasion; credential-access,Object Access,Registry,4657
+T1557,Adversary-in-the-Middle,collection; credential-access,Object Access,Registry,4657
+T1557.001,LLMNR/NBT-NS Poisoning and SMB Relay,collection; credential-access,Object Access,Registry,4657
+T1562,Impair Defenses,defense-evasion,Object Access,Registry,4657
+T1562.001,Disable or Modify Tools,defense-evasion,Object Access,Registry,4657
+T1562.004,Disable or Modify System Firewall,defense-evasion,Object Access,Registry,4657
+T1562.006,Indicator Blocking,defense-evasion,Object Access,Registry,4657
+T1562.009,Safe Mode Boot,defense-evasion,Object Access,Registry,4657
+T1564,Hide Artifacts,defense-evasion,Object Access,Registry,4657
+T1564.002,Hidden Users,defense-evasion,Object Access,Registry,4657
+T1564.005,Hidden File System,defense-evasion,Object Access,Registry,4657
+T1564.006,Run Virtual Instance,defense-evasion,Object Access,Registry,4657
+T1569,System Services,execution,Object Access,Registry,4657
+T1569.002,Service Execution,execution,Object Access,Registry,4657
+T1574,Hijack Execution Flow,persistence; defense-evasion; privilege-escalation,Object Access,Registry,4657
+T1574.011,Services Registry Permissions Weakness,persistence; defense-evasion; privilege-escalation,Object Access,Registry,4657
+T1574.012,COR_PROFILER,persistence; defense-evasion; privilege-escalation,Object Access,Registry,4657
+T1070,Indicator Removal on Host,defense-evasion,Object Access,File System,4660
+T1070,Indicator Removal on Host,defense-evasion,Object Access,Registry,4660
+T1070.002,Clear Linux or Mac System Logs,defense-evasion,Object Access,File System,4660
+T1070.003,Clear Command History,defense-evasion,Object Access,File System,4660
+T1070.004,File Deletion,defense-evasion,Object Access,File System,4660
+T1112,Modify Registry,defense-evasion,Object Access,Registry,4660
+T1485,Data Destruction,impact,Object Access,File System,4660
+T1490,Inhibit System Recovery,impact,Object Access,File System,4660
+T1554,Compromise Client Software Binary,persistence,Object Access,File System,4660
+T1562,Impair Defenses,defense-evasion,Object Access,Registry,4660
+T1562.001,Disable or Modify Tools,defense-evasion,Object Access,Registry,4660
+T1565,Data Manipulation,impact,Object Access,File System,4660
+T1565.001,Stored Data Manipulation,impact,Object Access,File System,4660
+T1565.003,Runtime Data Manipulation,impact,Object Access,File System,4660
+T1003,OS Credential Dumping,credential-access,DS Access,Directory Service Access,4661
+T1003,OS Credential Dumping,credential-access,Object Access,SAM,4661
+T1003.002,Security Account Manager,credential-access,Object Access,SAM,4661
+T1003.003,NTDS,credential-access,Object Access,SAM,4661
+T1003.006,DCSync,credential-access,DS Access,Directory Service Access,4661
+T1003.007,Proc Filesystem,credential-access,Object Access,SAM,4661
+T1003.008,/etc/passwd and /etc/shadow,credential-access,Object Access,SAM,4661
+T1005,Data from Local System,collection,Object Access,SAM,4661
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,SAM,4661
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,SAM,4661
+T1018,Remote System Discovery,discovery,Object Access,SAM,4661
+T1020,Automated Exfiltration,exfiltration,Object Access,SAM,4661
+T1025,Data from Removable Media,collection,Object Access,SAM,4661
+T1039,Data from Network Shared Drive,collection,Object Access,SAM,4661
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,SAM,4661
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,SAM,4661
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,SAM,4661
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,SAM,4661
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,SAM,4661
+T1052,Exfiltration Over Physical Medium,exfiltration,Object Access,SAM,4661
+T1052.001,Exfiltration over USB,exfiltration,Object Access,SAM,4661
+T1074,Data Staged,collection,Object Access,SAM,4661
+T1074.001,Local Data Staging,collection,Object Access,SAM,4661
+T1074.002,Remote Data Staging,collection,Object Access,SAM,4661
+T1087,Account Discovery,discovery,Object Access,SAM,4661
+T1087.001,Local Account,discovery,Object Access,SAM,4661
+T1091,Replication Through Removable Media,lateral-movement; initial-access,Object Access,SAM,4661
+T1114,Email Collection,collection,Object Access,SAM,4661
+T1114.001,Local Email Collection,collection,Object Access,SAM,4661
+T1119,Automated Collection,collection,Object Access,SAM,4661
+T1187,Forced Authentication,credential-access,Object Access,SAM,4661
+T1217,Browser Bookmark Discovery,discovery,Object Access,SAM,4661
+T1539,Steal Web Session Cookie,credential-access,Object Access,SAM,4661
+T1552,Unsecured Credentials,credential-access,Object Access,SAM,4661
+T1552.001,Credentials In Files,credential-access,Object Access,SAM,4661
+T1552.003,Bash History,credential-access,Object Access,SAM,4661
+T1552.004,Private Keys,credential-access,Object Access,SAM,4661
+T1552.006,Group Policy Preferences,credential-access,Object Access,SAM,4661
+T1552.007,Container API,credential-access,Object Access,SAM,4661
+T1555,Credentials from Password Stores,credential-access,Object Access,SAM,4661
+T1555.001,Keychain,credential-access,Object Access,SAM,4661
+T1555.003,Credentials from Web Browsers,credential-access,Object Access,SAM,4661
+T1555.004,Windows Credential Manager,credential-access,Object Access,SAM,4661
+T1555.005,Password Managers,credential-access,Object Access,SAM,4661
+T1558,Steal or Forge Kerberos Tickets,credential-access,Object Access,SAM,4661
+T1567,Exfiltration Over Web Service,exfiltration,Object Access,SAM,4661
+T1567.001,Exfiltration to Code Repository,exfiltration,Object Access,SAM,4661
+T1567.002,Exfiltration to Cloud Storage,exfiltration,Object Access,SAM,4661
+T1615,Group Policy Discovery,discovery,DS Access,Directory Service Access,4661
+T1003,OS Credential Dumping,credential-access,DS Access,Directory Service Access,4662
+T1003.006,DCSync,credential-access,DS Access,Directory Service Access,4662
+T1615,Group Policy Discovery,discovery,DS Access,Directory Service Access,4662
+T1003,OS Credential Dumping,credential-access,Object Access,File System,4663
+T1003,OS Credential Dumping,credential-access,Object Access,Kernel Object,4663
+T1003,OS Credential Dumping,credential-access,Object Access,Registry,4663
+T1003.001,LSASS Memory,credential-access,Object Access,Kernel Object,4663
+T1003.002,Security Account Manager,credential-access,Object Access,File System,4663
+T1003.002,Security Account Manager,credential-access,Object Access,Registry,4663
+T1003.003,NTDS,credential-access,Object Access,File System,4663
+T1003.004,LSA Secrets,credential-access,Object Access,Registry,4663
+T1003.007,Proc Filesystem,credential-access,Object Access,File System,4663
+T1003.008,/etc/passwd and /etc/shadow,credential-access,Object Access,File System,4663
+T1005,Data from Local System,collection,Object Access,File System,4663
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,File System,4663
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,File System,4663
+T1012,Query Registry,discovery,Object Access,Registry,4663
+T1018,Remote System Discovery,discovery,Object Access,File System,4663
+T1020,Automated Exfiltration,exfiltration,Object Access,File System,4663
+T1025,Data from Removable Media,collection,Object Access,File System,4663
+T1039,Data from Network Shared Drive,collection,Object Access,File System,4663
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,File System,4663
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,File System,4663
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,File System,4663
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,File System,4663
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,File System,4663
+T1052,Exfiltration Over Physical Medium,exfiltration,Object Access,File System,4663
+T1052.001,Exfiltration over USB,exfiltration,Object Access,File System,4663
+T1055,Process Injection,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1055.001,Dynamic-link Library Injection,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1055.002,Portable Executable Injection,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1055.003,Thread Execution Hijacking,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1055.004,Asynchronous Procedure Call,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1055.005,Thread Local Storage,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1055.008,Ptrace System Calls,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1055.012,Process Hollowing,defense-evasion; privilege-escalation,Object Access,Kernel Object,4663
+T1074,Data Staged,collection,Object Access,File System,4663
+T1074.001,Local Data Staging,collection,Object Access,File System,4663
+T1074.002,Remote Data Staging,collection,Object Access,File System,4663
+T1087,Account Discovery,discovery,Object Access,File System,4663
+T1087.001,Local Account,discovery,Object Access,File System,4663
+T1091,Replication Through Removable Media,lateral-movement; initial-access,Object Access,File System,4663
+T1114,Email Collection,collection,Object Access,File System,4663
+T1114.001,Local Email Collection,collection,Object Access,File System,4663
+T1119,Automated Collection,collection,Object Access,File System,4663
+T1185,Browser Session Hijacking,collection,Object Access,Kernel Object,4663
+T1187,Forced Authentication,credential-access,Object Access,File System,4663
+T1217,Browser Bookmark Discovery,discovery,Object Access,File System,4663
+T1539,Steal Web Session Cookie,credential-access,Object Access,File System,4663
+T1539,Steal Web Session Cookie,credential-access,Object Access,Kernel Object,4663
+T1552,Unsecured Credentials,credential-access,Object Access,File System,4663
+T1552,Unsecured Credentials,credential-access,Object Access,Registry,4663
+T1552.001,Credentials In Files,credential-access,Object Access,File System,4663
+T1552.002,Credentials in Registry,credential-access,Object Access,Registry,4663
+T1552.003,Bash History,credential-access,Object Access,File System,4663
+T1552.004,Private Keys,credential-access,Object Access,File System,4663
+T1552.006,Group Policy Preferences,credential-access,Object Access,File System,4663
+T1552.007,Container API,credential-access,Object Access,File System,4663
+T1555,Credentials from Password Stores,credential-access,Object Access,File System,4663
+T1555,Credentials from Password Stores,credential-access,Object Access,Kernel Object,4663
+T1555.001,Keychain,credential-access,Object Access,File System,4663
+T1555.002,Securityd Memory,credential-access,Object Access,Kernel Object,4663
+T1555.003,Credentials from Web Browsers,credential-access,Object Access,File System,4663
+T1555.003,Credentials from Web Browsers,credential-access,Object Access,Kernel Object,4663
+T1555.004,Windows Credential Manager,credential-access,Object Access,File System,4663
+T1555.005,Password Managers,credential-access,Object Access,File System,4663
+T1555.005,Password Managers,credential-access,Object Access,Kernel Object,4663
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Object Access,Kernel Object,4663
+T1556.001,Domain Controller Authentication,persistence; defense-evasion; credential-access,Object Access,Kernel Object,4663
+T1558,Steal or Forge Kerberos Tickets,credential-access,Object Access,File System,4663
+T1567,Exfiltration Over Web Service,exfiltration,Object Access,File System,4663
+T1567.001,Exfiltration to Code Repository,exfiltration,Object Access,File System,4663
+T1567.002,Exfiltration to Cloud Storage,exfiltration,Object Access,File System,4663
+T1614.001,System Language Discovery,discovery,Object Access,Registry,4663
+T1036,Masquerading,defense-evasion,Object Access,File System,4670
+T1036.003,Rename System Utilities,defense-evasion,Object Access,File System,4670
+T1037,Boot or Logon Initialization Scripts,persistence; privilege-escalation,Object Access,File System,4670
+T1037.002,Logon Script (Mac),persistence; privilege-escalation,Object Access,File System,4670
+T1037.003,Network Logon Script,persistence; privilege-escalation,Object Access,File System,4670
+T1037.004,RC Scripts,persistence; privilege-escalation,Object Access,File System,4670
+T1037.005,Startup Items,persistence; privilege-escalation,Object Access,File System,4670
+T1053,Scheduled Task/Job,persistence; privilege-escalation; execution,Object Access,File System,4670
+T1053.002,At (Windows),persistence; privilege-escalation; execution,Object Access,File System,4670
+T1053.003,Cron,persistence; privilege-escalation; execution,Object Access,File System,4670
+T1053.004,Launchd,persistence; privilege-escalation; execution,Object Access,File System,4670
+T1053.005,Scheduled Task,persistence; privilege-escalation; execution,Object Access,File System,4670
+T1053.006,Systemd Timers,persistence; privilege-escalation; execution,Object Access,File System,4670
+T1055,Process Injection,defense-evasion; privilege-escalation,Object Access,File System,4670
+T1055.009,Proc Memory,defense-evasion; privilege-escalation,Object Access,File System,4670
+T1056,Input Capture,collection; credential-access,Object Access,File System,4670
+T1056,Input Capture,collection; credential-access,Object Access,Registry,4670
+T1056.001,Keylogging,collection; credential-access,Object Access,Registry,4670
+T1056.003,Web Portal Capture,collection; credential-access,Object Access,File System,4670
+T1070,Indicator Removal on Host,defense-evasion,Object Access,File System,4670
+T1070,Indicator Removal on Host,defense-evasion,Object Access,Registry,4670
+T1070.002,Clear Linux or Mac System Logs,defense-evasion,Object Access,File System,4670
+T1070.003,Clear Command History,defense-evasion,Object Access,File System,4670
+T1070.006,Timestomp,defense-evasion,Object Access,File System,4670
+T1080,Taint Shared Content,lateral-movement,Object Access,File System,4670
+T1098,Account Manipulation,persistence,Object Access,File System,4670
+T1098.004,SSH Authorized Keys,persistence,Object Access,File System,4670
+T1111,Two-Factor Authentication Interception,credential-access,Object Access,Registry,4670
+T1112,Modify Registry,defense-evasion,Object Access,Registry,4670
+T1137,Office Application Startup,persistence,Object Access,File System,4670
+T1137,Office Application Startup,persistence,Object Access,Registry,4670
+T1137.001,Office Template Macros,persistence,Object Access,File System,4670
+T1137.001,Office Template Macros,persistence,Object Access,Registry,4670
+T1137.002,Office Test,persistence,Object Access,File System,4670
+T1137.002,Office Test,persistence,Object Access,Registry,4670
+T1137.006,Add-ins,persistence,Object Access,File System,4670
+T1137.006,Add-ins,persistence,Object Access,Registry,4670
+T1140,Deobfuscate/Decode Files or Information,defense-evasion,Object Access,File System,4670
+T1187,Forced Authentication,credential-access,Object Access,File System,4670
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Registry,4670
+T1218.002,Control Panel,defense-evasion,Object Access,Registry,4670
+T1485,Data Destruction,impact,Object Access,File System,4670
+T1486,Data Encrypted for Impact,impact,Object Access,File System,4670
+T1489,Service Stop,impact,Object Access,File System,4670
+T1489,Service Stop,impact,Object Access,Registry,4670
+T1490,Inhibit System Recovery,impact,Object Access,Registry,4670
+T1491,Defacement,impact,Object Access,File System,4670
+T1491.001,Internal Defacement,impact,Object Access,File System,4670
+T1491.002,External Defacement,impact,Object Access,File System,4670
+T1505,Server Software Component,persistence,Object Access,File System,4670
+T1505.003,Web Shell,persistence,Object Access,File System,4670
+T1505.004,IIS Components,persistence,Object Access,File System,4670
+T1543,Create or Modify System Process,persistence; privilege-escalation,Object Access,File System,4670
+T1543,Create or Modify System Process,persistence; privilege-escalation,Object Access,Registry,4670
+T1543.001,Launch Agent,persistence; privilege-escalation,Object Access,File System,4670
+T1543.002,Systemd Service,persistence; privilege-escalation,Object Access,File System,4670
+T1543.003,Windows Service,persistence; privilege-escalation,Object Access,Registry,4670
+T1543.004,Launch Daemon,persistence; privilege-escalation,Object Access,File System,4670
+T1546,Event Triggered Execution,persistence; privilege-escalation,Object Access,File System,4670
+T1546,Event Triggered Execution,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.001,Change Default File Association,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.002,Screensaver,persistence; privilege-escalation,Object Access,File System,4670
+T1546.002,Screensaver,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.004,Unix Shell Configuration Modification,persistence; privilege-escalation,Object Access,File System,4670
+T1546.005,Trap,persistence; privilege-escalation,Object Access,File System,4670
+T1546.006,LC_LOAD_DYLIB Addition,persistence; privilege-escalation,Object Access,File System,4670
+T1546.007,Netsh Helper DLL,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.008,Accessibility Features,persistence; privilege-escalation,Object Access,File System,4670
+T1546.008,Accessibility Features,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.009,AppCert DLLs,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.010,AppInit DLLs,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.011,Application Shimming,persistence; privilege-escalation,Object Access,File System,4670
+T1546.011,Application Shimming,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.012,Image File Execution Options Injection,persistence; privilege-escalation,Object Access,Registry,4670
+T1546.013,PowerShell Profile,persistence; privilege-escalation,Object Access,File System,4670
+T1546.014,Emond,persistence; privilege-escalation,Object Access,File System,4670
+T1546.015,Component Object Model Hijacking,persistence; privilege-escalation,Object Access,Registry,4670
+T1547,Boot or Logon Autostart Execution,persistence; privilege-escalation,Object Access,File System,4670
+T1547,Boot or Logon Autostart Execution,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.001,Registry Run Keys / Startup Folder,persistence; privilege-escalation,Object Access,File System,4670
+T1547.001,Registry Run Keys / Startup Folder,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.002,Authentication Package,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.003,Time Providers,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.004,Winlogon Helper DLL,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.005,Security Support Provider,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.006,Kernel Modules and Extensions,persistence; privilege-escalation,Object Access,File System,4670
+T1547.007,Re-opened Applications,persistence; privilege-escalation,Object Access,File System,4670
+T1547.008,LSASS Driver,persistence; privilege-escalation,Object Access,File System,4670
+T1547.009,Shortcut Modification,persistence; privilege-escalation,Object Access,File System,4670
+T1547.010,Port Monitors,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.011,Plist Modification,persistence; privilege-escalation,Object Access,File System,4670
+T1547.012,Print Processors,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.013,XDG Autostart Entries,persistence; privilege-escalation,Object Access,File System,4670
+T1547.014,Active Setup,persistence; privilege-escalation,Object Access,Registry,4670
+T1547.015,Login Items,persistence; privilege-escalation,Object Access,File System,4670
+T1548,Abuse Elevation Control Mechanism,defense-evasion; privilege-escalation,Object Access,File System,4670
+T1548,Abuse Elevation Control Mechanism,defense-evasion; privilege-escalation,Object Access,Registry,4670
+T1548.001,Setuid and Setgid,defense-evasion; privilege-escalation,Object Access,File System,4670
+T1548.002,Bypass User Account Control,defense-evasion; privilege-escalation,Object Access,Registry,4670
+T1548.003,Sudo and Sudo Caching,defense-evasion; privilege-escalation,Object Access,File System,4670
+T1553,Subvert Trust Controls,defense-evasion,Object Access,File System,4670
+T1553,Subvert Trust Controls,defense-evasion,Object Access,Registry,4670
+T1553.001,Gatekeeper Bypass,defense-evasion,Object Access,File System,4670
+T1553.003,SIP and Trust Provider Hijacking,defense-evasion,Object Access,File System,4670
+T1553.003,SIP and Trust Provider Hijacking,defense-evasion,Object Access,Registry,4670
+T1553.004,Install Root Certificate,defense-evasion,Object Access,Registry,4670
+T1553.006,Code Signing Policy Modification,defense-evasion,Object Access,Registry,4670
+T1554,Compromise Client Software Binary,persistence,Object Access,File System,4670
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Object Access,File System,4670
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Object Access,Registry,4670
+T1556.001,Domain Controller Authentication,persistence; defense-evasion; credential-access,Object Access,File System,4670
+T1556.002,Password Filter DLL,persistence; defense-evasion; credential-access,Object Access,Registry,4670
+T1556.003,Pluggable Authentication Modules,persistence; defense-evasion; credential-access,Object Access,File System,4670
+T1556.004,Network Device Authentication,persistence; defense-evasion; credential-access,Object Access,File System,4670
+T1557,Adversary-in-the-Middle,collection; credential-access,Object Access,Registry,4670
+T1557.001,LLMNR/NBT-NS Poisoning and SMB Relay,collection; credential-access,Object Access,Registry,4670
+T1562,Impair Defenses,defense-evasion,Object Access,Registry,4670
+T1562.001,Disable or Modify Tools,defense-evasion,Object Access,Registry,4670
+T1562.004,Disable or Modify System Firewall,defense-evasion,Object Access,Registry,4670
+T1562.006,Indicator Blocking,defense-evasion,Object Access,Registry,4670
+T1562.009,Safe Mode Boot,defense-evasion,Object Access,Registry,4670
+T1564,Hide Artifacts,defense-evasion,Object Access,File System,4670
+T1564,Hide Artifacts,defense-evasion,Object Access,Registry,4670
+T1564.002,Hidden Users,defense-evasion,Object Access,File System,4670
+T1564.002,Hidden Users,defense-evasion,Object Access,Registry,4670
+T1564.003,Hidden Window,defense-evasion,Object Access,File System,4670
+T1564.004,NTFS File Attributes,defense-evasion,Object Access,File System,4670
+T1564.005,Hidden File System,defense-evasion,Object Access,File System,4670
+T1564.005,Hidden File System,defense-evasion,Object Access,Registry,4670
+T1564.006,Run Virtual Instance,defense-evasion,Object Access,Registry,4670
+T1564.008,Email Hiding Rules,defense-evasion,Object Access,File System,4670
+T1565,Data Manipulation,impact,Object Access,File System,4670
+T1565.001,Stored Data Manipulation,impact,Object Access,File System,4670
+T1565.003,Runtime Data Manipulation,impact,Object Access,File System,4670
+T1569,System Services,execution,Object Access,File System,4670
+T1569,System Services,execution,Object Access,Registry,4670
+T1569.001,Launchctl,execution,Object Access,File System,4670
+T1569.002,Service Execution,execution,Object Access,Registry,4670
+T1574,Hijack Execution Flow,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574,Hijack Execution Flow,persistence; defense-evasion; privilege-escalation,Object Access,Registry,4670
+T1574.001,DLL Search Order Hijacking,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.002,DLL Side-Loading,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.004,Dylib Hijacking,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.005,Executable Installer File Permissions Weakness,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.006,Dynamic Linker Hijacking,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.007,Path Interception by PATH Environment Variable,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.008,Path Interception by Search Order Hijacking,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.009,Path Interception by Unquoted Path,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.010,Services File Permissions Weakness,persistence; defense-evasion; privilege-escalation,Object Access,File System,4670
+T1574.011,Services Registry Permissions Weakness,persistence; defense-evasion; privilege-escalation,Object Access,Registry,4670
+T1574.012,COR_PROFILER,persistence; defense-evasion; privilege-escalation,Object Access,Registry,4670
+T1600,Weaken Encryption,defense-evasion,Object Access,File System,4670
+T1600.001,Reduce Key Space,defense-evasion,Object Access,File System,4670
+T1600.002,Disable Crypto Hardware,defense-evasion,Object Access,File System,4670
+T1601,Modify System Image,defense-evasion,Object Access,File System,4670
+T1601.001,Patch System Image,defense-evasion,Object Access,File System,4670
+T1601.002,Downgrade System Image,defense-evasion,Object Access,File System,4670
+T1003,OS Credential Dumping,credential-access,Detailed Tracking,Process Creation,4688
+T1003.001,LSASS Memory,credential-access,Detailed Tracking,Process Creation,4688
+T1003.002,Security Account Manager,credential-access,Detailed Tracking,Process Creation,4688
+T1003.003,NTDS,credential-access,Detailed Tracking,Process Creation,4688
+T1003.004,LSA Secrets,credential-access,Detailed Tracking,Process Creation,4688
+T1003.005,Cached Domain Credentials,credential-access,Detailed Tracking,Process Creation,4688
+T1003.007,Proc Filesystem,credential-access,Detailed Tracking,Process Creation,4688
+T1003.008,/etc/passwd and /etc/shadow,credential-access,Detailed Tracking,Process Creation,4688
+T1005,Data from Local System,collection,Detailed Tracking,Process Creation,4688
+T1006,Direct Volume Access,defense-evasion,Detailed Tracking,Process Creation,4688
+T1007,System Service Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1010,Application Window Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1011,Exfiltration Over Other Network Medium,exfiltration,Detailed Tracking,Process Creation,4688
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Detailed Tracking,Process Creation,4688
+T1012,Query Registry,discovery,Detailed Tracking,Process Creation,4688
+T1016,System Network Configuration Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1016.001,Internet Connection Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1018,Remote System Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1020,Automated Exfiltration,exfiltration,Detailed Tracking,Process Creation,4688
+T1021,Remote Services,lateral-movement,Detailed Tracking,Process Creation,4688
+T1021.001,Remote Desktop Protocol,lateral-movement,Detailed Tracking,Process Creation,4688
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Detailed Tracking,Process Creation,4688
+T1021.003,Distributed Component Object Model,lateral-movement,Detailed Tracking,Process Creation,4688
+T1021.004,SSH,lateral-movement,Detailed Tracking,Process Creation,4688
+T1021.005,VNC,lateral-movement,Detailed Tracking,Process Creation,4688
+T1021.006,Windows Remote Management,lateral-movement,Detailed Tracking,Process Creation,4688
+T1025,Data from Removable Media,collection,Detailed Tracking,Process Creation,4688
+T1027,Obfuscated Files or Information,defense-evasion,Detailed Tracking,Process Creation,4688
+T1027.004,Compile After Delivery,defense-evasion,Detailed Tracking,Process Creation,4688
+T1033,System Owner/User Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1036,Masquerading,defense-evasion,Detailed Tracking,Process Creation,4688
+T1036.003,Rename System Utilities,defense-evasion,Detailed Tracking,Process Creation,4688
+T1036.004,Masquerade Task or Service,defense-evasion,Detailed Tracking,Process Creation,4688
+T1037,Boot or Logon Initialization Scripts,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1037.001,Logon Script (Windows),persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1037.002,Logon Script (Mac),persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1037.003,Network Logon Script,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1037.004,RC Scripts,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1037.005,Startup Items,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1039,Data from Network Shared Drive,collection,Detailed Tracking,Process Creation,4688
+T1040,Network Sniffing,discovery; credential-access,Detailed Tracking,Process Creation,4688
+T1041,Exfiltration Over C2 Channel,exfiltration,Detailed Tracking,Process Creation,4688
+T1046,Network Service Scanning,discovery,Detailed Tracking,Process Creation,4688
+T1047,Windows Management Instrumentation,execution,Detailed Tracking,Process Creation,4688
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Detailed Tracking,Process Creation,4688
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Detailed Tracking,Process Creation,4688
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Detailed Tracking,Process Creation,4688
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Detailed Tracking,Process Creation,4688
+T1049,System Network Connections Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1052,Exfiltration Over Physical Medium,exfiltration,Detailed Tracking,Process Creation,4688
+T1052.001,Exfiltration over USB,exfiltration,Detailed Tracking,Process Creation,4688
+T1053,Scheduled Task/Job,persistence; privilege-escalation; execution,Detailed Tracking,Process Creation,4688
+T1053.001,At (Linux),persistence; privilege-escalation; execution,Detailed Tracking,Process Creation,4688
+T1053.002,At (Windows),persistence; privilege-escalation; execution,Detailed Tracking,Process Creation,4688
+T1053.003,Cron,persistence; privilege-escalation; execution,Detailed Tracking,Process Creation,4688
+T1053.004,Launchd,persistence; privilege-escalation; execution,Detailed Tracking,Process Creation,4688
+T1053.005,Scheduled Task,persistence; privilege-escalation; execution,Detailed Tracking,Process Creation,4688
+T1053.006,Systemd Timers,persistence; privilege-escalation; execution,Detailed Tracking,Process Creation,4688
+T1056,Input Capture,collection; credential-access,Detailed Tracking,Process Creation,4688
+T1056.002,GUI Input Capture,collection; credential-access,Detailed Tracking,Process Creation,4688
+T1057,Process Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1059,Command and Scripting Interpreter,execution,Detailed Tracking,Process Creation,4688
+T1059.001,PowerShell,execution,Detailed Tracking,Process Creation,4688
+T1059.002,AppleScript,execution,Detailed Tracking,Process Creation,4688
+T1059.003,Windows Command Shell,execution,Detailed Tracking,Process Creation,4688
+T1059.004,Unix Shell,execution,Detailed Tracking,Process Creation,4688
+T1059.005,Visual Basic,execution,Detailed Tracking,Process Creation,4688
+T1059.006,Python,execution,Detailed Tracking,Process Creation,4688
+T1059.007,JavaScript,execution,Detailed Tracking,Process Creation,4688
+T1059.008,Network Device CLI,execution,Detailed Tracking,Process Creation,4688
+T1069,Permission Groups Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1069.001,Local Groups,discovery,Detailed Tracking,Process Creation,4688
+T1069.002,Domain Groups,discovery,Detailed Tracking,Process Creation,4688
+T1069.003,Cloud Groups,discovery,Detailed Tracking,Process Creation,4688
+T1070,Indicator Removal on Host,defense-evasion,Detailed Tracking,Process Creation,4688
+T1070.001,Clear Windows Event Logs,defense-evasion,Detailed Tracking,Process Creation,4688
+T1070.002,Clear Linux or Mac System Logs,defense-evasion,Detailed Tracking,Process Creation,4688
+T1070.003,Clear Command History,defense-evasion,Detailed Tracking,Process Creation,4688
+T1070.004,File Deletion,defense-evasion,Detailed Tracking,Process Creation,4688
+T1070.005,Network Share Connection Removal,defense-evasion,Detailed Tracking,Process Creation,4688
+T1072,Software Deployment Tools,lateral-movement; execution,Detailed Tracking,Process Creation,4688
+T1074,Data Staged,collection,Detailed Tracking,Process Creation,4688
+T1074.001,Local Data Staging,collection,Detailed Tracking,Process Creation,4688
+T1074.002,Remote Data Staging,collection,Detailed Tracking,Process Creation,4688
+T1080,Taint Shared Content,lateral-movement,Detailed Tracking,Process Creation,4688
+T1082,System Information Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1083,File and Directory Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1087,Account Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1087.001,Local Account,discovery,Detailed Tracking,Process Creation,4688
+T1087.002,Domain Account,discovery,Detailed Tracking,Process Creation,4688
+T1087.003,Email Account,discovery,Detailed Tracking,Process Creation,4688
+T1087.004,Cloud Account,discovery,Detailed Tracking,Process Creation,4688
+T1091,Replication Through Removable Media,lateral-movement; initial-access,Detailed Tracking,Process Creation,4688
+T1098,Account Manipulation,persistence,Detailed Tracking,Process Creation,4688
+T1098.004,SSH Authorized Keys,persistence,Detailed Tracking,Process Creation,4688
+T1110,Brute Force,credential-access,Detailed Tracking,Process Creation,4688
+T1112,Modify Registry,defense-evasion,Detailed Tracking,Process Creation,4688
+T1113,Screen Capture,collection,Detailed Tracking,Process Creation,4688
+T1114,Email Collection,collection,Detailed Tracking,Process Creation,4688
+T1114.001,Local Email Collection,collection,Detailed Tracking,Process Creation,4688
+T1114.002,Remote Email Collection,collection,Detailed Tracking,Process Creation,4688
+T1115,Clipboard Data,collection,Detailed Tracking,Process Creation,4688
+T1119,Automated Collection,collection,Detailed Tracking,Process Creation,4688
+T1120,Peripheral Device Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1123,Audio Capture,collection,Detailed Tracking,Process Creation,4688
+T1124,System Time Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1125,Video Capture,collection,Detailed Tracking,Process Creation,4688
+T1127,Trusted Developer Utilities Proxy Execution,defense-evasion,Detailed Tracking,Process Creation,4688
+T1127.001,MSBuild,defense-evasion,Detailed Tracking,Process Creation,4688
+T1134,Access Token Manipulation,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1134.001,Token Impersonation/Theft,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1134.002,Create Process with Token,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1134.003,Make and Impersonate Token,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1134.004,Parent PID Spoofing,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1135,Network Share Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1136,Create Account,persistence,Detailed Tracking,Process Creation,4688
+T1136.001,Local Account,persistence,Detailed Tracking,Process Creation,4688
+T1136.002,Domain Account,persistence,Detailed Tracking,Process Creation,4688
+T1137,Office Application Startup,persistence,Detailed Tracking,Process Creation,4688
+T1137.001,Office Template Macros,persistence,Detailed Tracking,Process Creation,4688
+T1137.002,Office Test,persistence,Detailed Tracking,Process Creation,4688
+T1137.003,Outlook Forms,persistence,Detailed Tracking,Process Creation,4688
+T1137.004,Outlook Home Page,persistence,Detailed Tracking,Process Creation,4688
+T1137.005,Outlook Rules,persistence,Detailed Tracking,Process Creation,4688
+T1137.006,Add-ins,persistence,Detailed Tracking,Process Creation,4688
+T1140,Deobfuscate/Decode Files or Information,defense-evasion,Detailed Tracking,Process Creation,4688
+T1176,Browser Extensions,persistence,Detailed Tracking,Process Creation,4688
+T1189,Drive-by Compromise,initial-access,Detailed Tracking,Process Creation,4688
+T1197,BITS Jobs,persistence; defense-evasion,Detailed Tracking,Process Creation,4688
+T1201,Password Policy Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1202,Indirect Command Execution,defense-evasion,Detailed Tracking,Process Creation,4688
+T1204,User Execution,execution,Detailed Tracking,Process Creation,4688
+T1204.002,Malicious File,execution,Detailed Tracking,Process Creation,4688
+T1204.003,Malicious Image,execution,Detailed Tracking,Process Creation,4688
+T1216,Signed Script Proxy Execution,defense-evasion,Detailed Tracking,Process Creation,4688
+T1216.001,PubPrn,defense-evasion,Detailed Tracking,Process Creation,4688
+T1217,Browser Bookmark Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1218,Signed Binary Proxy Execution,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.001,Compiled HTML File,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.002,Control Panel,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.003,CMSTP,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.004,InstallUtil,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.005,Mshta,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.007,Msiexec,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.008,Odbcconf,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.009,Regsvcs/Regasm,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.010,Regsvr32,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.011,Rundll32,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.012,Verclsid,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.013,Mavinject,defense-evasion,Detailed Tracking,Process Creation,4688
+T1218.014,MMC,defense-evasion,Detailed Tracking,Process Creation,4688
+T1219,Remote Access Software,command-and-control,Detailed Tracking,Process Creation,4688
+T1220,XSL Script Processing,defense-evasion,Detailed Tracking,Process Creation,4688
+T1221,Template Injection,defense-evasion,Detailed Tracking,Process Creation,4688
+T1222,File and Directory Permissions Modification,defense-evasion,Detailed Tracking,Process Creation,4688
+T1222.001,Windows File and Directory Permissions Modification,defense-evasion,Detailed Tracking,Process Creation,4688
+T1222.002,Linux and Mac File and Directory Permissions Modification,defense-evasion,Detailed Tracking,Process Creation,4688
+T1480,Execution Guardrails,defense-evasion,Detailed Tracking,Process Creation,4688
+T1480.001,Environmental Keying,defense-evasion,Detailed Tracking,Process Creation,4688
+T1482,Domain Trust Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1484,Domain Policy Modification,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1484.001,Group Policy Modification,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1484.002,Domain Trust Modification,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1485,Data Destruction,impact,Detailed Tracking,Process Creation,4688
+T1486,Data Encrypted for Impact,impact,Detailed Tracking,Process Creation,4688
+T1489,Service Stop,impact,Detailed Tracking,Process Creation,4688
+T1490,Inhibit System Recovery,impact,Detailed Tracking,Process Creation,4688
+T1496,Resource Hijacking,impact,Detailed Tracking,Process Creation,4688
+T1497,Virtualization/Sandbox Evasion,discovery; defense-evasion,Detailed Tracking,Process Creation,4688
+T1497.001,System Checks,discovery; defense-evasion,Detailed Tracking,Process Creation,4688
+T1497.002,User Activity Based Checks,discovery; defense-evasion,Detailed Tracking,Process Creation,4688
+T1497.003,Time Based Evasion,discovery; defense-evasion,Detailed Tracking,Process Creation,4688
+T1505,Server Software Component,persistence,Detailed Tracking,Process Creation,4688
+T1505.003,Web Shell,persistence,Detailed Tracking,Process Creation,4688
+T1505.004,IIS Components,persistence,Detailed Tracking,Process Creation,4688
+T1518,Software Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1518.001,Security Software Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1529,System Shutdown/Reboot,impact,Detailed Tracking,Process Creation,4688
+T1542,Pre-OS Boot,persistence; defense-evasion,Detailed Tracking,Process Creation,4688
+T1542.005,TFTP Boot,persistence; defense-evasion,Detailed Tracking,Process Creation,4688
+T1543,Create or Modify System Process,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1543.001,Launch Agent,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1543.002,Systemd Service,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1543.003,Windows Service,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1543.004,Launch Daemon,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546,Event Triggered Execution,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.001,Change Default File Association,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.002,Screensaver,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.003,Windows Management Instrumentation Event Subscription,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.004,Unix Shell Configuration Modification,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.005,Trap,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.006,LC_LOAD_DYLIB Addition,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.007,Netsh Helper DLL,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.008,Accessibility Features,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.009,AppCert DLLs,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.010,AppInit DLLs,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.011,Application Shimming,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.012,Image File Execution Options Injection,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.013,PowerShell Profile,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.014,Emond,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1546.015,Component Object Model Hijacking,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547,Boot or Logon Autostart Execution,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.001,Registry Run Keys / Startup Folder,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.002,Authentication Package,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.003,Time Providers,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.004,Winlogon Helper DLL,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.005,Security Support Provider,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.006,Kernel Modules and Extensions,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.007,Re-opened Applications,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.009,Shortcut Modification,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.011,Plist Modification,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.013,XDG Autostart Entries,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.014,Active Setup,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1547.015,Login Items,persistence; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1548,Abuse Elevation Control Mechanism,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1548.001,Setuid and Setgid,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1548.002,Bypass User Account Control,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1548.003,Sudo and Sudo Caching,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1548.004,Elevated Execution with Prompt,defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1552,Unsecured Credentials,credential-access,Detailed Tracking,Process Creation,4688
+T1552.001,Credentials In Files,credential-access,Detailed Tracking,Process Creation,4688
+T1552.002,Credentials in Registry,credential-access,Detailed Tracking,Process Creation,4688
+T1552.003,Bash History,credential-access,Detailed Tracking,Process Creation,4688
+T1552.004,Private Keys,credential-access,Detailed Tracking,Process Creation,4688
+T1552.006,Group Policy Preferences,credential-access,Detailed Tracking,Process Creation,4688
+T1552.007,Container API,credential-access,Detailed Tracking,Process Creation,4688
+T1553,Subvert Trust Controls,defense-evasion,Detailed Tracking,Process Creation,4688
+T1553.001,Gatekeeper Bypass,defense-evasion,Detailed Tracking,Process Creation,4688
+T1553.004,Install Root Certificate,defense-evasion,Detailed Tracking,Process Creation,4688
+T1553.006,Code Signing Policy Modification,defense-evasion,Detailed Tracking,Process Creation,4688
+T1555,Credentials from Password Stores,credential-access,Detailed Tracking,Process Creation,4688
+T1555.001,Keychain,credential-access,Detailed Tracking,Process Creation,4688
+T1555.002,Securityd Memory,credential-access,Detailed Tracking,Process Creation,4688
+T1555.003,Credentials from Web Browsers,credential-access,Detailed Tracking,Process Creation,4688
+T1555.004,Windows Credential Manager,credential-access,Detailed Tracking,Process Creation,4688
+T1555.005,Password Managers,credential-access,Detailed Tracking,Process Creation,4688
+T1558,Steal or Forge Kerberos Tickets,credential-access,Detailed Tracking,Process Creation,4688
+T1559,Inter-Process Communication,execution,Detailed Tracking,Process Creation,4688
+T1559.001,Component Object Model,execution,Detailed Tracking,Process Creation,4688
+T1559.002,Dynamic Data Exchange,execution,Detailed Tracking,Process Creation,4688
+T1560,Archive Collected Data,collection,Detailed Tracking,Process Creation,4688
+T1560.001,Archive via Utility,collection,Detailed Tracking,Process Creation,4688
+T1561,Disk Wipe,impact,Detailed Tracking,Process Creation,4688
+T1561.001,Disk Content Wipe,impact,Detailed Tracking,Process Creation,4688
+T1561.002,Disk Structure Wipe,impact,Detailed Tracking,Process Creation,4688
+T1562,Impair Defenses,defense-evasion,Detailed Tracking,Process Creation,4688
+T1562.001,Disable or Modify Tools,defense-evasion,Detailed Tracking,Process Creation,4688
+T1562.002,Disable Windows Event Logging,defense-evasion,Detailed Tracking,Process Creation,4688
+T1562.003,Impair Command History Logging,defense-evasion,Detailed Tracking,Process Creation,4688
+T1562.004,Disable or Modify System Firewall,defense-evasion,Detailed Tracking,Process Creation,4688
+T1562.006,Indicator Blocking,defense-evasion,Detailed Tracking,Process Creation,4688
+T1562.009,Safe Mode Boot,defense-evasion,Detailed Tracking,Process Creation,4688
+T1562.010,Downgrade Attack,defense-evasion,Detailed Tracking,Process Creation,4688
+T1563,Remote Service Session Hijacking,lateral-movement,Detailed Tracking,Process Creation,4688
+T1563.001,SSH Hijacking,lateral-movement,Detailed Tracking,Process Creation,4688
+T1563.002,RDP Hijacking,lateral-movement,Detailed Tracking,Process Creation,4688
+T1564,Hide Artifacts,defense-evasion,Detailed Tracking,Process Creation,4688
+T1564.001,Hidden Files and Directories,defense-evasion,Detailed Tracking,Process Creation,4688
+T1564.002,Hidden Users,defense-evasion,Detailed Tracking,Process Creation,4688
+T1564.003,Hidden Window,defense-evasion,Detailed Tracking,Process Creation,4688
+T1564.004,NTFS File Attributes,defense-evasion,Detailed Tracking,Process Creation,4688
+T1564.006,Run Virtual Instance,defense-evasion,Detailed Tracking,Process Creation,4688
+T1564.008,Email Hiding Rules,defense-evasion,Detailed Tracking,Process Creation,4688
+T1564.009,Resource Forking,defense-evasion,Detailed Tracking,Process Creation,4688
+T1567,Exfiltration Over Web Service,exfiltration,Detailed Tracking,Process Creation,4688
+T1567.001,Exfiltration to Code Repository,exfiltration,Detailed Tracking,Process Creation,4688
+T1567.002,Exfiltration to Cloud Storage,exfiltration,Detailed Tracking,Process Creation,4688
+T1569,System Services,execution,Detailed Tracking,Process Creation,4688
+T1569.001,Launchctl,execution,Detailed Tracking,Process Creation,4688
+T1569.002,Service Execution,execution,Detailed Tracking,Process Creation,4688
+T1570,Lateral Tool Transfer,lateral-movement,Detailed Tracking,Process Creation,4688
+T1574,Hijack Execution Flow,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.002,DLL Side-Loading,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.005,Executable Installer File Permissions Weakness,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.006,Dynamic Linker Hijacking,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.007,Path Interception by PATH Environment Variable,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.008,Path Interception by Search Order Hijacking,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.009,Path Interception by Unquoted Path,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.010,Services File Permissions Weakness,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.011,Services Registry Permissions Weakness,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1574.012,COR_PROFILER,persistence; defense-evasion; privilege-escalation,Detailed Tracking,Process Creation,4688
+T1609,Container Administration Command,execution,Detailed Tracking,Process Creation,4688
+T1611,Escape to Host,privilege-escalation,Detailed Tracking,Process Creation,4688
+T1614,System Location Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1614.001,System Language Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1615,Group Policy Discovery,discovery,Detailed Tracking,Process Creation,4688
+T1489,Service Stop,impact,Detailed Tracking,Process Termination,4689
+T1562,Impair Defenses,defense-evasion,Detailed Tracking,Process Termination,4689
+T1562.001,Disable or Modify Tools,defense-evasion,Detailed Tracking,Process Termination,4689
+T1036,Masquerading,defense-evasion,System,Security System Extension,4697
+T1036.004,Masquerade Task or Service,defense-evasion,System,Security System Extension,4697
+T1543,Create or Modify System Process,persistence; privilege-escalation,System,Security System Extension,4697
+T1543.001,Launch Agent,persistence; privilege-escalation,System,Security System Extension,4697
+T1543.002,Systemd Service,persistence; privilege-escalation,System,Security System Extension,4697
+T1543.003,Windows Service,persistence; privilege-escalation,System,Security System Extension,4697
+T1543.004,Launch Daemon,persistence; privilege-escalation,System,Security System Extension,4697
+T1547.011,Plist Modification,persistence; privilege-escalation,System,Security System Extension,4697
+T1557,Adversary-in-the-Middle,collection; credential-access,System,Security System Extension,4697
+T1557.001,LLMNR/NBT-NS Poisoning and SMB Relay,collection; credential-access,System,Security System Extension,4697
+T1564,Hide Artifacts,defense-evasion,System,Security System Extension,4697
+T1564.006,Run Virtual Instance,defense-evasion,System,Security System Extension,4697
+T1569,System Services,execution,System,Security System Extension,4697
+T1569.001,Launchctl,execution,System,Security System Extension,4697
+T1569.002,Service Execution,execution,System,Security System Extension,4697
+T1053,Scheduled Task/Job,persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1053.001,At (Linux),persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1053.002,At (Windows),persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1053.003,Cron,persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1053.004,Launchd,persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1053.005,Scheduled Task,persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1053.006,Systemd Timers,persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1053.007,Container Orchestration Job,persistence; privilege-escalation; execution,Object Access,Other Object Access Events,4698
+T1036,Masquerading,defense-evasion,Object Access,Other Object Access Events,4700
+T1036.004,Masquerade Task or Service,defense-evasion,Object Access,Other Object Access Events,4700
+T1036,Masquerading,defense-evasion,Object Access,Other Object Access Events,4701
+T1036.004,Masquerade Task or Service,defense-evasion,Object Access,Other Object Access Events,4701
+T1036,Masquerading,defense-evasion,Object Access,Other Object Access Events,4702
+T1036.004,Masquerade Task or Service,defense-evasion,Object Access,Other Object Access Events,4702
+T1098,Account Manipulation,persistence,Policy Change,Authentication Policy Change,4717
+T1098.001,Additional Cloud Credentials,persistence,Policy Change,Authentication Policy Change,4717
+T1098.002,Exchange Email Delegate Permissions,persistence,Policy Change,Authentication Policy Change,4717
+T1098.003,Add Office 365 Global Administrator Role,persistence,Policy Change,Authentication Policy Change,4717
+T1528,Steal Application Access Token,credential-access,Policy Change,Authentication Policy Change,4717
+T1531,Account Access Removal,impact,Policy Change,Authentication Policy Change,4717
+T1098,Account Manipulation,persistence,Policy Change,Authentication Policy Change,4718
+T1098.001,Additional Cloud Credentials,persistence,Policy Change,Authentication Policy Change,4718
+T1098.002,Exchange Email Delegate Permissions,persistence,Policy Change,Authentication Policy Change,4718
+T1098.003,Add Office 365 Global Administrator Role,persistence,Policy Change,Authentication Policy Change,4718
+T1528,Steal Application Access Token,credential-access,Policy Change,Authentication Policy Change,4718
+T1531,Account Access Removal,impact,Policy Change,Authentication Policy Change,4718
+T1136,Create Account,persistence,Account Management,User Account Management,4720
+T1136.001,Local Account,persistence,Account Management,User Account Management,4720
+T1136.002,Domain Account,persistence,Account Management,User Account Management,4720
+T1136.003,Cloud Account,persistence,Account Management,User Account Management,4720
+T1564,Hide Artifacts,defense-evasion,Account Management,User Account Management,4720
+T1564.002,Hidden Users,defense-evasion,Account Management,User Account Management,4720
+T1098,Account Manipulation,persistence,Account Management,User Account Management,4722
+T1098.001,Additional Cloud Credentials,persistence,Account Management,User Account Management,4722
+T1098.002,Exchange Email Delegate Permissions,persistence,Account Management,User Account Management,4722
+T1098.003,Add Office 365 Global Administrator Role,persistence,Account Management,User Account Management,4722
+T1528,Steal Application Access Token,credential-access,Account Management,User Account Management,4722
+T1531,Account Access Removal,impact,Account Management,User Account Management,4722
+T1098,Account Manipulation,persistence,Account Management,User Account Management,4725
+T1098.001,Additional Cloud Credentials,persistence,Account Management,User Account Management,4725
+T1098.002,Exchange Email Delegate Permissions,persistence,Account Management,User Account Management,4725
+T1098.003,Add Office 365 Global Administrator Role,persistence,Account Management,User Account Management,4725
+T1528,Steal Application Access Token,credential-access,Account Management,User Account Management,4725
+T1531,Account Access Removal,impact,Account Management,User Account Management,4725
+T1531,Account Access Removal,impact,Account Management,User Account Management,4726
+T1098,Account Manipulation,persistence,Account Management,User Account Management,4738
+T1098.001,Additional Cloud Credentials,persistence,Account Management,User Account Management,4738
+T1098.002,Exchange Email Delegate Permissions,persistence,Account Management,User Account Management,4738
+T1098.003,Add Office 365 Global Administrator Role,persistence,Account Management,User Account Management,4738
+T1528,Steal Application Access Token,credential-access,Account Management,User Account Management,4738
+T1531,Account Access Removal,impact,Account Management,User Account Management,4738
+T1098,Account Manipulation,persistence,Account Management,User Account Management,4740
+T1098.001,Additional Cloud Credentials,persistence,Account Management,User Account Management,4740
+T1098.002,Exchange Email Delegate Permissions,persistence,Account Management,User Account Management,4740
+T1098.003,Add Office 365 Global Administrator Role,persistence,Account Management,User Account Management,4740
+T1528,Steal Application Access Token,credential-access,Account Management,User Account Management,4740
+T1531,Account Access Removal,impact,Account Management,User Account Management,4740
+T1098,Account Manipulation,persistence,Account Management,User Account Management,4767
+T1098.001,Additional Cloud Credentials,persistence,Account Management,User Account Management,4767
+T1098.002,Exchange Email Delegate Permissions,persistence,Account Management,User Account Management,4767
+T1098.003,Add Office 365 Global Administrator Role,persistence,Account Management,User Account Management,4767
+T1528,Steal Application Access Token,credential-access,Account Management,User Account Management,4767
+T1531,Account Access Removal,impact,Account Management,User Account Management,4767
+T1550,Use Alternate Authentication Material,defense-evasion; lateral-movement,Account Logon,Kerberos Authentication Service,4768
+T1550.002,Pass the Hash,defense-evasion; lateral-movement,Account Logon,Kerberos Authentication Service,4768
+T1550.003,Pass the Ticket,defense-evasion; lateral-movement,Account Logon,Kerberos Authentication Service,4768
+T1558,Steal or Forge Kerberos Tickets,credential-access,Account Logon,Kerberos Authentication Service,4768
+T1558.001,Golden Ticket,credential-access,Account Logon,Kerberos Authentication Service,4768
+T1558.003,Kerberoasting,credential-access,Account Logon,Kerberos Authentication Service,4768
+T1558.004,AS-REP Roasting,credential-access,Account Logon,Kerberos Authentication Service,4768
+T1550,Use Alternate Authentication Material,defense-evasion; lateral-movement,Account Logon,Kerberos Service Ticket Operations,4769
+T1550.002,Pass the Hash,defense-evasion; lateral-movement,Account Logon,Kerberos Service Ticket Operations,4769
+T1550.003,Pass the Ticket,defense-evasion; lateral-movement,Account Logon,Kerberos Service Ticket Operations,4769
+T1558,Steal or Forge Kerberos Tickets,credential-access,Account Logon,Kerberos Service Ticket Operations,4769
+T1558.001,Golden Ticket,credential-access,Account Logon,Kerberos Service Ticket Operations,4769
+T1558.003,Kerberoasting,credential-access,Account Logon,Kerberos Service Ticket Operations,4769
+T1558.004,AS-REP Roasting,credential-access,Account Logon,Kerberos Service Ticket Operations,4769
+T1021,Remote Services,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1021.001,Remote Desktop Protocol,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1021.004,SSH,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1021.005,VNC,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1021.006,Windows Remote Management,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1078,Valid Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1078.001,Default Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1078.002,Domain Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1078.003,Local Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1078.004,Cloud Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1114,Email Collection,collection,Logon/Logoff,Other Logon/Logoff Events,4778
+T1114.002,Remote Email Collection,collection,Logon/Logoff,Other Logon/Logoff Events,4778
+T1185,Browser Session Hijacking,collection,Logon/Logoff,Other Logon/Logoff Events,4778
+T1199,Trusted Relationship,initial-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1213,Data from Information Repositories,collection,Logon/Logoff,Other Logon/Logoff Events,4778
+T1213.001,Confluence,collection,Logon/Logoff,Other Logon/Logoff Events,4778
+T1213.002,Sharepoint,collection,Logon/Logoff,Other Logon/Logoff Events,4778
+T1213.003,Code Repositories,collection,Logon/Logoff,Other Logon/Logoff Events,4778
+T1538,Cloud Service Dashboard,discovery,Logon/Logoff,Other Logon/Logoff Events,4778
+T1550,Use Alternate Authentication Material,defense-evasion; lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1550.002,Pass the Hash,defense-evasion; lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1550.003,Pass the Ticket,defense-evasion; lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1556.001,Domain Controller Authentication,persistence; defense-evasion; credential-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1556.003,Pluggable Authentication Modules,persistence; defense-evasion; credential-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1563,Remote Service Session Hijacking,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1563.001,SSH Hijacking,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1563.002,RDP Hijacking,lateral-movement,Logon/Logoff,Other Logon/Logoff Events,4778
+T1606,Forge Web Credentials,credential-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1606.001,Web Cookies,credential-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1606.002,SAML Tokens,credential-access,Logon/Logoff,Other Logon/Logoff Events,4778
+T1098,Account Manipulation,persistence,Account Management,User Account Management,4781
+T1098.001,Additional Cloud Credentials,persistence,Account Management,User Account Management,4781
+T1098.002,Exchange Email Delegate Permissions,persistence,Account Management,User Account Management,4781
+T1098.003,Add Office 365 Global Administrator Role,persistence,Account Management,User Account Management,4781
+T1528,Steal Application Access Token,credential-access,Account Management,User Account Management,4781
+T1531,Account Access Removal,impact,Account Management,User Account Management,4781
+T1562,Impair Defenses,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4946
+T1562.004,Disable or Modify System Firewall,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4946
+T1562.007,Disable or Modify Cloud Firewall,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4946
+T1562,Impair Defenses,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4947
+T1562.004,Disable or Modify System Firewall,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4947
+T1562.007,Disable or Modify Cloud Firewall,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4947
+T1562,Impair Defenses,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4948
+T1562.004,Disable or Modify System Firewall,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4948
+T1562.007,Disable or Modify Cloud Firewall,defense-evasion,Policy Change,MPSSVC Rule-Level Policy Change,4948
+T1021,Remote Services,lateral-movement,Logon/Logoff,Special Logon,4964
+T1021.001,Remote Desktop Protocol,lateral-movement,Logon/Logoff,Special Logon,4964
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Logon/Logoff,Special Logon,4964
+T1021.004,SSH,lateral-movement,Logon/Logoff,Special Logon,4964
+T1021.005,VNC,lateral-movement,Logon/Logoff,Special Logon,4964
+T1021.006,Windows Remote Management,lateral-movement,Logon/Logoff,Special Logon,4964
+T1078,Valid Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Special Logon,4964
+T1078.001,Default Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Special Logon,4964
+T1078.002,Domain Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Special Logon,4964
+T1078.003,Local Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Special Logon,4964
+T1078.004,Cloud Accounts,persistence; defense-evasion; privilege-escalation; initial-access,Logon/Logoff,Special Logon,4964
+T1114,Email Collection,collection,Logon/Logoff,Special Logon,4964
+T1114.002,Remote Email Collection,collection,Logon/Logoff,Special Logon,4964
+T1185,Browser Session Hijacking,collection,Logon/Logoff,Special Logon,4964
+T1199,Trusted Relationship,initial-access,Logon/Logoff,Special Logon,4964
+T1213,Data from Information Repositories,collection,Logon/Logoff,Special Logon,4964
+T1213.001,Confluence,collection,Logon/Logoff,Special Logon,4964
+T1213.002,Sharepoint,collection,Logon/Logoff,Special Logon,4964
+T1213.003,Code Repositories,collection,Logon/Logoff,Special Logon,4964
+T1538,Cloud Service Dashboard,discovery,Logon/Logoff,Special Logon,4964
+T1550,Use Alternate Authentication Material,defense-evasion; lateral-movement,Logon/Logoff,Special Logon,4964
+T1550.002,Pass the Hash,defense-evasion; lateral-movement,Logon/Logoff,Special Logon,4964
+T1550.003,Pass the Ticket,defense-evasion; lateral-movement,Logon/Logoff,Special Logon,4964
+T1556,Modify Authentication Process,persistence; defense-evasion; credential-access,Logon/Logoff,Special Logon,4964
+T1556.001,Domain Controller Authentication,persistence; defense-evasion; credential-access,Logon/Logoff,Special Logon,4964
+T1556.003,Pluggable Authentication Modules,persistence; defense-evasion; credential-access,Logon/Logoff,Special Logon,4964
+T1563,Remote Service Session Hijacking,lateral-movement,Logon/Logoff,Special Logon,4964
+T1563.001,SSH Hijacking,lateral-movement,Logon/Logoff,Special Logon,4964
+T1563.002,RDP Hijacking,lateral-movement,Logon/Logoff,Special Logon,4964
+T1606,Forge Web Credentials,credential-access,Logon/Logoff,Special Logon,4964
+T1606.001,Web Cookies,credential-access,Logon/Logoff,Special Logon,4964
+T1606.002,SAML Tokens,credential-access,Logon/Logoff,Special Logon,4964
+T1562,Impair Defenses,defense-evasion,System,Other System Events,5025
+T1562.004,Disable or Modify System Firewall,defense-evasion,System,Other System Events,5025
+T1562.007,Disable or Modify Cloud Firewall,defense-evasion,System,Other System Events,5025
+T1008,Fallback Channels,command-and-control,Object Access,Filtering Platform Connection,5031
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,Filtering Platform Connection,5031
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,Filtering Platform Connection,5031
+T1018,Remote System Discovery,discovery,Object Access,Filtering Platform Connection,5031
+T1020,Automated Exfiltration,exfiltration,Object Access,Filtering Platform Connection,5031
+T1020.001,Traffic Duplication,exfiltration,Object Access,Filtering Platform Connection,5031
+T1021,Remote Services,lateral-movement,Object Access,Filtering Platform Connection,5031
+T1021.001,Remote Desktop Protocol,lateral-movement,Object Access,Filtering Platform Connection,5031
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Filtering Platform Connection,5031
+T1021.003,Distributed Component Object Model,lateral-movement,Object Access,Filtering Platform Connection,5031
+T1021.004,SSH,lateral-movement,Object Access,Filtering Platform Connection,5031
+T1021.005,VNC,lateral-movement,Object Access,Filtering Platform Connection,5031
+T1021.006,Windows Remote Management,lateral-movement,Object Access,Filtering Platform Connection,5031
+T1029,Scheduled Transfer,exfiltration,Object Access,Filtering Platform Connection,5031
+T1030,Data Transfer Size Limits,exfiltration,Object Access,Filtering Platform Connection,5031
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,Filtering Platform Connection,5031
+T1047,Windows Management Instrumentation,execution,Object Access,Filtering Platform Connection,5031
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,Filtering Platform Connection,5031
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5031
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5031
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5031
+T1090,Proxy,command-and-control,Object Access,Filtering Platform Connection,5031
+T1090.001,Internal Proxy,command-and-control,Object Access,Filtering Platform Connection,5031
+T1090.002,External Proxy,command-and-control,Object Access,Filtering Platform Connection,5031
+T1090.003,Multi-hop Proxy,command-and-control,Object Access,Filtering Platform Connection,5031
+T1102,Web Service,command-and-control,Object Access,Filtering Platform Connection,5031
+T1102.002,Bidirectional Communication,command-and-control,Object Access,Filtering Platform Connection,5031
+T1102.003,One-Way Communication,command-and-control,Object Access,Filtering Platform Connection,5031
+T1104,Multi-Stage Channels,command-and-control,Object Access,Filtering Platform Connection,5031
+T1105,Ingress Tool Transfer,command-and-control,Object Access,Filtering Platform Connection,5031
+T1114,Email Collection,collection,Object Access,Filtering Platform Connection,5031
+T1114.002,Remote Email Collection,collection,Object Access,Filtering Platform Connection,5031
+T1176,Browser Extensions,persistence,Object Access,Filtering Platform Connection,5031
+T1189,Drive-by Compromise,initial-access,Object Access,Filtering Platform Connection,5031
+T1197,BITS Jobs,persistence; defense-evasion,Object Access,Filtering Platform Connection,5031
+T1204,User Execution,execution,Object Access,Filtering Platform Connection,5031
+T1204.001,Malicious Link,execution,Object Access,Filtering Platform Connection,5031
+T1205,Traffic Signaling,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5031
+T1205.001,Port Knocking,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5031
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Filtering Platform Connection,5031
+T1218.003,CMSTP,defense-evasion,Object Access,Filtering Platform Connection,5031
+T1218.005,Mshta,defense-evasion,Object Access,Filtering Platform Connection,5031
+T1218.007,Msiexec,defense-evasion,Object Access,Filtering Platform Connection,5031
+T1218.010,Regsvr32,defense-evasion,Object Access,Filtering Platform Connection,5031
+T1219,Remote Access Software,command-and-control,Object Access,Filtering Platform Connection,5031
+T1221,Template Injection,defense-evasion,Object Access,Filtering Platform Connection,5031
+T1496,Resource Hijacking,impact,Object Access,Filtering Platform Connection,5031
+T1542,Pre-OS Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5031
+T1542.005,TFTP Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5031
+T1568,Dynamic Resolution,command-and-control,Object Access,Filtering Platform Connection,5031
+T1568.001,Fast Flux DNS,command-and-control,Object Access,Filtering Platform Connection,5031
+T1568.002,Domain Generation Algorithms,command-and-control,Object Access,Filtering Platform Connection,5031
+T1571,Non-Standard Port,command-and-control,Object Access,Filtering Platform Connection,5031
+T1572,Protocol Tunneling,command-and-control,Object Access,Filtering Platform Connection,5031
+T1602,Data from Configuration Repository,collection,Object Access,Filtering Platform Connection,5031
+T1602.001,SNMP (MIB Dump),collection,Object Access,Filtering Platform Connection,5031
+T1602.002,Network Device Configuration Dump,collection,Object Access,Filtering Platform Connection,5031
+T1612,Build Image on Host,defense-evasion,Object Access,Filtering Platform Connection,5031
+T1037,Boot or Logon Initialization Scripts,persistence; privilege-escalation,DS Access,Directory Service Changes,5136
+T1037.003,Network Logon Script,persistence; privilege-escalation,DS Access,Directory Service Changes,5136
+T1098,Account Manipulation,persistence,DS Access,Directory Service Changes,5136
+T1098.001,Additional Cloud Credentials,persistence,DS Access,Directory Service Changes,5136
+T1134,Access Token Manipulation,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5136
+T1134.005,SID-History Injection,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5136
+T1207,Rogue Domain Controller,defense-evasion,DS Access,Directory Service Changes,5136
+T1222,File and Directory Permissions Modification,defense-evasion,DS Access,Directory Service Changes,5136
+T1222.001,Windows File and Directory Permissions Modification,defense-evasion,DS Access,Directory Service Changes,5136
+T1484,Domain Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5136
+T1484.001,Group Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5136
+T1484.002,Domain Trust Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5136
+T1531,Account Access Removal,impact,DS Access,Directory Service Changes,5136
+T1207,Rogue Domain Controller,defense-evasion,DS Access,Directory Service Changes,5137
+T1484,Domain Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5137
+T1484.001,Group Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5137
+T1484.002,Domain Trust Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5137
+T1037,Boot or Logon Initialization Scripts,persistence; privilege-escalation,DS Access,Directory Service Changes,5139
+T1037.003,Network Logon Script,persistence; privilege-escalation,DS Access,Directory Service Changes,5139
+T1098,Account Manipulation,persistence,DS Access,Directory Service Changes,5139
+T1098.001,Additional Cloud Credentials,persistence,DS Access,Directory Service Changes,5139
+T1134,Access Token Manipulation,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5139
+T1134.005,SID-History Injection,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5139
+T1207,Rogue Domain Controller,defense-evasion,DS Access,Directory Service Changes,5139
+T1222,File and Directory Permissions Modification,defense-evasion,DS Access,Directory Service Changes,5139
+T1222.001,Windows File and Directory Permissions Modification,defense-evasion,DS Access,Directory Service Changes,5139
+T1484,Domain Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5139
+T1484.001,Group Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5139
+T1484.002,Domain Trust Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5139
+T1531,Account Access Removal,impact,DS Access,Directory Service Changes,5139
+T1021,Remote Services,lateral-movement,Object Access,File Share,5140
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,File Share,5140
+T1039,Data from Network Shared Drive,collection,Object Access,File Share,5140
+T1080,Taint Shared Content,lateral-movement,Object Access,File Share,5140
+T1570,Lateral Tool Transfer,lateral-movement,Object Access,File Share,5140
+T1484,Domain Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5141
+T1484.001,Group Policy Modification,defense-evasion; privilege-escalation,DS Access,Directory Service Changes,5141
+T1021,Remote Services,lateral-movement,Object Access,Detailed File Share,5145
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Detailed File Share,5145
+T1039,Data from Network Shared Drive,collection,Object Access,Detailed File Share,5145
+T1080,Taint Shared Content,lateral-movement,Object Access,Detailed File Share,5145
+T1570,Lateral Tool Transfer,lateral-movement,Object Access,Detailed File Share,5145
+T1008,Fallback Channels,command-and-control,Object Access,Filtering Platform Connection,5154
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,Filtering Platform Connection,5154
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,Filtering Platform Connection,5154
+T1018,Remote System Discovery,discovery,Object Access,Filtering Platform Connection,5154
+T1020,Automated Exfiltration,exfiltration,Object Access,Filtering Platform Connection,5154
+T1020.001,Traffic Duplication,exfiltration,Object Access,Filtering Platform Connection,5154
+T1021,Remote Services,lateral-movement,Object Access,Filtering Platform Connection,5154
+T1021.001,Remote Desktop Protocol,lateral-movement,Object Access,Filtering Platform Connection,5154
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Filtering Platform Connection,5154
+T1021.003,Distributed Component Object Model,lateral-movement,Object Access,Filtering Platform Connection,5154
+T1021.004,SSH,lateral-movement,Object Access,Filtering Platform Connection,5154
+T1021.005,VNC,lateral-movement,Object Access,Filtering Platform Connection,5154
+T1021.006,Windows Remote Management,lateral-movement,Object Access,Filtering Platform Connection,5154
+T1029,Scheduled Transfer,exfiltration,Object Access,Filtering Platform Connection,5154
+T1030,Data Transfer Size Limits,exfiltration,Object Access,Filtering Platform Connection,5154
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,Filtering Platform Connection,5154
+T1047,Windows Management Instrumentation,execution,Object Access,Filtering Platform Connection,5154
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,Filtering Platform Connection,5154
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5154
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5154
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5154
+T1090,Proxy,command-and-control,Object Access,Filtering Platform Connection,5154
+T1090.001,Internal Proxy,command-and-control,Object Access,Filtering Platform Connection,5154
+T1090.002,External Proxy,command-and-control,Object Access,Filtering Platform Connection,5154
+T1090.003,Multi-hop Proxy,command-and-control,Object Access,Filtering Platform Connection,5154
+T1102,Web Service,command-and-control,Object Access,Filtering Platform Connection,5154
+T1102.002,Bidirectional Communication,command-and-control,Object Access,Filtering Platform Connection,5154
+T1102.003,One-Way Communication,command-and-control,Object Access,Filtering Platform Connection,5154
+T1104,Multi-Stage Channels,command-and-control,Object Access,Filtering Platform Connection,5154
+T1105,Ingress Tool Transfer,command-and-control,Object Access,Filtering Platform Connection,5154
+T1114,Email Collection,collection,Object Access,Filtering Platform Connection,5154
+T1114.002,Remote Email Collection,collection,Object Access,Filtering Platform Connection,5154
+T1176,Browser Extensions,persistence,Object Access,Filtering Platform Connection,5154
+T1189,Drive-by Compromise,initial-access,Object Access,Filtering Platform Connection,5154
+T1197,BITS Jobs,persistence; defense-evasion,Object Access,Filtering Platform Connection,5154
+T1204,User Execution,execution,Object Access,Filtering Platform Connection,5154
+T1204.001,Malicious Link,execution,Object Access,Filtering Platform Connection,5154
+T1205,Traffic Signaling,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5154
+T1205.001,Port Knocking,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5154
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Filtering Platform Connection,5154
+T1218.003,CMSTP,defense-evasion,Object Access,Filtering Platform Connection,5154
+T1218.005,Mshta,defense-evasion,Object Access,Filtering Platform Connection,5154
+T1218.007,Msiexec,defense-evasion,Object Access,Filtering Platform Connection,5154
+T1218.010,Regsvr32,defense-evasion,Object Access,Filtering Platform Connection,5154
+T1219,Remote Access Software,command-and-control,Object Access,Filtering Platform Connection,5154
+T1221,Template Injection,defense-evasion,Object Access,Filtering Platform Connection,5154
+T1496,Resource Hijacking,impact,Object Access,Filtering Platform Connection,5154
+T1542,Pre-OS Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5154
+T1542.005,TFTP Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5154
+T1568,Dynamic Resolution,command-and-control,Object Access,Filtering Platform Connection,5154
+T1568.001,Fast Flux DNS,command-and-control,Object Access,Filtering Platform Connection,5154
+T1568.002,Domain Generation Algorithms,command-and-control,Object Access,Filtering Platform Connection,5154
+T1571,Non-Standard Port,command-and-control,Object Access,Filtering Platform Connection,5154
+T1572,Protocol Tunneling,command-and-control,Object Access,Filtering Platform Connection,5154
+T1602,Data from Configuration Repository,collection,Object Access,Filtering Platform Connection,5154
+T1602.001,SNMP (MIB Dump),collection,Object Access,Filtering Platform Connection,5154
+T1602.002,Network Device Configuration Dump,collection,Object Access,Filtering Platform Connection,5154
+T1612,Build Image on Host,defense-evasion,Object Access,Filtering Platform Connection,5154
+T1008,Fallback Channels,command-and-control,Object Access,Filtering Platform Connection,5155
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,Filtering Platform Connection,5155
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,Filtering Platform Connection,5155
+T1018,Remote System Discovery,discovery,Object Access,Filtering Platform Connection,5155
+T1020,Automated Exfiltration,exfiltration,Object Access,Filtering Platform Connection,5155
+T1020.001,Traffic Duplication,exfiltration,Object Access,Filtering Platform Connection,5155
+T1021,Remote Services,lateral-movement,Object Access,Filtering Platform Connection,5155
+T1021.001,Remote Desktop Protocol,lateral-movement,Object Access,Filtering Platform Connection,5155
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Filtering Platform Connection,5155
+T1021.003,Distributed Component Object Model,lateral-movement,Object Access,Filtering Platform Connection,5155
+T1021.004,SSH,lateral-movement,Object Access,Filtering Platform Connection,5155
+T1021.005,VNC,lateral-movement,Object Access,Filtering Platform Connection,5155
+T1021.006,Windows Remote Management,lateral-movement,Object Access,Filtering Platform Connection,5155
+T1029,Scheduled Transfer,exfiltration,Object Access,Filtering Platform Connection,5155
+T1030,Data Transfer Size Limits,exfiltration,Object Access,Filtering Platform Connection,5155
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,Filtering Platform Connection,5155
+T1047,Windows Management Instrumentation,execution,Object Access,Filtering Platform Connection,5155
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,Filtering Platform Connection,5155
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5155
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5155
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5155
+T1090,Proxy,command-and-control,Object Access,Filtering Platform Connection,5155
+T1090.001,Internal Proxy,command-and-control,Object Access,Filtering Platform Connection,5155
+T1090.002,External Proxy,command-and-control,Object Access,Filtering Platform Connection,5155
+T1090.003,Multi-hop Proxy,command-and-control,Object Access,Filtering Platform Connection,5155
+T1102,Web Service,command-and-control,Object Access,Filtering Platform Connection,5155
+T1102.002,Bidirectional Communication,command-and-control,Object Access,Filtering Platform Connection,5155
+T1102.003,One-Way Communication,command-and-control,Object Access,Filtering Platform Connection,5155
+T1104,Multi-Stage Channels,command-and-control,Object Access,Filtering Platform Connection,5155
+T1105,Ingress Tool Transfer,command-and-control,Object Access,Filtering Platform Connection,5155
+T1114,Email Collection,collection,Object Access,Filtering Platform Connection,5155
+T1114.002,Remote Email Collection,collection,Object Access,Filtering Platform Connection,5155
+T1176,Browser Extensions,persistence,Object Access,Filtering Platform Connection,5155
+T1189,Drive-by Compromise,initial-access,Object Access,Filtering Platform Connection,5155
+T1197,BITS Jobs,persistence; defense-evasion,Object Access,Filtering Platform Connection,5155
+T1204,User Execution,execution,Object Access,Filtering Platform Connection,5155
+T1204.001,Malicious Link,execution,Object Access,Filtering Platform Connection,5155
+T1205,Traffic Signaling,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5155
+T1205.001,Port Knocking,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5155
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Filtering Platform Connection,5155
+T1218.003,CMSTP,defense-evasion,Object Access,Filtering Platform Connection,5155
+T1218.005,Mshta,defense-evasion,Object Access,Filtering Platform Connection,5155
+T1218.007,Msiexec,defense-evasion,Object Access,Filtering Platform Connection,5155
+T1218.010,Regsvr32,defense-evasion,Object Access,Filtering Platform Connection,5155
+T1219,Remote Access Software,command-and-control,Object Access,Filtering Platform Connection,5155
+T1221,Template Injection,defense-evasion,Object Access,Filtering Platform Connection,5155
+T1496,Resource Hijacking,impact,Object Access,Filtering Platform Connection,5155
+T1542,Pre-OS Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5155
+T1542.005,TFTP Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5155
+T1568,Dynamic Resolution,command-and-control,Object Access,Filtering Platform Connection,5155
+T1568.001,Fast Flux DNS,command-and-control,Object Access,Filtering Platform Connection,5155
+T1568.002,Domain Generation Algorithms,command-and-control,Object Access,Filtering Platform Connection,5155
+T1571,Non-Standard Port,command-and-control,Object Access,Filtering Platform Connection,5155
+T1572,Protocol Tunneling,command-and-control,Object Access,Filtering Platform Connection,5155
+T1602,Data from Configuration Repository,collection,Object Access,Filtering Platform Connection,5155
+T1602.001,SNMP (MIB Dump),collection,Object Access,Filtering Platform Connection,5155
+T1602.002,Network Device Configuration Dump,collection,Object Access,Filtering Platform Connection,5155
+T1612,Build Image on Host,defense-evasion,Object Access,Filtering Platform Connection,5155
+T1008,Fallback Channels,command-and-control,Object Access,Filtering Platform Connection,5156
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,Filtering Platform Connection,5156
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,Filtering Platform Connection,5156
+T1018,Remote System Discovery,discovery,Object Access,Filtering Platform Connection,5156
+T1020,Automated Exfiltration,exfiltration,Object Access,Filtering Platform Connection,5156
+T1020.001,Traffic Duplication,exfiltration,Object Access,Filtering Platform Connection,5156
+T1021,Remote Services,lateral-movement,Object Access,Filtering Platform Connection,5156
+T1021.001,Remote Desktop Protocol,lateral-movement,Object Access,Filtering Platform Connection,5156
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Filtering Platform Connection,5156
+T1021.003,Distributed Component Object Model,lateral-movement,Object Access,Filtering Platform Connection,5156
+T1021.004,SSH,lateral-movement,Object Access,Filtering Platform Connection,5156
+T1021.005,VNC,lateral-movement,Object Access,Filtering Platform Connection,5156
+T1021.006,Windows Remote Management,lateral-movement,Object Access,Filtering Platform Connection,5156
+T1029,Scheduled Transfer,exfiltration,Object Access,Filtering Platform Connection,5156
+T1030,Data Transfer Size Limits,exfiltration,Object Access,Filtering Platform Connection,5156
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,Filtering Platform Connection,5156
+T1047,Windows Management Instrumentation,execution,Object Access,Filtering Platform Connection,5156
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,Filtering Platform Connection,5156
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5156
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5156
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5156
+T1090,Proxy,command-and-control,Object Access,Filtering Platform Connection,5156
+T1090.001,Internal Proxy,command-and-control,Object Access,Filtering Platform Connection,5156
+T1090.002,External Proxy,command-and-control,Object Access,Filtering Platform Connection,5156
+T1090.003,Multi-hop Proxy,command-and-control,Object Access,Filtering Platform Connection,5156
+T1102,Web Service,command-and-control,Object Access,Filtering Platform Connection,5156
+T1102.002,Bidirectional Communication,command-and-control,Object Access,Filtering Platform Connection,5156
+T1102.003,One-Way Communication,command-and-control,Object Access,Filtering Platform Connection,5156
+T1104,Multi-Stage Channels,command-and-control,Object Access,Filtering Platform Connection,5156
+T1105,Ingress Tool Transfer,command-and-control,Object Access,Filtering Platform Connection,5156
+T1114,Email Collection,collection,Object Access,Filtering Platform Connection,5156
+T1114.002,Remote Email Collection,collection,Object Access,Filtering Platform Connection,5156
+T1176,Browser Extensions,persistence,Object Access,Filtering Platform Connection,5156
+T1189,Drive-by Compromise,initial-access,Object Access,Filtering Platform Connection,5156
+T1197,BITS Jobs,persistence; defense-evasion,Object Access,Filtering Platform Connection,5156
+T1204,User Execution,execution,Object Access,Filtering Platform Connection,5156
+T1204.001,Malicious Link,execution,Object Access,Filtering Platform Connection,5156
+T1205,Traffic Signaling,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5156
+T1205.001,Port Knocking,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5156
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Filtering Platform Connection,5156
+T1218.003,CMSTP,defense-evasion,Object Access,Filtering Platform Connection,5156
+T1218.005,Mshta,defense-evasion,Object Access,Filtering Platform Connection,5156
+T1218.007,Msiexec,defense-evasion,Object Access,Filtering Platform Connection,5156
+T1218.010,Regsvr32,defense-evasion,Object Access,Filtering Platform Connection,5156
+T1219,Remote Access Software,command-and-control,Object Access,Filtering Platform Connection,5156
+T1221,Template Injection,defense-evasion,Object Access,Filtering Platform Connection,5156
+T1496,Resource Hijacking,impact,Object Access,Filtering Platform Connection,5156
+T1542,Pre-OS Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5156
+T1542.005,TFTP Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5156
+T1568,Dynamic Resolution,command-and-control,Object Access,Filtering Platform Connection,5156
+T1568.001,Fast Flux DNS,command-and-control,Object Access,Filtering Platform Connection,5156
+T1568.002,Domain Generation Algorithms,command-and-control,Object Access,Filtering Platform Connection,5156
+T1571,Non-Standard Port,command-and-control,Object Access,Filtering Platform Connection,5156
+T1572,Protocol Tunneling,command-and-control,Object Access,Filtering Platform Connection,5156
+T1602,Data from Configuration Repository,collection,Object Access,Filtering Platform Connection,5156
+T1602.001,SNMP (MIB Dump),collection,Object Access,Filtering Platform Connection,5156
+T1602.002,Network Device Configuration Dump,collection,Object Access,Filtering Platform Connection,5156
+T1612,Build Image on Host,defense-evasion,Object Access,Filtering Platform Connection,5156
+T1008,Fallback Channels,command-and-control,Object Access,Filtering Platform Connection,5157
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,Filtering Platform Connection,5157
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,Filtering Platform Connection,5157
+T1018,Remote System Discovery,discovery,Object Access,Filtering Platform Connection,5157
+T1020,Automated Exfiltration,exfiltration,Object Access,Filtering Platform Connection,5157
+T1020.001,Traffic Duplication,exfiltration,Object Access,Filtering Platform Connection,5157
+T1021,Remote Services,lateral-movement,Object Access,Filtering Platform Connection,5157
+T1021.001,Remote Desktop Protocol,lateral-movement,Object Access,Filtering Platform Connection,5157
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Filtering Platform Connection,5157
+T1021.003,Distributed Component Object Model,lateral-movement,Object Access,Filtering Platform Connection,5157
+T1021.004,SSH,lateral-movement,Object Access,Filtering Platform Connection,5157
+T1021.005,VNC,lateral-movement,Object Access,Filtering Platform Connection,5157
+T1021.006,Windows Remote Management,lateral-movement,Object Access,Filtering Platform Connection,5157
+T1029,Scheduled Transfer,exfiltration,Object Access,Filtering Platform Connection,5157
+T1030,Data Transfer Size Limits,exfiltration,Object Access,Filtering Platform Connection,5157
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,Filtering Platform Connection,5157
+T1047,Windows Management Instrumentation,execution,Object Access,Filtering Platform Connection,5157
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,Filtering Platform Connection,5157
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5157
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5157
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5157
+T1090,Proxy,command-and-control,Object Access,Filtering Platform Connection,5157
+T1090.001,Internal Proxy,command-and-control,Object Access,Filtering Platform Connection,5157
+T1090.002,External Proxy,command-and-control,Object Access,Filtering Platform Connection,5157
+T1090.003,Multi-hop Proxy,command-and-control,Object Access,Filtering Platform Connection,5157
+T1102,Web Service,command-and-control,Object Access,Filtering Platform Connection,5157
+T1102.002,Bidirectional Communication,command-and-control,Object Access,Filtering Platform Connection,5157
+T1102.003,One-Way Communication,command-and-control,Object Access,Filtering Platform Connection,5157
+T1104,Multi-Stage Channels,command-and-control,Object Access,Filtering Platform Connection,5157
+T1105,Ingress Tool Transfer,command-and-control,Object Access,Filtering Platform Connection,5157
+T1114,Email Collection,collection,Object Access,Filtering Platform Connection,5157
+T1114.002,Remote Email Collection,collection,Object Access,Filtering Platform Connection,5157
+T1176,Browser Extensions,persistence,Object Access,Filtering Platform Connection,5157
+T1189,Drive-by Compromise,initial-access,Object Access,Filtering Platform Connection,5157
+T1197,BITS Jobs,persistence; defense-evasion,Object Access,Filtering Platform Connection,5157
+T1204,User Execution,execution,Object Access,Filtering Platform Connection,5157
+T1204.001,Malicious Link,execution,Object Access,Filtering Platform Connection,5157
+T1205,Traffic Signaling,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5157
+T1205.001,Port Knocking,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5157
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Filtering Platform Connection,5157
+T1218.003,CMSTP,defense-evasion,Object Access,Filtering Platform Connection,5157
+T1218.005,Mshta,defense-evasion,Object Access,Filtering Platform Connection,5157
+T1218.007,Msiexec,defense-evasion,Object Access,Filtering Platform Connection,5157
+T1218.010,Regsvr32,defense-evasion,Object Access,Filtering Platform Connection,5157
+T1219,Remote Access Software,command-and-control,Object Access,Filtering Platform Connection,5157
+T1221,Template Injection,defense-evasion,Object Access,Filtering Platform Connection,5157
+T1496,Resource Hijacking,impact,Object Access,Filtering Platform Connection,5157
+T1542,Pre-OS Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5157
+T1542.005,TFTP Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5157
+T1568,Dynamic Resolution,command-and-control,Object Access,Filtering Platform Connection,5157
+T1568.001,Fast Flux DNS,command-and-control,Object Access,Filtering Platform Connection,5157
+T1568.002,Domain Generation Algorithms,command-and-control,Object Access,Filtering Platform Connection,5157
+T1571,Non-Standard Port,command-and-control,Object Access,Filtering Platform Connection,5157
+T1572,Protocol Tunneling,command-and-control,Object Access,Filtering Platform Connection,5157
+T1602,Data from Configuration Repository,collection,Object Access,Filtering Platform Connection,5157
+T1602.001,SNMP (MIB Dump),collection,Object Access,Filtering Platform Connection,5157
+T1602.002,Network Device Configuration Dump,collection,Object Access,Filtering Platform Connection,5157
+T1612,Build Image on Host,defense-evasion,Object Access,Filtering Platform Connection,5157
+T1008,Fallback Channels,command-and-control,Object Access,Filtering Platform Connection,5158
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,Filtering Platform Connection,5158
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,Filtering Platform Connection,5158
+T1018,Remote System Discovery,discovery,Object Access,Filtering Platform Connection,5158
+T1020,Automated Exfiltration,exfiltration,Object Access,Filtering Platform Connection,5158
+T1020.001,Traffic Duplication,exfiltration,Object Access,Filtering Platform Connection,5158
+T1021,Remote Services,lateral-movement,Object Access,Filtering Platform Connection,5158
+T1021.001,Remote Desktop Protocol,lateral-movement,Object Access,Filtering Platform Connection,5158
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Filtering Platform Connection,5158
+T1021.003,Distributed Component Object Model,lateral-movement,Object Access,Filtering Platform Connection,5158
+T1021.004,SSH,lateral-movement,Object Access,Filtering Platform Connection,5158
+T1021.005,VNC,lateral-movement,Object Access,Filtering Platform Connection,5158
+T1021.006,Windows Remote Management,lateral-movement,Object Access,Filtering Platform Connection,5158
+T1029,Scheduled Transfer,exfiltration,Object Access,Filtering Platform Connection,5158
+T1030,Data Transfer Size Limits,exfiltration,Object Access,Filtering Platform Connection,5158
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,Filtering Platform Connection,5158
+T1047,Windows Management Instrumentation,execution,Object Access,Filtering Platform Connection,5158
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,Filtering Platform Connection,5158
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5158
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5158
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5158
+T1090,Proxy,command-and-control,Object Access,Filtering Platform Connection,5158
+T1090.001,Internal Proxy,command-and-control,Object Access,Filtering Platform Connection,5158
+T1090.002,External Proxy,command-and-control,Object Access,Filtering Platform Connection,5158
+T1090.003,Multi-hop Proxy,command-and-control,Object Access,Filtering Platform Connection,5158
+T1102,Web Service,command-and-control,Object Access,Filtering Platform Connection,5158
+T1102.002,Bidirectional Communication,command-and-control,Object Access,Filtering Platform Connection,5158
+T1102.003,One-Way Communication,command-and-control,Object Access,Filtering Platform Connection,5158
+T1104,Multi-Stage Channels,command-and-control,Object Access,Filtering Platform Connection,5158
+T1105,Ingress Tool Transfer,command-and-control,Object Access,Filtering Platform Connection,5158
+T1114,Email Collection,collection,Object Access,Filtering Platform Connection,5158
+T1114.002,Remote Email Collection,collection,Object Access,Filtering Platform Connection,5158
+T1176,Browser Extensions,persistence,Object Access,Filtering Platform Connection,5158
+T1189,Drive-by Compromise,initial-access,Object Access,Filtering Platform Connection,5158
+T1197,BITS Jobs,persistence; defense-evasion,Object Access,Filtering Platform Connection,5158
+T1204,User Execution,execution,Object Access,Filtering Platform Connection,5158
+T1204.001,Malicious Link,execution,Object Access,Filtering Platform Connection,5158
+T1205,Traffic Signaling,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5158
+T1205.001,Port Knocking,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5158
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Filtering Platform Connection,5158
+T1218.003,CMSTP,defense-evasion,Object Access,Filtering Platform Connection,5158
+T1218.005,Mshta,defense-evasion,Object Access,Filtering Platform Connection,5158
+T1218.007,Msiexec,defense-evasion,Object Access,Filtering Platform Connection,5158
+T1218.010,Regsvr32,defense-evasion,Object Access,Filtering Platform Connection,5158
+T1219,Remote Access Software,command-and-control,Object Access,Filtering Platform Connection,5158
+T1221,Template Injection,defense-evasion,Object Access,Filtering Platform Connection,5158
+T1496,Resource Hijacking,impact,Object Access,Filtering Platform Connection,5158
+T1542,Pre-OS Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5158
+T1542.005,TFTP Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5158
+T1568,Dynamic Resolution,command-and-control,Object Access,Filtering Platform Connection,5158
+T1568.001,Fast Flux DNS,command-and-control,Object Access,Filtering Platform Connection,5158
+T1568.002,Domain Generation Algorithms,command-and-control,Object Access,Filtering Platform Connection,5158
+T1571,Non-Standard Port,command-and-control,Object Access,Filtering Platform Connection,5158
+T1572,Protocol Tunneling,command-and-control,Object Access,Filtering Platform Connection,5158
+T1602,Data from Configuration Repository,collection,Object Access,Filtering Platform Connection,5158
+T1602.001,SNMP (MIB Dump),collection,Object Access,Filtering Platform Connection,5158
+T1602.002,Network Device Configuration Dump,collection,Object Access,Filtering Platform Connection,5158
+T1612,Build Image on Host,defense-evasion,Object Access,Filtering Platform Connection,5158
+T1008,Fallback Channels,command-and-control,Object Access,Filtering Platform Connection,5159
+T1011,Exfiltration Over Other Network Medium,exfiltration,Object Access,Filtering Platform Connection,5159
+T1011.001,Exfiltration Over Bluetooth,exfiltration,Object Access,Filtering Platform Connection,5159
+T1018,Remote System Discovery,discovery,Object Access,Filtering Platform Connection,5159
+T1020,Automated Exfiltration,exfiltration,Object Access,Filtering Platform Connection,5159
+T1020.001,Traffic Duplication,exfiltration,Object Access,Filtering Platform Connection,5159
+T1021,Remote Services,lateral-movement,Object Access,Filtering Platform Connection,5159
+T1021.001,Remote Desktop Protocol,lateral-movement,Object Access,Filtering Platform Connection,5159
+T1021.002,SMB/Windows Admin Shares,lateral-movement,Object Access,Filtering Platform Connection,5159
+T1021.003,Distributed Component Object Model,lateral-movement,Object Access,Filtering Platform Connection,5159
+T1021.004,SSH,lateral-movement,Object Access,Filtering Platform Connection,5159
+T1021.005,VNC,lateral-movement,Object Access,Filtering Platform Connection,5159
+T1021.006,Windows Remote Management,lateral-movement,Object Access,Filtering Platform Connection,5159
+T1029,Scheduled Transfer,exfiltration,Object Access,Filtering Platform Connection,5159
+T1030,Data Transfer Size Limits,exfiltration,Object Access,Filtering Platform Connection,5159
+T1041,Exfiltration Over C2 Channel,exfiltration,Object Access,Filtering Platform Connection,5159
+T1047,Windows Management Instrumentation,execution,Object Access,Filtering Platform Connection,5159
+T1048,Exfiltration Over Alternative Protocol,exfiltration,Object Access,Filtering Platform Connection,5159
+T1048.001,Exfiltration Over Symmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5159
+T1048.002,Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5159
+T1048.003,Exfiltration Over Unencrypted/Obfuscated Non-C2 Protocol,exfiltration,Object Access,Filtering Platform Connection,5159
+T1090,Proxy,command-and-control,Object Access,Filtering Platform Connection,5159
+T1090.001,Internal Proxy,command-and-control,Object Access,Filtering Platform Connection,5159
+T1090.002,External Proxy,command-and-control,Object Access,Filtering Platform Connection,5159
+T1090.003,Multi-hop Proxy,command-and-control,Object Access,Filtering Platform Connection,5159
+T1102,Web Service,command-and-control,Object Access,Filtering Platform Connection,5159
+T1102.002,Bidirectional Communication,command-and-control,Object Access,Filtering Platform Connection,5159
+T1102.003,One-Way Communication,command-and-control,Object Access,Filtering Platform Connection,5159
+T1104,Multi-Stage Channels,command-and-control,Object Access,Filtering Platform Connection,5159
+T1105,Ingress Tool Transfer,command-and-control,Object Access,Filtering Platform Connection,5159
+T1114,Email Collection,collection,Object Access,Filtering Platform Connection,5159
+T1114.002,Remote Email Collection,collection,Object Access,Filtering Platform Connection,5159
+T1176,Browser Extensions,persistence,Object Access,Filtering Platform Connection,5159
+T1189,Drive-by Compromise,initial-access,Object Access,Filtering Platform Connection,5159
+T1197,BITS Jobs,persistence; defense-evasion,Object Access,Filtering Platform Connection,5159
+T1204,User Execution,execution,Object Access,Filtering Platform Connection,5159
+T1204.001,Malicious Link,execution,Object Access,Filtering Platform Connection,5159
+T1205,Traffic Signaling,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5159
+T1205.001,Port Knocking,persistence; defense-evasion; command-and-control,Object Access,Filtering Platform Connection,5159
+T1218,Signed Binary Proxy Execution,defense-evasion,Object Access,Filtering Platform Connection,5159
+T1218.003,CMSTP,defense-evasion,Object Access,Filtering Platform Connection,5159
+T1218.005,Mshta,defense-evasion,Object Access,Filtering Platform Connection,5159
+T1218.007,Msiexec,defense-evasion,Object Access,Filtering Platform Connection,5159
+T1218.010,Regsvr32,defense-evasion,Object Access,Filtering Platform Connection,5159
+T1219,Remote Access Software,command-and-control,Object Access,Filtering Platform Connection,5159
+T1221,Template Injection,defense-evasion,Object Access,Filtering Platform Connection,5159
+T1496,Resource Hijacking,impact,Object Access,Filtering Platform Connection,5159
+T1542,Pre-OS Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5159
+T1542.005,TFTP Boot,persistence; defense-evasion,Object Access,Filtering Platform Connection,5159
+T1568,Dynamic Resolution,command-and-control,Object Access,Filtering Platform Connection,5159
+T1568.001,Fast Flux DNS,command-and-control,Object Access,Filtering Platform Connection,5159
+T1568.002,Domain Generation Algorithms,command-and-control,Object Access,Filtering Platform Connection,5159
+T1571,Non-Standard Port,command-and-control,Object Access,Filtering Platform Connection,5159
+T1572,Protocol Tunneling,command-and-control,Object Access,Filtering Platform Connection,5159
+T1602,Data from Configuration Repository,collection,Object Access,Filtering Platform Connection,5159
+T1602.001,SNMP (MIB Dump),collection,Object Access,Filtering Platform Connection,5159
+T1602.002,Network Device Configuration Dump,collection,Object Access,Filtering Platform Connection,5159
+T1612,Build Image on Host,defense-evasion,Object Access,Filtering Platform Connection,5159

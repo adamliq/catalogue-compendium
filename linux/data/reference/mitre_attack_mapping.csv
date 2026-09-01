@@ -1,0 +1,24 @@
+technique_id,technique,tactics,category,subcategory,event_id
+T1078,Valid Accounts,defense-evasion;persistence;privilege-escalation;initial-access,Account Logon,Credential Validation,1100
+T1078,Valid Accounts,defense-evasion;persistence;privilege-escalation;initial-access,Logon/Logoff,Logon,1112
+T1078,Valid Accounts,defense-evasion;persistence;privilege-escalation;initial-access,Logon/Logoff,SSH Session Disconnect,14
+T1110,Brute Force,credential-access,Account Logon,Credential Validation,1109
+T1110,Brute Force,credential-access,Logon/Logoff,SSH Session Disconnect,14
+T1021.004,Remote Services: SSH,lateral-movement,Logon/Logoff,Logon,1105
+T1136.001,Create Account: Local Account,persistence,Account Management,User Account,1114
+T1531,Account Access Removal,impact,Account Management,User Account,1115
+T1098,Account Manipulation,persistence;privilege-escalation,Account Management,Group Management,1132
+T1548.003,Abuse Elevation Control Mechanism: Sudo and Sudo Caching,privilege-escalation;defense-evasion,Privilege Use,Command Execution,1123
+T1548.003,Abuse Elevation Control Mechanism: Sudo and Sudo Caching,privilege-escalation;defense-evasion,Account Management,Group Management,1132
+T1548,Abuse Elevation Control Mechanism,privilege-escalation;defense-evasion,Privilege Use,Capability Use,1322
+T1059,Command and Scripting Interpreter,execution,Detailed Tracking,Process Execution,1300
+T1059,Command and Scripting Interpreter,execution,Detailed Tracking,Process Arguments,1309
+T1552.001,Unsecured Credentials: Credentials In Files,credential-access,Object Access,File Access (Watch),1302
+T1562.001,Impair Defenses: Disable or Modify Tools,defense-evasion,Policy Change,Audit Configuration,1305
+T1070.002,Indicator Removal: Clear Linux or Mac System Logs,defense-evasion,System,Audit Daemon,1201
+T1547.006,Boot or Logon Autostart Execution: Kernel Modules and Extensions,persistence;privilege-escalation,Object Access,Kernel Module,1330
+T1014,Rootkit,defense-evasion,Object Access,Kernel Module,1330
+T1562.004,Impair Defenses: Disable or Modify System Firewall,defense-evasion,Network,Netfilter Configuration,1325
+T1611,Escape to Host,privilege-escalation,Mandatory Access Control,SELinux AVC,1400
+T1611,Escape to Host,privilege-escalation,Mandatory Access Control,AppArmor AVC,1400
+T1562.001,Impair Defenses: Disable or Modify Tools,defense-evasion,Mandatory Access Control,MAC Policy,1404

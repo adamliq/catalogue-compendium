@@ -1,0 +1,37 @@
+[
+  {
+    "ftype": "application/x-bad-elf",
+    "seen_in_rule": "40-bad-elf.rules",
+    "meaning": "Malformed/corrupt ELF binary, per fapolicyd's own magic-based classification — denied outright regardless of trust."
+  },
+  {
+    "ftype": "application/x-executable",
+    "seen_in_rule": "43-known-elf.rules",
+    "meaning": "ELF executable — gated by trust=1."
+  },
+  {
+    "ftype": "application/x-sharedlib",
+    "seen_in_rule": "41-shared-obj.rules",
+    "meaning": "ELF shared library (.so) — gated by trust=1, checked ahead of executables since a typical executable links a dozen or more of these."
+  },
+  {
+    "ftype": "text/x-shellscript",
+    "seen_in_rule": "72-shell.rules",
+    "meaning": "Shell script — allowed unconditionally (perm=any), no trust gate."
+  },
+  {
+    "ftype": "text/x-python",
+    "seen_in_rule": "71-known-python.rules",
+    "meaning": "Python source — gated by trust=1."
+  },
+  {
+    "ftype": "application/x-bytecode.python",
+    "seen_in_rule": "71-known-python.rules",
+    "meaning": "Compiled Python bytecode (.pyc) — gated by trust=1."
+  },
+  {
+    "ftype": "%languages (set)",
+    "seen_in_rule": "10-languages.rules",
+    "meaning": "Named set of ~23 script/bytecode MIME types (Perl, PHP, Ruby, Lua, JavaScript, R, Tcl, OCaml, Java, awk, and more) — referenced by 70-trusted-lang.rules and 91-deny-lang.rules."
+  }
+]

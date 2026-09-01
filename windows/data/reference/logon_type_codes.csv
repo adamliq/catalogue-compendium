@@ -1,0 +1,14 @@
+code,name,description
+0,System,Used only by the SYSTEM account internally; not a real interactive/network logon and rarely appears in logs.
+2,Interactive,A user logged on at the local keyboard/screen of the computer (physical console logon).
+3,Network,"A user or computer connected from the network, e.g. accessing a shared folder or printer. Most common logon type on servers."
+4,Batch,Used by batch-queue facilities and scheduled tasks (Task Scheduler jobs run under a saved credential).
+5,Service,A service was started by the Service Control Manager using a configured service account.
+6,Proxy,Deprecated logon type; not used by current Windows versions.
+7,Unlock,The workstation was unlocked using the credentials of the account that locked it.
+8,NetworkCleartext,"A network logon like type 3, but the password was passed in cleartext (e.g. IIS Basic Authentication)."
+9,NewCredentials,A caller cloned its current token and specified new credentials (e.g. RunAs /netonly). The local session keeps the original identity; the new credentials are only used for outbound network connections.
+10,RemoteInteractive,A Terminal Services / Remote Desktop (RDP) logon to the computer.
+11,CachedInteractive,A user logged on with cached domain credentials because a domain controller was not available (offline domain logon).
+12,CachedRemoteInteractive,"Same as RemoteInteractive, but the logon used cached credentials (rare)."
+13,CachedUnlock,The workstation was unlocked using cached credentials.

@@ -1,0 +1,36 @@
+code,name,description
+1,EPERM,Operation not permitted
+2,ENOENT,No such file or directory
+5,EIO,I/O error
+9,EBADF,Bad file descriptor
+11,EAGAIN,Resource temporarily unavailable
+12,ENOMEM,Out of memory
+13,EACCES,Permission denied
+16,EBUSY,Device or resource busy
+17,EEXIST,File exists
+19,ENODEV,No such device
+20,ENOTDIR,Not a directory
+21,EISDIR,Is a directory
+22,EINVAL,Invalid argument
+24,EMFILE,Too many open files (per-process limit)
+28,ENOSPC,No space left on device
+30,EROFS,Read-only file system
+32,EPIPE,Broken pipe
+36,ENAMETOOLONG,File name too long
+38,ENOSYS,"Function not implemented (syscall blocked, e.g. by seccomp)"
+39,ENOTEMPTY,Directory not empty
+40,ELOOP,Too many levels of symbolic links
+95,EOPNOTSUPP,Operation not supported
+98,EADDRINUSE,Address already in use
+101,ENETUNREACH,Network is unreachable
+104,ECONNRESET,Connection reset by peer
+110,ETIMEDOUT,Connection timed out
+111,ECONNREFUSED,Connection refused
+113,EHOSTUNREACH,No route to host
+122,EDQUOT,Disk quota exceeded
+125,ECANCELED,Operation canceled
+126,ENOKEY,Required key not available
+127,EKEYEXPIRED,Key has expired
+128,EKEYREVOKED,Key has been revoked
+129,EKEYREJECTED,Key was rejected by service
+132,ERFKILL,Operation not possible due to RF-kill

@@ -1,0 +1,3 @@
+name,description,url
+Winevent-catalogue,"The Windows Event ID catalogue this repo mirrors — the same structure and depth, for Windows Security/System/Application logs.",https://github.com/adamliq/Winevent-catalogue
+Splunk Taxonomy — My Tools,A companion collection of Splunk field-taxonomy references and tooling by the same author.,https://adamliq.github.io/Splunk_Taxonomy/#my-tools

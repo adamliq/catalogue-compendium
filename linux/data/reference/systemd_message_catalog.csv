@@ -1,0 +1,16 @@
+uuid,subject,description
+7d4958e8-42da-4a75-8f6c-1cdc7b36dcc5,Unit start job begun,A start job for a unit has begun execution.
+39f53479-d3a0-45ac-8e11-786248231fbf,Unit start job succeeded,A start job for a unit has finished successfully.
+be02cf68-55d2-428b-a40d-f7e9d022f03d,Unit start job failed,A start job for a unit has failed.
+de5b426a-63be-47a7-b6ac-3eaac82e2f6f,Unit stop job begun,A stop job for a unit has begun execution.
+9d1aaa27-d601-40bd-9636-5438aad20286,Unit stop job finished,A stop job for a unit has finished.
+d9b373ed-55a6-4feb-8242-e02dbe79a49c,Unit failed,A unit has entered the failed state.
+fe6faa94-e777-4663-a0da-52717891d8ef,Process killed by the OOM killer,A process belonging to a unit was killed by the kernel's out-of-memory killer.
+b07a249c-d024-414a-82dd-00cd181378ff,Startup finished,System start-up is now complete.
+98268866-d1d5-4a49-9c4e-98921d93bc40,Shutdown initiated,System shutdown has been initiated.
+8d45620c-1a43-48db-b174-10da57c60c66,Session created,A new login session has been created for a user.
+33549394-24b4-456d-9802-ca8333ed424a,Session terminated,A login session has been terminated.
+c7a78707-9b35-4eaa-a9e7-7b371893cd27,Time change,"The system clock has been changed, either manually or via time sync."
+f77379a8-490b-408b-be5f-6940505a777b,Journal started,The systemd-journald service has started and begun collecting log data.
+d93fb3c9-c24d-451a-97ce-a615ce59c00b,Journal stopped,The systemd-journald service has been stopped.
+a596d6fe-7bfa-4994-828e-72309e95d61e,Journal messages suppressed,Log messages from a service have been suppressed due to rate limiting.

@@ -1,0 +1,638 @@
+[
+  {
+    "record_type": "ACCT_LOCK",
+    "explanation": "User-space account locked by administrator"
+  },
+  {
+    "record_type": "ACCT_UNLOCK",
+    "explanation": "User-space account unlocked by administrator"
+  },
+  {
+    "record_type": "ADD_GROUP",
+    "explanation": "User-space group added"
+  },
+  {
+    "record_type": "ADD_USER",
+    "explanation": "User-space user account added"
+  },
+  {
+    "record_type": "ANOM_ABEND",
+    "explanation": "Process ended abnormally (signal that can cause core dump)"
+  },
+  {
+    "record_type": "ANOM_ACCESS_FS",
+    "explanation": "File/directory access ended abnormally"
+  },
+  {
+    "record_type": "ANOM_ADD_ACCT",
+    "explanation": "Account addition ended abnormally"
+  },
+  {
+    "record_type": "ANOM_AMTU_FAIL",
+    "explanation": "Abstract Machine Test Utility (AMTU) failure"
+  },
+  {
+    "record_type": "ANOM_CRYPTO_FAIL",
+    "explanation": "Cryptographic system failure"
+  },
+  {
+    "record_type": "ANOM_DEL_ACCT",
+    "explanation": "Account deletion ended abnormally"
+  },
+  {
+    "record_type": "ANOM_EXEC",
+    "explanation": "File execution ended abnormally"
+  },
+  {
+    "record_type": "ANOM_LINK",
+    "explanation": "Suspicious use of file links"
+  },
+  {
+    "record_type": "ANOM_LOGIN_ACCT",
+    "explanation": "Account login attempt ended abnormally"
+  },
+  {
+    "record_type": "ANOM_LOGIN_FAILURES",
+    "explanation": "Limit of failed login attempts reached"
+  },
+  {
+    "record_type": "ANOM_LOGIN_LOCATION",
+    "explanation": "Login from unusual location"
+  },
+  {
+    "record_type": "ANOM_LOGIN_SESSIONS",
+    "explanation": "Limit of concurrent login sessions reached"
+  },
+  {
+    "record_type": "ANOM_LOGIN_TIME",
+    "explanation": "Login at unusual time"
+  },
+  {
+    "record_type": "ANOM_MAX_DAC",
+    "explanation": "Maximum DAC failures reached"
+  },
+  {
+    "record_type": "ANOM_MAX_MAC",
+    "explanation": "Maximum MAC failures reached"
+  },
+  {
+    "record_type": "ANOM_PROMISCUOUS",
+    "explanation": "Network device entered promiscuous mode"
+  },
+  {
+    "record_type": "ANOM_RBAC_FAILURE",
+    "explanation": "RBAC test failure"
+  },
+  {
+    "record_type": "ANOM_RBAC_INTEGRITY_FAIL",
+    "explanation": "RBAC integrity test failure"
+  },
+  {
+    "record_type": "ANOM_ROOT_TRANS",
+    "explanation": "User became root"
+  },
+  {
+    "record_type": "APPARMOR",
+    "explanation": "AppArmor event (generic)"
+  },
+  {
+    "record_type": "APPARMOR_ALLOWED",
+    "explanation": "AppArmor allowed operation"
+  },
+  {
+    "record_type": "APPARMOR_AUDIT",
+    "explanation": "AppArmor audit event"
+  },
+  {
+    "record_type": "APPARMOR_DENIED",
+    "explanation": "AppArmor denied operation"
+  },
+  {
+    "record_type": "APPARMOR_ERROR",
+    "explanation": "AppArmor error"
+  },
+  {
+    "record_type": "APPARMOR_HINT",
+    "explanation": "AppArmor hint"
+  },
+  {
+    "record_type": "APPARMOR_KILL",
+    "explanation": "AppArmor killed process"
+  },
+  {
+    "record_type": "APPARMOR_STATUS",
+    "explanation": "AppArmor status change"
+  },
+  {
+    "record_type": "AVC",
+    "explanation": "SELinux Access Vector Cache permission check (allow/deny)"
+  },
+  {
+    "record_type": "AVC_PATH",
+    "explanation": "dentry/vfsmount pair from an AVC check"
+  },
+  {
+    "record_type": "BPRM_FCAPS",
+    "explanation": "Program executed with file-system capabilities"
+  },
+  {
+    "record_type": "CAPSET",
+    "explanation": "Process capability set changed"
+  },
+  {
+    "record_type": "CHGRP_ID",
+    "explanation": "User-space group ID changed"
+  },
+  {
+    "record_type": "CHUSER_ID",
+    "explanation": "User-space user ID changed"
+  },
+  {
+    "record_type": "CONFIG_CHANGE",
+    "explanation": "Audit system configuration modified (rules added/deleted, features changed)"
+  },
+  {
+    "record_type": "CRED_ACQ",
+    "explanation": "User-space credentials acquired"
+  },
+  {
+    "record_type": "CRED_DISP",
+    "explanation": "User-space credentials disposed"
+  },
+  {
+    "record_type": "CRED_REFR",
+    "explanation": "User-space credentials refreshed"
+  },
+  {
+    "record_type": "CRYPTO_IKE_SPI",
+    "explanation": "IKE SPI allocated"
+  },
+  {
+    "record_type": "CRYPTO_IPSEC_SA",
+    "explanation": "IPsec SA established"
+  },
+  {
+    "record_type": "CRYPTO_IPSEC_SA_ESTABLISHED",
+    "explanation": "IPsec SA fully established"
+  },
+  {
+    "record_type": "CRYPTO_IPSEC_SA_REPLAY",
+    "explanation": "IPsec SA replay window"
+  },
+  {
+    "record_type": "CRYPTO_KEY_USER",
+    "explanation": "Cryptographic key user operation"
+  },
+  {
+    "record_type": "CRYPTO_REPLAY",
+    "explanation": "Crypto replay detected"
+  },
+  {
+    "record_type": "CRYPTO_SESSION",
+    "explanation": "Cryptographic session established"
+  },
+  {
+    "record_type": "CWD",
+    "explanation": "Current working directory of the process"
+  },
+  {
+    "record_type": "DAC_CHECK",
+    "explanation": "Discretionary Access Control check result"
+  },
+  {
+    "record_type": "DAEMON_ABORT",
+    "explanation": "auditd stopped because of an error"
+  },
+  {
+    "record_type": "DAEMON_ACCEPT",
+    "explanation": "auditd accepted a remote connection"
+  },
+  {
+    "record_type": "DAEMON_CLOSE",
+    "explanation": "auditd closed a remote connection"
+  },
+  {
+    "record_type": "DAEMON_CONFIG",
+    "explanation": "auditd configuration change detected"
+  },
+  {
+    "record_type": "DAEMON_END",
+    "explanation": "auditd stopped normally"
+  },
+  {
+    "record_type": "DAEMON_ERR",
+    "explanation": "auditd internal error"
+  },
+  {
+    "record_type": "DAEMON_RESUME",
+    "explanation": "auditd resumed logging"
+  },
+  {
+    "record_type": "DAEMON_ROTATE",
+    "explanation": "auditd rotated log files"
+  },
+  {
+    "record_type": "DAEMON_START",
+    "explanation": "auditd started"
+  },
+  {
+    "record_type": "DEL_GROUP",
+    "explanation": "User-space group deleted"
+  },
+  {
+    "record_type": "DEL_USER",
+    "explanation": "User-space user account deleted"
+  },
+  {
+    "record_type": "DEV_ALLOC",
+    "explanation": "Device allocated"
+  },
+  {
+    "record_type": "DEV_DEALLOC",
+    "explanation": "Device deallocated"
+  },
+  {
+    "record_type": "EOE",
+    "explanation": "End-of-event marker (rarely seen; used for event boundary)"
+  },
+  {
+    "record_type": "EXECVE",
+    "explanation": "Arguments of an execve system call (full command line)"
+  },
+  {
+    "record_type": "FANOTIFY",
+    "explanation": "fanotify access decision"
+  },
+  {
+    "record_type": "FD_PAIR",
+    "explanation": "File-descriptor pair created (pipe / socketpair)"
+  },
+  {
+    "record_type": "FEATURE_CHANGE",
+    "explanation": "Audit feature enabled/disabled"
+  },
+  {
+    "record_type": "FS_RELABEL",
+    "explanation": "File-system relabel operation"
+  },
+  {
+    "record_type": "GRP_AUTH",
+    "explanation": "Group password used for authentication"
+  },
+  {
+    "record_type": "INTEGRITY_DATA",
+    "explanation": "Integrity data verification (IMA/EVM)"
+  },
+  {
+    "record_type": "INTEGRITY_EVM_XATTR",
+    "explanation": "EVM extended attribute verification"
+  },
+  {
+    "record_type": "INTEGRITY_HASH",
+    "explanation": "Integrity hash verification"
+  },
+  {
+    "record_type": "INTEGRITY_METADATA",
+    "explanation": "Integrity metadata verification"
+  },
+  {
+    "record_type": "INTEGRITY_PCR",
+    "explanation": "PCR (Platform Configuration Register) update"
+  },
+  {
+    "record_type": "INTEGRITY_RULE",
+    "explanation": "Integrity policy rule"
+  },
+  {
+    "record_type": "INTEGRITY_STATUS",
+    "explanation": "Integrity subsystem status change"
+  },
+  {
+    "record_type": "IPC",
+    "explanation": "System V IPC object accessed"
+  },
+  {
+    "record_type": "IPC_SET_PERM",
+    "explanation": "System V IPC permissions changed"
+  },
+  {
+    "record_type": "KERN_MODULE",
+    "explanation": "Kernel module load/unload"
+  },
+  {
+    "record_type": "KERNEL",
+    "explanation": "Generic kernel audit message"
+  },
+  {
+    "record_type": "KERNEL_OTHER",
+    "explanation": "3rd-party kernel module audit record"
+  },
+  {
+    "record_type": "LABEL_LEVEL_CHANGE",
+    "explanation": "Object label level changed"
+  },
+  {
+    "record_type": "LABEL_OVERRIDE",
+    "explanation": "Object label overridden"
+  },
+  {
+    "record_type": "LOGIN",
+    "explanation": "Login event (legacy)"
+  },
+  {
+    "record_type": "MAC_CALIPSO_ADD",
+    "explanation": "Calipso label added"
+  },
+  {
+    "record_type": "MAC_CALIPSO_DEL",
+    "explanation": "Calipso label deleted"
+  },
+  {
+    "record_type": "MAC_CHECK",
+    "explanation": "MAC check performed"
+  },
+  {
+    "record_type": "MAC_CIPSOV4_ADD",
+    "explanation": "CIPSO v4 label added"
+  },
+  {
+    "record_type": "MAC_CIPSOV4_DEL",
+    "explanation": "CIPSO v4 label deleted"
+  },
+  {
+    "record_type": "MAC_CONFIG_CHANGE",
+    "explanation": "MAC configuration changed"
+  },
+  {
+    "record_type": "MAC_IPSEC_ADDSA",
+    "explanation": "IPsec SA added"
+  },
+  {
+    "record_type": "MAC_IPSEC_ADDSPD",
+    "explanation": "IPsec SPD added"
+  },
+  {
+    "record_type": "MAC_IPSEC_DELSA",
+    "explanation": "IPsec SA deleted"
+  },
+  {
+    "record_type": "MAC_IPSEC_DELSPD",
+    "explanation": "IPsec SPD deleted"
+  },
+  {
+    "record_type": "MAC_IPSEC_EVENT",
+    "explanation": "Generic IPsec event"
+  },
+  {
+    "record_type": "MAC_MAP_ADD",
+    "explanation": "MAC map added"
+  },
+  {
+    "record_type": "MAC_MAP_DEL",
+    "explanation": "MAC map deleted"
+  },
+  {
+    "record_type": "MAC_POLICY_LOAD",
+    "explanation": "MAC (SELinux) policy loaded"
+  },
+  {
+    "record_type": "MAC_STATUS",
+    "explanation": "MAC enforcement status changed (enforcing/permissive)"
+  },
+  {
+    "record_type": "MAC_UNLBL_ALLOW",
+    "explanation": "Unlabeled traffic allowed"
+  },
+  {
+    "record_type": "MAC_UNLBL_STCADD",
+    "explanation": "Static unlabeled entry added"
+  },
+  {
+    "record_type": "MAC_UNLBL_STCDEL",
+    "explanation": "Static unlabeled entry deleted"
+  },
+  {
+    "record_type": "MMAP",
+    "explanation": "Memory-mapped file access"
+  },
+  {
+    "record_type": "MQ_GETSETATTR",
+    "explanation": "POSIX message-queue get/set attribute"
+  },
+  {
+    "record_type": "MQ_NOTIFY",
+    "explanation": "POSIX message-queue notify"
+  },
+  {
+    "record_type": "MQ_OPEN",
+    "explanation": "POSIX message-queue open"
+  },
+  {
+    "record_type": "MQ_SENDRECV",
+    "explanation": "POSIX message-queue send/receive"
+  },
+  {
+    "record_type": "NETFILTER_CFG",
+    "explanation": "Netfilter (iptables/nftables) configuration change"
+  },
+  {
+    "record_type": "NETFILTER_PKT",
+    "explanation": "Netfilter packet decision"
+  },
+  {
+    "record_type": "OBJ_PID",
+    "explanation": "Information about a target process (used with kill, ptrace, etc.)"
+  },
+  {
+    "record_type": "PATH",
+    "explanation": "File-name / path information (one record per path argument)"
+  },
+  {
+    "record_type": "PROCTITLE",
+    "explanation": "Full process title / command line (hex-encoded)"
+  },
+  {
+    "record_type": "RESP_ACCT_LOCK",
+    "explanation": "Response: account locked"
+  },
+  {
+    "record_type": "RESP_ACCT_LOCK_TIMED",
+    "explanation": "Response: account locked for a time"
+  },
+  {
+    "record_type": "RESP_ACCT_REMOTE",
+    "explanation": "Response: account access from remote host"
+  },
+  {
+    "record_type": "RESP_ACCT_UNLOCK_TIMED",
+    "explanation": "Response: account unlocked after time"
+  },
+  {
+    "record_type": "RESP_ANOMALY",
+    "explanation": "Response to an anomaly"
+  },
+  {
+    "record_type": "RESP_EXEC",
+    "explanation": "Response: execute a program"
+  },
+  {
+    "record_type": "RESP_HALT",
+    "explanation": "Response: system halt"
+  },
+  {
+    "record_type": "RESP_ORIGINS",
+    "explanation": "Response origin information"
+  },
+  {
+    "record_type": "RESP_SEBOOL",
+    "explanation": "Response: SELinux boolean changed"
+  },
+  {
+    "record_type": "ROLE_ASSIGN",
+    "explanation": "Role assigned to a user"
+  },
+  {
+    "record_type": "ROLE_REMOVE",
+    "explanation": "Role removed from a user"
+  },
+  {
+    "record_type": "SELINUX_ERR",
+    "explanation": "SELinux error"
+  },
+  {
+    "record_type": "SERVICE_START",
+    "explanation": "systemd service started"
+  },
+  {
+    "record_type": "SERVICE_STOP",
+    "explanation": "systemd service stopped"
+  },
+  {
+    "record_type": "SOCKADDR",
+    "explanation": "Socket address (struct sockaddr)"
+  },
+  {
+    "record_type": "SOCKETCALL",
+    "explanation": "Arguments of the socketcall multiplexer"
+  },
+  {
+    "record_type": "SOFTWARE_UPDATE",
+    "explanation": "Software update / package event"
+  },
+  {
+    "record_type": "SYSCALL",
+    "explanation": "System-call event (the primary record for most rules)"
+  },
+  {
+    "record_type": "SYSTEM_BOOT",
+    "explanation": "System boot"
+  },
+  {
+    "record_type": "SYSTEM_RUNLEVEL",
+    "explanation": "System run-level change"
+  },
+  {
+    "record_type": "SYSTEM_SHUTDOWN",
+    "explanation": "System shutdown"
+  },
+  {
+    "record_type": "TEST",
+    "explanation": "Test record (internal)"
+  },
+  {
+    "record_type": "TRUSTED_APP",
+    "explanation": "Trusted application message"
+  },
+  {
+    "record_type": "TTY",
+    "explanation": "Administrative TTY input"
+  },
+  {
+    "record_type": "USER",
+    "explanation": "Generic user-space message"
+  },
+  {
+    "record_type": "USER_ACCT",
+    "explanation": "User-space account authorization"
+  },
+  {
+    "record_type": "USER_AUTH",
+    "explanation": "User-space authentication"
+  },
+  {
+    "record_type": "USER_AVC",
+    "explanation": "User-space AVC message"
+  },
+  {
+    "record_type": "USER_CHAUTHTOK",
+    "explanation": "User changed authentication token (password/PIN)"
+  },
+  {
+    "record_type": "USER_CMD",
+    "explanation": "User command execution (from pam_tty_audit / similar)"
+  },
+  {
+    "record_type": "USER_DEVICE",
+    "explanation": "User-space hotplug / device event"
+  },
+  {
+    "record_type": "USER_END",
+    "explanation": "User session ended"
+  },
+  {
+    "record_type": "USER_ERR",
+    "explanation": "User-space error"
+  },
+  {
+    "record_type": "USER_LABEL",
+    "explanation": "User label change"
+  },
+  {
+    "record_type": "USER_LOGIN",
+    "explanation": "User logged in"
+  },
+  {
+    "record_type": "USER_LOGOUT",
+    "explanation": "User logged out"
+  },
+  {
+    "record_type": "USER_MGMT",
+    "explanation": "User account attribute change"
+  },
+  {
+    "record_type": "USER_ROLE_CHANGE",
+    "explanation": "User role change"
+  },
+  {
+    "record_type": "USER_SELINUX_ERR",
+    "explanation": "User-space SELinux error"
+  },
+  {
+    "record_type": "USER_START",
+    "explanation": "User session started"
+  },
+  {
+    "record_type": "USER_TTY",
+    "explanation": "Non-ICANON TTY input"
+  },
+  {
+    "record_type": "USYS_CONFIG",
+    "explanation": "User-space system configuration change"
+  },
+  {
+    "record_type": "VIRT_CONTROL",
+    "explanation": "Virtualization control operation"
+  },
+  {
+    "record_type": "VIRT_MACHINE_ID",
+    "explanation": "Virtual machine identity"
+  },
+  {
+    "record_type": "VIRT_RESOURCE",
+    "explanation": "Virtual resource assignment (disk, memory, net, vCPU)"
+  },
+  {
+    "record_type": "VIRT_ROLE",
+    "explanation": "Virtualization role change"
+  }
+]

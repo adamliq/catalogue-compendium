@@ -1,0 +1,8 @@
+ftype,seen_in_rule,meaning
+application/x-bad-elf,40-bad-elf.rules,"Malformed/corrupt ELF binary, per fapolicyd's own magic-based classification — denied outright regardless of trust."
+application/x-executable,43-known-elf.rules,ELF executable — gated by trust=1.
+application/x-sharedlib,41-shared-obj.rules,"ELF shared library (.so) — gated by trust=1, checked ahead of executables since a typical executable links a dozen or more of these."
+text/x-shellscript,72-shell.rules,"Shell script — allowed unconditionally (perm=any), no trust gate."
+text/x-python,71-known-python.rules,Python source — gated by trust=1.
+application/x-bytecode.python,71-known-python.rules,Compiled Python bytecode (.pyc) — gated by trust=1.
+%languages (set),10-languages.rules,"Named set of ~23 script/bytecode MIME types (Perl, PHP, Ruby, Lua, JavaScript, R, Tcl, OCaml, Java, awk, and more) — referenced by 70-trusted-lang.rules and 91-deny-lang.rules."

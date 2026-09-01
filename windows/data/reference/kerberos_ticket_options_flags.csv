@@ -1,0 +1,18 @@
+bit_mask,flag_name,description
+0x80000000,reserved,Reserved; not assigned.
+0x40000000,forwardable,"Requests that the KDC issue a ticket with the FORWARDABLE flag set, allowing it to be forwarded to another host on the client's behalf."
+0x20000000,forwarded,"Indicates that this ticket was forwarded, or that this TGT was used to obtain a forwarded ticket."
+0x10000000,proxiable,"Requests that the KDC issue a ticket with the PROXIABLE flag set, allowing a service to use it to obtain a service ticket on the client's behalf."
+0x08000000,proxy,Indicates that this ticket is a proxy ticket.
+0x04000000,allow-postdate,Requests that the KDC issue a postdated ticket with the MAY-POSTDATE flag set (a ticket usable to later request an actual postdated ticket).
+0x02000000,postdated,"Requests that the KDC issue a postdated ticket, or indicates that a ticket is postdated."
+0x01000000,unused,Not assigned.
+0x00800000,renewable,"Requests that the KDC issue a renewable ticket, allowing it to be renewed instead of a new one requested, up to the ticket's renew-till time."
+0x00020000,cname-in-addl-tkt,"In a TGS-REQ, indicates the second ticket provided is used to encrypt the client name and realm instead of the sub-session key (used for user-to-user authentication)."
+0x00010000,canonicalize,Requests that the KDC canonicalize the client and/or server principal name in the reply.
+0x00008000,request-anonymous,Requests that the ticket returned not reveal the client's true identity.
+0x00000020,disable-transited-check,Requests the KDC not verify the transited field of a TGT against a hierarchy of trusted realms; the application server must then do so instead.
+0x00000010,renewable-ok,Indicates that a renewable ticket will be acceptable if a ticket with the requested life cannot otherwise be provided.
+0x00000008,enc-tkt-in-skey,"Requests that, instead of being encrypted in the target service's key, the ticket be encrypted in the session key of the additional ticket provided (user-to-user authentication)."
+0x00000002,renew,"In a TGS-REQ, requests renewal of a renewable ticket that is about to expire."
+0x00000001,validate,"In a TGS-REQ, requests validation of a postdated ticket whose start time has now arrived."

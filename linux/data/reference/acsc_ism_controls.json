@@ -1,0 +1,30 @@
+[
+  {
+    "control_id": "0582",
+    "title": "Central Logging for OS Events",
+    "levels": "base",
+    "related_ssg_rules": "audit_rules_privileged_commands, audit_rules_session_events_utmp/btmp/wtmp, audit_rules_kernel_module_loading, audit_rules_usergroup_modification_group/gshadow/passwd/shadow/opasswd, audit_rules_login_events_faillock/tallylog/lastlog, audit_rules_time_adjtimex/clock_settime/settimeofday/stime/watch_localtime, audit_rules_execution_semanage/setsebool/restorecon/chcon/setfiles/seunshare, audit_access_failed/success, audit_rules_unsuccessful_file_modification_*, package_audit_installed, auditd_log_format, auditd_local_events, auditd_name_format, auditd_write_logs, auditd_freq",
+    "reference_url": "https://www.cyber.gov.au/ism"
+  },
+  {
+    "control_id": "1546",
+    "title": "Users are authenticated before they are granted access to a system and its resources",
+    "levels": "base",
+    "related_ssg_rules": "accounts_passwords_pam_faillock_deny/deny_root/interval/unlock_time, sudo_require_authentication, sudo_remove_nopasswd, sudo_remove_no_authenticate, sshd_disable_root_login, sshd_set_max_auth_tries, sshd_disable_empty_passwords, no_empty_passwords, require_singleuser_auth, require_emergency_target_auth",
+    "reference_url": "https://www.cyber.gov.au/ism"
+  },
+  {
+    "control_id": "0988",
+    "title": "An accurate time source is established and used consistently across systems to assist with identifying connections between events.",
+    "levels": "base",
+    "related_ssg_rules": "chronyd_configure_pool_and_server, chronyd_or_ntpd_specify_multiple_servers, chronyd_specify_remote_server, package_chrony_installed, service_chronyd_enabled, service_chronyd_or_ntpd_enabled",
+    "reference_url": "https://www.cyber.gov.au/ism"
+  },
+  {
+    "control_id": "1405",
+    "title": "A centralised event logging facility is implemented and event logs are sent to the facility as soon as possible after they occur.",
+    "levels": "base",
+    "related_ssg_rules": "rsyslog_remote_loghost, rsyslog_remote_tls, rsyslog_remote_tls_cacert, rsyslog_nolisten, rsyslog_files_ownership, rsyslog_files_groupownership, rsyslog_files_permissions, rsyslog_cron_logging",
+    "reference_url": "https://www.cyber.gov.au/ism"
+  }
+]

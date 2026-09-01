@@ -1,0 +1,162 @@
+[
+  {
+    "data_model": "Authentication",
+    "dataset": "Authentication",
+    "ta_verified": "Yes",
+    "description": "Tracks authentication attempts and logon/logoff activity -- interactive, network, service, Kerberos, and RDP/smart-card logons.",
+    "key_cim_fields": "action (success|failure), app, dest, src, user, signature, signature_id, authentication_method, duration, reason",
+    "windows_sources": "Security: 4624, 4625, 4648, 4672, 4768, 4769, 4771, 4773-4777 (verified by the real Splunk_TA_windows 11.0.2 package's eventtypes.conf/tags.conf); Audit Network Policy Server, AD FS Credential Validation/Token Issuance, 4678/4679 (this catalogue's own analysis, not in the TA); SmartCard-Audit/Authentication channel"
+  },
+  {
+    "data_model": "Change",
+    "dataset": "Change",
+    "ta_verified": "Yes",
+    "description": "The general Change dataset, used where the real Splunk_TA_windows package tags an event tag=change without a more specific account/audit/endpoint/network sub-tag.",
+    "key_cim_fields": "action, change_type, dest, object, result, status, user",
+    "windows_sources": "Security: 4698, 4700-4702, 4706, 4713, 4744, 4749, 4750, 4759, 4799, 4876, 5461 (Scheduled Task, domain trust, Kerberos policy, and various group-management events the TA tags generically rather than into a specific sub-dataset)"
+  },
+  {
+    "data_model": "Change",
+    "dataset": "Change.Account_Management",
+    "ta_verified": "Yes",
+    "description": "Tracks the create/modify/delete/enable/disable/lock/unlock lifecycle of user, computer, and group accounts.",
+    "key_cim_fields": "action (created|deleted|modified|enabled|disabled), change_type, dest, object, object_category (user|group), src_user, status, user",
+    "windows_sources": "Security: the real TA's explicit \"Change Account\" eventtype (4634, 4703-4705, 4717, 4718, 4720, 4722-4726, 4732, 4738, 4740, 4767, 4781, 4794, 4798, 4800, 4801) plus 4647 (extended here by analogy -- it is the same \"Audit Logoff\" subcategory's sibling event to the TA-tagged 4634); Distribution/Application Group Management, Computer Account Management (this catalogue's own analysis for subcategories the TA does not individually enumerate); RDS local admin/RD Users group membership changes"
+  },
+  {
+    "data_model": "Change",
+    "dataset": "Change.Auditing_Changes",
+    "ta_verified": "Partial",
+    "description": "Tracks changes to the audit policy itself and to authentication/authorization policy configuration.",
+    "key_cim_fields": "action, change_type, dest, object, result, src_user, status, user",
+    "windows_sources": "Security: 104 (System log), 517, 612, 807, 1101, 1102, 1105, 1108, 1101, 4715, 4719, 4739, 4912 (verified by the real TA); Audit Authentication Policy Change and remaining Audit Authorization/Other Policy Change events not individually TA-tagged (this catalogue's own analysis)"
+  },
+  {
+    "data_model": "Change",
+    "dataset": "Change.Endpoint_Changes",
+    "ta_verified": "No",
+    "description": "Tracks broader host security-state changes -- startup, shutdown, and recovery from an audit failure. Not addressed by the real Splunk_TA_windows package at the EventCode level; this catalogue's own analysis.",
+    "key_cim_fields": "action, change_type, dest, object, status, user",
+    "windows_sources": "Security: Audit Security State Change (4608, 4609, 4616, 4621)"
+  },
+  {
+    "data_model": "Change",
+    "dataset": "Change.Network_Changes",
+    "ta_verified": "No",
+    "description": "Tracks changes to host firewall and IPsec configuration -- rule/policy add, modify, delete, and reset-to-default. Not addressed by the real Splunk_TA_windows package at the EventCode level (its firewall eventtypes use \"modify\"/\"configuration\" tags, not the change+network combination the CIM dataset requires); this catalogue's own analysis based on each event's message text.",
+    "key_cim_fields": "action, change_type, dest, dvc, object, rule, status, user",
+    "windows_sources": "Security: Audit MPSSVC Rule-Level Policy Change, Audit Filtering Platform Policy Change; the dedicated Windows Firewall With Advanced Security Firewall/FirewallVerbose/ConnectionSecurity/ConnectionSecurityVerbose channels"
+  },
+  {
+    "data_model": "Endpoint",
+    "dataset": "Endpoint.Processes",
+    "ta_verified": "Yes",
+    "description": "Tracks process creation and termination on the endpoint.",
+    "key_cim_fields": "process, process_name, process_id, process_path, process_hash, parent_process, parent_process_id, dest, user",
+    "windows_sources": "Security: 4673, 4674, 4688, 4689, 4696 (verified by the real TA); Sysmon Event ID 1, 5, 27 (this catalogue's own analysis -- Sysmon isn't covered by Splunk_TA_windows at all)"
+  },
+  {
+    "data_model": "Endpoint",
+    "dataset": "Endpoint.Services",
+    "ta_verified": "Yes",
+    "description": "Tracks Windows service lifecycle -- installed, started, stopped, or failed to start.",
+    "key_cim_fields": "service, service_name, service_hash, status, dest, signature",
+    "windows_sources": "Security/System: 1100, 4697, 5024, 5025, 5030, 5033-5035, 5478, 7036, 7040, 7045 (verified by the real TA); remaining System-log \"Services\" category events not individually TA-tagged (this catalogue's own analysis)"
+  },
+  {
+    "data_model": "Endpoint",
+    "dataset": "Endpoint.Filesystem",
+    "ta_verified": "No",
+    "description": "Tracks file and network-share create/delete/modify/access activity. Not addressed by the real Splunk_TA_windows package at the EventCode level for the Security log; this catalogue's own analysis.",
+    "key_cim_fields": "file_name, file_path, file_hash, action, dest, user",
+    "windows_sources": "Security: Audit File System, Audit File Share, Audit Detailed File Share, removable-media read/write (4656/4663); Sysmon Event ID 2, 11, 15, 23, 26, 28, 29"
+  },
+  {
+    "data_model": "Endpoint",
+    "dataset": "Endpoint.Registry",
+    "ta_verified": "Yes",
+    "description": "Tracks Windows registry key and value create/modify/delete activity.",
+    "key_cim_fields": "registry_key_name, registry_value_name, registry_value_data, action, dest, user",
+    "windows_sources": "Security: 4657, and 4670 when the object is a registry key (verified by the real TA); 5039 and Sysmon Event ID 12, 13, 14 (this catalogue's own analysis)"
+  },
+  {
+    "data_model": "Endpoint",
+    "dataset": "Endpoint.Ports",
+    "ta_verified": "Yes",
+    "description": "Tracks a host beginning (or being permitted) to listen on a network port -- distinct from an actual connection, which belongs to Network_Traffic.",
+    "key_cim_fields": "dest, dest_port, dvc, protocol",
+    "windows_sources": "Security: 861, 4957, 5154, 5158 (verified by the real Splunk_TA_windows 11.0.2 package -- these were originally guessed into Network_Traffic/Change.Network_Changes by this catalogue and corrected once the real TA data was available)"
+  },
+  {
+    "data_model": "Network Traffic",
+    "dataset": "Network_Traffic",
+    "ta_verified": "No",
+    "description": "Tracks network connections and the host firewall/IPsec allow-or-block decision made about them. Not addressed by the real Splunk_TA_windows package at the EventCode level; this catalogue's own analysis.",
+    "key_cim_fields": "action (allowed|blocked|teardown), src, src_port, dest, dest_port, protocol, transport, direction, dvc",
+    "windows_sources": "Security: Audit Filtering Platform Connection/Packet Drop, Audit IPsec Main/Quick/Extended Mode, Audit IPsec Driver; Sysmon Event ID 3 (network connect)"
+  },
+  {
+    "data_model": "Network Sessions",
+    "dataset": "Network_Sessions",
+    "ta_verified": "No",
+    "description": "Tracks the lifecycle of remote-access sessions -- RDP/Terminal Services logon, disconnect, reconnect, and remote-control (shadow) sessions. Not addressed by the real Splunk_TA_windows package (it only renames these channels' sourcetype, without EventCode-level CIM tagging); this catalogue's own analysis, reviewed event by event.",
+    "key_cim_fields": "action, dest, duration, session_id, src, user, vendor_product",
+    "windows_sources": "Terminal Services LocalSessionManager/RemoteConnectionManager/RDPClient/SessionBroker-Client Operational and Admin channels -- session logon/logoff/disconnect/reconnect, connection accepted, remote-control (shadow) session start/stop, session redirection"
+  },
+  {
+    "data_model": "Network Resolution (DNS)",
+    "dataset": "Network_Resolution",
+    "ta_verified": "No",
+    "description": "Tracks DNS query/response and DNS server administrative activity. The real Splunk_TA_windows package does define a Network_Resolution eventtype, but for a different sourcetype (msdns:analytical) not present in this catalogue; this catalogue's own analysis for the sources it does cover.",
+    "key_cim_fields": "query, answer, record_type, message_type, src, dest",
+    "windows_sources": "DNS Server Operational log (zone transfer); Sysmon Event ID 22 (DNS query)"
+  },
+  {
+    "data_model": "Malware",
+    "dataset": "Malware.Malware_Attacks",
+    "ta_verified": "Partial",
+    "description": "Tracks malware/PUA detections and the protective action the antivirus product took (or failed to take) in response.",
+    "key_cim_fields": "action, category, file_name, file_hash, signature, signature_id, dest, product_version, vendor_product",
+    "windows_sources": "Windows Defender Operational log: 1116, 1117 (verified by the real TA); remaining detection/remediation events (1006-1012, 1015, 1118-1128, 1133, 1134, 1160) not individually TA-tagged (this catalogue's own analysis)"
+  },
+  {
+    "data_model": "Malware",
+    "dataset": "Malware.Malware_Operations",
+    "ta_verified": "Partial",
+    "description": "Tracks the antivirus product's own operational lifecycle -- scan start/stop/completion, signature and engine updates, protection enabled/disabled, and product errors.",
+    "key_cim_fields": "action, dest, product_version, signature_version, vendor_product",
+    "windows_sources": "Windows Defender Operational log: 5004, 5007 (verified by the real TA); remaining scan/update lifecycle events (101, 1000-1005, 1013, 1014, 1150, 1151, 2000-2051, 3002, 3007, 5000-5012, 5100, 5101) not individually TA-tagged (this catalogue's own analysis)"
+  },
+  {
+    "data_model": "Updates",
+    "dataset": "Updates",
+    "ta_verified": "No",
+    "description": "Tracks OS and software patch/update installation activity. The real Splunk_TA_windows package does tag Windows Update activity, but via a different sourcetype (WindowsUpdateLog) not present in this catalogue; this catalogue's own analysis for the System-log events it does cover.",
+    "key_cim_fields": "dest, status, package, package_id, vendor_product",
+    "windows_sources": "System log: Windows Update Client / patch and vulnerability management events"
+  },
+  {
+    "data_model": "Certificates",
+    "dataset": "Certificates",
+    "ta_verified": "No",
+    "description": "Tracks certificate lifecycle activity -- issuance, renewal, revocation, export, backup/restore, and client-side certificate store changes. Not addressed by the real Splunk_TA_windows package at all; this catalogue's own analysis.",
+    "key_cim_fields": "dest, ssl_issuer, ssl_subject, ssl_serial, action, status",
+    "windows_sources": "Security: Audit Certification Services, OCSP Responder Service; CertificateServicesClient Lifecycle-System/Lifecycle-User/CredentialRoaming Operational channels"
+  },
+  {
+    "data_model": "Alerts",
+    "dataset": "Alerts",
+    "ta_verified": "No",
+    "description": "Tracks generic alert/notification firings from any monitoring or alerting system -- not addressed by Splunk_TA_windows (a Windows-only add-on); this catalogue's own analysis, first used for Azure Monitor alert firings.",
+    "key_cim_fields": "signature, severity, dest, src, app, vendor_product",
+    "windows_sources": "None from the Windows Event Log catalogue; Azure: Subscription Activity Log's Alert category"
+  },
+  {
+    "data_model": "Data Loss Prevention (DLP)",
+    "dataset": "DLP",
+    "ta_verified": "No",
+    "description": "Tracks data loss prevention policy matches -- sensitive content detected and the action taken (blocked, audited, notified). Not addressed by Splunk_TA_windows (a Windows-only add-on, and DLP is a content-inspection concern, not an event-log one); this catalogue's own analysis, first used for Microsoft Purview DLP policy matches.",
+    "key_cim_fields": "signature, action, dest, src, user, file_name, file_hash, vendor_product",
+    "windows_sources": "None from the Windows Event Log catalogue; Microsoft 365: ComplianceDLPSharePoint, ComplianceDLPExchange, DLPEndpoint"
+  }
+]

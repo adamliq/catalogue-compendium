@@ -1,0 +1,911 @@
+event_id,log,source,category,subcategory,description,sample,reference,how_to_collect,sample_type,mitre_techniques,priority_signal,acsc_ism_control,cis_control,disa_stig_id,nist_800_53_au,field_schema
+1100,audit/USER,sudo (pam_unix),Account Logon,Credential Validation,PAM authentication attempt for a sudo command,"Log Name:      audit/USER
+Source:        sudo (pam_unix)
+Event ID:      1100 (USER_AUTH)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A user's password was checked while starting a sudo session.
+type=USER_AUTH msg=audit(1732200011.221:48812): pid=18432 uid=1000 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:authentication grantors=pam_unix acct=""jsmith"" exe=""/usr/bin/sudo""
+hostname=? addr=? terminal=/dev/pts/3 res=success'",See PAM result codes reference table for the full set of `res=`/failure values.,Credential Validation,illustrative,T1078,,0582; 1546,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer"",""subj"":""string""},""message"":{""op"":""string"",""grantors"":""string"",""acct"":""principal"",""hostname"":""string"",""addr"":""ip"",""terminal"":""path"",""res"":""enum""}}"
+1100,audit/USER,su (pam_unix),Account Logon,Credential Validation,PAM authentication attempt for su failed — wrong password,"Log Name:      audit/USER
+Source:        su (pam_unix)
+Event ID:      1100 (USER_AUTH)
+Level:         Warning
+Host:          db01.prod.example.org
+Description:
+A user's password was checked while starting an su session, and the check failed.
+type=USER_AUTH msg=audit(1732200098.554:48901): pid=20211 uid=1000 auid=1000 ses=14
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:authentication grantors=? acct=""root"" exe=""/usr/bin/su""
+hostname=? addr=? terminal=/dev/pts/1 res=failed'",,Credential Validation,illustrative,T1110,Yes,0582; 1546,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer"",""subj"":""string""},""message"":{""op"":""string"",""acct"":""principal"",""terminal"":""path"",""res"":""enum""}}"
+1101,audit/USER,sshd (pam_unix),Account Logon,Credential Validation,PAM account validation for an SSH session (expiry/lockout checks),"Log Name:      audit/USER
+Source:        sshd (pam_unix)
+Event ID:      1101 (USER_ACCT)
+Level:         Information
+Host:          bastion01.prod.example.org
+Description:
+The account was checked for validity (not expired, not locked) after authentication succeeded.
+type=USER_ACCT msg=audit(1732201200.100:49020): pid=8891 uid=0 auid=1000 ses=88
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:accounting grantors=pam_unix,pam_faillock acct=""mchen"" exe=""/usr/sbin/sshd""
+hostname=203.0.113.44 addr=203.0.113.44 terminal=ssh res=success'",,Credential Validation,illustrative,,,0582; 1546,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer"",""subj"":""string""},""message"":{""op"":""string"",""grantors"":""list<string>"",""acct"":""principal"",""hostname"":""string"",""addr"":""ip"",""terminal"":""string"",""res"":""enum""}}"
+1101,audit/USER,login (pam_faillock),Account Logon,Credential Validation,Account temporarily locked after repeated failed logins (pam_faillock),"Log Name:      audit/USER
+Source:        login (pam_faillock)
+Event ID:      1101 (USER_ACCT)
+Level:         Warning
+Host:          bastion02.prod.example.org
+Description:
+Account validation failed: the account is locked out by pam_faillock after too many
+consecutive failed login attempts.
+type=USER_ACCT msg=audit(1732201355.410:49101): pid=9013 uid=0 auid=4294967295 ses=4294967295
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:accounting grantors=? acct=""rjones"" exe=""/usr/bin/login""
+hostname=? addr=198.51.100.23 terminal=/dev/tty1 res=failed'",faillock --user rjones shows the individual failed attempts that triggered the lock.,Credential Validation,illustrative,T1110,Yes,0582; 1546,,RHEL-09-654250,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""acct"":""principal"",""addr"":""ip"",""terminal"":""path"",""res"":""enum""}}"
+1109,audit/USER,sshd (pam_unix),Account Logon,Credential Validation,PAM error: repeated bad password on an SSH login attempt,"Log Name:      audit/USER
+Source:        sshd (pam_unix)
+Event ID:      1109 (USER_ERR)
+Level:         Warning
+Host:          bastion01.prod.example.org
+Description:
+A PAM module reported an error while processing an authentication request — here,
+an incorrect password.
+type=USER_ERR msg=audit(1732201410.005:49150): pid=8977 uid=0 auid=4294967295 ses=4294967295
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='PAM: bad password attempt for user ""admin"" exe=""/usr/sbin/sshd""
+hostname=192.0.2.15 addr=192.0.2.15 terminal=ssh res=failed'",See PAM result codes reference table.,Credential Validation,illustrative,T1110,Yes,0582; 1546,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""acct"":""principal"",""hostname"":""string"",""addr"":""ip"",""terminal"":""string"",""res"":""enum""}}"
+1103,audit/USER,login (pam_unix),Account Logon,Credential Lifecycle,PAM credentials acquired at the start of a login session,"Log Name:      audit/USER
+Source:        login (pam_unix)
+Event ID:      1103 (CRED_ACQ)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+The credentials associated with the user (group memberships, supplementary
+capabilities) were established for the new session.
+type=CRED_ACQ msg=audit(1732200500.010:48950): pid=15012 uid=0 auid=1000 ses=15
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:setcred grantors=pam_unix acct=""jsmith"" exe=""/usr/bin/login""
+hostname=? addr=? terminal=tty2 res=success'",,Credential Lifecycle,illustrative,,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""grantors"":""string"",""acct"":""principal"",""terminal"":""string"",""res"":""enum""}}"
+1104,audit/USER,login (pam_unix),Account Logon,Credential Lifecycle,PAM credentials disposed of at session logoff,"Log Name:      audit/USER
+Source:        login (pam_unix)
+Event ID:      1104 (CRED_DISP)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+The credentials established at session start were released as the session ended.
+type=CRED_DISP msg=audit(1732204100.010:49900): pid=15012 uid=0 auid=1000 ses=15
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:setcred grantors=pam_unix acct=""jsmith"" exe=""/usr/bin/login""
+hostname=? addr=? terminal=tty2 res=success'",,Credential Lifecycle,illustrative,,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""acct"":""principal"",""terminal"":""string"",""res"":""enum""}}"
+1110,audit/USER,sudo (pam_unix),Account Logon,Credential Lifecycle,sudo's cached authentication timestamp was refreshed instead of re-prompting,"Log Name:      audit/USER
+Source:        sudo (pam_unix)
+Event ID:      1110 (CRED_REFR)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+A user ran a further sudo command inside the timestamp_timeout window, so PAM
+refreshed the existing credential instead of asking for the password again.
+type=CRED_REFR msg=audit(1732200070.900:48830): pid=18500 uid=1000 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:setcred grantors=pam_unix acct=""jsmith"" exe=""/usr/bin/sudo""
+hostname=? addr=? terminal=/dev/pts/3 res=success'",,Credential Lifecycle,illustrative,,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""acct"":""principal"",""terminal"":""path"",""res"":""enum""}}"
+1105,audit/USER,login (pam_unix),Logon/Logoff,Logon,PAM session opened for an interactive console login,"Log Name:      audit/USER
+Source:        login (pam_unix)
+Event ID:      1105 (USER_START)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+A session was opened for a user (the Linux analogue of a Windows logon event).
+type=USER_START msg=audit(1732200500.020:48951): pid=15012 uid=0 auid=1000 ses=15
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:session_open grantors=pam_unix,pam_limits,pam_systemd acct=""jsmith""
+exe=""/usr/bin/login"" hostname=? addr=? terminal=tty2 res=success'",,Logon,illustrative,T1078,,0582,6.3.3.11; 6.3.3.12,RHEL-09-654250; RHEL-09-654255,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""grantors"":""list<string>"",""acct"":""principal"",""terminal"":""string"",""res"":""enum""}}"
+1105,audit/USER,sshd (pam_unix),Logon/Logoff,Logon,PAM session opened for an SSH login,"Log Name:      audit/USER
+Source:        sshd (pam_unix)
+Event ID:      1105 (USER_START)
+Level:         Information
+Host:          bastion01.prod.example.org
+Description:
+A session was opened for a user connecting over SSH.
+type=USER_START msg=audit(1732201200.150:49021): pid=8891 uid=0 auid=1000 ses=88
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:session_open grantors=pam_unix,pam_limits,pam_systemd acct=""mchen""
+exe=""/usr/sbin/sshd"" hostname=203.0.113.44 addr=203.0.113.44 terminal=ssh res=success'",,Logon,illustrative,T1021.004,Yes,0582,6.3.3.11; 6.3.3.12,RHEL-09-654250; RHEL-09-654255,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""grantors"":""list<string>"",""acct"":""principal"",""hostname"":""string"",""addr"":""ip"",""terminal"":""string"",""res"":""enum""}}"
+1106,audit/USER,sshd (pam_unix),Logon/Logoff,Logoff,PAM session closed at the end of an SSH login,"Log Name:      audit/USER
+Source:        sshd (pam_unix)
+Event ID:      1106 (USER_END)
+Level:         Information
+Host:          bastion01.prod.example.org
+Description:
+A previously opened session was closed.
+type=USER_END msg=audit(1732204800.030:50100): pid=8891 uid=0 auid=1000 ses=88
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=PAM:session_close grantors=pam_unix,pam_limits,pam_systemd acct=""mchen""
+exe=""/usr/sbin/sshd"" hostname=203.0.113.44 addr=203.0.113.44 terminal=ssh res=success'",,Logoff,illustrative,,,0582,6.3.3.11; 6.3.3.12,RHEL-09-654250; RHEL-09-654255,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""acct"":""principal"",""hostname"":""string"",""addr"":""ip"",""terminal"":""string"",""res"":""enum""}}"
+1112,audit/USER,login,Logon/Logoff,Logon,User has logged in at a local console (login(1)),"Log Name:      audit/USER
+Source:        login
+Event ID:      1112 (USER_LOGIN)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+login(1) recorded a successful interactive logon.
+type=USER_LOGIN msg=audit(1732200500.040:48952): pid=15012 uid=0 auid=1000 ses=15
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=login id=1000 exe=""/usr/bin/login"" hostname=? addr=? terminal=tty2 res=success'",,Logon,illustrative,T1078,,0582,6.3.3.11; 6.3.3.12,RHEL-09-654250; RHEL-09-654255,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""id"":""integer"",""terminal"":""string"",""res"":""enum""}}"
+1113,audit/USER,login,Logon/Logoff,Logoff,User has logged out at a local console (login(1)),"Log Name:      audit/USER
+Source:        login
+Event ID:      1113 (USER_LOGOUT)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+login(1) recorded a session ending normally.
+type=USER_LOGOUT msg=audit(1732204100.030:49901): pid=15012 uid=0 auid=1000 ses=15
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=logout id=1000 exe=""/usr/bin/login"" hostname=? addr=? terminal=tty2 res=success'",,Logoff,illustrative,,,0582,6.3.3.11; 6.3.3.12,RHEL-09-654250; RHEL-09-654255,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""id"":""integer"",""terminal"":""string"",""res"":""enum""}}"
+1124,audit/USER,sudo (pam_unix),Logon/Logoff,TTY Tracking,Controlling TTY recorded for a sudo session,"Log Name:      audit/USER
+Source:        sudo (pam_unix)
+Event ID:      1124 (USER_TTY)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+The keystrokes/TTY device associated with a privileged session were recorded for
+later replay (e.g. with `aureport --tty`).
+type=USER_TTY msg=audit(1732200011.230:48813): pid=18432 uid=1000 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='tty=/dev/pts/3 data=6C730D0A comm=""sudo""'",`data` is the hex-encoded keystrokes; decode with `aureport --tty` or `ausearch --tty`.,TTY Tracking,illustrative,,,,,,AU-3,"{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""comm"":""string""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""record"":{""tty"":""path"",""data"":""hex""}}"
+1123,audit/USER,sudo,Privilege Use,Command Execution,A user ran a command as root (or another user) via sudo,"Log Name:      audit/USER
+Source:        sudo
+Event ID:      1123 (USER_CMD)
+Level:         Notice
+Host:          db01.prod.example.org
+Description:
+sudo logged the exact command that was authorized and about to be run.
+type=USER_CMD msg=audit(1732200012.500:48814): pid=18432 uid=1000 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='cwd=""/home/jsmith"" cmd=737973746D6374 6C20726573746172742073736864
+terminal=/dev/pts/3 res=success'","cmd= is hex-encoded; `systemctl restart sshd` in this sample decodes to ""systemctl restart sshd"".",Command Execution,illustrative,T1548.003,Yes,0582; 1546,6.3.3.1; 6.3.3.3,RHEL-09-654150,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""cwd"":""path"",""cmd"":""hex"",""terminal"":""path"",""res"":""enum""}}"
+1322,audit/SYSCALL,kernel (capset),Privilege Use,Capability Use,A process explicitly set its capability set via capset(2),"Log Name:      audit/SYSCALL
+Source:        kernel (capset)
+Event ID:      1322 (CAPSET)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A process changed its own effective/permitted/inheritable capability sets — worth
+reviewing whenever the resulting set includes something like CAP_SYS_ADMIN outside
+of a known service's expected startup sequence.
+type=CAPSET msg=audit(1732205000.100:50210): pid=22190 comm=""nginx""
+cap_pi=0 cap_pp=3fffffffff cap_pe=3fffffffff cap_pa=0
+frontier=400000000000",See the Linux capabilities reference table for what each bit in cap_pe/cap_pp/cap_pi means.,Capability Use,illustrative,T1548,,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""comm"":""string""},""record"":{""cap_pi"":""hex"",""cap_pp"":""hex"",""cap_pe"":""hex"",""cap_pa"":""hex"",""frontier"":""hex""}}"
+1114,audit/USER,useradd,Account Management,User Account,A new local user account was created,"Log Name:      audit/USER
+Source:        useradd
+Event ID:      1114 (ADD_USER)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A new user account was added to the local account database.
+type=ADD_USER msg=audit(1732205500.200:50300): pid=25011 uid=0 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=adduser id=1010 exe=""/usr/sbin/useradd"" hostname=? addr=? terminal=/dev/pts/3
+res=success'",,User Account,illustrative,T1136.001,Yes,0582,6.3.3.8,RHEL-09-654220; RHEL-09-654225; RHEL-09-654230; RHEL-09-654235; RHEL-09-654240; RHEL-09-654245,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""id"":""integer"",""terminal"":""path"",""res"":""enum""}}"
+1115,audit/USER,userdel,Account Management,User Account,A local user account was deleted,"Log Name:      audit/USER
+Source:        userdel
+Event ID:      1115 (DEL_USER)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A user account was removed from the local account database.
+type=DEL_USER msg=audit(1732206000.200:50400): pid=25099 uid=0 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=deluser id=1005 exe=""/usr/sbin/userdel"" hostname=? addr=? terminal=/dev/pts/3
+res=success'",,User Account,illustrative,T1531,,0582,6.3.3.8,RHEL-09-654220; RHEL-09-654225; RHEL-09-654230; RHEL-09-654235; RHEL-09-654240; RHEL-09-654245,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""id"":""integer"",""terminal"":""path"",""res"":""enum""}}"
+1125,audit/USER,usermod,Account Management,User Account,A user account's UID was changed,"Log Name:      audit/USER
+Source:        usermod
+Event ID:      1125 (CHUSER_ID)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A user's UID (or GID) was modified after account creation — unusual outside initial
+provisioning, and worth investigating if it targets an existing, in-use account.
+type=CHUSER_ID msg=audit(1732206100.200:50410): pid=25110 uid=0 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=modify-uid id=1010 old-id=1010 exe=""/usr/sbin/usermod"" hostname=? addr=?
+terminal=/dev/pts/3 res=success'",,User Account,illustrative,,,0582,6.3.3.8,RHEL-09-654220; RHEL-09-654225; RHEL-09-654230; RHEL-09-654235; RHEL-09-654240; RHEL-09-654245,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""id"":""integer"",""old_id"":""integer"",""terminal"":""path"",""res"":""enum""}}"
+1116,audit/USER,groupadd,Account Management,Group Management,A new local group was created,"Log Name:      audit/USER
+Source:        groupadd
+Event ID:      1116 (ADD_GROUP)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A new group was added to the local group database.
+type=ADD_GROUP msg=audit(1732206200.200:50420): pid=25130 uid=0 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=add-group id=1010 exe=""/usr/sbin/groupadd"" hostname=? addr=? terminal=/dev/pts/3
+res=success'",,Group Management,illustrative,,,0582,6.3.3.8,RHEL-09-654220; RHEL-09-654225; RHEL-09-654230; RHEL-09-654235; RHEL-09-654240; RHEL-09-654245,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""id"":""integer"",""terminal"":""path"",""res"":""enum""}}"
+1117,audit/USER,groupdel,Account Management,Group Management,A local group was deleted,"Log Name:      audit/USER
+Source:        groupdel
+Event ID:      1117 (DEL_GROUP)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A group was removed from the local group database.
+type=DEL_GROUP msg=audit(1732206300.200:50430): pid=25150 uid=0 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=del-group id=1010 exe=""/usr/sbin/groupdel"" hostname=? addr=? terminal=/dev/pts/3
+res=success'",,Group Management,illustrative,,,0582,6.3.3.8,RHEL-09-654220; RHEL-09-654225; RHEL-09-654230; RHEL-09-654235; RHEL-09-654240; RHEL-09-654245,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""id"":""integer"",""terminal"":""path"",""res"":""enum""}}"
+1132,audit/USER,usermod,Account Management,Group Management,A user was added to a privileged group (e.g. sudo/wheel),"Log Name:      audit/USER
+Source:        usermod
+Event ID:      1132 (GRP_MGMT)
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+A user's group membership was changed — here, added to the `sudo` group, granting
+them the ability to run privileged commands. The single highest-value account-
+management event to alert on in this catalogue.
+type=GRP_MGMT msg=audit(1732206400.200:50440): pid=25170 uid=0 auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+msg='op=add-supplementary-group grp=sudo acct=""rjones"" exe=""/usr/sbin/usermod""
+hostname=? addr=? terminal=/dev/pts/3 res=success'",,Group Management,illustrative,T1098; T1548.003,Yes,0582,6.3.3.8,RHEL-09-654220; RHEL-09-654225; RHEL-09-654230; RHEL-09-654235; RHEL-09-654240; RHEL-09-654245,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""exe"":""path""},""subject"":{""uid"":""integer"",""auid"":""integer"",""ses"":""integer""},""message"":{""op"":""string"",""grp"":""string"",""acct"":""principal"",""terminal"":""path"",""res"":""enum""}}"
+1300,audit/SYSCALL,kernel (execve),Detailed Tracking,Process Execution,A new process was created via execve() (paired with EXECVE/CWD/PROCTITLE/EOE),"Log Name:      audit/SYSCALL
+Source:        kernel (execve)
+Event ID:      1300 (SYSCALL)
+Level:         Information
+Host:          db01.prod.example.org
+Description:
+The kernel-level record of a monitored system call — here, execve(), the Linux
+analogue of Windows Event ID 4688 (process creation). Always emitted together with
+an EXECVE record (arguments), a CWD record, a PROCTITLE record, and an EOE record
+closing the group, all sharing the same audit(...) timestamp:serial pair.
+type=SYSCALL msg=audit(1732207000.300:50600): arch=c000003e syscall=59 success=yes
+exit=0 a0=55a1e2f3c0d0 a1=55a1e2f3c120 a2=55a1e2f3c1a0 a3=0 items=2 ppid=18432
+pid=25400 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts3
+ses=12 comm=""systemctl"" exe=""/usr/bin/systemctl""
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=""exec""","Companion records: EXECVE (arguments), PROCTITLE (raw cmdline), EOE (end marker).",Process Execution,illustrative,T1059,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""ppid"":""integer"",""comm"":""string"",""exe"":""path"",""tty"":""string""},""subject"":{""auid"":""integer"",""uid"":""integer"",""gid"":""integer"",""euid"":""integer"",""suid"":""integer"",""fsuid"":""integer"",""egid"":""integer"",""sgid"":""integer"",""fsgid"":""integer"",""ses"":""integer"",""subj"":""string""},""syscall"":{""arch"":""hex"",""syscall"":""integer"",""success"":""enum"",""exit"":""integer"",""items"":""integer"",""key"":""string""}}"
+1309,audit/SYSCALL,kernel (execve),Detailed Tracking,Process Arguments,The argument list passed to an audited execve() call,"Log Name:      audit/SYSCALL
+Source:        kernel (execve)
+Event ID:      1309 (EXECVE)
+Level:         Information
+Host:          db01.prod.example.org
+Description:
+Companion record to SYSCALL: the argv[] array the process was launched with.
+type=EXECVE msg=audit(1732207000.300:50600): argc=3 a0=""systemctl"" a1=""restart""
+a2=""sshd""",Shares the audit(...) timestamp:serial with its parent SYSCALL record.,Process Arguments,illustrative,T1059,,,,,AU-3,"{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""argc"":""integer"",""a0"":""string"",""a1"":""string"",""a2"":""string""}}"
+1327,audit/SYSCALL,kernel (execve),Detailed Tracking,Process Command Line,"The full raw command line of an audited process, as one string","Log Name:      audit/SYSCALL
+Source:        kernel (execve)
+Event ID:      1327 (PROCTITLE)
+Level:         Information
+Host:          db01.prod.example.org
+Description:
+Companion record to SYSCALL: /proc/pid/cmdline captured at exec time, hex-encoded.
+type=PROCTITLE msg=audit(1732207000.300:50600):
+proctitle=73797374656D6374 6C007265737461727400737368 64","Hex-decodes to ""systemctl restart sshd"" — decode with `ausearch -i` rather than by hand.",Process Command Line,illustrative,T1059,,,,,AU-3,"{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""proctitle"":""hex""}}"
+1320,audit/SYSCALL,kernel (audit),Detailed Tracking,Process Execution,Marks the end of a multi-record audit event,"Log Name:      audit/SYSCALL
+Source:        kernel (audit)
+Event ID:      1320 (EOE)
+Level:         Information
+Host:          db01.prod.example.org
+Description:
+Closes out a group of related records (e.g. SYSCALL+EXECVE+CWD+PROCTITLE) that
+share the same audit(...) timestamp:serial pair — tools like ausearch use this to
+know a logical ""event"" is complete.
+type=EOE msg=audit(1732207000.300:50600):",,Process Execution,illustrative,,,,,,AU-3,"{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{}}"
+1302,audit/SYSCALL,kernel (fs watch),Object Access,File Access (Watch),A file under an audit watch (-w) was read,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Notice
+Host:          db01.prod.example.org
+Description:
+A path matched by an auditctl -w watch rule was accessed — here, a read of
+/etc/shadow outside of any known password-management tool.
+type=PATH msg=audit(1732207500.400:50700): item=0 name=""/etc/shadow"" inode=131099
+dev=fd:01 mode=0100640 ouid=0 ogid=42 rdev=00:00
+objtype=NORMAL key=""sensitive_read""",Paired with a SYSCALL record giving the process (pid/comm/exe) that made the access.,File Access (Watch),illustrative,T1552.001,Yes,0582,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1330,audit/SYSCALL,kernel (module loader),Object Access,Kernel Module,A kernel module was loaded,"Log Name:      audit/SYSCALL
+Source:        kernel (module loader)
+Event ID:      1330 (KERN_MODULE)
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+A kernel module was inserted via init_module()/finit_module() — legitimate for
+hardware/driver support, but also a classic rootkit persistence technique, so
+unexpected modules on a server are worth immediate review.
+type=KERN_MODULE msg=audit(1732208000.500:50800): name=""xt_nat""",Pair with a SYSCALL record (comm/exe/pid) to see which process loaded it.,Kernel Module,illustrative,T1547.006; T1014,Yes,0582,6.3.3.15–6.3.3.19 (group; exact sub-control unverified),,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""name"":""string""}}"
+1305,audit/SYSCALL,auditctl,Policy Change,Audit Configuration,An audit rule was added or removed,"Log Name:      audit/SYSCALL
+Source:        auditctl
+Event ID:      1305 (CONFIG_CHANGE)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+The running audit rule set was changed — a watch, syscall rule, or filter was
+added or removed.
+type=CONFIG_CHANGE msg=audit(1732208200.600:50820): auid=1000 ses=12
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+op=add_rule key=""identity"" list=4 res=1",,Audit Configuration,illustrative,T1562.001,,0582,,,"AU-2, AU-9, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""subject"":{""auid"":""integer"",""ses"":""integer""},""record"":{""op"":""string"",""key"":""string"",""list"":""integer"",""res"":""enum""}}"
+1305,audit/SYSCALL,auditctl,Policy Change,Audit Configuration,Auditing was disabled at the kernel level (auditctl -e 0),"Log Name:      audit/SYSCALL
+Source:        auditctl
+Event ID:      1305 (CONFIG_CHANGE)
+Level:         Critical
+Host:          web01.prod.example.org
+Description:
+The kernel audit subsystem itself was disabled — the direct Linux analogue of
+Windows Event ID 1102 ""The audit log was cleared"". After this point nothing is
+being recorded until it's re-enabled; forward this event off-box immediately.
+type=CONFIG_CHANGE msg=audit(1732208300.700:50830): auid=0 ses=99
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+op=set audit_enabled=0 old=1 auid=0 ses=99 res=1","If this wasn't an authorized maintenance window, treat it as an active incident.",Audit Configuration,illustrative,T1562.001,Yes,0582,,,"AU-2, AU-9, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""subject"":{""auid"":""integer"",""ses"":""integer""},""record"":{""op"":""string"",""audit_enabled"":""enum"",""old"":""enum"",""res"":""enum""}}"
+1127,audit/USER,kernel (init),System,Boot/Shutdown,The system booted,"Log Name:      audit/USER
+Source:        kernel (init)
+Event ID:      1127 (SYSTEM_BOOT)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+Recorded once auditd is up during early boot, confirming when the audit trail for
+this boot cycle began.
+type=SYSTEM_BOOT msg=audit(1732190000.000:1): pid=1 uid=0 auid=4294967295
+subj=kernel msg='comm=""systemd"" res=success'",,Boot/Shutdown,illustrative,,,,,RHEL-09-654195; RHEL-09-654200,"AU-2, AU-8","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer""},""subject"":{""uid"":""integer"",""auid"":""integer""},""message"":{""comm"":""string"",""res"":""enum""}}"
+1128,audit/USER,kernel (init),System,Boot/Shutdown,The system is shutting down,"Log Name:      audit/USER
+Source:        kernel (init)
+Event ID:      1128 (SYSTEM_SHUTDOWN)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+Recorded as systemd tears the system down — the last audit record before the
+trail picks back up at the next SYSTEM_BOOT.
+type=SYSTEM_SHUTDOWN msg=audit(1732290000.000:99999): pid=1 uid=0 auid=4294967295
+subj=kernel msg='comm=""systemd-shutdow"" res=success'",,Boot/Shutdown,illustrative,,,,,RHEL-09-654195; RHEL-09-654200,"AU-2, AU-8","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer""},""subject"":{""uid"":""integer"",""auid"":""integer""},""message"":{""comm"":""string"",""res"":""enum""}}"
+1200,audit/DAEMON,auditd,System,Audit Daemon,The audit daemon started,"Log Name:      audit/DAEMON
+Source:        auditd
+Event ID:      1200 (DAEMON_START)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+auditd itself came up and began writing records to /var/log/audit/audit.log.
+type=DAEMON_START msg=audit(1732190000.100:2): op=start ver=3.1.2
+format=enriched kernel=6.8.0-generic auid=4294967295 pid=612 subj=auditd res=success",,Audit Daemon,illustrative,,,0582,6.3.1,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer""},""record"":{""op"":""string"",""ver"":""string"",""format"":""enum"",""kernel"":""string"",""res"":""enum""}}"
+1201,audit/DAEMON,auditd,System,Audit Daemon,The audit daemon stopped,"Log Name:      audit/DAEMON
+Source:        auditd
+Event ID:      1201 (DAEMON_END)
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+auditd exited — either a clean shutdown/restart, or, if unexpected, a sign the
+audit trail may have gaps. The Linux analogue of the Windows ""Event log service
+was stopped"" condition.
+type=DAEMON_END msg=audit(1732208900.200:50900): op=terminate auid=0 pid=612
+subj=auditd res=success",Cross-check against a planned maintenance window before treating this as benign.,Audit Daemon,illustrative,T1070.002,Yes,0582,6.3.1,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer""},""subject"":{""auid"":""integer""},""record"":{""op"":""string"",""res"":""enum""}}"
+1202,audit/DAEMON,auditd,System,Audit Daemon,The audit daemon aborted startup due to a configuration error,"Log Name:      audit/DAEMON
+Source:        auditd
+Event ID:      1202 (DAEMON_ABORT)
+Level:         Error
+Host:          web01.prod.example.org
+Description:
+auditd failed to start because its configuration (auditd.conf or a rules file)
+could not be parsed — the host is running with no active audit trail until fixed.
+type=DAEMON_ABORT msg=audit(1732190005.000:3): auditd error halt=1 reason=RULE_LOAD
+error_count=1 subj=auditd",Check `journalctl -u auditd` and validate rules with `auditctl -R <file>` before restarting.,Audit Daemon,illustrative,,Yes,0582,6.3.1,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""halt"":""enum"",""reason"":""string"",""error_count"":""integer""}}"
+1203,audit/DAEMON,auditd,System,Audit Daemon,The audit daemon reloaded its configuration,"Log Name:      audit/DAEMON
+Source:        auditd
+Event ID:      1203 (DAEMON_CONFIG)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+auditd re-read auditd.conf (e.g. after `service auditd reload` or a SIGHUP).
+type=DAEMON_CONFIG msg=audit(1732209000.300:50950): op=reload-config auid=0
+subj=auditd res=success",,Audit Daemon,illustrative,,,0582,6.3.1,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""subject"":{""auid"":""integer""},""record"":{""op"":""string"",""res"":""enum""}}"
+1400,audit/MAC,kernel (SELinux),Mandatory Access Control,SELinux AVC,SELinux denied an operation (AVC denial),"Log Name:      audit/MAC
+Source:        kernel (SELinux)
+Event ID:      1400 (AVC)
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+A process was blocked from performing an operation its type enforcement policy
+doesn't allow. Investigate whether this reflects a real intrusion attempt (a
+process operating outside its expected profile) or a legitimate app needing a
+policy update — `audit2allow -w -a` explains which.
+type=AVC msg=audit(1732209500.400:51000): avc:  denied  { write } for  pid=22190
+comm=""httpd"" name=""shadow"" dev=""dm-0"" ino=131099
+scontext=system_u:system_r:httpd_t:s0
+tcontext=system_u:object_r:shadow_t:s0 tclass=file permissive=0",AVC is also the audit type AppArmor denials use — see the AppArmor AVC entry below.,SELinux AVC,illustrative,T1611,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""comm"":""string""},""record"":{""name"":""string"",""dev"":""string"",""ino"":""integer"",""scontext"":""string"",""tcontext"":""string"",""tclass"":""string"",""permissive"":""enum""}}"
+1400,audit/MAC,kernel (AppArmor),Mandatory Access Control,AppArmor AVC,AppArmor denied an operation,"Log Name:      audit/MAC
+Source:        kernel (AppArmor)
+Event ID:      1400 (AVC)
+Level:         Warning
+Host:          bastion01.prod.example.org
+Description:
+AppArmor blocked an operation outside a confined process's profile. AppArmor
+reuses the same AUDIT_AVC (1400) message type as SELinux — the two are told apart
+by the message content (apparmor=""..."" vs avc: denied), not the type code.
+type=AVC msg=audit(1732209600.500:51010): apparmor=""DENIED"" operation=""open""
+profile=""/usr/sbin/nginx"" name=""/etc/shadow"" pid=22301 comm=""nginx""
+requested_mask=""r"" denied_mask=""r"" fsuid=33 ouid=0",aa-status shows loaded profiles and their mode; aa-logprof turns logged denials into profile updates.,AppArmor AVC,illustrative,T1611,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""comm"":""string""},""record"":{""operation"":""string"",""profile"":""path"",""name"":""path"",""requested_mask"":""string"",""denied_mask"":""string"",""fsuid"":""integer"",""ouid"":""integer""}}"
+1403,audit/MAC,semodule,Mandatory Access Control,MAC Policy,The SELinux policy was (re)loaded,"Log Name:      audit/MAC
+Source:        semodule
+Event ID:      1403 (MAC_POLICY_LOAD)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A new or updated SELinux policy was loaded into the kernel, e.g. via `semodule -i`.
+type=MAC_POLICY_LOAD msg=audit(1732209700.600:51020): policy loaded auid=0
+ses=4294967295 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 res=1",,MAC Policy,illustrative,,,0582,6.3.3.14,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""subject"":{""auid"":""integer"",""ses"":""integer"",""subj"":""string""},""record"":{""res"":""enum""}}"
+1404,audit/MAC,setenforce,Mandatory Access Control,MAC Policy,SELinux enforcement mode was changed (enforcing ↔ permissive),"Log Name:      audit/MAC
+Source:        setenforce
+Event ID:      1404 (MAC_STATUS)
+Level:         Critical
+Host:          web01.prod.example.org
+Description:
+SELinux was switched from enforcing to permissive (or vice versa) — while
+permissive, SELinux logs what it *would* have denied but blocks nothing, so this
+is a high-value event to alert on outside a maintenance window.
+type=MAC_STATUS msg=audit(1732209800.700:51030): enforcing=0 old_enforcing=1
+auid=0 ses=12 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 res=1",,MAC Policy,illustrative,T1562.001,Yes,0582,6.3.3.14,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""subject"":{""auid"":""integer"",""ses"":""integer"",""subj"":""string""},""record"":{""enforcing"":""enum"",""old_enforcing"":""enum"",""res"":""enum""}}"
+1325,audit/SYSCALL,kernel (netfilter),Network,Netfilter Configuration,A netfilter (nftables/iptables) table was registered or replaced,"Log Name:      audit/SYSCALL
+Source:        kernel (netfilter)
+Event ID:      1325 (NETFILTER_CFG)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+The active firewall ruleset changed — a full table load/replace, e.g. from
+`nft -f /etc/nftables.conf` or `iptables-restore`.
+type=NETFILTER_CFG msg=audit(1732209900.800:51040): table=filter family=2
+entries=48 op=register pid=910 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+comm=""nft""",,Netfilter Configuration,illustrative,T1562.004,Yes,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""comm"":""string""},""record"":{""table"":""string"",""family"":""integer"",""entries"":""integer"",""op"":""enum""}}"
+1324,audit/SYSCALL,kernel (netfilter),Network,Netfilter Packet Log,A packet matched a logging firewall rule,"Log Name:      audit/SYSCALL
+Source:        kernel (netfilter)
+Event ID:      1324 (NETFILTER_PKT)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+An individual packet was logged by a rule with the AUDIT (or nft `log`) target —
+the Linux analogue of Windows Filtering Platform event 5157 ""connection blocked"".
+type=NETFILTER_PKT msg=audit(1732210000.900:51050): mark=0 saddr=203.0.113.44
+daddr=10.20.30.5 proto=6 sport=51422 dport=22 action=drop",,Netfilter Packet Log,illustrative,,,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""saddr"":""ip"",""daddr"":""ip"",""proto"":""integer"",""sport"":""integer"",""dport"":""integer"",""action"":""enum""}}"
+11,ssh/protocol,sshd,Logon/Logoff,SSH Session Disconnect,Client-initiated disconnect after a normal session,"Log Name:      ssh/protocol
+Source:        sshd
+Event ID:      11 (SSH_DISCONNECT_BY_APPLICATION)
+Level:         Information
+Host:          bastion01.prod.example.org
+Description:
+The client or server cleanly ended the SSH session — by far the most common
+disconnect reason, logged with the numeric code straight from the SSH wire
+protocol (RFC 4253).
+Received disconnect from 203.0.113.44 port 54211:11: disconnected by user",See the SSH disconnect reason codes reference table for the full set of 15 codes.,SSH Session Disconnect,illustrative,,,,,,"AU-2, AU-3","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""remote_addr"":""ip"",""remote_port"":""integer"",""reason_code"":""integer""}}"
+2,ssh/protocol,sshd,Logon/Logoff,SSH Session Disconnect,Malformed or out-of-sequence SSH packet received,"Log Name:      ssh/protocol
+Source:        sshd
+Event ID:      2 (SSH_DISCONNECT_PROTOCOL_ERROR)
+Level:         Warning
+Host:          bastion01.prod.example.org
+Description:
+sshd rejected the connection because the peer sent an invalid or out-of-order
+protocol message — normal for network scanners probing port 22, unusual from a
+real SSH client.
+Received disconnect from 198.51.100.23 port 41190:2: Too many authentication failures",,SSH Session Disconnect,illustrative,T1110,Yes,,,,"AU-2, AU-3","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""remote_addr"":""ip"",""remote_port"":""integer"",""reason_code"":""integer""}}"
+14,ssh/protocol,sshd,Logon/Logoff,SSH Session Disconnect,All configured authentication methods were exhausted,"Log Name:      ssh/protocol
+Source:        sshd
+Event ID:      14 (SSH_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE)
+Level:         Warning
+Host:          bastion01.prod.example.org
+Description:
+The client tried every authentication method sshd offered (e.g. publickey, then
+password) without success — a classic brute-force / credential-stuffing signature
+when it recurs rapidly from the same source.
+Received disconnect from 192.0.2.15 port 33210:14: No more authentication methods
+available",Correlate with repeated USER_AUTH failures from the same addr= for the same window.,SSH Session Disconnect,illustrative,T1110; T1078,Yes,,,,"AU-2, AU-3","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""remote_addr"":""ip"",""remote_port"":""integer"",""reason_code"":""integer""}}"
+10,ssh/protocol,sshd,Logon/Logoff,SSH Session Disconnect,The SSH connection was lost at the network level,"Log Name:      ssh/protocol
+Source:        sshd
+Event ID:      10 (SSH_DISCONNECT_CONNECTION_LOST)
+Level:         Information
+Host:          bastion02.prod.example.org
+Description:
+The TCP connection dropped without a clean SSH-level close — a flaky network path,
+a client that crashed, or a firewall/NAT timeout, rather than either side
+intentionally ending the session.
+Connection reset by 10.20.30.5 port 60112 [preauth]",,SSH Session Disconnect,illustrative,,,,,,"AU-2, AU-3","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""remote_addr"":""ip"",""remote_port"":""integer"",""reason_code"":""integer""}}"
+7d4958e8-42da-4a75-8f6c-1cdc7b36dcc5,systemd/journal,systemd,Service Management,Unit Lifecycle,A unit's start job has begun execution,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      7d4958e8-42da-4a75-8f6c-1cdc7b36dcc5
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+systemd began starting a unit — the first half of a start job, paired with either
+a ""succeeded"" or ""failed"" message once the job completes.
+MESSAGE_ID=7d4958e842da4a758f6c1cdc7b36dcc5
+UNIT=nginx.service
+JOB_ID=482
+JOB_TYPE=start
+_COMM=systemd
+_PID=1",,Unit Lifecycle,illustrative,,,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string"",""job_id"":""integer"",""job_type"":""enum""}}"
+39f53479-d3a0-45ac-8e11-786248231fbf,systemd/journal,systemd,Service Management,Unit Lifecycle,A unit's start job has finished successfully,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      39f53479-d3a0-45ac-8e11-786248231fbf
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+The unit reached the ""active"" state cleanly.
+MESSAGE_ID=39f53479d3a045ac8e11786248231fbf
+UNIT=nginx.service
+JOB_ID=482
+JOB_TYPE=start
+JOB_RESULT=done
+_COMM=systemd
+_PID=1",,Unit Lifecycle,illustrative,,,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string"",""job_id"":""integer"",""job_type"":""enum"",""job_result"":""enum""}}"
+be02cf68-55d2-428b-a40d-f7e9d022f03d,systemd/journal,systemd,Service Management,Unit Failure,A unit's start job has failed,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      be02cf68-55d2-428b-a40d-f7e9d022f03d
+Level:         Error
+Host:          db01.prod.example.org
+Description:
+A unit failed to reach the active state — the flagship ""service failed to start""
+event, worth alerting on for anything security- or availability-critical
+(sshd, auditd, the firewall service, etc.).
+MESSAGE_ID=be02cf6855d2428ba40df7e9d022f03d
+UNIT=postgresql.service
+JOB_ID=610
+JOB_TYPE=start
+JOB_RESULT=failed
+_COMM=systemd
+_PID=1",`systemctl status <unit>` and `journalctl -u <unit>` for the underlying failure reason.,Unit Failure,illustrative,,Yes,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string"",""job_id"":""integer"",""job_type"":""enum"",""job_result"":""enum""}}"
+de5b426a-63be-47a7-b6ac-3eaac82e2f6f,systemd/journal,systemd,Service Management,Unit Lifecycle,A unit's stop job has begun execution,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      de5b426a-63be-47a7-b6ac-3eaac82e2f6f
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+systemd began stopping a unit, e.g. from `systemctl stop`, a dependency change,
+or a shutdown in progress.
+MESSAGE_ID=de5b426a63be47a7b6ac3eaac82e2f6f
+UNIT=nginx.service
+JOB_ID=483
+JOB_TYPE=stop
+_COMM=systemd
+_PID=1",,Unit Lifecycle,illustrative,,,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string"",""job_id"":""integer"",""job_type"":""enum""}}"
+9d1aaa27-d601-40bd-9636-5438aad20286,systemd/journal,systemd,Service Management,Unit Lifecycle,A unit's stop job has finished,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      9d1aaa27-d601-40bd-9636-5438aad20286
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+The unit reached the ""inactive"" (or ""failed"") state after being stopped.
+MESSAGE_ID=9d1aaa27d60140bd96365438aad20286
+UNIT=nginx.service
+JOB_ID=483
+JOB_TYPE=stop
+JOB_RESULT=done
+_COMM=systemd
+_PID=1",,Unit Lifecycle,illustrative,,,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string"",""job_id"":""integer"",""job_type"":""enum"",""job_result"":""enum""}}"
+d9b373ed-55a6-4feb-8242-e02dbe79a49c,systemd/journal,systemd,Service Management,Unit Failure,A unit has entered the failed state,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      d9b373ed-55a6-4feb-8242-e02dbe79a49c
+Level:         Error
+Host:          db01.prod.example.org
+Description:
+A running unit exited unexpectedly (non-zero exit code, a crash, or a failed
+health check) rather than being asked to stop — distinct from a start job simply
+never succeeding.
+MESSAGE_ID=d9b373ed55a64feb8242e02dbe79a49c
+UNIT=postgresql.service
+_COMM=systemd
+_PID=1",,Unit Failure,illustrative,,Yes,,,,"AU-2, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string""}}"
+fe6faa94-e777-4663-a0da-52717891d8ef,systemd/journal,systemd,Service Management,Resource Protection,A process was killed by the OOM killer,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      fe6faa94-e777-4663-a0da-52717891d8ef
+Level:         Warning
+Host:          db01.prod.example.org
+Description:
+A process belonging to a unit was killed under memory pressure — by the classic
+in-kernel OOM killer or by systemd-oomd — and systemd correlated the kill back to
+the owning unit for this journal message.
+MESSAGE_ID=fe6faa94e7774663a0da52717891d8ef
+UNIT=postgresql.service
+_COMM=systemd
+_PID=1",Follow up with `dmesg -T | grep -i 'killed process'` for the memory numbers at the time of the kill.,Resource Protection,illustrative,,,,,,AU-2,"{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string""}}"
+b07a249c-d024-414a-82dd-00cd181378ff,systemd/journal,systemd,System,Boot/Shutdown,System start-up is now complete,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      b07a249c-d024-414a-82dd-00cd181378ff
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+systemd finished bringing the system to its target run state — the last ""boot""
+milestone, useful for measuring boot time and confirming a clean start.
+MESSAGE_ID=b07a249cd024414a82dd00cd181378ff
+_COMM=systemd
+_PID=1",,Boot/Shutdown,illustrative,,,,,RHEL-09-654195; RHEL-09-654200,"AU-2, AU-8","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{}}"
+98268866-d1d5-4a49-9c4e-98921d93bc40,systemd/journal,systemd,System,Boot/Shutdown,System shutdown has been initiated,"Log Name:      systemd/journal
+Source:        systemd
+Event ID:      98268866-d1d5-4a49-9c4e-98921d93bc40
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A shutdown/reboot/halt was requested and systemd began tearing units down.
+MESSAGE_ID=98268866d1d54a499c4e98921d93bc40
+_COMM=systemd
+_PID=1",,Boot/Shutdown,illustrative,,,,,RHEL-09-654195; RHEL-09-654200,"AU-2, AU-8","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{}}"
+8d45620c-1a43-48db-b174-10da57c60c66,systemd/journal,systemd-logind,Logon/Logoff,Session Management,A new login session was created,"Log Name:      systemd/journal
+Source:        systemd-logind
+Event ID:      8d45620c-1a43-48db-b174-10da57c60c66
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+systemd-logind registered a new session — for any kind of login (console, SSH,
+graphical) once the PAM session hook fires.
+MESSAGE_ID=8d45620c1a4348dbb17410da57c60c66
+SESSION_ID=15
+USER_ID=jsmith
+LEADER=15012
+_COMM=systemd-logind",loginctl show-session <id> for the full session class/type/state detail.,Session Management,illustrative,T1078,,0582,6.3.3.11; 6.3.3.12,RHEL-09-654250; RHEL-09-654255,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""session_id"":""integer"",""user_id"":""principal"",""leader"":""integer""}}"
+33549394-24b4-456d-9802-ca8333ed424a,systemd/journal,systemd-logind,Logon/Logoff,Session Management,A login session was terminated,"Log Name:      systemd/journal
+Source:        systemd-logind
+Event ID:      33549394-24b4-456d-9802-ca8333ed424a
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+systemd-logind cleaned up a session after the owning process exited.
+MESSAGE_ID=3354939424b4456d9802ca8333ed424a
+SESSION_ID=15
+USER_ID=jsmith
+_COMM=systemd-logind",,Session Management,illustrative,,,0582,6.3.3.11; 6.3.3.12,RHEL-09-654250; RHEL-09-654255,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""session_id"":""integer"",""user_id"":""principal""}}"
+c7a78707-9b35-4eaa-a9e7-7b371893cd27,systemd/journal,systemd-timedated,System,Time Change,The system clock was changed,"Log Name:      systemd/journal
+Source:        systemd-timedated
+Event ID:      c7a78707-9b35-4eaa-a9e7-7b371893cd27
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+The wall clock stepped — manually (date/timedatectl set-time), or via an NTP step
+correction. A meaningful backward jump right after other suspicious activity is a
+classic log-timeline-obfuscation signal, the Linux analogue of Windows Event ID
+4616 ""The system time was changed"".
+MESSAGE_ID=c7a787079b354eaaa9e77b371893cd27
+_COMM=systemd-timedated",Pair with an audit watch on /etc/adjtime and /etc/localtime to catch the configuration side too.,Time Change,illustrative,,Yes,0988,6.3.3.4,,"AU-2, AU-8","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{}}"
+f77379a8-490b-408b-be5f-6940505a777b,systemd/journal,systemd-journald,System,Journal,The journal service started,"Log Name:      systemd/journal
+Source:        systemd-journald
+Event ID:      f77379a8-490b-408b-be5f-6940505a777b
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+systemd-journald came up and began collecting log data — the Linux analogue of
+the Windows ""Event log service was started"" condition.
+MESSAGE_ID=f77379a8490b408bbe5f6940505a777b
+_COMM=systemd-journald
+_PID=308",,Journal,illustrative,,,1405,,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer""},""record"":{}}"
+d93fb3c9-c24d-451a-97ce-a615ce59c00b,systemd/journal,systemd-journald,System,Journal,The journal service stopped,"Log Name:      systemd/journal
+Source:        systemd-journald
+Event ID:      d93fb3c9-c24d-451a-97ce-a615ce59c00b
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+systemd-journald exited — normal during a controlled shutdown/restart, but if it
+happens mid-session it means logging has stopped on this host until it restarts.
+MESSAGE_ID=d93fb3c9c24d451a97cea615ce59c00b
+_COMM=systemd-journald
+_PID=308",,Journal,illustrative,T1070.002,Yes,1405,,,"AU-2, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer""},""record"":{}}"
+a596d6fe-7bfa-4994-828e-72309e95d61e,systemd/journal,systemd-journald,System,Journal,Log messages from a service were suppressed by rate limiting,"Log Name:      systemd/journal
+Source:        systemd-journald
+Event ID:      a596d6fe-7bfa-4994-828e-72309e95d61e
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A unit logged faster than journald's RateLimitIntervalSec=/RateLimitBurst=
+threshold, so some of its messages were dropped — worth widening the rate limit
+(or setting it to 0) for any unit whose every line matters for audit purposes.
+MESSAGE_ID=a596d6fe7bfa4994828e72309e95d61e
+UNIT=sshd.service
+NUMBER_OF_MESSAGES_SUPPRESSED=214
+_COMM=systemd-journald",,Journal,illustrative,,,1405,,,"AU-4, AU-9","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""guid"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""unit"":""string"",""number_of_messages_suppressed"":""integer""}}"
+1300,audit/SYSCALL,kernel (unlink/rename),Object Access,File Deletion,A file was deleted or renamed by an interactive user,"Log Name:      audit/SYSCALL
+Source:        kernel (unlink/rename)
+Event ID:      1300 (SYSCALL)
+Level:         Notice
+Host:          db01.prod.example.org
+Description:
+A monitored deletion/rename syscall (unlink, unlinkat, rename, renameat,
+renameat2, or rmdir) completed — useful for spotting anti-forensic cleanup,
+ransomware, or configuration replacement, not just routine housekeeping.
+type=SYSCALL msg=audit(1732211000.100:51100): arch=c000003e syscall=87
+success=yes exit=0 items=1 ppid=1200 pid=25600 auid=1000 uid=1000 gid=1000
+euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=pts3
+ses=12 comm=""rm"" exe=""/usr/bin/rm""
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=""file_delete""",See auditd_rules.csv rows 12-01..12-04 for the exact CIS/canonical and broader rule forms.,File Deletion,illustrative,T1070.004,,,6.3.3.13,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""ppid"":""integer"",""comm"":""string"",""exe"":""path"",""tty"":""string""},""subject"":{""auid"":""integer"",""uid"":""integer"",""gid"":""integer"",""euid"":""integer"",""ses"":""integer"",""subj"":""string""},""syscall"":{""arch"":""hex"",""syscall"":""integer"",""success"":""enum"",""exit"":""integer"",""items"":""integer"",""key"":""string""}}"
+1300,audit/SYSCALL,kernel (chmod/chown),Policy Change,DAC Permission Change,A file's permission bits or ownership were changed,"Log Name:      audit/SYSCALL
+Source:        kernel (chmod/chown)
+Event ID:      1300 (SYSCALL)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A monitored discretionary-access-control syscall (chmod/fchmod/fchmodat or
+chown/fchown/lchown/fchownat) completed — e.g. someone widened a file's
+permissions or handed ownership to a different account.
+type=SYSCALL msg=audit(1732211100.200:51150): arch=c000003e syscall=90
+success=yes exit=0 items=1 ppid=1200 pid=25700 auid=1000 uid=0 gid=0
+euid=0 tty=pts3 ses=12 comm=""chmod"" exe=""/usr/bin/chmod""
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=""permissions""",See auditd_rules.csv rows 13-01..13-08 for the chmod vs. chown rule variants (keys permissions/ownership/perm_mod).,DAC Permission Change,illustrative,T1222.002,,,6.3.3.9,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""ppid"":""integer"",""comm"":""string"",""exe"":""path""},""subject"":{""auid"":""integer"",""uid"":""integer"",""gid"":""integer"",""euid"":""integer"",""ses"":""integer"",""subj"":""string""},""syscall"":{""arch"":""hex"",""syscall"":""integer"",""success"":""enum"",""exit"":""integer"",""items"":""integer"",""key"":""string""}}"
+1300,audit/SYSCALL,kernel (mount),System,Filesystem Mounts,A filesystem was mounted or unmounted,"Log Name:      audit/SYSCALL
+Source:        kernel (mount)
+Event ID:      1300 (SYSCALL)
+Level:         Notice
+Host:          db01.prod.example.org
+Description:
+A mount(2) or umount2(2) syscall completed for an interactive user —
+routine for legitimate storage administration, but also how removable
+media gets attached and how a container escape can remount the host
+filesystem read-write.
+type=SYSCALL msg=audit(1732211200.300:51200): arch=c000003e syscall=165
+success=yes exit=0 items=2 ppid=1200 pid=25800 auid=1000 uid=0 gid=0
+euid=0 tty=pts3 ses=12 comm=""mount"" exe=""/usr/bin/mount""
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=""mounts""",See auditd_rules.csv rows 24-01..24-06.,Filesystem Mounts,illustrative,,,,6.3.3.10,RHEL-09-654180,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""ppid"":""integer"",""comm"":""string"",""exe"":""path""},""subject"":{""auid"":""integer"",""uid"":""integer"",""gid"":""integer"",""euid"":""integer"",""ses"":""integer"",""subj"":""string""},""syscall"":{""arch"":""hex"",""syscall"":""integer"",""success"":""enum"",""exit"":""integer"",""items"":""integer"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),Object Access,Removable Media,A removable media mount point was accessed,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A path under a removable-media mount point (/media or /run/media) was
+written to — relevant for both data-exfiltration and malware-introduction
+detection on workstations where USB storage is permitted.
+type=PATH msg=audit(1732211300.400:51250): item=0 name=""/media/usb0/export.csv""
+inode=88231 dev=sdb1 mode=0100644 ouid=1000 ogid=1000 rdev=00:00
+objtype=NORMAL key=""removable_media""","See auditd_rules.csv rows 25-01, 25-02.",Removable Media,illustrative,T1052.001,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1300,audit/SYSCALL,kernel (xattr),Object Access,Extended Attributes,An extended attribute was set or removed on a file,"Log Name:      audit/SYSCALL
+Source:        kernel (xattr)
+Event ID:      1300 (SYSCALL)
+Level:         Notice
+Host:          web01.prod.example.org
+Description:
+A setxattr/removexattr-family syscall completed — the mechanism behind
+SELinux label changes, POSIX ACLs, and file capabilities, so also how an
+attacker can quietly relabel a file to escape confinement or grant a
+binary elevated capabilities without going through setcap's own logging.
+type=SYSCALL msg=audit(1732211400.500:51300): arch=c000003e syscall=188
+success=yes exit=0 items=1 ppid=1200 pid=25900 auid=1000 uid=0 gid=0
+euid=0 tty=pts3 ses=12 comm=""chcon"" exe=""/usr/bin/chcon""
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=""xattr""",See auditd_rules.csv rows 14-01..14-05.,Extended Attributes,illustrative,T1222.002,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""ppid"":""integer"",""comm"":""string"",""exe"":""path""},""subject"":{""auid"":""integer"",""uid"":""integer"",""gid"":""integer"",""euid"":""integer"",""ses"":""integer"",""subj"":""string""},""syscall"":{""arch"":""hex"",""syscall"":""integer"",""success"":""enum"",""exit"":""integer"",""items"":""integer"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,Scheduled Tasks,A cron configuration file or directory was modified,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Warning
+Host:          db01.prod.example.org
+Description:
+A path under /etc/crontab, /etc/cron.d/, /etc/cron.{hourly,daily,weekly,
+monthly}/, or /var/spool/cron/ was written to — cron is one of the most
+common persistence mechanisms on Linux, so this is worth reviewing every
+time outside a known change window.
+type=PATH msg=audit(1732211500.600:51350): item=0 name=""/etc/cron.d/backup-sync""
+inode=141022 dev=fd:01 mode=0100644 ouid=0 ogid=0 rdev=00:00
+objtype=CREATE key=""scheduled_tasks""",See auditd_rules.csv rows 26-01..26-07.,Scheduled Tasks,illustrative,T1053.003,Yes,,,RHEL-09-654097,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,Dynamic Linker Manipulation,The dynamic linker preload/config file was modified,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Critical
+Host:          web01.prod.example.org
+Description:
+/etc/ld.so.preload, /etc/ld.so.conf, or /etc/ld.so.conf.d/ was written to.
+ld.so.preload in particular forces every dynamically-linked process on the
+system to load an attacker-chosen shared library first — a classic
+userland-rootkit and credential-interception technique. Outside a known
+package-manager transaction, treat this as an active incident.
+type=PATH msg=audit(1732211600.700:51400): item=0 name=""/etc/ld.so.preload""
+inode=52011 dev=fd:01 mode=0100644 ouid=0 ogid=0 rdev=00:00
+objtype=NORMAL key=""library_injection""",See auditd_rules.csv rows 30-01..30-03.,Dynamic Linker Manipulation,illustrative,T1574.006,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,Package Management,A package manager binary was executed,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+rpm, dnf, or yum was executed — the audit trail for what software was
+installed, updated, or removed and by whom, complementing (not
+replacing) the package manager's own transaction history in
+/var/log/dnf.log.
+type=PATH msg=audit(1732211700.800:51450): item=0 name=""/usr/bin/dnf""
+inode=98123 dev=fd:01 mode=0100755 ouid=0 ogid=0 rdev=00:00
+objtype=NORMAL key=""software_install""",See auditd_rules.csv rows 31-01..31-05.,Package Management,illustrative,,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,DNS Configuration,A DNS or name-resolution configuration file was modified,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+/etc/resolv.conf, /etc/hosts, or /etc/nsswitch.conf was written to —
+any of these can silently redirect where a hostname actually resolves
+to, which is how a compromised host is repointed at an
+attacker-controlled server without touching the application itself.
+type=PATH msg=audit(1732211800.900:51500): item=0 name=""/etc/resolv.conf""
+inode=52033 dev=fd:01 mode=0100644 ouid=0 ogid=0 rdev=00:00
+objtype=NORMAL key=""dns_config""",See auditd_rules.csv rows 48-01..48-03.,DNS Configuration,illustrative,,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,SSH Host Keys,An SSH host private key was modified,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Critical
+Host:          bastion01.prod.example.org
+Description:
+One of /etc/ssh/ssh_host_{rsa,ecdsa,ed25519}_key was written to. A host
+key is what every client's known_hosts entry is pinned against — a
+replaced host key is either routine key rotation or the setup step for
+an SSH man-in-the-middle, and the two look identical from this event
+alone, so correlate with a known maintenance window before assuming
+either.
+type=PATH msg=audit(1732211900.100:51550): item=0 name=""/etc/ssh/ssh_host_ed25519_key""
+inode=52055 dev=fd:01 mode=0100600 ouid=0 ogid=0 rdev=00:00
+objtype=NORMAL key=""ssh_host_keys""",See auditd_rules.csv rows 50-01..50-03.,SSH Host Keys,illustrative,T1557,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,PKI / Trusted Certificates,The system trust store was modified,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Critical
+Host:          web01.prod.example.org
+Description:
+A path under /etc/pki/ca-trust/ (or its source/anchors/ subdirectory)
+was written to — this is exactly how a rogue CA certificate gets
+installed so a TLS-intercepting proxy can transparently decrypt traffic
+the host believes is trusted end-to-end.
+type=PATH msg=audit(1732212000.200:51600): item=0 name=""/etc/pki/ca-trust/source/anchors/corp-proxy-ca.pem""
+inode=52077 dev=fd:01 mode=0100644 ouid=0 ogid=0 rdev=00:00
+objtype=CREATE key=""trusted_certificates""",See auditd_rules.csv rows 49-01..49-03.,PKI / Trusted Certificates,illustrative,T1553.004,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,Container Administration,A container engine binary was executed,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Information
+Host:          web01.prod.example.org
+Description:
+docker or podman was executed — the container equivalent of the
+""privileged command execution"" objective, since a `docker run
+--privileged` or a bind-mount of the Docker socket is one of the more
+direct routes from a compromised container to full host control.
+type=PATH msg=audit(1732212100.300:51650): item=0 name=""/usr/bin/docker""
+inode=98144 dev=fd:01 mode=0100755 ouid=0 ogid=0 rdev=00:00
+objtype=NORMAL key=""container_admin""","See auditd_rules.csv rows 52-01..52-03, 53-01, 53-02.",Container Administration,illustrative,T1609,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),System,Identity Provider Configuration,A Kerberos or SSSD identity-provider configuration file was modified,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Warning
+Host:          db01.prod.example.org
+Description:
+/etc/krb5.conf or /etc/sssd/sssd.conf was written to — either can
+repoint how this host authenticates users against Active Directory/IPA
+(e.g. to a rogue KDC or LDAP endpoint), so treat a change outside
+planned domain-join/reconfiguration work as high-signal.
+type=PATH msg=audit(1732212200.400:51700): item=0 name=""/etc/sssd/sssd.conf""
+inode=52099 dev=fd:01 mode=0100600 ouid=0 ogid=0 rdev=00:00
+objtype=NORMAL key=""identity_provider""","See auditd_rules.csv rows 79-01, 79-02, 80-01, 80-02.",Identity Provider Configuration,illustrative,T1556,,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"
+1300,audit/SYSCALL,kernel (ptrace),Privilege Use,Process Injection,A process attached to and traced another process via ptrace(),"Log Name:      audit/SYSCALL
+Source:        kernel (ptrace)
+Event ID:      1300 (SYSCALL)
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+ptrace(2) is the underlying primitive for both legitimate debuggers
+(gdb, strace) and process-injection techniques (writing shellcode into
+another process's memory, dumping credentials from a running process).
+Expect frequent hits on a developer workstation; unusual on a
+production server.
+type=SYSCALL msg=audit(1732212300.500:51750): arch=c000003e syscall=101
+success=yes exit=0 items=0 ppid=1200 pid=26000 auid=1000 uid=1000 gid=1000
+euid=1000 tty=pts3 ses=12 comm=""gdb"" exe=""/usr/bin/gdb""
+subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=""process_injection""","See auditd_rules.csv rows 40-01, 40-02.",Process Injection,illustrative,T1055.008,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""ppid"":""integer"",""comm"":""string"",""exe"":""path""},""subject"":{""auid"":""integer"",""uid"":""integer"",""gid"":""integer"",""euid"":""integer"",""ses"":""integer"",""subj"":""string""},""syscall"":{""arch"":""hex"",""syscall"":""integer"",""success"":""enum"",""exit"":""integer"",""items"":""integer"",""key"":""string""}}"
+1300,audit/SYSCALL,kernel (namespace),Privilege Use,Namespace Manipulation,A process created or joined a Linux namespace,"Log Name:      audit/SYSCALL
+Source:        kernel (namespace)
+Event ID:      1300 (SYSCALL)
+Level:         Warning
+Host:          web01.prod.example.org
+Description:
+unshare(2)/setns(2) create or join the PID/network/mount/user
+namespaces containers are built from — legitimate for container
+tooling, but also how a process on the host can step into (or a
+process in a container can step out of) a namespace boundary, which
+is a step in most container-escape techniques.
+type=SYSCALL msg=audit(1732212400.600:51800): arch=c000003e syscall=272
+success=yes exit=0 items=0 ppid=1 pid=26100 auid=4294967295 uid=0 gid=0
+euid=0 comm=""runc"" exe=""/usr/bin/runc""
+subj=system_u:system_r:container_runtime_t:s0 key=""namespace""",See auditd_rules.csv row 42-01.,Namespace Manipulation,illustrative,T1611,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""process"":{""pid"":""integer"",""ppid"":""integer"",""comm"":""string"",""exe"":""path""},""subject"":{""auid"":""integer"",""uid"":""integer"",""gid"":""integer"",""euid"":""integer"",""subj"":""string""},""syscall"":{""arch"":""hex"",""syscall"":""integer"",""success"":""enum"",""exit"":""integer"",""items"":""integer"",""key"":""string""}}"
+1302,audit/SYSCALL,kernel (fs watch),Object Access,Anti-Forensics,A secure-deletion utility was executed,"Log Name:      audit/SYSCALL
+Source:        kernel (fs watch)
+Event ID:      1302 (PATH)
+Level:         Warning
+Host:          db01.prod.example.org
+Description:
+shred or truncate was executed. Both have legitimate uses (securely
+wiping decommissioned disks, truncating log files as part of rotation)
+but are also exactly the tools used to destroy evidence after other
+malicious activity, so context (which file, which user, what else
+happened in the same session) matters more than the event alone.
+type=PATH msg=audit(1732212500.700:51850): item=0 name=""/usr/bin/shred""
+inode=98166 dev=fd:01 mode=0100755 ouid=0 ogid=0 rdev=00:00
+objtype=NORMAL key=""anti_forensics""","See auditd_rules.csv rows 36-01, 36-02.",Anti-Forensics,illustrative,T1070,Yes,,,,"AU-2, AU-3, AU-12","{""header"":{""log_name"":""string"",""source"":""string"",""event_id"":""integer"",""level"":""enum"",""host"":""string"",""description"":""string""},""record"":{""item"":""integer"",""name"":""path"",""inode"":""integer"",""dev"":""string"",""mode"":""hex"",""ouid"":""integer"",""ogid"":""integer"",""objtype"":""enum"",""key"":""string""}}"

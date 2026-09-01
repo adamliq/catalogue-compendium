@@ -1,0 +1,6 @@
+path,purpose
+/etc/audit/auditd.conf,Daemon configuration
+/etc/audit/audit.rules,Compiled rules (generated)
+/etc/audit/rules.d/,Source rule files
+/var/log/audit/audit.log,Main log file
+/etc/audit/plugins.d/,Dispatcher plugins

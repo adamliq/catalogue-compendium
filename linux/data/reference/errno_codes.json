@@ -1,0 +1,177 @@
+[
+  {
+    "code": "1",
+    "name": "EPERM",
+    "description": "Operation not permitted"
+  },
+  {
+    "code": "2",
+    "name": "ENOENT",
+    "description": "No such file or directory"
+  },
+  {
+    "code": "5",
+    "name": "EIO",
+    "description": "I/O error"
+  },
+  {
+    "code": "9",
+    "name": "EBADF",
+    "description": "Bad file descriptor"
+  },
+  {
+    "code": "11",
+    "name": "EAGAIN",
+    "description": "Resource temporarily unavailable"
+  },
+  {
+    "code": "12",
+    "name": "ENOMEM",
+    "description": "Out of memory"
+  },
+  {
+    "code": "13",
+    "name": "EACCES",
+    "description": "Permission denied"
+  },
+  {
+    "code": "16",
+    "name": "EBUSY",
+    "description": "Device or resource busy"
+  },
+  {
+    "code": "17",
+    "name": "EEXIST",
+    "description": "File exists"
+  },
+  {
+    "code": "19",
+    "name": "ENODEV",
+    "description": "No such device"
+  },
+  {
+    "code": "20",
+    "name": "ENOTDIR",
+    "description": "Not a directory"
+  },
+  {
+    "code": "21",
+    "name": "EISDIR",
+    "description": "Is a directory"
+  },
+  {
+    "code": "22",
+    "name": "EINVAL",
+    "description": "Invalid argument"
+  },
+  {
+    "code": "24",
+    "name": "EMFILE",
+    "description": "Too many open files (per-process limit)"
+  },
+  {
+    "code": "28",
+    "name": "ENOSPC",
+    "description": "No space left on device"
+  },
+  {
+    "code": "30",
+    "name": "EROFS",
+    "description": "Read-only file system"
+  },
+  {
+    "code": "32",
+    "name": "EPIPE",
+    "description": "Broken pipe"
+  },
+  {
+    "code": "36",
+    "name": "ENAMETOOLONG",
+    "description": "File name too long"
+  },
+  {
+    "code": "38",
+    "name": "ENOSYS",
+    "description": "Function not implemented (syscall blocked, e.g. by seccomp)"
+  },
+  {
+    "code": "39",
+    "name": "ENOTEMPTY",
+    "description": "Directory not empty"
+  },
+  {
+    "code": "40",
+    "name": "ELOOP",
+    "description": "Too many levels of symbolic links"
+  },
+  {
+    "code": "95",
+    "name": "EOPNOTSUPP",
+    "description": "Operation not supported"
+  },
+  {
+    "code": "98",
+    "name": "EADDRINUSE",
+    "description": "Address already in use"
+  },
+  {
+    "code": "101",
+    "name": "ENETUNREACH",
+    "description": "Network is unreachable"
+  },
+  {
+    "code": "104",
+    "name": "ECONNRESET",
+    "description": "Connection reset by peer"
+  },
+  {
+    "code": "110",
+    "name": "ETIMEDOUT",
+    "description": "Connection timed out"
+  },
+  {
+    "code": "111",
+    "name": "ECONNREFUSED",
+    "description": "Connection refused"
+  },
+  {
+    "code": "113",
+    "name": "EHOSTUNREACH",
+    "description": "No route to host"
+  },
+  {
+    "code": "122",
+    "name": "EDQUOT",
+    "description": "Disk quota exceeded"
+  },
+  {
+    "code": "125",
+    "name": "ECANCELED",
+    "description": "Operation canceled"
+  },
+  {
+    "code": "126",
+    "name": "ENOKEY",
+    "description": "Required key not available"
+  },
+  {
+    "code": "127",
+    "name": "EKEYEXPIRED",
+    "description": "Key has expired"
+  },
+  {
+    "code": "128",
+    "name": "EKEYREVOKED",
+    "description": "Key has been revoked"
+  },
+  {
+    "code": "129",
+    "name": "EKEYREJECTED",
+    "description": "Key was rejected by service"
+  },
+  {
+    "code": "132",
+    "name": "ERFKILL",
+    "description": "Operation not possible due to RF-kill"
+  }
+]

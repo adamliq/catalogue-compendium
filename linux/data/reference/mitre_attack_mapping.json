@@ -1,0 +1,186 @@
+[
+  {
+    "technique_id": "T1078",
+    "technique": "Valid Accounts",
+    "tactics": "defense-evasion;persistence;privilege-escalation;initial-access",
+    "category": "Account Logon",
+    "subcategory": "Credential Validation",
+    "event_id": "1100"
+  },
+  {
+    "technique_id": "T1078",
+    "technique": "Valid Accounts",
+    "tactics": "defense-evasion;persistence;privilege-escalation;initial-access",
+    "category": "Logon/Logoff",
+    "subcategory": "Logon",
+    "event_id": "1112"
+  },
+  {
+    "technique_id": "T1078",
+    "technique": "Valid Accounts",
+    "tactics": "defense-evasion;persistence;privilege-escalation;initial-access",
+    "category": "Logon/Logoff",
+    "subcategory": "SSH Session Disconnect",
+    "event_id": "14"
+  },
+  {
+    "technique_id": "T1110",
+    "technique": "Brute Force",
+    "tactics": "credential-access",
+    "category": "Account Logon",
+    "subcategory": "Credential Validation",
+    "event_id": "1109"
+  },
+  {
+    "technique_id": "T1110",
+    "technique": "Brute Force",
+    "tactics": "credential-access",
+    "category": "Logon/Logoff",
+    "subcategory": "SSH Session Disconnect",
+    "event_id": "14"
+  },
+  {
+    "technique_id": "T1021.004",
+    "technique": "Remote Services: SSH",
+    "tactics": "lateral-movement",
+    "category": "Logon/Logoff",
+    "subcategory": "Logon",
+    "event_id": "1105"
+  },
+  {
+    "technique_id": "T1136.001",
+    "technique": "Create Account: Local Account",
+    "tactics": "persistence",
+    "category": "Account Management",
+    "subcategory": "User Account",
+    "event_id": "1114"
+  },
+  {
+    "technique_id": "T1531",
+    "technique": "Account Access Removal",
+    "tactics": "impact",
+    "category": "Account Management",
+    "subcategory": "User Account",
+    "event_id": "1115"
+  },
+  {
+    "technique_id": "T1098",
+    "technique": "Account Manipulation",
+    "tactics": "persistence;privilege-escalation",
+    "category": "Account Management",
+    "subcategory": "Group Management",
+    "event_id": "1132"
+  },
+  {
+    "technique_id": "T1548.003",
+    "technique": "Abuse Elevation Control Mechanism: Sudo and Sudo Caching",
+    "tactics": "privilege-escalation;defense-evasion",
+    "category": "Privilege Use",
+    "subcategory": "Command Execution",
+    "event_id": "1123"
+  },
+  {
+    "technique_id": "T1548.003",
+    "technique": "Abuse Elevation Control Mechanism: Sudo and Sudo Caching",
+    "tactics": "privilege-escalation;defense-evasion",
+    "category": "Account Management",
+    "subcategory": "Group Management",
+    "event_id": "1132"
+  },
+  {
+    "technique_id": "T1548",
+    "technique": "Abuse Elevation Control Mechanism",
+    "tactics": "privilege-escalation;defense-evasion",
+    "category": "Privilege Use",
+    "subcategory": "Capability Use",
+    "event_id": "1322"
+  },
+  {
+    "technique_id": "T1059",
+    "technique": "Command and Scripting Interpreter",
+    "tactics": "execution",
+    "category": "Detailed Tracking",
+    "subcategory": "Process Execution",
+    "event_id": "1300"
+  },
+  {
+    "technique_id": "T1059",
+    "technique": "Command and Scripting Interpreter",
+    "tactics": "execution",
+    "category": "Detailed Tracking",
+    "subcategory": "Process Arguments",
+    "event_id": "1309"
+  },
+  {
+    "technique_id": "T1552.001",
+    "technique": "Unsecured Credentials: Credentials In Files",
+    "tactics": "credential-access",
+    "category": "Object Access",
+    "subcategory": "File Access (Watch)",
+    "event_id": "1302"
+  },
+  {
+    "technique_id": "T1562.001",
+    "technique": "Impair Defenses: Disable or Modify Tools",
+    "tactics": "defense-evasion",
+    "category": "Policy Change",
+    "subcategory": "Audit Configuration",
+    "event_id": "1305"
+  },
+  {
+    "technique_id": "T1070.002",
+    "technique": "Indicator Removal: Clear Linux or Mac System Logs",
+    "tactics": "defense-evasion",
+    "category": "System",
+    "subcategory": "Audit Daemon",
+    "event_id": "1201"
+  },
+  {
+    "technique_id": "T1547.006",
+    "technique": "Boot or Logon Autostart Execution: Kernel Modules and Extensions",
+    "tactics": "persistence;privilege-escalation",
+    "category": "Object Access",
+    "subcategory": "Kernel Module",
+    "event_id": "1330"
+  },
+  {
+    "technique_id": "T1014",
+    "technique": "Rootkit",
+    "tactics": "defense-evasion",
+    "category": "Object Access",
+    "subcategory": "Kernel Module",
+    "event_id": "1330"
+  },
+  {
+    "technique_id": "T1562.004",
+    "technique": "Impair Defenses: Disable or Modify System Firewall",
+    "tactics": "defense-evasion",
+    "category": "Network",
+    "subcategory": "Netfilter Configuration",
+    "event_id": "1325"
+  },
+  {
+    "technique_id": "T1611",
+    "technique": "Escape to Host",
+    "tactics": "privilege-escalation",
+    "category": "Mandatory Access Control",
+    "subcategory": "SELinux AVC",
+    "event_id": "1400"
+  },
+  {
+    "technique_id": "T1611",
+    "technique": "Escape to Host",
+    "tactics": "privilege-escalation",
+    "category": "Mandatory Access Control",
+    "subcategory": "AppArmor AVC",
+    "event_id": "1400"
+  },
+  {
+    "technique_id": "T1562.001",
+    "technique": "Impair Defenses: Disable or Modify Tools",
+    "tactics": "defense-evasion",
+    "category": "Mandatory Access Control",
+    "subcategory": "MAC Policy",
+    "event_id": "1404"
+  }
+]

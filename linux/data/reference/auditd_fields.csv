@@ -1,0 +1,235 @@
+field,format,explanation,cim_potential_name,supported_cim_field,cim_data_model_category,splunk_app
+"a0, a1, a2, a3",numeric (hex),"First four arguments of the system call, stored in hexadecimal. Useful for reconstructing what a process was trying to do.",process_exec / raw args,(no direct CIM),Endpoint (Processes),TA-linux_auditd / custom
+a[[:digit:]+][.*],encoded,Arguments to an execve syscall (can be more than four).,,,,
+acct,encoded,User’s account name under which the process ran.,user / src_user,user,"Authentication, Change","Splunk Add-on for Linux, TA-linux_auditd"
+acl,alphabet,Access mode of a resource assigned to a VM.,,,,
+action,numeric,Netfilter packet disposition (or integrity policy action).,,,,
+added,numeric,Number of new files detected.,,,,
+addr,encoded,IPv4 or IPv6 address (often follows a hostname field).,src / src_ip,src / src_ip,"Authentication, Network_Traffic",Splunk Add-on for Linux
+apparmor,encoded,AppArmor event information.,,,,
+arch,numeric (hex),CPU architecture of the system (e.g. c000003e = x86_64).,(vendor-specific),—,—,—
+argc,numeric,Number of arguments to an execve syscall.,,,,
+audit_backlog_limit,numeric,Audit system’s backlog queue size.,,,,
+audit_backlog_wait_time,numeric,Audit system’s backlog wait time.,,,,
+audit_enabled,numeric,Audit system enable/disable status.,,,,
+audit_failure,numeric,Audit system failure mode.,,,,
+auid,numeric,"Audit User ID (loginuid). Assigned at login and never changes, even after su/sudo. Most reliable identity field.",user / src_user,user,"Authentication, Change","Splunk Add-on for Linux, TA-linux_auditd"
+banners,alphanumeric,Banners used on a printed page.,,,,
+bool,alphanumeric,Name of an SELinux boolean.,,,,
+bus,alphanumeric,Name of the subsystem bus a VM resource belongs to.,,,,
+capability,numeric,Number of bits used when setting a Linux capability.,process,—,Endpoint (Processes),custom
+cap_fe,numeric,File assigned effective capability map.,process,—,Endpoint (Processes),custom
+cap_fi,numeric (hex),File inherited capability map.,process,—,Endpoint (Processes),custom
+cap_fp,numeric (hex),File permitted capability map.,process,—,Endpoint (Processes),custom
+cap_fver,numeric (hex),File-system capabilities version number.,process,—,Endpoint (Processes),custom
+cap_pa,numeric (hex),Process ambient capability map.,process,—,Endpoint (Processes),custom
+cap_pe,numeric (hex),Process effective capability map.,process,—,Endpoint (Processes),custom
+cap_pi,numeric (hex),Process inherited capability map.,process,—,Endpoint (Processes),custom
+cap_pp,numeric (hex),Process permitted capability map.,process,—,Endpoint (Processes),custom
+category,alphabet,Resource category assigned to a VM.,,,,
+cgroup,encoded,Path to the cgroup that contained the process when the event was generated.,process,—,Endpoint (Processes),custom
+changed,numeric,Number of changed files.,,,,
+cipher,alphanumeric,Name of the crypto cipher selected.,,,,
+class,alphabet,Resource class assigned to a VM.,,,,
+cmd,encoded,Full command line executed. Especially useful with interpreters (exe may show /bin/bash while cmd shows the real script + args).,process / process_exec,process / process_exec,Endpoint (Processes),"Splunk Add-on for Linux, TA-linux_auditd"
+code,numeric (hex),Seccomp action code.,,,,
+comm,encoded,Short command name (basename of the executable or script).,process / process_name,process_name,Endpoint (Processes),"Splunk Add-on for Linux, TA-linux_auditd"
+compat,numeric,Result of is_compat_task.,,,,
+cwd,encoded,Current working directory of the process when the system call was invoked.,process / process_path,process,Endpoint (Processes),"Splunk Add-on for Linux, TA-linux_auditd"
+daddr,alphanumeric,Remote IP address.,,,,
+data,encoded,Data associated with TTY records (often hex-encoded keystrokes).,—,—,—,—
+default-context,alphanumeric,Default MAC context.,,,,
+dev,numeric (hex-tuple) / alphanumeric,Major:minor device numbers (path records) or device name as found in /dev (AVC).,file / file_path,—,Endpoint (Filesystem),TA-linux_auditd / custom
+devmajor,numeric,Major device number.,file / file_path,—,Endpoint (Filesystem),TA-linux_auditd / custom
+devminor,numeric,Minor device number.,file / file_path,—,Endpoint (Filesystem),TA-linux_auditd / custom
+device,encoded,Device name.,,,,
+dir,encoded,Directory name.,,,,
+direction,alphanumeric,Direction of a crypto operation.,,,,
+dmac,numeric,Remote MAC address.,,,,
+dport,numeric,Remote port number.,,,,
+egid,numeric,Effective Group ID of the process.,user / user_group,user,"Authentication, Change","Splunk Add-on for Linux, TA-linux_auditd"
+enforcing,numeric,New MAC enforcement status.,,,,
+entries,numeric,Number of entries in a netfilter table.,,,,
+errno,numeric,Error code of the audited operation.,,,,
+euid,numeric,Effective User ID of the process.,user,user,"Authentication, Change","Splunk Add-on for Linux, TA-linux_auditd"
+exe,encoded,Full path to the executable that was invoked.,process / process_path / process_exec,process / process_exec,Endpoint (Processes),"Splunk Add-on for Linux, TA-linux_auditd"
+exit,numeric,Exit / return code of the system call. Use ausearch -i --exit to decode.,action / status,action / status,"Authentication, Change, Endpoint","Splunk Add-on for Linux, TA-linux_auditd"
+fam,alphanumeric,Socket address family.,,,,
+family,numeric,Netfilter protocol / address family (IPv4 or IPv6).,transport,—,Network_Traffic,TA-linux_auditd / custom
+fd,numeric,File descriptor number.,,,,
+file,encoded,File name (often integrity-related).,,,,
+filetype,alphanumeric,Type of the file.,,,,
+flags,numeric (hex),File-system name flags or mmap flags.,,,,
+fe,numeric,File assigned effective capability map (short form).,,,,
+feature,alphanumeric,Kernel feature being changed.,,,,
+fi,numeric (hex),File assigned inherited capability map (short form).,,,,
+fp,numeric (hex) / alphanumeric,File permitted capability map or crypto key fingerprint.,,,,
+format,alphanumeric,Audit log’s format.,,,,
+fsgid,numeric,File-system Group ID of the process.,user,user,"Change, Endpoint","Splunk Add-on for Linux, TA-linux_auditd"
+fsuid,numeric,File-system User ID of the process.,user,user,"Change, Endpoint","Splunk Add-on for Linux, TA-linux_auditd"
+fver,numeric (hex),File-system capabilities version number (short form).,,,,
+gid,numeric,Real Group ID of the process.,user / user_group,user,"Authentication, Change","Splunk Add-on for Linux, TA-linux_auditd"
+grantors,alphanumeric,PAM modules that approved the action.,,,,
+grp,encoded,Group name.,,,,
+hook,numeric,Netfilter hook the packet came from.,,,,
+hostname,alphanumeric,Hostname associated with the event (often the remote host).,src / dest / host,src / dest,"Authentication, Network_Traffic","Splunk Add-on for Linux, TA-linux_auditd"
+icmp_type / icmptype,numeric,ICMP message type (usually from iptables).,transport,—,Network_Traffic,TA-linux_auditd / custom
+id,numeric,User ID of an account that was changed.,object / object_id,object / object_id,Change (Account_Management),"Splunk Add-on for Linux, TA-linux_auditd"
+igid,numeric,IPC object’s group ID.,,,,
+img-ctx,alphanumeric,VM’s disk image context string.,,,,
+inif,numeric,Incoming interface number.,,,,
+ip,alphanumeric,Network address of a printer (or instruction pointer in seccomp).,,,,
+ipid,numeric,IP datagram fragment identifier.,,,,
+ino / inode,numeric,Inode number of the referenced file/directory.,file / file_hash / file_path,file_path,Endpoint (Filesystem),"Splunk Add-on for Linux, TA-linux_auditd"
+inode_gid,numeric,Group ID of the inode’s owner.,file / file_hash / file_path,file_path,Endpoint (Filesystem),"Splunk Add-on for Linux, TA-linux_auditd"
+inode_uid,numeric,User ID of the inode’s owner.,file / file_hash / file_path,file_path,Endpoint (Filesystem),"Splunk Add-on for Linux, TA-linux_auditd"
+invalid_context,encoded,Invalid SELinux context.,,,,
+ioctlcmd,numeric (hex),Request argument to the ioctl syscall.,,,,
+ipx-net,numeric,IPX network number.,,,,
+item,numeric,Which item (path record) is being recorded.,,,,
+items,numeric,Number of PATH records attached to this event.,—,—,—,—
+iuid,numeric,IPC object’s user ID.,,,,
+kernel,alphanumeric,Kernel version number.,,,,
+key,encoded,Arbitrary string attached to the audit rule that generated the event. Extremely useful for filtering.,signature / vendor_action,signature,"Change, Endpoint, Intrusion_Detection",TA-linux_auditd / custom
+kind,alphabet,Server or client in a crypto operation.,,,,
+ksize,numeric,Key size used in a crypto operation.,,,,
+laddr,alphanumeric,Local network address.,,,,
+len,numeric,Length.,,,,
+lport,numeric,Local network port.,,,,
+list,numeric,"Audit filter list ID (0=user, 1=task, 4=exit, 5=exclude).",—,—,—,—
+mac,alphanumeric,Crypto MAC algorithm selected.,,,,
+macproto,numeric,Ethernet packet type ID field.,,,,
+maj / major,numeric,Device major number.,,,,
+minor,numeric,Device minor number.,,,,
+mode,numeric (octal),File or directory permissions.,file_permissions,file_permissions,Endpoint (Filesystem),TA-linux_auditd / custom
+model,alphanumeric,Security model used for virtualization.,,,,
+msg,alphanumeric,"Timestamp + unique event ID, or additional name=value pairs.",—,—,—,—
+msgtype,alphanumeric,Message type for user-space AVC denials (usually from D-Bus).,,,,
+nargs,numeric,Number of arguments to a socket call.,,,,
+name,encoded,Full path of the file/directory passed as an argument.,file_path / object / object_path,file_path / object,"Endpoint (Filesystem), Change","Splunk Add-on for Linux, TA-linux_auditd"
+nametype,alphabet,Kind of file operation being referenced.,,,,
+net,alphanumeric,Network MAC address.,,,,
+new,numeric,New value being set for a feature.,,,,
+new-chardev,encoded,New character device assigned to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-disk,encoded,Name of a new disk resource assigned to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-enabled,numeric,New TTY audit enabled setting.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-fs,encoded,File system being added to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new_gid,numeric,New group ID assigned to a user.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-level,alphanumeric,New run level.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new_lock,numeric,New value of a feature lock.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-log_passwd,numeric,New value for TTY password logging.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-mem,numeric,New amount of memory (KB) assigned to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-net,encoded,MAC address of a new network interface assigned to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new_pe / new_pi / new_pp,numeric,New process capability maps (deprecated forms).,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-range,alphanumeric,New SELinux range.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-rng,encoded,Device name of an RNG being added to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-role,alphanumeric,New SELinux role.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-seuser,alphanumeric,New SELinux user.,object / object_attrs,object,Change,TA-linux_auditd / custom
+new-vcpu,numeric,New number of virtual CPUs assigned to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+nlnk-fam,numeric,Netlink protocol number.,,,,
+nlnk-grp,numeric,Netlink group number.,,,,
+nlnk-pid,numeric,PID of the netlink packet sender.,,,,
+oauid,numeric,Audit UID of the user who originally logged in and started the target process (OBJ_PID records only).,dest_user / dest_process,dest_user,"Endpoint, Change",TA-linux_auditd / custom
+obj,alphanumeric,SELinux context of the object (the thing being acted upon).,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+obj_gid,numeric,Group ID of the object.,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+obj_lev_high,alphanumeric,High SELinux sensitivity level of the object.,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+obj_lev_low,alphanumeric,Low SELinux sensitivity level of the object.,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+obj_role,alphanumeric,SELinux role of the object.,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+obj_type,alphanumeric,SELinux type of the object.,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+obj_uid,numeric,User ID of the object.,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+obj_user,alphanumeric,SELinux user associated with the object.,object / object_category,object,"Change, Endpoint",TA-linux_auditd / custom
+oflag,numeric,Flags passed to the open syscall.,,,,
+ogid,numeric,Group ID of the object’s owner.,object,object,Change,TA-linux_auditd / custom
+ocomm,encoded,Command name of the target process (OBJ_PID records only).,dest_user / dest_process,dest_user,"Endpoint, Change",TA-linux_auditd / custom
+old,numeric,Previous / present value of a kernel feature or audit setting.,,,,
+old-auid,numeric,Previous auid value.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-chardev,encoded,Previous character device assigned to a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-disk,encoded,Previous disk resource of a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-enabled,numeric,Previous TTY audit enabled setting.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old_enforcing,numeric,Previous MAC enforcement status.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-fs,encoded,Previous file system of a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-level,alphanumeric,Previous run level.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old_lock,numeric,Previous value of a feature lock.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-log_passwd,numeric,Previous TTY password logging setting.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-mem,numeric,Previous memory allocation of a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-net,encoded,Previous MAC address of a VM network interface.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old_pa / old_pe / old_pi / old_pp,numeric (hex),Previous process capability maps.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old_prom,numeric,Previous network promiscuity flag.,—,—,Network_Traffic,TA-linux_auditd / custom
+old-range,alphanumeric,Previous SELinux range.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-rng,encoded,Previous RNG device of a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-role,alphanumeric,Previous SELinux role.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-ses,numeric,Previous session ID.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-seuser,alphanumeric,Previous SELinux user.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old_val,numeric,Previous value of an SELinux boolean.,object / object_attrs,object,Change,TA-linux_auditd / custom
+old-vcpu,numeric,Previous number of virtual CPUs of a VM.,object / object_attrs,object,Change,TA-linux_auditd / custom
+op,alphanumeric,Operation being performed that is audited.,,,,
+opid,numeric,Process ID of the target process (OBJ_PID records only).,dest_user / dest_process,dest_user,"Endpoint, Change",TA-linux_auditd / custom
+oses,numeric,Session ID of the target process (OBJ_PID records only).,dest_user / dest_process,dest_user,"Endpoint, Change",TA-linux_auditd / custom
+ouid,numeric,Real user ID of the target process / object owner.,dest_user / dest_process,dest_user,"Endpoint, Change",TA-linux_auditd / custom
+outif,numeric,Outgoing interface number.,,,,
+pa / pe / pi / pp,numeric (hex),Process ambient / effective / inherited / permitted capability maps.,,,,
+parent,numeric,Inode number of the parent file.,,,,
+path,encoded,Full path of the file/directory (especially in AVC events).,file_path / object_path,file_path,Endpoint (Filesystem),"Splunk Add-on for Linux, TA-linux_auditd"
+per,numeric (hex),Linux personality.,,,,
+perm,numeric,File permission that triggered the event (read/write/execute/attribute).,file_access_permission / action,action,Endpoint (Filesystem),"Splunk Add-on for Linux, TA-linux_auditd"
+perm_mask,numeric,File permission mask that triggered a watch event.,,,,
+permissive,numeric,Whether SELinux is in permissive mode.,,,,
+pfs,alphanumeric,Perfect forward secrecy method.,,,,
+pid,numeric,"Process ID (userspace) or Thread ID (kernel). For single-threaded processes they are equal. This is the kernel TID (gettid), not a pthread_t.",process_id,process_id,Endpoint (Processes),"Splunk Add-on for Linux, TA-linux_auditd"
+ppid,numeric,Parent Process ID.,parent_process_id,parent_process_id,Endpoint (Processes),"Splunk Add-on for Linux, TA-linux_auditd"
+printer,alphanumeric,Printer name.,,,,
+prom,numeric,Current network interface promiscuity flag.,—,—,Network_Traffic,TA-linux_auditd / custom
+proctitle,encoded,Full process title + command-line parameters (hex-encoded).,,,,
+proto,numeric,Networking protocol (iptables / netfilter).,transport / protocol,transport,Network_Traffic,TA-linux_auditd / custom
+qbytes,numeric (hex),Quantity of bytes of an IPC object.,,,,
+range,alphanumeric,User’s SELinux range.,,,,
+rdev,numeric (hex-tuple),Device identifier (special files only).,,,,
+reason,alphanumeric,Text string explaining the reason for the action.,,,,
+removed,numeric,Number of deleted files.,,,,
+res / result,numeric / alphanumeric,Result of the audited operation (success/fail).,action / status,action / status,"Authentication, Change, Endpoint","Splunk Add-on for Linux, TA-linux_auditd"
+resrc,alphanumeric,Resource being assigned.,,,,
+role,alphanumeric,User’s SELinux role.,,,,
+rport,numeric,Remote port number.,,,,
+saddr,encoded,Socket address structure (often hex-encoded).,src / dest / src_ip / dest_ip,src / dest,Network_Traffic,TA-linux_auditd / custom
+sauid,numeric,Sender’s Audit UID (provided by D-Bus).,user / src_user,user,Authentication,"Splunk Add-on for Linux, TA-linux_auditd"
+scontext,alphanumeric,Subject’s SELinux context string.,,,,
+selected-context,alphanumeric,New MAC context assigned to a session.,,,,
+seperm,alphanumeric,SELinux permission being decided on.,,,,
+seqno,numeric,Sequence number.,,,,
+seperms,alphabet,SELinux permissions being used.,,,,
+seresult,alphabet,SELinux AVC decision (granted / denied).,,,,
+ses,numeric,Session ID from which the process was started.,session_id,—,Authentication,TA-linux_auditd / custom
+seuser,alphanumeric,User’s SELinux user account.,,,,
+sgid,numeric,Set-Group-ID of the process.,user,user,"Authentication, Change","Splunk Add-on for Linux, TA-linux_auditd"
+sig / sigev_signo,numeric,Signal number that caused abnormal termination.,action,—,Endpoint (Processes),TA-linux_auditd / custom
+smac,numeric,Local MAC address.,,,,
+spid,numeric,Sent process ID.,,,,
+sport,numeric,Local port number.,,,,
+state,alphanumeric,Resulting state of the audit daemon configuration.,,,,
+subj,alphanumeric,SELinux context of the subject (the actor).,user / src_user,user,"Authentication, Change",TA-linux_auditd / custom
+subj_clr,alphanumeric,SELinux clearance of the subject.,user / src_user,user,"Authentication, Change",TA-linux_auditd / custom
+subj_role,alphanumeric,SELinux role of the subject.,user / src_user,user,"Authentication, Change",TA-linux_auditd / custom
+subj_sen,alphanumeric,SELinux sensitivity of the subject.,user / src_user,user,"Authentication, Change",TA-linux_auditd / custom
+subj_type,alphanumeric,SELinux type of the subject.,user / src_user,user,"Authentication, Change",TA-linux_auditd / custom
+subj_user,alphanumeric,SELinux user associated with the subject.,user / src_user,user,"Authentication, Change",TA-linux_auditd / custom
+success,alphanumeric,Whether the system call succeeded (yes) or failed (no).,action / status,action (success/failure),"Authentication, Change, Endpoint","Splunk Add-on for Linux, TA-linux_auditd"
+suid,numeric,Set-User-ID of the process.,user,user,"Authentication, Change","Splunk Add-on for Linux, TA-linux_auditd"
+syscall,numeric,Numeric system-call number that was executed.,process / command,—,Endpoint (Processes),TA-linux_auditd / custom
+table,alphanumeric,Netfilter table name.,,,,
+tclass,alphanumeric,Target’s object classification.,,,,
+tcontext,alphanumeric,Target’s / object’s SELinux context string.,,,,
+terminal,alphanumeric,Terminal name (without /dev/).,src / src_nt_host,—,Authentication,TA-linux_auditd / custom
+tty,alphanumeric,Controlling terminal device. Value (none) means no controlling terminal.,src / src_nt_host,—,Authentication,TA-linux_auditd / custom
+type,alphanumeric,"The audit record’s type (SYSCALL, PATH, EXECVE, AVC, etc.).",vendor_action / signature,vendor_action,"Change, Endpoint, Intrusion_Detection",TA-linux_auditd
+uid,numeric,Real User ID of the process.,user / src_user,user,"Authentication, Change, Endpoint","Splunk Add-on for Linux, TA-linux_auditd"
+unit,alphanumeric,systemd unit name.,,,,
+uri,alphanumeric,URI pointing to a printer.,,,,
+user,alphanumeric,Account submitted for authentication.,,,,
+uuid,alphanumeric,A UUID.,,,,
+val,alphanumeric / numeric,Generic value associated with the operation (or new SELinux boolean value).,,,,
+ver,numeric,Audit daemon’s version number.,,,,
+virt,alphanumeric,Kind of virtualization being referenced.,,,,
+vm,encoded,Name of the virtual machine from which the event originated.,dest / dest_host,dest,"Change, Inventory",TA-linux_auditd / custom
+vm-ctx,alphanumeric,VM’s context string.,,,,
+vm-pid,numeric,VM’s process ID.,,,,
+watch,encoded,File name in a watch record.,,,,

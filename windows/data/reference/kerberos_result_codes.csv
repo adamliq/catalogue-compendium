@@ -1,0 +1,48 @@
+result_code,description,notes,related_event_ids
+0x0,Pass,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x1,Client's entry in database has expired,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x2,Server's entry in database has expired,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x3,Requested protocol version # not supported,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x4,Client's key encrypted in old master key,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x5,Server's key encrypted in old master key,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x6,Client not found in Kerberos database,"Bad user name, or new computer/user account has not replicated to DC yet",4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x7,Server not found in Kerberos database,New computer account has not replicated yet or computer is pre-w2k,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x8,Multiple principal entries in database,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x9,The client or server has a null key,Administrator should reset the password on the account,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0xA,Ticket not eligible for postdating,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0xB,Requested start time is later than end time,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0xC,KDC policy rejects request,Workstation restriction,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0xD,KDC cannot accommodate requested option,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0xE,KDC has no support for encryption type,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0xF,KDC has no support for checksum type,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x10,KDC has no support for padata type,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x11,KDC has no support for transited type,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x12,Client's credentials have been revoked,"Account disabled, expired, locked out, or a logon-hours restriction",4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x13,Credentials for server have been revoked,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x14,TGT has been revoked,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x15,Client not yet valid - try again later,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x16,Server not yet valid - try again later,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x17,Password has expired,The user's password has expired,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x18,Pre-authentication information was invalid,Usually means bad password,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x19,Additional pre-authentication required,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x1F,Integrity check on decrypted field failed,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x20,Ticket expired,Frequently logged by computer accounts,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x21,Ticket not yet valid,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x22,Request is a replay,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x23,The ticket isn't for us,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x24,Ticket and authenticator don't match,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x25,Clock skew too great,Workstation's clock too far out of sync with the DC's,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x26,Incorrect net address,IP address change?,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x27,Protocol version mismatch,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x28,Invalid msg type,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x29,Message stream modified,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x2A,Message out of order,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x2C,Specified version of key is not available,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x2D,Service key not available,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x2E,Mutual authentication failed,May be a memory allocation failure,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x2F,Incorrect message direction,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x30,Alternative authentication method required,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x31,Incorrect sequence number in message,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x32,Inappropriate type of checksum in message,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x3C,Generic error (description in e-text),,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824
+0x3D,Field is too long for this implementation,,4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824

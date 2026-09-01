@@ -1,0 +1,87 @@
+[
+  {
+    "bit_mask": "0x80000000",
+    "flag_name": "reserved",
+    "description": "Reserved; not assigned."
+  },
+  {
+    "bit_mask": "0x40000000",
+    "flag_name": "forwardable",
+    "description": "Requests that the KDC issue a ticket with the FORWARDABLE flag set, allowing it to be forwarded to another host on the client's behalf."
+  },
+  {
+    "bit_mask": "0x20000000",
+    "flag_name": "forwarded",
+    "description": "Indicates that this ticket was forwarded, or that this TGT was used to obtain a forwarded ticket."
+  },
+  {
+    "bit_mask": "0x10000000",
+    "flag_name": "proxiable",
+    "description": "Requests that the KDC issue a ticket with the PROXIABLE flag set, allowing a service to use it to obtain a service ticket on the client's behalf."
+  },
+  {
+    "bit_mask": "0x08000000",
+    "flag_name": "proxy",
+    "description": "Indicates that this ticket is a proxy ticket."
+  },
+  {
+    "bit_mask": "0x04000000",
+    "flag_name": "allow-postdate",
+    "description": "Requests that the KDC issue a postdated ticket with the MAY-POSTDATE flag set (a ticket usable to later request an actual postdated ticket)."
+  },
+  {
+    "bit_mask": "0x02000000",
+    "flag_name": "postdated",
+    "description": "Requests that the KDC issue a postdated ticket, or indicates that a ticket is postdated."
+  },
+  {
+    "bit_mask": "0x01000000",
+    "flag_name": "unused",
+    "description": "Not assigned."
+  },
+  {
+    "bit_mask": "0x00800000",
+    "flag_name": "renewable",
+    "description": "Requests that the KDC issue a renewable ticket, allowing it to be renewed instead of a new one requested, up to the ticket's renew-till time."
+  },
+  {
+    "bit_mask": "0x00020000",
+    "flag_name": "cname-in-addl-tkt",
+    "description": "In a TGS-REQ, indicates the second ticket provided is used to encrypt the client name and realm instead of the sub-session key (used for user-to-user authentication)."
+  },
+  {
+    "bit_mask": "0x00010000",
+    "flag_name": "canonicalize",
+    "description": "Requests that the KDC canonicalize the client and/or server principal name in the reply."
+  },
+  {
+    "bit_mask": "0x00008000",
+    "flag_name": "request-anonymous",
+    "description": "Requests that the ticket returned not reveal the client's true identity."
+  },
+  {
+    "bit_mask": "0x00000020",
+    "flag_name": "disable-transited-check",
+    "description": "Requests the KDC not verify the transited field of a TGT against a hierarchy of trusted realms; the application server must then do so instead."
+  },
+  {
+    "bit_mask": "0x00000010",
+    "flag_name": "renewable-ok",
+    "description": "Indicates that a renewable ticket will be acceptable if a ticket with the requested life cannot otherwise be provided."
+  },
+  {
+    "bit_mask": "0x00000008",
+    "flag_name": "enc-tkt-in-skey",
+    "description": "Requests that, instead of being encrypted in the target service's key, the ticket be encrypted in the session key of the additional ticket provided (user-to-user authentication)."
+  },
+  {
+    "bit_mask": "0x00000002",
+    "flag_name": "renew",
+    "description": "In a TGS-REQ, requests renewal of a renewable ticket that is about to expire."
+  },
+  {
+    "bit_mask": "0x00000001",
+    "flag_name": "validate",
+    "description": "In a TGS-REQ, requests validation of a postdated ticket whose start time has now arrived."
+  }
+]
