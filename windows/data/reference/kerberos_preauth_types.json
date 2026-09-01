@@ -1,0 +1,212 @@
+[
+  {
+    "code": "0",
+    "name": "NONE",
+    "note": ""
+  },
+  {
+    "code": "1",
+    "name": "AP-REQ",
+    "note": ""
+  },
+  {
+    "code": "2",
+    "name": "ENC-TIMESTAMP",
+    "note": "RFC 4120"
+  },
+  {
+    "code": "3",
+    "name": "PW-SALT",
+    "note": "RFC 4120"
+  },
+  {
+    "code": "4",
+    "name": "ENC-ENCKEY",
+    "note": ""
+  },
+  {
+    "code": "5",
+    "name": "ENC-UNIX-TIME",
+    "note": "timestamp encrypted in key. RFC 4120"
+  },
+  {
+    "code": "6",
+    "name": "ENC-SANDIA-SECURID",
+    "note": "SecurId passcode. RFC 4120"
+  },
+  {
+    "code": "7",
+    "name": "SESAME",
+    "note": "Sesame project. RFC 4120"
+  },
+  {
+    "code": "8",
+    "name": "OSF-DCE",
+    "note": "OSF DCE. RFC 4120"
+  },
+  {
+    "code": "10",
+    "name": "AFS3-SALT",
+    "note": "Cygnus. RFC 4120, 3961"
+  },
+  {
+    "code": "11",
+    "name": "ETYPE-INFO",
+    "note": "Etype info for preauth. RFC 4120"
+  },
+  {
+    "code": "12",
+    "name": "SAM-CHALLENGE",
+    "note": "SAM/OTP"
+  },
+  {
+    "code": "13",
+    "name": "SAM-RESPONSE",
+    "note": "SAM/OTP"
+  },
+  {
+    "code": "14",
+    "name": "PK-AS-REQ-OLD",
+    "note": "PKINIT"
+  },
+  {
+    "code": "15",
+    "name": "PK-AS-REP-OLD",
+    "note": "PKINIT"
+  },
+  {
+    "code": "16",
+    "name": "PK-AS-REQ",
+    "note": "PKINIT. RFC 4556"
+  },
+  {
+    "code": "17",
+    "name": "PK-AS-REP",
+    "note": "PKINIT. RFC 4556"
+  },
+  {
+    "code": "19",
+    "name": "ETYPE-INFO2",
+    "note": "RFC 4120"
+  },
+  {
+    "code": "20",
+    "name": "USE-SPECIFIED-KVNO",
+    "note": "RFC 4120"
+  },
+  {
+    "code": "20",
+    "name": "SVR-REFERRAL-INFO",
+    "note": "Windows 2000 referrals. RFC 6820"
+  },
+  {
+    "code": "21",
+    "name": "SAM-REDIRECT",
+    "note": "SAM/OTP. RFC 4120"
+  },
+  {
+    "code": "22",
+    "name": "GET-FROM-TYPED-DATA",
+    "note": "Embedded in typed data. RFC 4120"
+  },
+  {
+    "code": "25",
+    "name": "REFERRAL",
+    "note": "draft referral system"
+  },
+  {
+    "code": "30",
+    "name": "SAM-CHALLENGE-2",
+    "note": "draft challenge system, updated"
+  },
+  {
+    "code": "31",
+    "name": "SAM-RESPONSE-2",
+    "note": "draft challenge system, updated"
+  },
+  {
+    "code": "128",
+    "name": "PAC-REQUEST",
+    "note": "include Windows PAC"
+  },
+  {
+    "code": "129",
+    "name": "FOR-USER",
+    "note": "username protocol transition request"
+  },
+  {
+    "code": "130",
+    "name": "S4U-X509-USER",
+    "note": "certificate protocol transition request"
+  },
+  {
+    "code": "132",
+    "name": "AS-CHECKSUM",
+    "note": "AS checksum"
+  },
+  {
+    "code": "133",
+    "name": "FX-COOKIE",
+    "note": "RFC 6113"
+  },
+  {
+    "code": "136",
+    "name": "FX-FAST",
+    "note": "RFC 6113"
+  },
+  {
+    "code": "137",
+    "name": "FX-ERROR",
+    "note": "RFC 6113"
+  },
+  {
+    "code": "138",
+    "name": "ENCRYPTED-CHALLENGE",
+    "note": "RFC 6113"
+  },
+  {
+    "code": "141",
+    "name": "OTP-CHALLENGE",
+    "note": "RFC 6560 section 4.1"
+  },
+  {
+    "code": "142",
+    "name": "OTP-REQUEST",
+    "note": "RFC 6560 section 4.2"
+  },
+  {
+    "code": "144",
+    "name": "OTP-PIN-CHANGE",
+    "note": "RFC 6560 section 4.3"
+  },
+  {
+    "code": "147",
+    "name": "PKINIT-KX",
+    "note": "RFC 6112"
+  },
+  {
+    "code": "150",
+    "name": "AS-FRESHNESS",
+    "note": "RFC 8070"
+  },
+  {
+    "code": "151",
+    "name": "SPAKE",
+    "note": ""
+  },
+  {
+    "code": "152",
+    "name": "REDHAT-IDP-OAUTH2",
+    "note": "Red Hat IdP mechanism"
+  },
+  {
+    "code": "153",
+    "name": "REDHAT-PASSKEY",
+    "note": "Red Hat Passkey mechanism"
+  },
+  {
+    "code": "167",
+    "name": "PAC-OPTIONS",
+    "note": "MS-KILE and MS-SFU"
+  }
+]

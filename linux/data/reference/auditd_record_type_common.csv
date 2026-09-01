@@ -1,0 +1,11 @@
+record_type,typical_origin
+SYSCALL,Almost every syscall rule
+PATH,Every file path involved in the syscall
+CWD,Current working directory
+EXECVE,Full argv of an executed program
+PROCTITLE,Hex-encoded command line
+CONFIG_CHANGE,auditctl / rule loading
+USER_AUTH / USER_LOGIN / USER_START / USER_END,PAM / login
+AVC,SELinux denials/grants
+OBJ_PID,kill / ptrace target
+DAEMON_*,auditd itself

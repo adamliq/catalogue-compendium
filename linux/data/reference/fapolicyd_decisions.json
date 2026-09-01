@@ -1,0 +1,57 @@
+[
+  {
+    "keyword": "allow",
+    "category": "Decision",
+    "explanation": "Permit the access."
+  },
+  {
+    "keyword": "deny",
+    "category": "Decision",
+    "explanation": "Block the access."
+  },
+  {
+    "keyword": "allow_audit",
+    "category": "Decision",
+    "explanation": "Permit the access and generate a kernel FANOTIFY audit event (visible via ausearch -m fanotify / type=FANOTIFY in the audit log). At least one audit rule must be loaded for this to actually produce an event."
+  },
+  {
+    "keyword": "deny_audit",
+    "category": "Decision",
+    "explanation": "Block the access and generate a kernel FANOTIFY audit event."
+  },
+  {
+    "keyword": "allow_syslog",
+    "category": "Decision",
+    "explanation": "Permit the access and send a notification to syslog."
+  },
+  {
+    "keyword": "deny_syslog",
+    "category": "Decision",
+    "explanation": "Block the access and send a notification to syslog."
+  },
+  {
+    "keyword": "allow_log",
+    "category": "Decision",
+    "explanation": "Permit the access and generate both a FANOTIFY audit event and a syslog notification."
+  },
+  {
+    "keyword": "deny_log",
+    "category": "Decision",
+    "explanation": "Block the access and generate both a FANOTIFY audit event and a syslog notification."
+  },
+  {
+    "keyword": "open",
+    "category": "Permission (perm=)",
+    "explanation": "File access/read. This is the default permission if perm= is omitted from a rule."
+  },
+  {
+    "keyword": "execute",
+    "category": "Permission (perm=)",
+    "explanation": "Program execution."
+  },
+  {
+    "keyword": "any",
+    "category": "Permission (perm=)",
+    "explanation": "Applies the rule to both open and execute."
+  }
+]

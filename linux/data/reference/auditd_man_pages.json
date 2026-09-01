@@ -1,0 +1,223 @@
+[
+  {
+    "command": "auditctl(8)",
+    "purpose": "auditctl - a utility to assist controlling the kernel's audit system",
+    "sections": [
+      {
+        "title": "SYNOPSIS",
+        "code": "auditctl [options]"
+      },
+      {
+        "title": "DESCRIPTION",
+        "code": "The auditctl program configures kernel auditing options, displays\naudit configuration status, and loads discretionary audit rules."
+      },
+      {
+        "title": "CONFIGURATION OPTIONS",
+        "code": "-b backlog\n    Sets the maximum number of outstanding audit buffers allowed\n    (kernel default = 64). When all buffers are full, the kernel\n    consults the failure flag for what to do.\n\n--backlog_wait_time wait_time\n    Sets the kernel wait time (kernel default 60*HZ) when the backlog\n    limit is reached before queuing additional audit events. Must be\n    >=0 and <10x the default value.\n\n--reset_backlog_wait_time_actual\n    Resets the actual backlog wait time counter shown by the status\n    command.\n\n-c\n    Continue loading rules despite errors, summarizing results at the\n    end. The exit code will not indicate success if any rule failed\n    to load.\n\n-D\n    Delete all rules and watches. Can accept a key option (-k).\n\n-e [0..2]\n    Set the enabled flag: 0=temporarily disable auditing, 1=enable\n    auditing, 2=lock the configuration (no further changes without a\n    reboot). Locked mode audits and denies all further configuration\n    change attempts.\n\n-f [0..2]\n    Set the failure mode: 0=silent, 1=printk, 2=panic. Determines how\n    the kernel handles critical errors (transmission errors, backlog\n    exceeded, out of memory, rate limit exceeded). Default is 1;\n    secure environments typically use 2.\n\n-h\n    Display help information.\n\n-i\n    When used alone, ignore errors when reading rules from a file,\n    always returning a success exit code. With -s, provide a\n    human-readable interpretation of numbers.\n\n--loginuid-immutable\n    Instruct the kernel to make loginuids unchangeable once set.\n    Requires CAP_AUDIT_CONTROL. Makes loginuid tamper-proof but may\n    cause problems in certain containers.\n\n-q mount-point,subtree\n    For existing directory watches with bind or move mounts, tell the\n    kernel to tag the mounted subtree for watching. Note the comma\n    separator between values.\n\n-r rate\n    Set the message rate limit in messages/sec (0=none). Exceeding\n    this rate consults the failure flag. Default is 0.\n\n--reset-lost\n    Reset the lost record counter shown by the status command.\n\n-R file\n    Read and execute auditctl commands from a file, line by line. The\n    file must be owned by root and not readable by other users. Empty\n    lines and lines starting with '#' are skipped.\n\n--signal signal\n    Send a signal to the audit daemon (requires privileges).\n    Supported: TERM, HUP, USR1, USR2, CONT, and the user-friendly\n    forms stop, reload, rotate, resume, state.\n\n-t\n    Trim subtrees after a mount command."
+      },
+      {
+        "title": "STATUS OPTIONS",
+        "code": "-l\n    List all rules, one per line. Can combine with -k (list rules\n    matching a key) or -i (interpret syscall arguments).\n\n-m text\n    Send a user-space message into the audit system (requires\n    CAP_AUDIT_WRITE, normally available to root). Creates a USER-type\n    event.\n\n-s\n    Report kernel audit subsystem status: the in-kernel values\n    configurable via -e, -f, -r, and -b, the audit daemon PID (0 =\n    daemon not running), the lost event count, and the backlog queue\n    size. Can be followed by -i for interpretation.\n\n-v\n    Print the auditctl version."
+      },
+      {
+        "title": "RULE OPTIONS",
+        "code": "-a [list,action | action,list]\n    Append a rule to the end of a list with an action. Fields may be\n    in either order. Valid list names: task (per-task list, used only\n    at fork/clone — only fields known at task-creation time apply),\n    exit (syscall exit list — determines whether to create an audit\n    event on syscall exit), user (user-space message filter list —\n    valid fields: uid, auid, gid, pid, subj_user, subj_role,\n    subj_type, subj_sen, subj_clr, msgtype, executable name), exclude\n    (event-type exclusion filter, e.g. to drop avc messages),\n    filesystem (applied to whole filesystems by fstype field),\n    io_uring (io_uring syscall filter, using -S syscall notation).\n    Valid actions: never (suppress event generation entirely), always\n    (allocate audit context at entry, fill it in, write the record at\n    exit).\n\n-A list,action\n    Add a rule to the beginning of a list with an action.\n\n-C [f=f | f!=f]\n    Build an inter-field comparison rule using equal/not-equal\n    operators; multiple comparisons are supported. Valid fields: auid,\n    uid, euid, suid, fsuid, obj_uid (one group); gid, egid, sgid,\n    fsgid, obj_gid (another group) — groups cannot be mixed, but\n    comparisons within a group are allowed.\n\n-d list,action\n    Delete a rule from a list with an action, only if it exactly\n    matches the syscall name(s) and all field names/values.\n\n-F [n=v | n!=v | n<v | n>v | n<=v | n>=v | n&v | n&=v]\n    Build a rule field (up to 64 fields per command line), using one\n    of 8 operators: equal, not equal, less than, greater than,\n    less-or-equal, greater-or-equal, bit mask, bit test. User/group\n    names are converted to numeric IDs. Valid fields include: a0-a3\n    (first 4 syscall arguments, numeric only), arch (CPU architecture\n    — use b32/b64 for the 32/64-bit syscall table; should precede -S),\n    auid (original login UID), devmajor/devminor, dir (directory to\n    watch recursively, exit list only), egid/euid, exe (absolute path\n    to the executing binary, =/!= only, once per rule), exit (syscall\n    exit value, errno text supported), fsgid/fsuid, fstype (debugfs/\n    tracefs only, filesystem list), filetype (file, dir, socket, link,\n    character, block, fifo), gid, inode, key (alternative to -k),\n    msgtype (exclude/user lists), obj_uid/obj_gid, obj_user/obj_role/\n    obj_type, obj_lev_low/obj_lev_high, path (file to watch, exit list\n    only), perm (r/w/x/a file-operation filter, usable without -S),\n    pers (OS personality number), pid/ppid, saddr_fam (address family\n    number, IPv4=2/IPv6=10), sessionid, subj_user/subj_role/subj_type,\n    subj_sen/subj_clr, sgid, success (yes if exit>=0; use 1 for true,\n    0 for false), suid, uid.\n\n-k key\n    Set a filter key (arbitrary text, up to 31 bytes) that uniquely\n    identifies audit records generated by a rule. Useful for grouping\n    related rules; searchable via ausearch -k, usable with -D/-l to\n    select rules. A rule can carry multiple keys.\n\n-p [r|w|x|a]\n    Describe the file-system watch trigger permissions: r=read,\n    w=write, x=execute, a=attribute change (syscall-based, not\n    standard file permission bits).\n\n-S [syscall name or number | all]\n    Specify a syscall by name, number, or 'all'. Multiple -S options\n    (or a comma-separated list) improve performance over separate\n    rules. On bi-arch systems (e.g. x86_64) rules apply to both 32-\n    and 64-bit syscalls unless an arch directive says otherwise — the\n    arch directive should precede -S.\n\n-w path\n    Insert a watch for a file-system object at path. Cannot watch a\n    top-level directory; no wildcard support; tracked internally by\n    inode. A file watch is equivalent to -F path=..., a directory\n    watch to -F dir=.... Valid only with -p and -k. For finer-grained\n    filtering (e.g. specific user access), use the full syscall-rule\n    form with path/dir fields instead.\n\n-W path\n    Remove a watch for a file-system object at path — must match the\n    original rule exactly."
+      },
+      {
+        "title": "PERFORMANCE TIPS",
+        "code": "Syscall rules are evaluated on every syscall for every program, so\nexcessive rules degrade performance. Combine rules that share the same\nfilter, action, key, and fields — e.g. use multiple -S options in one\nrule instead of separate rules for openat and truncate. Prefer\nfile-system auditing (-w / -F path=/dir=) where practical: the kernel\nonly evaluates it on filesystem-related syscalls rather than every\nsyscall."
+      },
+      {
+        "title": "DISABLED BY DEFAULT",
+        "code": "Many systems ship a default -a never,task rule that causes new\nprocesses to skip audit processing entirely, avoiding syscall-auditing\noverhead. To enable auditing, remove 10-no-audit.rules and add\n10-base-config.rules. Check auditctl -l to verify no never,task rule\nconflicts with the rules you've defined."
+      },
+      {
+        "title": "EXAMPLES",
+        "code": "# By pid\nauditctl -a always,exit -S all -F pid=1005\n\n# By executable path\nauditctl -a always,exit -S all -F exe=/usr/bin/ls\n\n# Files opened by a specific user (by auid)\nauditctl -a always,exit -S openat -F auid=510\n\n# Unsuccessful openat calls\nauditctl -a always,exit -S openat -F success=0\n\n# Watch a file for changes (two equivalent forms)\nauditctl -w /etc/shadow -p wa\nauditctl -a always,exit -F path=/etc/shadow -F perm=wa\n\n# Recursively watch a directory\nauditctl -w /etc/ -p wa\nauditctl -a always,exit -F dir=/etc/ -F perm=wa\n\n# Detect an admin accessing another user's files\nauditctl -a always,exit -F dir=/home/ -F uid=0 -C auid!=obj_uid\n\n# Example rules file\n-D\n-A exclude,always -F exe=/usr/bin/sudo"
+      },
+      {
+        "title": "FILES",
+        "code": "/etc/audit/audit.rules\n/etc/audit/audit-stop.rules"
+      },
+      {
+        "title": "SEE ALSO",
+        "code": "audit.rules(7), ausearch(8), aureport(8), auditd(8)"
+      }
+    ],
+    "notes": "AUTHOR: Steve Grubb"
+  },
+  {
+    "command": "ausearch(8)",
+    "purpose": "ausearch - a tool to query audit daemon logs",
+    "sections": [
+      {
+        "title": "SYNOPSIS",
+        "code": "ausearch [options]"
+      },
+      {
+        "title": "DESCRIPTION",
+        "code": "ausearch queries audit daemon logs based on different search criteria;\nit also accepts raw log data from stdin. Command-line options are\ncombined as AND conditions (e.g. -m plus -ui returns events matching\nboth the given type and user ID) — the exception is -m and -n, which\naccept multiple values that match on ANY of them.\n\nEach syscall transition from user space to kernel and back generates\none unique event ID shared by every auditable record triggered during\nthat trip, for correlation. The kernel may add supplemental records to\nan event — e.g. an open syscall's audit event also generates a PATH\nrecord with the filename — so ausearch presents every record making up\none event together, meaning a search for a specific record type may\nstill return SYSCALL records alongside it. Not every record type\ncarries every field: PATH records, for instance, lack hostname or\nloginuid."
+      },
+      {
+        "title": "SEARCH OPTIONS",
+        "code": "-a, --event audit-event-id\n    Search by event ID — the number after the colon in\n    msg=audit(1116360555.329:2401771). All records from one syscall\n    share an event ID; the next syscall gets a new one.\n\n--arch CPU\n    Search by CPU architecture. Use b32/b64 for the 32/64-bit syscall\n    table; find your machine's arch with `uname -m`.\n\n-c, --comm comm-name\n    Search by the executable name recorded in the task structure.\n\n-e, --exit exit-code-or-errno\n    Search by syscall exit code or errno.\n\n-f, --file file-name\n    Search by filename (normal files and af_unix sockets).\n\n-ga, --gid-all all-group-id / -ge, --gid-effective / -gi, --gid\n    Search by group ID or name: -ga matches either the effective or\n    real group ID; -ge matches the effective group ID specifically;\n    -gi matches the (real) group ID.\n\n-hn, --host host-name\n    Search by hostname, FQDN, or numeric address (no resolution is\n    performed) — corresponds to the addr/host field. See --node for\n    the separate node field.\n\n-i, --interpret\n    Convert numeric entities to text (e.g. uid to account name). On\n    unenriched logs this uses the current machine's resources, so a\n    renamed account can be misleading; enriched logs carry the mapping\n    and are portable across machines.\n\n-k, --key key-string\n    Search by the audit rule's key string.\n\n-m, --message message-type[,message-type,...]\n    Search by message (record) type — comma-separated list or repeated\n    -m options. ALL retrieves every message type (it isn't a real type\n    itself). Run with no argument to print the valid type list.\n\n-o, --object SE-Linux-context-string\n    Search where the object (tcontext) matches the given string.\n\n-p, --pid process-id / -pp, --ppid parent-process-id\n    Search by process ID or parent process ID.\n\n-sc, --syscall syscall-name-or-value\n    Search by syscall, by name (per your machine's syscall table) or\n    numeric value.\n\n-se, --context / -su, --subject / -o, --object SE-Linux-context-string\n    -se matches either scontext (subject) or tcontext (object); -su\n    matches scontext (subject) only.\n\n--session Login-Session-ID\n    Search by the login session ID assigned at login and carried by\n    every descendant process.\n\n-sv, --success yes|no\n    Search by success value.\n\n-te, --end / -ts, --start [date] [time]\n    Search by an end/start timestamp. Format follows locale (check\n    with `date +%x`); an omitted date assumes today, an omitted time\n    assumes midnight (-ts) or now (-te); 24-hour clock. Keywords: now,\n    recent (10 minutes ago), this-hour, boot, today, yesterday,\n    this-week, week-ago, this-month, this-year, and (for -ts only)\n    checkpoint (recover from a valid checkpoint file's timestamp,\n    ignoring its recorded inode/device/serial/node/type — for use\n    after ausearch exits 10/11/12).\n\n-tm, --terminal terminal\n    Search by terminal value (daemons like cron/atd use their daemon\n    name as the terminal).\n\n-ua, --uid-all / -ue, --uid-effective / -ui, --uid / -ul, --loginuid\n    Search by user ID: -ua matches uid, euid, OR auid; -ue matches the\n    effective UID; -ui matches the (real) UID; -ul matches the login\n    UID (auid) specifically — requires the program's entry point to be\n    PAMified with pam_loginuid for an accurate auid.\n\n-uu, --uuid guest-uuid / -vm, --vm-name guest-name\n    Search by guest VM UUID or name.\n\n-w, --word\n    Require whole-word matches for filename, hostname, terminal, keys,\n    and SE Linux context searches.\n\n-x, --executable executable\n    Search by executable name."
+      },
+      {
+        "title": "OUTPUT & CONTROL OPTIONS",
+        "code": "--checkpoint checkpoint-file\n    Checkpoint output between successive ausearch invocations so only\n    new events print on the next run. Loads the prior checkpoint,\n    discards already-seen complete events until it matches the\n    checkpointed one, then prints new ones. Errors out if the file or\n    the checkpointed event can't be found.\n\n--eoe-timeout seconds\n    Override the end-of-event parsing timeout (see\n    end_of_event_timeout in auditd.conf(5)) for this run.\n\n--escape raw|tty|shell|shell_quote\n    Control output escaping; each mode includes the prior mode's\n    escaped characters plus more. tty is the default.\n\n--extra-keys / --extra-labels / --extra-obj2 / --extra-time\n    In --format csv mode, add extra columns: rule key info from\n    SYSCALL records (--extra-keys), subject/object SE Linux labels\n    (--extra-labels), second-object info for renames/mounts\n    (--extra-obj2), or broken-down time fields (--extra-time).\n\n--format raw|default|interpret|csv|text\n    raw = unformatted; default = a visual separator + timestamp then\n    the event's records; interpret = numeric entities converted to\n    text; csv = normalized comma-separated values for analysis tools;\n    text = converted to readable English sentences.\n\n-if, --input file-name|directory / --input-logs\n    Read from a specific file/directory instead of the default logs\n    (path capped at 4064 bytes), or from the log location configured\n    in auditd.conf (needed when running ausearch from cron).\n\n--just-one\n    Stop after the first matching event.\n\n-l, --line-buffered\n    Flush output on every line — useful when stdout is a pipe where\n    the default block buffering is undesirable (at some performance\n    cost).\n\n-n, --node\n    Search by node field (multiple nodes allowed; any match counts).\n    See -hn/--host for the separate host field.\n\n-r, --raw\n    Output completely unformatted data — useful for extracting records\n    to feed to another audit tool.\n\n-v, --version\n    Print version and exit.\n\n-h, --help\n    Display help.\n\n--debug\n    Write malformed, skipped events to stderr."
+      },
+      {
+        "title": "EXIT STATUS",
+        "code": "0   OK\n1   nothing found, argument errors, or minor file access/read errors\n10  invalid checkpoint data found in the checkpoint file\n11  checkpoint processing error\n12  checkpointed event not found in the matching log file"
+      },
+      {
+        "title": "NOTE",
+        "code": "The boot time keyword has a limitation: it's computed as \"time now\nminus /proc/uptime\", so a post-boot clock adjustment (e.g. via ntp)\ncan throw it off — specify the time fully in that case. Check the\ncalculated boot time with:\ndate -d \"$(cut -f1 -d. /proc/uptime) seconds ago\""
+      },
+      {
+        "title": "EXAMPLES",
+        "code": "# Search for a specific user\nausearch --start today --loginuid john -i\n\n# Check today's SELinux denials\nausearch --start today -m avc -i\n\n# Output in readable-sentence form\nausearch --start today --format text\n\n# TTY keystroke events, interpreted and shell-escaped\nausearch --start today -m TTY -i --escape shell_quote"
+      },
+      {
+        "title": "SEE ALSO",
+        "code": "auditd(8), auditd.conf(5), aureport(8), pam_loginuid(8)"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "command": "aureport(8)",
+    "purpose": "aureport - a tool that produces summary reports of audit daemon logs",
+    "sections": [
+      {
+        "title": "SYNOPSIS",
+        "code": "aureport [options]"
+      },
+      {
+        "title": "DESCRIPTION",
+        "code": "aureport produces summary reports of the audit system logs (it also\naccepts raw log data via stdin). Reports include column labels for\nfield interpretation. Except for the main summary report, every report\nshows the audit event number, so a specific hit can be looked up in\nfull with `ausearch -a`. aureport's output is meant as a building\nblock for more complex analysis, not a final answer by itself."
+      },
+      {
+        "title": "REPORT SELECTION OPTIONS",
+        "code": "-au, --auth        Report on authentication attempts\n-a, --avc          Report on AVC (SELinux/AppArmor) messages\n--comm             Report on commands run\n-c, --config       Report on config changes\n-cr, --crypto      Report on crypto events\n-e, --event        Report on events\n-f, --file         Report on files and af_unix sockets\n-h, --host         Report on hosts\n--integrity        Report on integrity events\n-k, --key          Report on audit rule keys\n-l, --login        Report on logins\n-m, --mods         Report on account modifications\n-ma, --mac         Report on Mandatory Access Control events\n-n, --anomaly      Report on anomaly events (e.g. NIC promiscuous\n                   mode, program segfaults)\n-p, --pid          Report on processes\n-r, --response     Report on responses to anomaly events\n-s, --syscall      Report on syscalls\n--summary          Run a summary report, totaling the main report's\n                   elements\n-t, --log          Output the start/end time of each log\n--tty              Report on TTY keystrokes\n-tm, --terminal    Report on terminals\n-u, --user         Report on users\n--virt             Report on virtualization events\n-x, --executable   Report on executables"
+      },
+      {
+        "title": "FILTER & OUTPUT OPTIONS",
+        "code": "--failed / --success\n    Select only failed or only successful events (default is both).\n\n-i, --interpret\n    Interpret numeric entities into text (e.g. uid to account name).\n\n-if, --input file|directory / --input-logs\n    Use the given file/directory instead of the default logs (path\n    capped at 4064 bytes), or the log location configured in\n    auditd.conf (needed for running aureport from cron).\n\n--node node-name\n    Select events from the given node; multiple nodes allowed.\n\n-nc, --no-config\n    Exclude CONFIG_CHANGE events — useful for a key report when audit\n    rules themselves carry labels.\n\n-te, --end / -ts, --start [date] [time]\n    Select events before/after the given time — same locale-dependent\n    formats and keywords (now, recent, this-hour, boot, today,\n    yesterday, this-week, week-ago, this-month, this-year) as\n    ausearch's -te/-ts.\n\n--escape raw|tty|shell|shell_quote\n    Control output escaping, same modes as ausearch.\n\n--eoe-timeout seconds\n    Override the end-of-event parsing timeout for this run.\n\n--debug\n    Write malformed, skipped events to stderr.\n\n-v, --version / --help\n    Print version and exit / print a brief command summary."
+      },
+      {
+        "title": "NOTE",
+        "code": "Boot-time calculation uses current time minus /proc/uptime and can be\nthrown off by a post-boot NTP adjustment. Verify with:\ndate -d \"$(cut -f1 -d. /proc/uptime) seconds ago\""
+      },
+      {
+        "title": "SEE ALSO",
+        "code": "ausearch(8), auditd(8), auditd.conf(5)"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "command": "auditd(8)",
+    "purpose": "auditd - the Linux Audit daemon",
+    "sections": [
+      {
+        "title": "SYNOPSIS",
+        "code": "auditd [-f] [-l] [-n] [-s disable|enable|nochange] [-c <config_dir>]"
+      },
+      {
+        "title": "DESCRIPTION",
+        "code": "auditd is the userspace component of the Linux Auditing System; it's\nresponsible for writing audit records to disk. Logs are read with\nausearch or aureport; system configuration and rule loading go through\nauditctl. At startup, rules from /etc/audit/audit.rules are loaded via\nauditctl; augenrules offers an alternative path, reading rules from\n/etc/audit/rules.d/ and compiling them into that same file. The\ndaemon's own configuration lives in auditd.conf."
+      },
+      {
+        "title": "OPTIONS",
+        "code": "-f\n    Leave the audit daemon in the foreground for debugging; messages\n    also go to stderr rather than only the audit log.\n\n-l\n    Allow the audit daemon to follow symlinks for config files.\n\n-n\n    No fork — useful when run from inittab or systemd.\n\n-s ENABLE_STATE\n    Specify whether auditd should change the kernel's enabled flag at\n    startup: disable, enable, or nochange (default enables it). The\n    same flag can be changed at runtime with auditctl -e.\n\n-c\n    Specify an alternate config file directory (default\n    /etc/audit/); this directory is also passed to the dispatcher."
+      },
+      {
+        "title": "SIGNALS",
+        "code": "SIGHUP    Reread the configuration file and apply changes if it's\n          syntactically valid.\nSIGTERM   Stop event processing, write a shutdown event, and exit.\nSIGUSR1   Immediately rotate the logs.\nSIGUSR2   Attempt to resume logging and passing events to plugins.\nSIGCONT   Dump a report of internal state to /var/run/auditd.state."
+      },
+      {
+        "title": "EXIT CODES",
+        "code": "1   Initialization failure (priority adjustment, daemonization, audit\n    netlink access, etc.)\n2   Invalid command-line arguments\n4   Insufficient daemon privileges\n6   Configuration file error"
+      },
+      {
+        "title": "FILES",
+        "code": "/etc/audit/auditd.conf   daemon configuration\n/etc/audit/audit.rules   startup rules\n/etc/audit/rules.d/      individual rule sets\n/etc/audit/plugins.d/    plugin configurations\n/etc/audit/audit-stop    shutdown rules\n/var/run/auditd.state    internal state report"
+      },
+      {
+        "title": "SEE ALSO",
+        "code": "auditd.conf(5), auditd-plugins(5), ausearch(8), aureport(8), auditctl(8),\naugenrules(8), audit.rules(7)"
+      }
+    ],
+    "notes": "AUTHOR: Steve Grubb"
+  },
+  {
+    "command": "augenrules(8)",
+    "purpose": "augenrules - a script that merges component audit rule files",
+    "sections": [
+      {
+        "title": "SYNOPSIS",
+        "code": "augenrules [--check] [--load]"
+      },
+      {
+        "title": "DESCRIPTION",
+        "code": "augenrules consolidates the audit rule files in /etc/audit/rules.d/\ninto a single /etc/audit/audit.rules file. Only files ending in\n\".rules\" are processed; everything else in that directory is ignored.\n\nFiles are concatenated in natural sort order, with empty lines and\ncomments stripped. A few directives get special placement regardless\nof source-file order: a final bare -D appears first, -b directives\nsecond, -f directives third, and -e directives last in the merged\noutput. /etc/audit/audit.rules is only rewritten when the merged\nresult actually differs from what's already there."
+      },
+      {
+        "title": "OPTIONS",
+        "code": "--check\n    Test whether the rules have changed and would need updating,\n    without actually overwriting audit.rules.\n\n--load\n    Load the old (or newly built) rules into the kernel."
+      },
+      {
+        "title": "FILES",
+        "code": "/etc/audit/rules.d/\n/etc/audit/audit.rules"
+      },
+      {
+        "title": "SEE ALSO",
+        "code": "audit.rules(7), auditctl(8), auditd(8)"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "command": "autrace(8)",
+    "purpose": "autrace - a program similar to strace, built on the audit subsystem",
+    "sections": [
+      {
+        "title": "SYNOPSIS",
+        "code": "autrace program [-r] [program-args]..."
+      },
+      {
+        "title": "DESCRIPTION",
+        "code": "autrace traces a single process's execution the way strace does, but\nusing audit rules rather than ptrace: it executes the given program\n(passing along any arguments) and directs the resulting audit data to\nthe audit logs (if auditd is running) or to syslog. It automatically\nremoves all audit rules both before and after running the program — as\na safeguard, it requires that every existing rule already be deleted\nvia auditctl before it will proceed."
+      },
+      {
+        "title": "OPTIONS",
+        "code": "-r\n    Limit the syscalls collected to just those needed for analyzing\n    resource usage. Useful for threat modeling; keeps the resulting\n    log smaller."
+      },
+      {
+        "title": "EXAMPLES",
+        "code": "# Standard usage\nautrace /bin/ls /tmp\nausearch --start recent -p 2442 -i\n\n# Resource-usage mode\nautrace -r /bin/ls\nausearch --start recent -p 2450 --raw | aureport --file --summary\nausearch --start recent -p 2450 --raw | aureport --host --summary"
+      },
+      {
+        "title": "SEE ALSO",
+        "code": "ausearch(8), auditctl(8)"
+      }
+    ],
+    "notes": "AUTHOR: Steve Grubb"
+  },
+  {
+    "command": "audispd",
+    "purpose": "event multiplexor — merged into auditd itself as of audit 3.0",
+    "sections": [
+      {
+        "title": "STATUS",
+        "code": "audispd no longer has a standalone man page on current systems (RHEL 9/\nUbuntu 22.04+ ship audit >= 3.0). In audit 3.0, the audispd dispatcher\ndaemon's code was merged directly into auditd, and audispd.conf's\nsettings moved into auditd.conf. The dispatcher and disp_qos options in\nauditd.conf were deprecated as part of that same merge. What was\n/etc/audisp/plugins.d/ is now /etc/audit/plugins.d/, documented by the\ncurrent auditd-plugins(5) man page below rather than a separate\naudispd(8) — the fetch for a live audispd(8) page 404s on both current\nUbuntu manpages releases checked (jammy, noble) for exactly this\nreason, which is real signal, not a gap in this transcription."
+      },
+      {
+        "title": "auditd-plugins(5) — the modern replacement",
+        "code": "NAME\n    auditd-plugins — realtime event receivers\n\nDESCRIPTION\n    auditd can multiplex audit events in real time, distributing them\n    to child programs for real-time analysis. Plugin configuration\n    files live in /etc/audit/plugins.d (configurable via plugin_dir in\n    auditd.conf). auditd scans that directory at startup, starts every\n    active plugin, and restarts failed ones up to max_restarts times.\n\nPLUGIN CONFIGURATION OPTIONS\n    active     yes or no\n    direction  in or out (inbound is not yet supported)\n    path       absolute path to the plugin executable (or a name, for\n               internal plugins)\n    type       currently only \"builtin\" is supported\n    args       arguments passed to the child program (max 2)\n    format     binary or string (default string) — how events are\n               formatted for the plugin\n\nFILES\n    /etc/audit/auditd.conf\n    /etc/audit/plugins.d\n\nSEE ALSO\n    auditd.conf(5), auditd(8), execve(2), auparse_feed(3)"
+      }
+    ],
+    "notes": "AUTHOR: Steve Grubb"
+  }
+]

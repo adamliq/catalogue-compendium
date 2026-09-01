@@ -1,0 +1,104 @@
+[
+  {
+    "token": "%%2304",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The user account has expired."
+  },
+  {
+    "token": "%%2305",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The user account is currently disabled."
+  },
+  {
+    "token": "%%2307",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The user tried to log on outside of authorized hours or days."
+  },
+  {
+    "token": "%%2308",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "Workstation restriction (the user is not allowed to log on from this machine)."
+  },
+  {
+    "token": "%%2309",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The user's password has expired."
+  },
+  {
+    "token": "%%2310",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The user must change their password at the next logon."
+  },
+  {
+    "token": "%%2311",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The user account is currently locked out."
+  },
+  {
+    "token": "%%2312",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "An internal SAM (Security Accounts Manager) logon database error occurred."
+  },
+  {
+    "token": "%%2313",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The time difference between the client and server is too large (clock skew error)."
+  },
+  {
+    "token": "%%2314",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "The domain security identifier (SID) is inconsistent."
+  },
+  {
+    "token": "%%2315",
+    "category": "SubStatus",
+    "field": "Sub Status",
+    "description": "A source domain trust relationship failure occurred."
+  },
+  {
+    "token": "%%1832",
+    "category": "Logon Process/Package",
+    "field": "Logon Process",
+    "description": "Advapi (Advanced API logon process)."
+  },
+  {
+    "token": "%%1833",
+    "category": "Logon Process/Package",
+    "field": "Authentication Package",
+    "description": "NtLmSsp (NTLM Security Support Provider)."
+  },
+  {
+    "token": "%%1841",
+    "category": "Logon Process/Package",
+    "field": "Authentication Package",
+    "description": "Kerberos authentication package."
+  },
+  {
+    "token": "%%1843",
+    "category": "Logon Process/Package",
+    "field": "Authentication Package",
+    "description": "Negotiate package."
+  },
+  {
+    "token": "%%4624",
+    "category": "Logon Process/Package",
+    "field": "Reference marker",
+    "description": "Reference marker pointing directly back to the system logon-success message header (Event 4624)."
+  },
+  {
+    "token": "%%4625",
+    "category": "Logon Process/Package",
+    "field": "Reference marker",
+    "description": "Reference marker pointing directly back to the system logon-failure message header (Event 4625)."
+  }
+]

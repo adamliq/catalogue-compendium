@@ -1,0 +1,284 @@
+[
+  {
+    "result_code": "0x0",
+    "description": "Pass",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x1",
+    "description": "Client's entry in database has expired",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x2",
+    "description": "Server's entry in database has expired",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x3",
+    "description": "Requested protocol version # not supported",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x4",
+    "description": "Client's key encrypted in old master key",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x5",
+    "description": "Server's key encrypted in old master key",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x6",
+    "description": "Client not found in Kerberos database",
+    "notes": "Bad user name, or new computer/user account has not replicated to DC yet",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x7",
+    "description": "Server not found in Kerberos database",
+    "notes": "New computer account has not replicated yet or computer is pre-w2k",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x8",
+    "description": "Multiple principal entries in database",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x9",
+    "description": "The client or server has a null key",
+    "notes": "Administrator should reset the password on the account",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0xA",
+    "description": "Ticket not eligible for postdating",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0xB",
+    "description": "Requested start time is later than end time",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0xC",
+    "description": "KDC policy rejects request",
+    "notes": "Workstation restriction",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0xD",
+    "description": "KDC cannot accommodate requested option",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0xE",
+    "description": "KDC has no support for encryption type",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0xF",
+    "description": "KDC has no support for checksum type",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x10",
+    "description": "KDC has no support for padata type",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x11",
+    "description": "KDC has no support for transited type",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x12",
+    "description": "Client's credentials have been revoked",
+    "notes": "Account disabled, expired, locked out, or a logon-hours restriction",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x13",
+    "description": "Credentials for server have been revoked",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x14",
+    "description": "TGT has been revoked",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x15",
+    "description": "Client not yet valid - try again later",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x16",
+    "description": "Server not yet valid - try again later",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x17",
+    "description": "Password has expired",
+    "notes": "The user's password has expired",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x18",
+    "description": "Pre-authentication information was invalid",
+    "notes": "Usually means bad password",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x19",
+    "description": "Additional pre-authentication required",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x1F",
+    "description": "Integrity check on decrypted field failed",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x20",
+    "description": "Ticket expired",
+    "notes": "Frequently logged by computer accounts",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x21",
+    "description": "Ticket not yet valid",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x22",
+    "description": "Request is a replay",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x23",
+    "description": "The ticket isn't for us",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x24",
+    "description": "Ticket and authenticator don't match",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x25",
+    "description": "Clock skew too great",
+    "notes": "Workstation's clock too far out of sync with the DC's",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x26",
+    "description": "Incorrect net address",
+    "notes": "IP address change?",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x27",
+    "description": "Protocol version mismatch",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x28",
+    "description": "Invalid msg type",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x29",
+    "description": "Message stream modified",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x2A",
+    "description": "Message out of order",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x2C",
+    "description": "Specified version of key is not available",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x2D",
+    "description": "Service key not available",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x2E",
+    "description": "Mutual authentication failed",
+    "notes": "May be a memory allocation failure",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x2F",
+    "description": "Incorrect message direction",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x30",
+    "description": "Alternative authentication method required",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x31",
+    "description": "Incorrect sequence number in message",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x32",
+    "description": "Inappropriate type of checksum in message",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x3C",
+    "description": "Generic error (description in e-text)",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  },
+  {
+    "result_code": "0x3D",
+    "description": "Field is too long for this implementation",
+    "notes": "",
+    "related_event_ids": "4768; 4769; 4770; 4771; 4772; 4774; 4775; 4777; 4820; 4821; 4824"
+  }
+]

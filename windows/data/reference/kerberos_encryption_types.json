@@ -1,0 +1,82 @@
+[
+  {
+    "code": "0x0001",
+    "name": "DES-CBC-CRC",
+    "note": "Deprecated \u2014 no longer supported"
+  },
+  {
+    "code": "0x0002",
+    "name": "DES-CBC-MD4",
+    "note": "Deprecated \u2014 no longer supported"
+  },
+  {
+    "code": "0x0003",
+    "name": "DES-CBC-MD5",
+    "note": "Deprecated \u2014 no longer supported"
+  },
+  {
+    "code": "0x0004",
+    "name": "DES-CBC-RAW",
+    "note": "Deprecated \u2014 no longer supported"
+  },
+  {
+    "code": "0x0005",
+    "name": "DES3-CBC-SHA",
+    "note": "Deprecated \u2014 DES-3 cbc with SHA1"
+  },
+  {
+    "code": "0x0006",
+    "name": "DES3-CBC-RAW",
+    "note": "Deprecated \u2014 DES-3 cbc mode raw"
+  },
+  {
+    "code": "0x0008",
+    "name": "DES-HMAC-SHA1",
+    "note": "Deprecated \u2014 no longer supported"
+  },
+  {
+    "code": "0x0010",
+    "name": "DES3-CBC-SHA1",
+    "note": ""
+  },
+  {
+    "code": "0x0011",
+    "name": "AES128-CTS-HMAC-SHA1-96",
+    "note": "RFC 3962"
+  },
+  {
+    "code": "0x0012",
+    "name": "AES256-CTS-HMAC-SHA1-96",
+    "note": "RFC 3962"
+  },
+  {
+    "code": "0x0013",
+    "name": "AES128-CTS-HMAC-SHA256-128",
+    "note": "RFC 8009"
+  },
+  {
+    "code": "0x0014",
+    "name": "AES256-CTS-HMAC-SHA384-192",
+    "note": "RFC 8009"
+  },
+  {
+    "code": "0x0017",
+    "name": "ARCFOUR-HMAC",
+    "note": "Also known as RC4-HMAC in Windows documentation. RFC 4757"
+  },
+  {
+    "code": "0x0018",
+    "name": "ARCFOUR-HMAC-EXP",
+    "note": "Also known as RC4-HMAC-EXP in Windows documentation. RFC 4757"
+  },
+  {
+    "code": "0x0019",
+    "name": "CAMELLIA128-CTS-CMAC",
+    "note": "RFC 6803"
+  },
+  {
+    "code": "0x001a",
+    "name": "CAMELLIA256-CTS-CMAC",
+    "note": "RFC 6803"
+  }
+]

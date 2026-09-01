@@ -1,0 +1,160 @@
+record_type,explanation
+ACCT_LOCK,User-space account locked by administrator
+ACCT_UNLOCK,User-space account unlocked by administrator
+ADD_GROUP,User-space group added
+ADD_USER,User-space user account added
+ANOM_ABEND,Process ended abnormally (signal that can cause core dump)
+ANOM_ACCESS_FS,File/directory access ended abnormally
+ANOM_ADD_ACCT,Account addition ended abnormally
+ANOM_AMTU_FAIL,Abstract Machine Test Utility (AMTU) failure
+ANOM_CRYPTO_FAIL,Cryptographic system failure
+ANOM_DEL_ACCT,Account deletion ended abnormally
+ANOM_EXEC,File execution ended abnormally
+ANOM_LINK,Suspicious use of file links
+ANOM_LOGIN_ACCT,Account login attempt ended abnormally
+ANOM_LOGIN_FAILURES,Limit of failed login attempts reached
+ANOM_LOGIN_LOCATION,Login from unusual location
+ANOM_LOGIN_SESSIONS,Limit of concurrent login sessions reached
+ANOM_LOGIN_TIME,Login at unusual time
+ANOM_MAX_DAC,Maximum DAC failures reached
+ANOM_MAX_MAC,Maximum MAC failures reached
+ANOM_PROMISCUOUS,Network device entered promiscuous mode
+ANOM_RBAC_FAILURE,RBAC test failure
+ANOM_RBAC_INTEGRITY_FAIL,RBAC integrity test failure
+ANOM_ROOT_TRANS,User became root
+APPARMOR,AppArmor event (generic)
+APPARMOR_ALLOWED,AppArmor allowed operation
+APPARMOR_AUDIT,AppArmor audit event
+APPARMOR_DENIED,AppArmor denied operation
+APPARMOR_ERROR,AppArmor error
+APPARMOR_HINT,AppArmor hint
+APPARMOR_KILL,AppArmor killed process
+APPARMOR_STATUS,AppArmor status change
+AVC,SELinux Access Vector Cache permission check (allow/deny)
+AVC_PATH,dentry/vfsmount pair from an AVC check
+BPRM_FCAPS,Program executed with file-system capabilities
+CAPSET,Process capability set changed
+CHGRP_ID,User-space group ID changed
+CHUSER_ID,User-space user ID changed
+CONFIG_CHANGE,"Audit system configuration modified (rules added/deleted, features changed)"
+CRED_ACQ,User-space credentials acquired
+CRED_DISP,User-space credentials disposed
+CRED_REFR,User-space credentials refreshed
+CRYPTO_IKE_SPI,IKE SPI allocated
+CRYPTO_IPSEC_SA,IPsec SA established
+CRYPTO_IPSEC_SA_ESTABLISHED,IPsec SA fully established
+CRYPTO_IPSEC_SA_REPLAY,IPsec SA replay window
+CRYPTO_KEY_USER,Cryptographic key user operation
+CRYPTO_REPLAY,Crypto replay detected
+CRYPTO_SESSION,Cryptographic session established
+CWD,Current working directory of the process
+DAC_CHECK,Discretionary Access Control check result
+DAEMON_ABORT,auditd stopped because of an error
+DAEMON_ACCEPT,auditd accepted a remote connection
+DAEMON_CLOSE,auditd closed a remote connection
+DAEMON_CONFIG,auditd configuration change detected
+DAEMON_END,auditd stopped normally
+DAEMON_ERR,auditd internal error
+DAEMON_RESUME,auditd resumed logging
+DAEMON_ROTATE,auditd rotated log files
+DAEMON_START,auditd started
+DEL_GROUP,User-space group deleted
+DEL_USER,User-space user account deleted
+DEV_ALLOC,Device allocated
+DEV_DEALLOC,Device deallocated
+EOE,End-of-event marker (rarely seen; used for event boundary)
+EXECVE,Arguments of an execve system call (full command line)
+FANOTIFY,fanotify access decision
+FD_PAIR,File-descriptor pair created (pipe / socketpair)
+FEATURE_CHANGE,Audit feature enabled/disabled
+FS_RELABEL,File-system relabel operation
+GRP_AUTH,Group password used for authentication
+INTEGRITY_DATA,Integrity data verification (IMA/EVM)
+INTEGRITY_EVM_XATTR,EVM extended attribute verification
+INTEGRITY_HASH,Integrity hash verification
+INTEGRITY_METADATA,Integrity metadata verification
+INTEGRITY_PCR,PCR (Platform Configuration Register) update
+INTEGRITY_RULE,Integrity policy rule
+INTEGRITY_STATUS,Integrity subsystem status change
+IPC,System V IPC object accessed
+IPC_SET_PERM,System V IPC permissions changed
+KERN_MODULE,Kernel module load/unload
+KERNEL,Generic kernel audit message
+KERNEL_OTHER,3rd-party kernel module audit record
+LABEL_LEVEL_CHANGE,Object label level changed
+LABEL_OVERRIDE,Object label overridden
+LOGIN,Login event (legacy)
+MAC_CALIPSO_ADD,Calipso label added
+MAC_CALIPSO_DEL,Calipso label deleted
+MAC_CHECK,MAC check performed
+MAC_CIPSOV4_ADD,CIPSO v4 label added
+MAC_CIPSOV4_DEL,CIPSO v4 label deleted
+MAC_CONFIG_CHANGE,MAC configuration changed
+MAC_IPSEC_ADDSA,IPsec SA added
+MAC_IPSEC_ADDSPD,IPsec SPD added
+MAC_IPSEC_DELSA,IPsec SA deleted
+MAC_IPSEC_DELSPD,IPsec SPD deleted
+MAC_IPSEC_EVENT,Generic IPsec event
+MAC_MAP_ADD,MAC map added
+MAC_MAP_DEL,MAC map deleted
+MAC_POLICY_LOAD,MAC (SELinux) policy loaded
+MAC_STATUS,MAC enforcement status changed (enforcing/permissive)
+MAC_UNLBL_ALLOW,Unlabeled traffic allowed
+MAC_UNLBL_STCADD,Static unlabeled entry added
+MAC_UNLBL_STCDEL,Static unlabeled entry deleted
+MMAP,Memory-mapped file access
+MQ_GETSETATTR,POSIX message-queue get/set attribute
+MQ_NOTIFY,POSIX message-queue notify
+MQ_OPEN,POSIX message-queue open
+MQ_SENDRECV,POSIX message-queue send/receive
+NETFILTER_CFG,Netfilter (iptables/nftables) configuration change
+NETFILTER_PKT,Netfilter packet decision
+OBJ_PID,"Information about a target process (used with kill, ptrace, etc.)"
+PATH,File-name / path information (one record per path argument)
+PROCTITLE,Full process title / command line (hex-encoded)
+RESP_ACCT_LOCK,Response: account locked
+RESP_ACCT_LOCK_TIMED,Response: account locked for a time
+RESP_ACCT_REMOTE,Response: account access from remote host
+RESP_ACCT_UNLOCK_TIMED,Response: account unlocked after time
+RESP_ANOMALY,Response to an anomaly
+RESP_EXEC,Response: execute a program
+RESP_HALT,Response: system halt
+RESP_ORIGINS,Response origin information
+RESP_SEBOOL,Response: SELinux boolean changed
+ROLE_ASSIGN,Role assigned to a user
+ROLE_REMOVE,Role removed from a user
+SELINUX_ERR,SELinux error
+SERVICE_START,systemd service started
+SERVICE_STOP,systemd service stopped
+SOCKADDR,Socket address (struct sockaddr)
+SOCKETCALL,Arguments of the socketcall multiplexer
+SOFTWARE_UPDATE,Software update / package event
+SYSCALL,System-call event (the primary record for most rules)
+SYSTEM_BOOT,System boot
+SYSTEM_RUNLEVEL,System run-level change
+SYSTEM_SHUTDOWN,System shutdown
+TEST,Test record (internal)
+TRUSTED_APP,Trusted application message
+TTY,Administrative TTY input
+USER,Generic user-space message
+USER_ACCT,User-space account authorization
+USER_AUTH,User-space authentication
+USER_AVC,User-space AVC message
+USER_CHAUTHTOK,User changed authentication token (password/PIN)
+USER_CMD,User command execution (from pam_tty_audit / similar)
+USER_DEVICE,User-space hotplug / device event
+USER_END,User session ended
+USER_ERR,User-space error
+USER_LABEL,User label change
+USER_LOGIN,User logged in
+USER_LOGOUT,User logged out
+USER_MGMT,User account attribute change
+USER_ROLE_CHANGE,User role change
+USER_SELINUX_ERR,User-space SELinux error
+USER_START,User session started
+USER_TTY,Non-ICANON TTY input
+USYS_CONFIG,User-space system configuration change
+VIRT_CONTROL,Virtualization control operation
+VIRT_MACHINE_ID,Virtual machine identity
+VIRT_RESOURCE,"Virtual resource assignment (disk, memory, net, vCPU)"
+VIRT_ROLE,Virtualization role change

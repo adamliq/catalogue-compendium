@@ -1,0 +1,11 @@
+error_code,reason,related_event_id
+C0000064,user name does not exist,4776
+C000006A,user name is correct but the password is wrong,4776
+C0000234,user is currently locked out,4776
+C0000072,account is currently disabled,4776
+C000006F,user tried to logon outside his day of week or time of day restrictions,4776
+C0000070,workstation restriction,4776
+C0000193,account expiration,4776
+C0000071,expired password,4776
+C0000224,user is required to change password at next logon,4776
+C0000225,evidently a bug in Windows and not a risk,4776

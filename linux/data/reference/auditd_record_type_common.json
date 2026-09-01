@@ -1,0 +1,42 @@
+[
+  {
+    "record_type": "SYSCALL",
+    "typical_origin": "Almost every syscall rule"
+  },
+  {
+    "record_type": "PATH",
+    "typical_origin": "Every file path involved in the syscall"
+  },
+  {
+    "record_type": "CWD",
+    "typical_origin": "Current working directory"
+  },
+  {
+    "record_type": "EXECVE",
+    "typical_origin": "Full argv of an executed program"
+  },
+  {
+    "record_type": "PROCTITLE",
+    "typical_origin": "Hex-encoded command line"
+  },
+  {
+    "record_type": "CONFIG_CHANGE",
+    "typical_origin": "auditctl / rule loading"
+  },
+  {
+    "record_type": "USER_AUTH / USER_LOGIN / USER_START / USER_END",
+    "typical_origin": "PAM / login"
+  },
+  {
+    "record_type": "AVC",
+    "typical_origin": "SELinux denials/grants"
+  },
+  {
+    "record_type": "OBJ_PID",
+    "typical_origin": "kill / ptrace target"
+  },
+  {
+    "record_type": "DAEMON_*",
+    "typical_origin": "auditd itself"
+  }
+]

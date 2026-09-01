@@ -1,0 +1,16 @@
+code,name,description
+1,SSH_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT,The remote host is not permitted to connect (e.g. TCP wrappers / firewall at the application layer)
+2,SSH_DISCONNECT_PROTOCOL_ERROR,A malformed or out-of-sequence SSH protocol packet was received
+3,SSH_DISCONNECT_KEY_EXCHANGE_FAILED,"Key exchange failed (no compatible algorithm, or the exchange itself failed)"
+4,SSH_DISCONNECT_RESERVED,Reserved (also historically used for host authentication failure)
+5,SSH_DISCONNECT_MAC_ERROR,Message authentication code verification failed
+6,SSH_DISCONNECT_COMPRESSION_ERROR,Compression or decompression failed
+7,SSH_DISCONNECT_SERVICE_NOT_AVAILABLE,The requested service is not available
+8,SSH_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED,The peer's protocol version is not supported
+9,SSH_DISCONNECT_HOST_KEY_NOT_VERIFIABLE,The host key could not be verified
+10,SSH_DISCONNECT_CONNECTION_LOST,"The connection was lost (network-level failure, not a clean protocol close)"
+11,SSH_DISCONNECT_BY_APPLICATION,The application (client or server) initiated a normal disconnect
+12,SSH_DISCONNECT_TOO_MANY_CONNECTIONS,Too many concurrent connections from this source
+13,SSH_DISCONNECT_AUTH_CANCELLED_BY_USER,The user cancelled authentication
+14,SSH_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE,All configured authentication methods were exhausted without success
+15,SSH_DISCONNECT_ILLEGAL_USER_NAME,The requested username is not permitted by the server

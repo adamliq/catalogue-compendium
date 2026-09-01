@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/etc/audit/auditd.conf",
+    "purpose": "Daemon configuration"
+  },
+  {
+    "path": "/etc/audit/audit.rules",
+    "purpose": "Compiled rules (generated)"
+  },
+  {
+    "path": "/etc/audit/rules.d/",
+    "purpose": "Source rule files"
+  },
+  {
+    "path": "/var/log/audit/audit.log",
+    "purpose": "Main log file"
+  },
+  {
+    "path": "/etc/audit/plugins.d/",
+    "purpose": "Dispatcher plugins"
+  }
+]

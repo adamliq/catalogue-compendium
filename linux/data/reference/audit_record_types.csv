@@ -1,0 +1,65 @@
+code,name,description,range
+1000,GET,Get audit status (auditctl -s),Command/Control
+1001,SET,Set audit status/rate limits,Command/Control
+1011,ADD_RULE,Audit rule added (kernel ack),Command/Control
+1012,DEL_RULE,Audit rule deleted (kernel ack),Command/Control
+1013,LIST_RULES,Audit rule list response,Command/Control
+1200,DAEMON_START,Auditd started,Daemon
+1201,DAEMON_END,Auditd stopped,Daemon
+1202,DAEMON_ABORT,Auditd aborted startup (config error),Daemon
+1203,DAEMON_CONFIG,Auditd config was reloaded,Daemon
+1100,USER_AUTH,PAM authentication attempt,User
+1101,USER_ACCT,PAM account validation (expiry/lockout checks),User
+1102,USER_MGMT,User management operation via a privileged helper,User
+1103,CRED_ACQ,PAM credentials acquired,User
+1104,CRED_DISP,PAM credentials disposed,User
+1105,USER_START,PAM session opened,User
+1106,USER_END,PAM session closed,User
+1107,USER_AVC,Userspace MAC (AVC-style) message from a non-kernel enforcer,User
+1108,USER_CHAUTHTOK,User changed an authentication token (password),User
+1109,USER_ERR,"PAM error (bad password, module failure, etc.)",User
+1110,CRED_REFR,PAM credentials refreshed,User
+1111,USYS_CONFIG,Userspace system configuration change,User
+1112,USER_LOGIN,User has logged in,User
+1113,USER_LOGOUT,User has logged out,User
+1114,ADD_USER,User account created,User
+1115,DEL_USER,User account deleted,User
+1116,ADD_GROUP,Group created,User
+1117,DEL_GROUP,Group deleted,User
+1118,DAC_CHECK,Discretionary access control check result,User
+1122,USER_SELINUX_ERR,SELinux-related userspace error,User
+1123,USER_CMD,Privileged command run (e.g. via sudo),User
+1124,USER_TTY,TTY captured for a user's session,User
+1125,CHUSER_ID,A user's UID/GID was changed,User
+1126,GRP_AUTH,Group password authentication (newgrp/sg),User
+1127,SYSTEM_BOOT,System boot,User
+1128,SYSTEM_SHUTDOWN,System shutdown,User
+1129,SYSTEM_RUNLEVEL,Runlevel/target change,User
+1130,SERVICE_START,System service started,User
+1131,SERVICE_STOP,System service stopped,User
+1132,GRP_MGMT,Group attribute or membership changed,User
+1133,GRP_CHAUTHTOK,Group password changed,User
+1134,MAC_CHECK,Mandatory access control check result,User
+1300,SYSCALL,System call audited,Syscall
+1302,PATH,Filesystem path touched by an audited syscall,Syscall
+1303,IPC,IPC object accessed,Syscall
+1305,CONFIG_CHANGE,Audit configuration/rule change,Syscall
+1307,CWD,Current working directory of an audited process,Syscall
+1309,EXECVE,execve() argument list,Syscall
+1316,KERNEL_OTHER,Miscellaneous kernel-generated audit message,Syscall
+1318,OBJ_PID,Target process info for a signal/ptrace-style operation,Syscall
+1319,TTY,"TTY input audited (requires -a task,always with tty)",Syscall
+1320,EOE,End of a multi-record audit event,Syscall
+1321,BPRM_FCAPS,File capabilities evaluated during exec,Syscall
+1322,CAPSET,Process capability set applied,Syscall
+1323,MMAP,Memory-mapped file recorded for an audited syscall,Syscall
+1324,NETFILTER_PKT,Packet logged by a netfilter/nftables rule,Syscall
+1325,NETFILTER_CFG,Netfilter table registered/replaced,Syscall
+1326,SECCOMP,Seccomp filter action against a syscall,Syscall
+1327,PROCTITLE,Full command line of an audited process,Syscall
+1330,KERN_MODULE,Kernel module loaded,Syscall
+1400,AVC,Access Vector Cache denial/grant (SELinux and AppArmor both use this type),MAC
+1401,SELINUX_ERR,Internal SELinux error,MAC
+1403,MAC_POLICY_LOAD,SELinux policy loaded,MAC
+1404,MAC_STATUS,SELinux enforcing/permissive mode changed,MAC
+1405,MAC_CONFIG_CHANGE,SELinux boolean or config changed,MAC

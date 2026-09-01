@@ -1,0 +1,17 @@
+field,used_in,format,explanation
+all,Both,keyword (no value),Wildcard: matches any subject (as a subject attribute) or any object (as an object attribute).
+dir,Both,path,"Directory path. As a subject attribute, matches the process's current working directory; as an object attribute, matches the directory the accessed file is under. Also accepts the built-in aliases execdirs, systemdirs, and untrusted."
+ftype,Both,MIME type string,"MIME type of the file, as fapolicyd's magic-based classifier determines it (e.g. application/x-executable, text/x-shellscript). Check a file's type with fapolicyd-cli --ftype."
+trust,Both,boolean (0 or 1),"Whether the file must be present in the trust database: 1 = trusted (verified against the RPM database or /etc/fapolicyd/fapolicyd.trust), 0 = explicitly not required to be trusted."
+auid,Subject,numeric,Audit login UID (loginuid) of the process — the same immutable auid used throughout the kernel audit subsystem. 4294967295 means unset (no login session).
+uid,Subject,numeric or account name,Real user ID (or account name) of the process.
+gid,Subject,numeric or group name,Real group ID (or group name) of the process.
+sessionid,Subject,numeric,Audit session ID of the process.
+pid,Subject,numeric,Process ID.
+ppid,Subject,numeric,"Parent process ID — e.g. used to identify kernel threads such as nfsd (ppid=2, since kernel threads have no executable of their own)."
+comm,Subject,string,"Short command name of the process (as in /proc/<pid>/comm), e.g. dnf, nfsd."
+exe,Subject,path (glob: supported),Full path to the process's executable. Supports a glob: prefix for fnmatch-style pattern matching.
+pattern,Subject,enum,"Access pattern the kernel identified: normal, ld_so (dynamic-loader-mediated access), ld_preload, or static."
+path,Object,path (glob: supported),Full path of the file being accessed. Supports a glob: prefix for fnmatch-style pattern matching.
+device,Object,path,"Device special file path, e.g. /dev/sda."
+sha256hash,Object,hex digest (SHA-256 or SHA-512),"Hash of the file's contents, lowercase, no 0x prefix — matches a specific file by content rather than by path."

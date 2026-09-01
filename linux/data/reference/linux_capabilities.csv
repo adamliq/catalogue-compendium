@@ -1,0 +1,28 @@
+code,name,description
+0,CAP_CHOWN,Override file/group ownership restrictions
+1,CAP_DAC_OVERRIDE,Bypass file read/write/execute permission checks
+2,CAP_DAC_READ_SEARCH,Bypass file read and directory read/execute permission checks
+3,CAP_FOWNER,Bypass permission checks that normally require matching file owner UID
+4,CAP_FSETID,Don't clear set-user/group-ID bits when a file is modified
+5,CAP_KILL,Bypass permission checks for sending signals
+6,CAP_SETGID,Manipulate process GIDs and set forged GIDs on socket credentials
+7,CAP_SETUID,Manipulate process UIDs and set forged UIDs on socket credentials
+8,CAP_SETPCAP,Grant/remove capabilities to/from other processes
+9,CAP_LINUX_IMMUTABLE,Set the FS_APPEND_FL and FS_IMMUTABLE_FL i-node flags
+10,CAP_NET_BIND_SERVICE,Bind a socket to privileged ports (< 1024)
+11,CAP_NET_BROADCAST,Make socket broadcasts and listen to multicast
+12,CAP_NET_ADMIN,"Perform network administration: interfaces, routing tables, firewall rules"
+13,CAP_NET_RAW,Use RAW and PACKET sockets
+14,CAP_IPC_LOCK,Lock memory (mlock/mlockall/mmap/shmctl)
+16,CAP_SYS_MODULE,Load and unload kernel modules
+17,CAP_SYS_RAWIO,"Perform I/O port operations; access /dev/mem, /dev/kmem, raw disk devices"
+18,CAP_SYS_CHROOT,Use chroot()
+19,CAP_SYS_PTRACE,Trace arbitrary processes using ptrace()
+21,CAP_SYS_ADMIN,"Broad system administration operations (the most powerful, most abused capability)"
+22,CAP_SYS_BOOT,"Reboot the system, or enable/disable reboot via ctrl-alt-del"
+25,CAP_SYS_TIME,Set the system clock and real-time (hardware) clock
+29,CAP_AUDIT_WRITE,Write records to the kernel audit log
+30,CAP_AUDIT_CONTROL,"Enable/disable auditing, change audit filter rules"
+31,CAP_SETFCAP,Set file capabilities
+34,CAP_SYSLOG,Perform privileged operations on the kernel syslog (dmesg)
+37,CAP_AUDIT_READ,Read the audit log via a multicast netlink socket

@@ -1,0 +1,310 @@
+[
+  {
+    "rule_id": "10-languages",
+    "category_no": "10",
+    "category": "Language set definition",
+    "title": "Define the %languages set",
+    "fapolicyd_rule": "%languages=application/x-bytecode.ocaml,application/x-bytecode.python,application/java-archive,text/x-java,application/x-java-applet,application/javascript,text/javascript,text/x-awk,text/x-gawk,text/x-lisp,application/x-elc,text/x-lua,text/x-m4,text/x-nftables,text/x-perl,text/x-php,text/x-script.python,text/x-python,text/x-R,text/x-ruby,text/x-script.guile,text/x-tcl,text/x-luatex,text/x-systemtap",
+    "description": "Defines the %languages set — every MIME type fapolicyd recognises as script or bytecode content for an interpreted language. This is a set definition, not a decision rule; it's referenced by 70-trusted-lang.rules and 91-deny-lang.rules further down the evaluation order.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "%languages=",
+        "explanation": "Set definition. Set names start with %; the value is a comma-separated list. Type (string here) is inherited from the first item. Sets can be used as values for most subject/object attributes, but not for trust or pattern."
+      }
+    ]
+  },
+  {
+    "rule_id": "20-dracut",
+    "category_no": "20",
+    "category": "Dracut (initramfs)",
+    "title": "Exception for dracut's initramfs building",
+    "fapolicyd_rule": "allow perm=any uid=0 : dir=/var/tmp/\nallow perm=any uid=0 trust=1 : all",
+    "description": "Carves out an exception for dracut's initramfs building, which as root needs to freely read/write/execute in /var/tmp/ while assembling the initramfs.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "uid=0",
+        "explanation": "Subject attribute: only the root user's processes match this rule."
+      },
+      {
+        "token": "dir=/var/tmp/",
+        "explanation": "Object attribute: any file under this directory."
+      },
+      {
+        "token": "trust=1",
+        "explanation": "Object attribute: file must be in the trust database (second line only — applies once dracut is done writing to /var/tmp and needs to run trusted content)."
+      }
+    ]
+  },
+  {
+    "rule_id": "21-updaters",
+    "category_no": "21",
+    "category": "System updaters",
+    "title": "Exception for rpm/dnf",
+    "fapolicyd_rule": "allow perm=open exe=/usr/bin/rpm : all\nallow perm=open exe=%python3_path% comm=dnf : all",
+    "description": "\"We have to carve out an exception for the system updaters or things go very bad (deadlock)\" — rpm and dnf need to freely open files (including ones not yet in the trust database) while installing/updating packages, since they are themselves what populates that database.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "exe=/usr/bin/rpm",
+        "explanation": "Subject attribute: the process's executable must be exactly this path."
+      },
+      {
+        "token": "exe=%python3_path%",
+        "explanation": "Subject attribute: matches a set (%python3_path%) rather than a literal path, since dnf is a Python program and its interpreter's path varies by system."
+      },
+      {
+        "token": "comm=dnf",
+        "explanation": "Subject attribute: combined with exe= to narrow the exception to dnf specifically, not every Python process."
+      }
+    ]
+  },
+  {
+    "rule_id": "22-buildroot",
+    "category_no": "22",
+    "category": "Build roots (mock)",
+    "title": "Exception for software builders",
+    "fapolicyd_rule": "allow perm=any uid=mock : dir=/home/mock/rpmbuild\nallow perm=any uid=mock trust=1 : all",
+    "description": "Software builders create lots of untrusted files that fapolicyd has never seen before; the mock account is trusted to create and access anything inside its own buildroot (itself protected by file permissions and wiped after each build), and otherwise restricted to trusted content everywhere else.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "uid=mock",
+        "explanation": "Subject attribute: only processes running as the mock account match."
+      },
+      {
+        "token": "dir=/home/mock/rpmbuild",
+        "explanation": "Object attribute: unrestricted access inside the buildroot specifically."
+      },
+      {
+        "token": "trust=1",
+        "explanation": "Object attribute (second line): outside the buildroot, mock is still held to the normal trust requirement like any other account."
+      }
+    ]
+  },
+  {
+    "rule_id": "30-patterns",
+    "category_no": "30",
+    "category": "Access patterns",
+    "title": "Deny ld.so-mediated access (pattern rules)",
+    "fapolicyd_rule": "deny_audit perm=any pattern=ld_so : all\n#deny_audit perm=any pattern=ld_preload : all\n#deny_audit perm=any pattern=static : all",
+    "description": "Only the ld_so pattern is enabled by default; ld_preload and static pattern denial are shipped but commented out, left for an administrator to enable if needed.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "pattern=ld_so",
+        "explanation": "Subject attribute: matches access mediated by the dynamic loader (ld.so) attempting to load something on a process's behalf — a common technique for smuggling unapproved code past a naive path-based check."
+      }
+    ]
+  },
+  {
+    "rule_id": "40-bad-elf",
+    "category_no": "40",
+    "category": "Bad ELF files",
+    "title": "Deny malformed/corrupt ELF files",
+    "fapolicyd_rule": "deny_audit perm=any all : ftype=application/x-bad-elf",
+    "description": "Rejects any access to ELF files that fapolicyd's magic-based parser identifies as malformed, regardless of trust status — a corrupted or deliberately crafted invalid ELF header is refused outright.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ftype=application/x-bad-elf",
+        "explanation": "Object attribute: fapolicyd's own classification for a file that starts with an ELF magic number but fails to parse as a valid ELF structure."
+      }
+    ]
+  },
+  {
+    "rule_id": "41-nfsd",
+    "category_no": "41",
+    "category": "NFS server exports",
+    "title": "Allow the kernel nfsd thread to open exported content",
+    "fapolicyd_rule": "allow perm=open ppid=2 comm=nfsd : all",
+    "description": "nfsd is a kernel thread, not an executable, so it cannot be added to the trust database. Kernel threads have PPID 2; pairing that with nfsd's comm value prevents a user-space process merely named nfsd from matching. Deliberately permits only open events — NFS export rules and file permissions remain responsible for authorizing the remote client. The upstream rule file carries an explicit warning: watching NFS client mounts (rather than the server-side export) can hang fapolicyd if the remote server becomes unreachable while a fanotify mark is being added, since fanotify_mark() has no nonblocking mode.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ppid=2",
+        "explanation": "Subject attribute: parent process ID 2 identifies kernel threads (parented to kthreadd)."
+      },
+      {
+        "token": "comm=nfsd",
+        "explanation": "Subject attribute: combined with ppid=2 so only the genuine kernel nfsd thread matches, not a same-named user-space process."
+      }
+    ]
+  },
+  {
+    "rule_id": "41-shared-obj",
+    "category_no": "41",
+    "category": "Shared object libraries",
+    "title": "Trust check on ELF shared libraries",
+    "fapolicyd_rule": "allow perm=open all : ftype=application/x-sharedlib trust=1\ndeny_audit perm=open all : ftype=application/x-sharedlib",
+    "description": "Evaluated ahead of the executable rules, since a typical executable links a dozen or more shared libraries and checking those first is cheaper than repeatedly falling through to later rules.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ftype=application/x-sharedlib",
+        "explanation": "Object attribute: ELF shared library."
+      },
+      {
+        "token": "trust=1",
+        "explanation": "Object attribute (first line only): library must be present in the trust database — otherwise the second line's deny_audit catches it."
+      }
+    ]
+  },
+  {
+    "rule_id": "42-trusted-elf",
+    "category_no": "42",
+    "category": "Trusted execution (general)",
+    "title": "Allow execution of any trusted program",
+    "fapolicyd_rule": "allow perm=execute all : trust=1",
+    "description": "The simplest possible trust gate — any subject may execute any object the trust database has verified, independent of file type.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "trust=1",
+        "explanation": "Object attribute: the only condition checked — presence in the trust database."
+      }
+    ]
+  },
+  {
+    "rule_id": "43-known-elf",
+    "category_no": "43",
+    "category": "Known ELF applications",
+    "title": "Allow/deny ELF executables by trust, plus the ld.so workaround",
+    "fapolicyd_rule": "allow perm=execute all : ftype=application/x-executable trust=1\ndeny_audit perm=execute all : ftype=application/x-executable\n\nallow perm=execute all : path=%ld_so_path% trust=1",
+    "description": "The first pair allows trusted ELF executables and denies+audits untrusted ones. The third line is a workaround: the kernel reports an execve-time event for the dynamic loader itself, which this rule allows when trusted — actual ld.so-mediated trickery is caught separately by the 30-patterns.rules pattern=ld_so rule instead.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ftype=application/x-executable",
+        "explanation": "Object attribute: ELF executable."
+      },
+      {
+        "token": "path=%ld_so_path%",
+        "explanation": "Object attribute matching a set of known dynamic-loader paths (e.g. /usr/lib64/ld-linux-x86-64.so.2) rather than a single literal path, since it varies by architecture."
+      }
+    ]
+  },
+  {
+    "rule_id": "70-trusted-lang",
+    "category_no": "70",
+    "category": "Trusted script languages",
+    "title": "Allow opening trusted-language files",
+    "fapolicyd_rule": "allow perm=open all : ftype=%languages trust=1\ndeny_audit perm=any all : ftype=%languages",
+    "description": "Gates every MIME type in the %languages set (defined in 10-languages.rules) behind the same trust check used for compiled binaries.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ftype=%languages",
+        "explanation": "Object attribute matching the named set from 10-languages.rules, rather than a single literal MIME type."
+      }
+    ]
+  },
+  {
+    "rule_id": "71-known-python",
+    "category_no": "71",
+    "category": "Known interpreters — Python",
+    "title": "Only allow system Python executables and bytecode",
+    "fapolicyd_rule": "allow perm=any all : ftype=text/x-python trust=1\nallow perm=open all : ftype=application/x-bytecode.python trust=1\ndeny_audit perm=any all : ftype=text/x-python\ndeny_audit perm=any all : ftype=application/x-bytecode.python",
+    "description": "Trust-gates both Python source (text/x-python) and compiled bytecode (application/x-bytecode.python) separately. 73-known-perl.rules, 74-known-ocaml.rules, 75-known-php.rules, 76-known-ruby.rules, 77-known-lua.rules, and 78-known-wine.rules follow the identical allow-if-trusted/deny_audit-if-not pattern for their respective languages and are not repeated row-for-row here.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ftype=text/x-python",
+        "explanation": "Object attribute: Python source file."
+      },
+      {
+        "token": "ftype=application/x-bytecode.python",
+        "explanation": "Object attribute: compiled Python bytecode (.pyc)."
+      }
+    ]
+  },
+  {
+    "rule_id": "72-shell",
+    "category_no": "72",
+    "category": "Shell scripts",
+    "title": "Allow shell script execution and sourcing",
+    "fapolicyd_rule": "allow perm=any all : ftype=text/x-shellscript",
+    "description": "Shell scripts are allowed unconditionally (perm=any, no trust= gate) — unlike every other language rule in the default ruleset.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ftype=text/x-shellscript",
+        "explanation": "Object attribute: shell script, as classified by fapolicyd's magic patterns."
+      },
+      {
+        "token": "perm=any",
+        "explanation": "Applies to both opening (sourcing) and executing the script."
+      }
+    ]
+  },
+  {
+    "rule_id": "90-deny-execute",
+    "category_no": "90",
+    "category": "Deny execute (default backstop)",
+    "title": "Deny execution of anything untrusted",
+    "fapolicyd_rule": "deny_audit perm=execute all : all",
+    "description": "The default-deny backstop for execution: after every specific trust/file-type rule above has had a chance to match, anything left over is denied. Paired with 95-allow-open.rules, this is the shipped default's version of the deny-all, permit-by-exception execution policy DISA STIG RHEL-09-433016 requires — though note it denies untrusted *execution* specifically, not literally \"all\" access the way the STIG's own suggested hardened last-rule text (deny perm=any all : all) reads; opening (not executing) untrusted files is still allowed by the paired 95-allow-open.rules rule below. Surfacing this distinction rather than treating \"shipped default\" and \"STIG-hardened\" as identical.",
+    "disa_stig_ref": "RHEL-09-433016",
+    "acsc_ism_alignment": "0843, 1490, 1656",
+    "switches_explained": [
+      {
+        "token": "perm=execute",
+        "explanation": "Applies only to execution attempts, not opens."
+      },
+      {
+        "token": "all : all",
+        "explanation": "Subject and object both wildcarded: any process, any file — the catch-all."
+      }
+    ]
+  },
+  {
+    "rule_id": "91-deny-lang",
+    "category_no": "91",
+    "category": "Deny other languages",
+    "title": "Deny any language file type not explicitly enabled",
+    "fapolicyd_rule": "deny_audit perm=open all : ftype=%languages",
+    "description": "Backstops 70-trusted-lang.rules: any file typed as one of the %languages MIME types that wasn't already allowed by an earlier, more specific rule is denied here.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "ftype=%languages",
+        "explanation": "Object attribute matching the named set — same set referenced by 70-trusted-lang.rules, evaluated later as its negative counterpart."
+      }
+    ]
+  },
+  {
+    "rule_id": "95-allow-open",
+    "category_no": "95",
+    "category": "Allow open (default fallback)",
+    "title": "Allow opening (reading) of anything else",
+    "fapolicyd_rule": "allow perm=open all : all",
+    "description": "The final fallback rule: after every specific file-type/trust check above, plain file opens (not execution) are allowed by default. Execution remains governed by the 90-deny-execute.rules backstop above — the two rules together define the shipped default's execute-only allow-listing posture, distinct from a fully locked-down deny-all-by-default configuration.",
+    "disa_stig_ref": "",
+    "acsc_ism_alignment": "",
+    "switches_explained": [
+      {
+        "token": "perm=open",
+        "explanation": "Applies only to opens, not execution — the 90-deny-execute.rules rule already handled execution."
+      },
+      {
+        "token": "all : all",
+        "explanation": "Subject and object both wildcarded — matches everything not already decided by an earlier rule."
+      }
+    ]
+  }
+]

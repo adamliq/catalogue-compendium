@@ -1,0 +1,126 @@
+[
+  {
+    "command": "auditctl",
+    "purpose": "Configure rules, view status, manage the kernel audit subsystem",
+    "sections": [
+      {
+        "title": "Status",
+        "code": "auditctl -s                    # Show current status (enabled, pid, backlog, etc.)\nauditctl -l                    # List all loaded rules\nauditctl -e 1                  # Enable auditing\nauditctl -e 0                  # Disable auditing\nauditctl -e 2                  # Make configuration immutable (until reboot)"
+      },
+      {
+        "title": "Clear / load",
+        "code": "auditctl -D                    # Delete all rules\nauditctl -R /etc/audit/audit.rules   # Load rules from a file"
+      },
+      {
+        "title": "Buffer & failure mode",
+        "code": "auditctl -b 8192               # Set backlog buffer size\nauditctl -f 1                  # Failure mode: 0=silent, 1=printk, 2=panic"
+      },
+      {
+        "title": "File watches",
+        "code": "auditctl -w /etc/passwd -p wa -k identity\nauditctl -w /etc/shadow -p rwa -k sensitive\nauditctl -W /etc/passwd        # Remove a watch"
+      },
+      {
+        "title": "Syscall rules",
+        "code": "auditctl -a always,exit -F arch=b64 -S execve -k process_creation\nauditctl -a always,exit -F arch=b64 -S open,openat -F exit=-EACCES -k access_denied\nauditctl -d always,exit -F arch=b64 -S execve -k process_creation   # Delete a rule"
+      },
+      {
+        "title": "Useful filters",
+        "code": "-F auid>=1000\n-F auid!=unset\n-F uid=0\n-F euid!=uid\n-F path=/usr/bin/sudo\n-F exit=-EPERM\n-F key=mykey"
+      }
+    ],
+    "notes": "Permission flags for -p: r = read, w = write, x = execute, a = attribute change"
+  },
+  {
+    "command": "ausearch",
+    "purpose": "Search and display events from the audit logs",
+    "sections": [
+      {
+        "title": "By key",
+        "code": "ausearch -k identity\nausearch -k access_denied -i          # -i = interpret (human-readable)"
+      },
+      {
+        "title": "By time",
+        "code": "ausearch -ts today\nausearch -ts recent                   # Last 10 minutes\nausearch -ts 10:00:00 -te 11:00:00\nausearch -ts 01/15/2025"
+      },
+      {
+        "title": "By user / process",
+        "code": "ausearch -ua 1000                     # auid\nausearch -ui 0                        # uid\nausearch -ul root                     # login name\nausearch -p 12345                     # pid\nausearch -pp 1234                     # ppid"
+      },
+      {
+        "title": "By syscall / success",
+        "code": "ausearch -sc execve\nausearch -sc open,openat\nausearch -sv yes                      # success=yes\nausearch -sv no                       # success=no"
+      },
+      {
+        "title": "By file / executable",
+        "code": "ausearch -f /etc/passwd\nausearch -x /usr/bin/sudo"
+      },
+      {
+        "title": "By message type",
+        "code": "ausearch -m SYSCALL\nausearch -m USER_AUTH,USER_LOGIN\nausearch -m AVC"
+      },
+      {
+        "title": "By event ID",
+        "code": "ausearch -a 24287"
+      },
+      {
+        "title": "Output formats",
+        "code": "ausearch -k identity -i               # Interpret\nausearch -k identity --raw            # Raw\nausearch -k identity -i -c cat        # Interpret + command name filter\nausearch -k identity --format csv\nausearch -k identity --format text"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "command": "aureport",
+    "purpose": "Generate summary reports from the audit logs",
+    "sections": [
+      {
+        "title": "Reports",
+        "code": "aureport                           # Summary report\naureport --summary                 # Overall summary\naureport --auth                    # Authentication report\naureport --login                   # Login report\naureport --file                    # File access report\naureport --executable              # Executable report\naureport --host                    # Host report\naureport --user                    # User report\naureport --terminal                # Terminal report\naureport --key                     # Key report\naureport --syscall                 # Syscall report\naureport --anomaly                 # Anomaly report\naureport --failed                  # Failed events only\naureport --success                 # Successful events only\naureport --start today\naureport --start this-week\naureport -i                        # Interpret numeric values"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "command": "auditd",
+    "purpose": "The audit daemon itself",
+    "sections": [
+      {
+        "title": "Service management",
+        "code": "systemctl status auditd\nsystemctl start auditd\nsystemctl stop auditd\nsystemctl restart auditd           # Note: often requires service auditd restart\nservice auditd restart             # Preferred on many systems (preserves rules)"
+      },
+      {
+        "title": "Signals",
+        "code": "kill -TERM $(pidof auditd)         # Clean stop\nkill -HUP  $(pidof auditd)         # Reconfigure (reread auditd.conf)\nkill -USR1 $(pidof auditd)         # Rotate logs\nkill -USR2 $(pidof auditd)         # Resume logging after suspend"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "command": "augenrules",
+    "purpose": "Compile rules from /etc/audit/rules.d/ into /etc/audit/audit.rules",
+    "sections": [
+      {
+        "title": "Compile & load",
+        "code": "# Compile /etc/audit/rules.d/*.rules → /etc/audit/audit.rules and load\naugenrules --load\n\n# Check syntax without loading\naugenrules --check"
+      }
+    ],
+    "notes": "Typical layout:\n/etc/audit/rules.d/10-base-config.rules\n/etc/audit/rules.d/30-stig.rules\n/etc/audit/rules.d/31-privileged.rules\n/etc/audit/rules.d/99-finalize.rules   # contains -e 2"
+  },
+  {
+    "command": "autrace",
+    "purpose": "Trace a single process like strace, using the audit subsystem",
+    "sections": [
+      {
+        "title": "Usage",
+        "code": "autrace /usr/bin/ls -l /tmp\n# Then search the generated events:\nausearch -i -p <pid>"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "command": "audispd",
+    "purpose": "Audit event dispatcher (plugins)",
+    "sections": [],
+    "notes": "No dedicated command reference supplied — see /etc/audit/plugins.d/ in the related files below."
+  }
+]

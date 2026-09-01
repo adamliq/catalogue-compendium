@@ -1,0 +1,112 @@
+[
+  {
+    "code": "0",
+    "name": "PAM_SUCCESS",
+    "description": "Successful function return"
+  },
+  {
+    "code": "6",
+    "name": "PAM_PERM_DENIED",
+    "description": "Permission denied"
+  },
+  {
+    "code": "7",
+    "name": "PAM_AUTH_ERR",
+    "description": "Authentication failure (wrong password)"
+  },
+  {
+    "code": "8",
+    "name": "PAM_CRED_INSUFFICIENT",
+    "description": "Caller does not have credentials to authenticate the user"
+  },
+  {
+    "code": "9",
+    "name": "PAM_AUTHINFO_UNAVAIL",
+    "description": "Authentication service could not retrieve authentication information (e.g. LDAP/network down)"
+  },
+  {
+    "code": "10",
+    "name": "PAM_USER_UNKNOWN",
+    "description": "User not known to the underlying authentication module"
+  },
+  {
+    "code": "11",
+    "name": "PAM_MAXTRIES",
+    "description": "Retry limit reached (module-specific, e.g. faillock)"
+  },
+  {
+    "code": "12",
+    "name": "PAM_NEW_AUTHTOK_REQD",
+    "description": "New authentication token (password) required — the old one has expired"
+  },
+  {
+    "code": "13",
+    "name": "PAM_ACCT_EXPIRED",
+    "description": "User account has expired"
+  },
+  {
+    "code": "14",
+    "name": "PAM_SESSION_ERR",
+    "description": "Cannot make/remove an entry for the specified session"
+  },
+  {
+    "code": "15",
+    "name": "PAM_CRED_UNAVAIL",
+    "description": "Underlying authentication service cannot retrieve user credentials"
+  },
+  {
+    "code": "16",
+    "name": "PAM_CRED_EXPIRED",
+    "description": "User credentials have expired"
+  },
+  {
+    "code": "17",
+    "name": "PAM_CRED_ERR",
+    "description": "Failure setting user credentials"
+  },
+  {
+    "code": "20",
+    "name": "PAM_AUTHTOK_ERR",
+    "description": "Authentication token manipulation error"
+  },
+  {
+    "code": "21",
+    "name": "PAM_AUTHTOK_RECOVERY_ERR",
+    "description": "Old authentication token could not be recovered"
+  },
+  {
+    "code": "22",
+    "name": "PAM_AUTHTOK_LOCK_BUSY",
+    "description": "Authentication token lock busy"
+  },
+  {
+    "code": "23",
+    "name": "PAM_AUTHTOK_DISABLE_AGING",
+    "description": "Authentication token aging disabled"
+  },
+  {
+    "code": "24",
+    "name": "PAM_TRY_AGAIN",
+    "description": "Preliminary check by password service failed"
+  },
+  {
+    "code": "25",
+    "name": "PAM_IGNORE",
+    "description": "Ignore underlying account module regardless of whether it succeeded or failed"
+  },
+  {
+    "code": "26",
+    "name": "PAM_ABORT",
+    "description": "Critical error, module fails, application should abort use of this service"
+  },
+  {
+    "code": "27",
+    "name": "PAM_AUTHTOK_EXPIRED",
+    "description": "User's authentication token has expired"
+  },
+  {
+    "code": "31",
+    "name": "PAM_INCOMPLETE",
+    "description": "Module needs the application to call it again to complete authentication"
+  }
+]

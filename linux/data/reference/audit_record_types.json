@@ -1,0 +1,386 @@
+[
+  {
+    "code": "1000",
+    "name": "GET",
+    "description": "Get audit status (auditctl -s)",
+    "range": "Command/Control"
+  },
+  {
+    "code": "1001",
+    "name": "SET",
+    "description": "Set audit status/rate limits",
+    "range": "Command/Control"
+  },
+  {
+    "code": "1011",
+    "name": "ADD_RULE",
+    "description": "Audit rule added (kernel ack)",
+    "range": "Command/Control"
+  },
+  {
+    "code": "1012",
+    "name": "DEL_RULE",
+    "description": "Audit rule deleted (kernel ack)",
+    "range": "Command/Control"
+  },
+  {
+    "code": "1013",
+    "name": "LIST_RULES",
+    "description": "Audit rule list response",
+    "range": "Command/Control"
+  },
+  {
+    "code": "1200",
+    "name": "DAEMON_START",
+    "description": "Auditd started",
+    "range": "Daemon"
+  },
+  {
+    "code": "1201",
+    "name": "DAEMON_END",
+    "description": "Auditd stopped",
+    "range": "Daemon"
+  },
+  {
+    "code": "1202",
+    "name": "DAEMON_ABORT",
+    "description": "Auditd aborted startup (config error)",
+    "range": "Daemon"
+  },
+  {
+    "code": "1203",
+    "name": "DAEMON_CONFIG",
+    "description": "Auditd config was reloaded",
+    "range": "Daemon"
+  },
+  {
+    "code": "1100",
+    "name": "USER_AUTH",
+    "description": "PAM authentication attempt",
+    "range": "User"
+  },
+  {
+    "code": "1101",
+    "name": "USER_ACCT",
+    "description": "PAM account validation (expiry/lockout checks)",
+    "range": "User"
+  },
+  {
+    "code": "1102",
+    "name": "USER_MGMT",
+    "description": "User management operation via a privileged helper",
+    "range": "User"
+  },
+  {
+    "code": "1103",
+    "name": "CRED_ACQ",
+    "description": "PAM credentials acquired",
+    "range": "User"
+  },
+  {
+    "code": "1104",
+    "name": "CRED_DISP",
+    "description": "PAM credentials disposed",
+    "range": "User"
+  },
+  {
+    "code": "1105",
+    "name": "USER_START",
+    "description": "PAM session opened",
+    "range": "User"
+  },
+  {
+    "code": "1106",
+    "name": "USER_END",
+    "description": "PAM session closed",
+    "range": "User"
+  },
+  {
+    "code": "1107",
+    "name": "USER_AVC",
+    "description": "Userspace MAC (AVC-style) message from a non-kernel enforcer",
+    "range": "User"
+  },
+  {
+    "code": "1108",
+    "name": "USER_CHAUTHTOK",
+    "description": "User changed an authentication token (password)",
+    "range": "User"
+  },
+  {
+    "code": "1109",
+    "name": "USER_ERR",
+    "description": "PAM error (bad password, module failure, etc.)",
+    "range": "User"
+  },
+  {
+    "code": "1110",
+    "name": "CRED_REFR",
+    "description": "PAM credentials refreshed",
+    "range": "User"
+  },
+  {
+    "code": "1111",
+    "name": "USYS_CONFIG",
+    "description": "Userspace system configuration change",
+    "range": "User"
+  },
+  {
+    "code": "1112",
+    "name": "USER_LOGIN",
+    "description": "User has logged in",
+    "range": "User"
+  },
+  {
+    "code": "1113",
+    "name": "USER_LOGOUT",
+    "description": "User has logged out",
+    "range": "User"
+  },
+  {
+    "code": "1114",
+    "name": "ADD_USER",
+    "description": "User account created",
+    "range": "User"
+  },
+  {
+    "code": "1115",
+    "name": "DEL_USER",
+    "description": "User account deleted",
+    "range": "User"
+  },
+  {
+    "code": "1116",
+    "name": "ADD_GROUP",
+    "description": "Group created",
+    "range": "User"
+  },
+  {
+    "code": "1117",
+    "name": "DEL_GROUP",
+    "description": "Group deleted",
+    "range": "User"
+  },
+  {
+    "code": "1118",
+    "name": "DAC_CHECK",
+    "description": "Discretionary access control check result",
+    "range": "User"
+  },
+  {
+    "code": "1122",
+    "name": "USER_SELINUX_ERR",
+    "description": "SELinux-related userspace error",
+    "range": "User"
+  },
+  {
+    "code": "1123",
+    "name": "USER_CMD",
+    "description": "Privileged command run (e.g. via sudo)",
+    "range": "User"
+  },
+  {
+    "code": "1124",
+    "name": "USER_TTY",
+    "description": "TTY captured for a user's session",
+    "range": "User"
+  },
+  {
+    "code": "1125",
+    "name": "CHUSER_ID",
+    "description": "A user's UID/GID was changed",
+    "range": "User"
+  },
+  {
+    "code": "1126",
+    "name": "GRP_AUTH",
+    "description": "Group password authentication (newgrp/sg)",
+    "range": "User"
+  },
+  {
+    "code": "1127",
+    "name": "SYSTEM_BOOT",
+    "description": "System boot",
+    "range": "User"
+  },
+  {
+    "code": "1128",
+    "name": "SYSTEM_SHUTDOWN",
+    "description": "System shutdown",
+    "range": "User"
+  },
+  {
+    "code": "1129",
+    "name": "SYSTEM_RUNLEVEL",
+    "description": "Runlevel/target change",
+    "range": "User"
+  },
+  {
+    "code": "1130",
+    "name": "SERVICE_START",
+    "description": "System service started",
+    "range": "User"
+  },
+  {
+    "code": "1131",
+    "name": "SERVICE_STOP",
+    "description": "System service stopped",
+    "range": "User"
+  },
+  {
+    "code": "1132",
+    "name": "GRP_MGMT",
+    "description": "Group attribute or membership changed",
+    "range": "User"
+  },
+  {
+    "code": "1133",
+    "name": "GRP_CHAUTHTOK",
+    "description": "Group password changed",
+    "range": "User"
+  },
+  {
+    "code": "1134",
+    "name": "MAC_CHECK",
+    "description": "Mandatory access control check result",
+    "range": "User"
+  },
+  {
+    "code": "1300",
+    "name": "SYSCALL",
+    "description": "System call audited",
+    "range": "Syscall"
+  },
+  {
+    "code": "1302",
+    "name": "PATH",
+    "description": "Filesystem path touched by an audited syscall",
+    "range": "Syscall"
+  },
+  {
+    "code": "1303",
+    "name": "IPC",
+    "description": "IPC object accessed",
+    "range": "Syscall"
+  },
+  {
+    "code": "1305",
+    "name": "CONFIG_CHANGE",
+    "description": "Audit configuration/rule change",
+    "range": "Syscall"
+  },
+  {
+    "code": "1307",
+    "name": "CWD",
+    "description": "Current working directory of an audited process",
+    "range": "Syscall"
+  },
+  {
+    "code": "1309",
+    "name": "EXECVE",
+    "description": "execve() argument list",
+    "range": "Syscall"
+  },
+  {
+    "code": "1316",
+    "name": "KERNEL_OTHER",
+    "description": "Miscellaneous kernel-generated audit message",
+    "range": "Syscall"
+  },
+  {
+    "code": "1318",
+    "name": "OBJ_PID",
+    "description": "Target process info for a signal/ptrace-style operation",
+    "range": "Syscall"
+  },
+  {
+    "code": "1319",
+    "name": "TTY",
+    "description": "TTY input audited (requires -a task,always with tty)",
+    "range": "Syscall"
+  },
+  {
+    "code": "1320",
+    "name": "EOE",
+    "description": "End of a multi-record audit event",
+    "range": "Syscall"
+  },
+  {
+    "code": "1321",
+    "name": "BPRM_FCAPS",
+    "description": "File capabilities evaluated during exec",
+    "range": "Syscall"
+  },
+  {
+    "code": "1322",
+    "name": "CAPSET",
+    "description": "Process capability set applied",
+    "range": "Syscall"
+  },
+  {
+    "code": "1323",
+    "name": "MMAP",
+    "description": "Memory-mapped file recorded for an audited syscall",
+    "range": "Syscall"
+  },
+  {
+    "code": "1324",
+    "name": "NETFILTER_PKT",
+    "description": "Packet logged by a netfilter/nftables rule",
+    "range": "Syscall"
+  },
+  {
+    "code": "1325",
+    "name": "NETFILTER_CFG",
+    "description": "Netfilter table registered/replaced",
+    "range": "Syscall"
+  },
+  {
+    "code": "1326",
+    "name": "SECCOMP",
+    "description": "Seccomp filter action against a syscall",
+    "range": "Syscall"
+  },
+  {
+    "code": "1327",
+    "name": "PROCTITLE",
+    "description": "Full command line of an audited process",
+    "range": "Syscall"
+  },
+  {
+    "code": "1330",
+    "name": "KERN_MODULE",
+    "description": "Kernel module loaded",
+    "range": "Syscall"
+  },
+  {
+    "code": "1400",
+    "name": "AVC",
+    "description": "Access Vector Cache denial/grant (SELinux and AppArmor both use this type)",
+    "range": "MAC"
+  },
+  {
+    "code": "1401",
+    "name": "SELINUX_ERR",
+    "description": "Internal SELinux error",
+    "range": "MAC"
+  },
+  {
+    "code": "1403",
+    "name": "MAC_POLICY_LOAD",
+    "description": "SELinux policy loaded",
+    "range": "MAC"
+  },
+  {
+    "code": "1404",
+    "name": "MAC_STATUS",
+    "description": "SELinux enforcing/permissive mode changed",
+    "range": "MAC"
+  },
+  {
+    "code": "1405",
+    "name": "MAC_CONFIG_CHANGE",
+    "description": "SELinux boolean or config changed",
+    "range": "MAC"
+  }
+]
