@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/cisco-detection.schema.json",
+  "title": "Threat Detection Library - Cisco Network Device Detection Entry",
+  "description": "Schema for a single detection entry in data/cisco-detections.json. Like the ESXi/Splunk, Red Hat, Fortinet, Dell iDRAC, HPE iLO, Windows DHCP/RDP, VCF, Splunk Platform, and Active Directory catalogues, these entries are authored for this project rather than sourced from a single upstream project -- but this catalogue was built with a specific, documented methodology: every entry closes a gap identified by diffing this library against data/mitre-attack-cisco.json (MITRE ATT&CK's official Detection Analytics for the 'Network Devices' platform -- the ATT&CK platform value that covers Cisco IOS/IOS XE/ASA/FTD router, switch, and firewall techniques; MITRE does not define a separate 'Cisco' platform). Every entry's mitre_analytics[] field cites the specific official MITRE Detection Analytic ID(s) it is grounded in, the same provenance pattern used by the original ESXi catalogue's MITRE-driven gap-fill batch. Several entries additionally cite a real, MITRE-documented Cisco-targeting campaign or malware family (SYNful Knock, the ArcaneDoor campaign's Line Dancer/Line Runner, Salt Typhoon's JumbledPath, KV Botnet Activity) where the technique maps directly to one.",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "component", "severity", "confidence",
+    "detection_type", "mitre_attack", "required_log_sources", "data_sources",
+    "required_fields", "detection_logic", "spl", "search_cost",
+    "false_positive_rating", "tuning_guidance", "investigation_steps", "response_guidance",
+    "telemetry_requirement", "detection_maturity", "risk_scoring", "references",
+    "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^CSCO-(INIT|EXEC|PERSIST|PRIV|STEALTH|IMPAIR|CRED|DISC|LM|COLL|C2|EXFIL|IMPACT|RECON|RESDEV)-[0-9]{3}$", "description": "Namespaced sequential ID, one namespace per primary MITRE tactic -- the same fifteen-namespace convention the Splunk ESCU catalogue uses." },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "component": { "type": "string", "enum": ["Cisco IOS/IOS XE", "Cisco ASA/FTD", "Cisco Network Device"], "description": "'Cisco IOS/IOS XE' for router/switch-specific behavior (ROMMON, boot images, IOS CLI), 'Cisco ASA/FTD' for firewall-specific behavior (ASA/Firepower Threat Defense, including the ArcaneDoor campaign's Line Dancer/Line Runner-relevant techniques), or generic 'Cisco Network Device' for behavior that applies across the device family (AAA/TACACS+, SNMP, syslog integrity, generic CLI/config)." },
+    "severity": { "type": "string", "enum": ["informational", "low", "medium", "high", "critical"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "detection_type": { "type": "string", "enum": ["TTP", "Anomaly", "Hunting", "Correlation"], "description": "Uses the same TTP/Anomaly/Hunting/Correlation vocabulary as the Splunk ESCU catalogue, since this catalogue is built from the same MITRE Detection Analytic source material." },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "mitre_analytics": {
+      "type": "array",
+      "description": "Provenance link(s) to the official MITRE ATT&CK Detection Analytic(s) (data/mitre-attack-cisco.json) this entry is grounded in -- same field shape as the ESXi catalogue's MITRE-driven gap-fill batch (id = the analytic's ANnnnn identifier, name = its parent Detection Strategy's descriptive name, which is far more legible in the UI than the analytic's own generic 'Analytic nnnn' name).",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "url"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "analytic_name": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "threat_reference": {
+      "type": "object",
+      "description": "Optional citation to a real, MITRE-documented Cisco-targeting campaign, intrusion set, or malware family this technique is directly associated with (e.g. SYNful Knock, ArcaneDoor/Line Dancer/Line Runner, Salt Typhoon/JumbledPath, KV Botnet Activity).",
+      "required": ["name", "type", "url"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["campaign", "malware", "intrusion-set"] },
+        "url": { "type": "string" }
+      }
+    },
+    "required_log_sources": { "type": "array", "items": { "type": "string" } },
+    "data_sources": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name", "description"], "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } } }
+    },
+    "required_fields": { "type": "array", "items": { "type": "string" } },
+    "detection_logic": { "type": "string" },
+    "spl": { "type": "string" },
+    "search_cost": { "type": "string", "enum": ["Low cost", "Medium cost", "High cost"] },
+    "false_positive_rating": { "type": "string", "enum": ["Low", "Medium", "High"] },
+    "tuning_guidance": { "type": "string" },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "response_guidance": { "type": "string" },
+    "telemetry_requirement": { "type": "string", "enum": ["Essential", "Recommended", "Optional"] },
+    "cim_compatible": { "type": "boolean" },
+    "cim_data_model": { "type": "string" },
+    "detection_maturity": { "type": "string", "enum": ["Level 1 - indicator", "Level 2 - threshold", "Level 3 - behavioral", "Level 4 - correlation", "Level 5 - multi-stage attack chain"] },
+    "risk_scoring": {
+      "type": "object",
+      "required": ["severity", "confidence", "impact", "score"],
+      "properties": {
+        "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "score": { "type": "integer", "minimum": 1, "maximum": 125 }
+      }
+    },
+    "risk_object": { "type": "string" },
+    "risk_object_type": { "type": "string", "enum": ["user", "system", "other"] },
+    "references": { "type": "array", "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } } },
+    "related_detections": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}

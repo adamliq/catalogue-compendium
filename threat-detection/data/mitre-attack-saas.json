@@ -1,0 +1,4339 @@
+{
+  "metadata": {
+    "title": "MITRE ATT&CK Enterprise - SaaS Platform Analytics",
+    "description": "Techniques and formal MITRE ATT&CK Detection Analytics scoped to MITRE's 'SaaS' platform (cloud-delivered application services accessed via browser/API -- MITRE gives several major SaaS vendors, e.g. Google Workspace and GitHub, no dedicated platform tag of their own, so their techniques fall under this generic 'SaaS' value alongside Microsoft 365, which additionally has its own dedicated 'Office 365' platform tag). Extracted from the official MITRE ATT&CK Enterprise STIX dataset. Loaded by the Threat Detection Library app to show ATT&CK coverage for this library's genuinely SaaS-delivered ESCU content -- the 'Microsoft 365', 'Microsoft 365 Copilot', 'Okta', 'PingID', 'Zscaler', 'GitHub', 'Google Workspace', and 'Cisco Duo' components (157 entries) -- deliberately excluding this catalogue's self-hosted/on-premises-appliance components (Ivanti, Citrix, Atlassian Confluence, JetBrains TeamCity, Adobe ColdFusion, CrushFTP, Apache Tomcat, ConnectWise ScreenConnect, Microsoft SharePoint/Exchange, VMware, PTC Windchill) even where a shared, broadly-applicable technique ID (e.g. Valid Accounts) would otherwise inflate the coverage count without those entries actually detecting SaaS-application telemetry.",
+    "source": "https://github.com/mitre/cti (enterprise-attack/enterprise-attack.json)",
+    "attack_version_reference": "https://attack.mitre.org/resources/updates/",
+    "attack_spec_version": "3.3.0",
+    "platform": "SaaS",
+    "retrieved": "2026-08-20",
+    "technique_count": 70,
+    "analytic_count": 58,
+    "techniques_covered_by_library": 27,
+    "tactic_breakdown": {
+      "Initial Access": 7,
+      "Execution": 5,
+      "Persistence": 13,
+      "Privilege Escalation": 7,
+      "Stealth": 7,
+      "Defense Impairment": 5,
+      "Credential Access": 15,
+      "Discovery": 7,
+      "Lateral Movement": 7,
+      "Collection": 8,
+      "Exfiltration": 4,
+      "Impact": 5
+    }
+  },
+  "techniques": [
+    {
+      "attack_id": "T1021.007",
+      "name": "Cloud Services",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may log into accessible cloud services within a compromised environment using [Valid Accounts](https://attack.mitre.org/techniques/T1078) that are synchronized with or federated to on-premises user identities. The adversary may then perform management actions or access cloud-hosted resources as the logged-on user. ",
+      "url": "https://attack.mitre.org/techniques/T1021/007",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1036.010",
+      "name": "Masquerade Account Name",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may match or approximate the names of legitimate accounts to make newly created ones appear benign. This will typically occur during [Create Account](https://attack.mitre.org/techniques/T1136), although accounts may also be renamed at a later date. This may also coincide with [Account Access Removal](https://attack.mitre.org/techniques/T1531) if the actor first deletes an account befor",
+      "url": "https://attack.mitre.org/techniques/T1036/010",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1048",
+      "name": "Exfiltration Over Alternative Protocol",
+      "is_subtechnique": false,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may steal data by exfiltrating it over a different protocol than that of the existing command and control channel. The data may also be sent to an alternate network location from the main command and control server.  ",
+      "url": "https://attack.mitre.org/techniques/T1048",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1059",
+      "name": "Command and Scripting Interpreter",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities, for example, macOS and Linux distributions include some flavor of [Unix Shel",
+      "url": "https://attack.mitre.org/techniques/T1059",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1059.009",
+      "name": "Cloud API",
+      "is_subtechnique": true,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may abuse cloud APIs to execute malicious commands. APIs available in cloud environments provide various functionalities and are a feature-rich method for programmatic access to nearly all aspects of a tenant. These APIs may be utilized through various methods such as command line interpreters (CLIs), in-browser Cloud Shells, [PowerShell](https://attack.mitre.org/techniques/T1059/001) ",
+      "url": "https://attack.mitre.org/techniques/T1059/009",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1069",
+      "name": "Permission Groups Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to discover group and permission settings. This information can help adversaries determine which user accounts and groups are available, the membership of users in particular groups, and which users and groups have elevated permissions.",
+      "url": "https://attack.mitre.org/techniques/T1069",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1069.003",
+      "name": "Cloud Groups",
+      "is_subtechnique": true,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "SaaS",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may attempt to find cloud groups and permission settings. The knowledge of cloud permission groups can help adversaries determine the particular roles of users and groups within an environment, as well as which users are associated with a particular group.",
+      "url": "https://attack.mitre.org/techniques/T1069/003",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1072",
+      "name": "Software Deployment Tools",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution",
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may gain access to and use centralized software suites installed within an enterprise to execute commands and move laterally through the network. Configuration management and software deployment applications may be used in an enterprise network or cloud environment for routine administration purposes. These systems may also be integrated into CI/CD pipelines. Examples of such solutions",
+      "url": "https://attack.mitre.org/techniques/T1072",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078",
+      "name": "Valid Accounts",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Compromised credentials may be used to bypass access controls placed on various resources on systems within the network and may even be used for persistent access to remote systems and externally available services, such as VPNs, Outlook Web",
+      "url": "https://attack.mitre.org/techniques/T1078",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078.001",
+      "name": "Default Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Default accounts are those that are built-into an OS, such as the Guest or Administrator accounts on Windows systems. Default accounts also include default factory/provider set accounts on other types of systems, software, or devices, includ",
+      "url": "https://attack.mitre.org/techniques/T1078/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1078.004",
+      "name": "Cloud Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Valid accounts in cloud environments may allow adversaries to perform actions to achieve Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application. Cloud Accounts can exist solely in the cl",
+      "url": "https://attack.mitre.org/techniques/T1078/004",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1080",
+      "name": "Taint Shared Content",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Windows",
+        "SaaS",
+        "Linux",
+        "macOS",
+        "Office Suite"
+      ],
+      "description": "",
+      "url": "https://attack.mitre.org/techniques/T1080",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1087",
+      "name": "Account Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to get a listing of valid accounts, usernames, or email addresses on a system or within a compromised environment. This information can help adversaries determine which accounts exist, which can aid in follow-on behavior such as brute-forcing, spear-phishing attacks, or account takeovers (e.g., [Valid Accounts](https://attack.mitre.org/techniques/T1078)).",
+      "url": "https://attack.mitre.org/techniques/T1087",
+      "analytic_count_total": 8,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1087.004",
+      "name": "Cloud Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may attempt to get a listing of cloud accounts. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application.",
+      "url": "https://attack.mitre.org/techniques/T1087/004",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098",
+      "name": "Account Manipulation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may manipulate accounts to maintain and/or elevate access to victim systems. Account manipulation may consist of any action that preserves or modifies adversary access to a compromised account, such as modifying credentials or permission groups.(Citation: FireEye SMOKEDHAM June 2021) These actions could also include account activity designed to subvert security policies, such as perfor",
+      "url": "https://attack.mitre.org/techniques/T1098",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098.001",
+      "name": "Additional Cloud Credentials",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "SaaS"
+      ],
+      "description": "Adversaries may add adversary-controlled credentials to a cloud account to maintain persistent access to victim accounts and instances within the environment.",
+      "url": "https://attack.mitre.org/techniques/T1098/001",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1098.003",
+      "name": "Additional Cloud Roles",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "An adversary may add additional roles or permissions to an adversary-controlled cloud account to maintain persistent access to a tenant. For example, adversaries may update IAM policies in cloud-based environments or add a new global administrator in Office 365 environments.(Citation: AWS IAM Policies and Permissions)(Citation: Google Cloud IAM Policies)(Citation: Microsoft Support O365 Add Anothe",
+      "url": "https://attack.mitre.org/techniques/T1098/003",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110",
+      "name": "Brute Force",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained.(Citation: TrendMicro Pawn Storm Dec 2020) Without knowledge of the password for an account or set of accounts, an adversary may systematically guess the password using a repetitive or iterative mechanism.(Citation: Dragos Crashoverride 2018) Brute forcing passwords",
+      "url": "https://attack.mitre.org/techniques/T1110",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.001",
+      "name": "Password Guessing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries with no prior knowledge of legitimate credentials within the system or environment may guess passwords to attempt access to accounts. Without knowledge of the password for an account, an adversary may opt to systematically guess the password using a repetitive or iterative mechanism. An adversary may guess login credentials without prior knowledge of system or environment passwords dur",
+      "url": "https://attack.mitre.org/techniques/T1110/001",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.003",
+      "name": "Password Spraying",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "description": "Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid account credentials. Password spraying uses one password (e.g. 'Password01'), or a small list of commonly used passwords, that may match the complexity policy of the domain. Logins are attempted with that password against many different accounts on a network to avoid ac",
+      "url": "https://attack.mitre.org/techniques/T1110/003",
+      "analytic_count_total": 8,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1110.004",
+      "name": "Credential Stuffing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use credentials obtained from breach dumps of unrelated accounts to gain access to target accounts through credential overlap. Occasionally, large numbers of username and password pairs are dumped online when a website or service is compromised and the user account credentials accessed. The information may be useful to an adversary attempting to compromise accounts by taking advant",
+      "url": "https://attack.mitre.org/techniques/T1110/004",
+      "analytic_count_total": 9,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1119",
+      "name": "Automated Collection",
+      "is_subtechnique": false,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Once established within a system or network, an adversary may use automated techniques for collecting internal data. Methods for performing this technique could include use of a [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059) to search for and copy information fitting set criteria such as file type, location, or name at specific time intervals. ",
+      "url": "https://attack.mitre.org/techniques/T1119",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1136",
+      "name": "Create Account",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider",
+        "ESXi"
+      ],
+      "description": "Adversaries may create an account to maintain access to victim systems.(Citation: Symantec WastedLocker June 2020) With a sufficient level of access, creating such accounts may be used to establish secondary credentialed access that do not require persistent remote access tools to be deployed on the system.",
+      "url": "https://attack.mitre.org/techniques/T1136",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1136.003",
+      "name": "Cloud Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may create a cloud account to maintain access to victim systems. With a sufficient level of access, such accounts may be used to establish secondary credentialed access that does not require persistent remote access tools to be deployed on the system.(Citation: Microsoft O365 Admin Roles)(Citation: Microsoft Support O365 Add Another Admin, October 2019)(Citation: AWS Create IAM User)(C",
+      "url": "https://attack.mitre.org/techniques/T1136/003",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1195",
+      "name": "Supply Chain Compromise",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "SaaS"
+      ],
+      "description": "Adversaries may manipulate products or product delivery mechanisms prior to receipt by a final consumer for the purpose of data or system compromise.",
+      "url": "https://attack.mitre.org/techniques/T1195",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1199",
+      "name": "Trusted Relationship",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may breach or otherwise leverage organizations who have access to intended victims. Access through trusted third party relationship abuses an existing connection that may not be protected or receives less scrutiny than standard mechanisms of gaining access to a network.",
+      "url": "https://attack.mitre.org/techniques/T1199",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1201",
+      "name": "Password Policy Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "IaaS",
+        "Network Devices",
+        "Identity Provider",
+        "SaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may attempt to access detailed information about the password policy used within an enterprise network or cloud environment. Password policies are a way to enforce complex passwords that are difficult to guess or crack through [Brute Force](https://attack.mitre.org/techniques/T1110). This information may help the adversary to create a list of common passwords and launch dictionary and/",
+      "url": "https://attack.mitre.org/techniques/T1201",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1211",
+      "name": "Exploitation for Stealth",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "SaaS",
+        "IaaS"
+      ],
+      "description": "Adversaries may exploit vulnerabilities to evade detection by hiding activity, suppressing logging, or operating within trusted or unmonitored components. ",
+      "url": "https://attack.mitre.org/techniques/T1211",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213",
+      "name": "Data from Information Repositories",
+      "is_subtechnique": false,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "SaaS",
+        "IaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may leverage information repositories to mine valuable information. Information repositories are tools that allow for storage of information, typically to facilitate collaboration or information sharing between users, and can store a wide variety of data that may aid adversaries in further objectives, such as Credential Access, Lateral Movement, or Defense Evasion, or direct access to ",
+      "url": "https://attack.mitre.org/techniques/T1213",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213.001",
+      "name": "Confluence",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "SaaS"
+      ],
+      "description": "",
+      "url": "https://attack.mitre.org/techniques/T1213/001",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213.003",
+      "name": "Code Repositories",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage code repositories to collect valuable information. Code repositories are tools/services that store source code and automate software builds. They may be hosted internally or privately on third party sites such as Github, GitLab, SourceForge, and BitBucket. Users typically interact with code repositories through a web application or command-line utilities such as git.",
+      "url": "https://attack.mitre.org/techniques/T1213/003",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213.004",
+      "name": "Customer Relationship Management Software",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage Customer Relationship Management (CRM) software to mine valuable information. CRM software is used to assist organizations in tracking and managing customer interactions, as well as storing customer data.",
+      "url": "https://attack.mitre.org/techniques/T1213/004",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213.005",
+      "name": "Messaging Applications",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage chat and messaging applications, such as Microsoft Teams, Google Chat, and Slack, to mine valuable information.  ",
+      "url": "https://attack.mitre.org/techniques/T1213/005",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1213.006",
+      "name": "Databases",
+      "is_subtechnique": true,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Linux",
+        "macOS",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may leverage databases to mine valuable information. These databases may be hosted on-premises or in the cloud (both in platform-as-a-service and software-as-a-service environments). ",
+      "url": "https://attack.mitre.org/techniques/T1213/006",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1496",
+      "name": "Resource Hijacking",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers",
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage the resources of co-opted systems to complete resource-intensive tasks, which may impact system and/or hosted service availability. ",
+      "url": "https://attack.mitre.org/techniques/T1496",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1496.003",
+      "name": "SMS Pumping",
+      "is_subtechnique": true,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage messaging services for SMS pumping, which may impact system and/or hosted service availability.(Citation: Twilio SMS Pumping) SMS pumping is a type of telecommunications fraud whereby a threat actor first obtains a set of phone numbers from a telecommunications provider, then leverages a victim’s messaging infrastructure to send large amounts of SMS messages to numbers in ",
+      "url": "https://attack.mitre.org/techniques/T1496/003",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1496.004",
+      "name": "Cloud Service Hijacking",
+      "is_subtechnique": true,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage compromised software-as-a-service (SaaS) applications to complete resource-intensive tasks, which may impact hosted service availability. ",
+      "url": "https://attack.mitre.org/techniques/T1496/004",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1526",
+      "name": "Cloud Service Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "An adversary may attempt to enumerate the cloud services running on a system after gaining access. These methods can differ from platform-as-a-service (PaaS), to infrastructure-as-a-service (IaaS), or software-as-a-service (SaaS). Many services exist throughout the various cloud providers and can include Continuous Integration and Continuous Delivery (CI/CD), Lambda Functions, Entra ID, etc. They ",
+      "url": "https://attack.mitre.org/techniques/T1526",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1528",
+      "name": "Steal Application Access Token",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries can steal application access tokens as a means of acquiring credentials to access remote systems and resources.",
+      "url": "https://attack.mitre.org/techniques/T1528",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1530",
+      "name": "Data from Cloud Storage",
+      "is_subtechnique": false,
+      "tactics": [
+        "Collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may access data from cloud storage.",
+      "url": "https://attack.mitre.org/techniques/T1530",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1531",
+      "name": "Account Access Removal",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Office Suite",
+        "ESXi"
+      ],
+      "description": "Adversaries may interrupt availability of system and network resources by inhibiting access to accounts utilized by legitimate users. Accounts may be deleted, locked, or manipulated (ex: changed credentials, revoked permissions for SaaS platforms such as Sharepoint) to remove access to accounts.(Citation: Obsidian Security SaaS Ransomware June 2023) Adversaries may also subsequently log off and/or",
+      "url": "https://attack.mitre.org/techniques/T1531",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1534",
+      "name": "Internal Spearphishing",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "After they already have access to accounts or systems within the environment, adversaries may use internal spearphishing to gain access to additional information or compromise other users within the same organization. Internal spearphishing is multi-staged campaign where a legitimate account is initially compromised either by controlling the user's device or by compromising the account credentials",
+      "url": "https://attack.mitre.org/techniques/T1534",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1537",
+      "name": "Transfer Data to Cloud Account",
+      "is_subtechnique": false,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may exfiltrate data by transferring the data, including through sharing/syncing and creating backups of cloud environments, to another cloud account they control on the same service.",
+      "url": "https://attack.mitre.org/techniques/T1537",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1538",
+      "name": "Cloud Service Dashboard",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "An adversary may use a cloud service dashboard GUI with stolen credentials to gain useful information from an operational cloud environment, such as specific services, resources, and features. For example, the GCP Command Center can be used to view all assets, review findings of potential security risks, and run additional queries, such as finding public IP addresses and open ports.(Citation: Goog",
+      "url": "https://attack.mitre.org/techniques/T1538",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1539",
+      "name": "Steal Web Session Cookie",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "An adversary may steal web application or service session cookies and use them to gain access to web applications or Internet services as an authenticated user without needing credentials. Web applications and services often use session cookies as an authentication token after a user has authenticated to a website.",
+      "url": "https://attack.mitre.org/techniques/T1539",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1546",
+      "name": "Event Triggered Execution",
+      "is_subtechnique": false,
+      "tactics": [
+        "Privilege Escalation",
+        "Persistence"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may establish persistence and/or elevate privileges using system mechanisms that trigger execution based on specific events. Various operating systems have means to monitor and subscribe to events such as logons or other user activity such as running specific applications/binaries. Cloud environments may also support various functions and services that monitor and can be invoked in res",
+      "url": "https://attack.mitre.org/techniques/T1546",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550",
+      "name": "Use Alternate Authentication Material",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use alternate authentication material, such as password hashes, Kerberos tickets, and application access tokens, in order to move laterally within an environment and bypass normal system access controls. ",
+      "url": "https://attack.mitre.org/techniques/T1550",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550.001",
+      "name": "Application Access Token",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may use stolen application access tokens to bypass the typical authentication process and access restricted accounts, information, or services on remote systems. These tokens are typically stolen from users or services and used in lieu of login credentials.",
+      "url": "https://attack.mitre.org/techniques/T1550/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550.004",
+      "name": "Web Session Cookie",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries can use stolen session cookies to authenticate to web applications and services. This technique bypasses some multi-factor authentication protocols since the session is already authenticated.(Citation: Pass The Cookie)",
+      "url": "https://attack.mitre.org/techniques/T1550/004",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1552",
+      "name": "Unsecured Credentials",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers",
+        "Network Devices",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may search compromised systems to find and obtain insecurely stored credentials. These credentials can be stored and/or misplaced in many locations on a system, including plaintext files (e.g. [Shell History](https://attack.mitre.org/techniques/T1552/003)), operating system or application-specific repositories (e.g. [Credentials in Registry](https://attack.mitre.org/techniques/T1552/00",
+      "url": "https://attack.mitre.org/techniques/T1552",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1552.008",
+      "name": "Chat Messages",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may directly collect unsecured credentials stored or passed through user communication services. Credentials may be sent and stored in user chat communication applications such as email, chat services like Slack or Teams, collaboration tools like Jira or Trello, and any other services that support user communication. Users may share various forms of credentials (such as usernames and p",
+      "url": "https://attack.mitre.org/techniques/T1552/008",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1556",
+      "name": "Modify Authentication Process",
+      "is_subtechnique": false,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may modify authentication mechanisms and processes to access user credentials or enable otherwise unwarranted access to accounts. The authentication process is handled by mechanisms, such as the Local Security Authentication Server (LSASS) process and the Security Accounts Manager (SAM) on Windows, pluggable authentication modules (PAM) on Unix-based systems, and authorization plugins ",
+      "url": "https://attack.mitre.org/techniques/T1556",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1556.006",
+      "name": "Multi-Factor Authentication",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may disable or modify multi-factor authentication (MFA) mechanisms to enable persistent access to compromised accounts.",
+      "url": "https://attack.mitre.org/techniques/T1556/006",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1556.007",
+      "name": "Hybrid Identity",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment",
+        "Persistence",
+        "Credential Access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may patch, modify, or otherwise backdoor cloud authentication processes that are tied to on-premises user identities in order to bypass typical authentication mechanisms, access credentials, and enable persistent access to accounts.  ",
+      "url": "https://attack.mitre.org/techniques/T1556/007",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1566",
+      "name": "Phishing",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering. Phishing can be targeted, known as spearphishing. In spearphishing, a specific individual, company, or industry will be targeted by the adversary. More generally, adversaries can conduct non-targeted phishing, such as in mass malware spam campaigns.",
+      "url": "https://attack.mitre.org/techniques/T1566",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1566.002",
+      "name": "Spearphishing Link",
+      "is_subtechnique": true,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may send spearphishing emails with a malicious link in an attempt to gain access to victim systems. Spearphishing with a link is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of links to download malware contained in email, instead of attaching malicious files to the email itself, to avoid defenses that may inspect ema",
+      "url": "https://attack.mitre.org/techniques/T1566/002",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1567",
+      "name": "Exfiltration Over Web Service",
+      "is_subtechnique": false,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use an existing, legitimate external Web service to exfiltrate data rather than their primary command and control channel. Popular Web services acting as an exfiltration mechanism may give a significant amount of cover due to the likelihood that hosts within a network are already communicating with them prior to compromise. Firewall rules may also already exist to permit traffic to",
+      "url": "https://attack.mitre.org/techniques/T1567",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1567.004",
+      "name": "Exfiltration Over Webhook",
+      "is_subtechnique": true,
+      "tactics": [
+        "Exfiltration"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may exfiltrate data to a webhook endpoint rather than over their primary command and control channel. Webhooks are simple mechanisms for allowing a server to push data over HTTP/S to a client without the need for the client to continuously poll the server.(Citation: RedHat Webhooks) Many public and commercial services, such as Discord, Slack, and `webhook.site`, support the creation of",
+      "url": "https://attack.mitre.org/techniques/T1567/004",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1606",
+      "name": "Forge Web Credentials",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Windows",
+        "macOS",
+        "Linux",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may forge credential materials that can be used to gain access to web applications or Internet services. Web applications and services (hosted in cloud SaaS environments or on-premise servers) often use session cookies, tokens, or other materials to authenticate and authorize user access.",
+      "url": "https://attack.mitre.org/techniques/T1606",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1606.001",
+      "name": "Web Cookies",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Windows",
+        "SaaS",
+        "IaaS"
+      ],
+      "description": "Adversaries may forge web cookies that can be used to gain access to web applications or Internet services. Web applications and services (hosted in cloud SaaS environments or on-premise servers) often use session cookies to authenticate and authorize user access.",
+      "url": "https://attack.mitre.org/techniques/T1606/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1606.002",
+      "name": "SAML Tokens",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "SaaS",
+        "Windows",
+        "IaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "An adversary may forge SAML tokens with any permissions claims and lifetimes if they possess a valid SAML token-signing certificate.(Citation: Microsoft SolarWinds Steps) The default lifetime of a SAML token is one hour, but the validity period can be specified in the <code>NotOnOrAfter</code> value of the <code>conditions ...</code> element in a token. This value can be changed using the <code>Ac",
+      "url": "https://attack.mitre.org/techniques/T1606/002",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1621",
+      "name": "Multi-Factor Authentication Request Generation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "IaaS",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may attempt to bypass multi-factor authentication (MFA) mechanisms and gain access to accounts by generating MFA requests sent to users.",
+      "url": "https://attack.mitre.org/techniques/T1621",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1648",
+      "name": "Serverless Execution",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "SaaS",
+        "IaaS",
+        "Office Suite"
+      ],
+      "description": "Adversaries may abuse serverless computing, integration, and automation services to execute arbitrary code in cloud environments. Many cloud providers offer a variety of serverless resources, including compute engines, application integration services, and web servers. ",
+      "url": "https://attack.mitre.org/techniques/T1648",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1657",
+      "name": "Financial Theft",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may steal monetary resources from targets through extortion, social engineering, technical theft, or other methods aimed at their own financial gain at the expense of the availability of these resources for victims. Financial theft is the ultimate objective of several popular campaign types including extortion by ransomware,(Citation: FBI-ransomware) business email compromise (BEC) and",
+      "url": "https://attack.mitre.org/techniques/T1657",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1671",
+      "name": "Cloud Application Integration",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may achieve persistence by leveraging OAuth application integrations in a software-as-a-service environment. Adversaries may create a custom application, add a legitimate application into the environment, or even co-opt an existing integration to achieve malicious ends.(Citation: Push Security SaaS Persistence 2022)(Citation: SaaS Attacks GitHub Evil Twin Integrations)",
+      "url": "https://attack.mitre.org/techniques/T1671",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1677",
+      "name": "Poisoned Pipeline Execution",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "SaaS"
+      ],
+      "description": "Adversaries may manipulate continuous integration / continuous development (CI/CD) processes by injecting malicious code into the build process. There are several mechanisms for poisoning pipelines: ",
+      "url": "https://attack.mitre.org/techniques/T1677",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1684",
+      "name": "Social Engineering",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use social engineering techniques to influence users to take actions that result in unauthorized access, approval of changes, disclosure of sensitive information, or execution of adversary-supplied instructions (i.e., introduction of malicious payloads or software), while minimizing technical indicators. ",
+      "url": "https://attack.mitre.org/techniques/T1684",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1684.001",
+      "name": "Impersonation",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may impersonate a trusted person or organization in order to persuade and trick a target into performing some action on their behalf. For example, adversaries may communicate with victims (via [Phishing for Information](https://attack.mitre.org/techniques/T1598), [Phishing](https://attack.mitre.org/techniques/T1566), or [Internal Spearphishing](https://attack.mitre.org/techniques/T1534",
+      "url": "https://attack.mitre.org/techniques/T1684/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1685.002",
+      "name": "Disable or Modify Cloud Log",
+      "is_subtechnique": true,
+      "tactics": [
+        "Defense Impairment"
+      ],
+      "platforms": [
+        "IaaS",
+        "SaaS",
+        "Identity Provider",
+        "Office Suite"
+      ],
+      "description": "An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection. Cloud environments allow for collection and analysis of audit and application logs that provide insight into what activities a user does within the environment. If an adversary has sufficient permissions, they can disable or modify logging to avoid",
+      "url": "https://attack.mitre.org/techniques/T1685/002",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1687",
+      "name": "Exploitation for Defense Impairment",
+      "is_subtechnique": false,
+      "tactics": [
+        "Defense Impairment"
+      ],
+      "platforms": [
+        "IaaS",
+        "Linux",
+        "macOS",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may exploit vulnerabilities in security software, infrastructure, or defensive components to degrade, disable, or otherwise continue to impair their ability to prevent, detect, or respond to malicious activity. ",
+      "url": "https://attack.mitre.org/techniques/T1687",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    }
+  ],
+  "analytics": [
+    {
+      "analytic_id": "AN0020",
+      "name": "Analytic 0020",
+      "description": "Remote access to third-party SaaS with OAuth or API tokens post-initial compromise, followed by sensitive data access or configuration changes",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1021.007",
+          "name": "Cloud Services",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1021/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:auth",
+          "channel": "LoginSuccess, APIKeyUse, AdminAction",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OAuthTokenAge",
+          "description": "Older tokens issued before password change may indicate compromise"
+        },
+        {
+          "field": "AppScope",
+          "description": "Restrict detection to high-value or regulated SaaS apps"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0008",
+        "name": "Behavioral Detection of Remote Cloud Logins via Valid Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0008"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0008#AN0020"
+    },
+    {
+      "analytic_id": "AN0028",
+      "name": "Analytic 0028",
+      "description": "Correlates Power Automate or similar logic app workflows triggered by SaaS file uploads or email rules with data forwarding or anomalous access patterns.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1546",
+          "name": "Event Triggered Execution",
+          "tactics": [
+            "Privilege Escalation",
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1546"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Creation of Power Automate flow triggered by OneDrive or Exchange event",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Automated forwarding or file sync initiated by a logic app",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TriggerCondition",
+          "description": "Event types that initiate SaaS automation (e.g., file add, new email)"
+        },
+        {
+          "field": "AppIdentityScope",
+          "description": "Scopes/permissions granted to automation app accounts"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0010",
+        "name": "Behavioral Detection of Event Triggered Execution Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0010"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0010#AN0028"
+    },
+    {
+      "analytic_id": "AN0150",
+      "name": "Analytic 0150",
+      "description": "Internal spearphishing via SaaS applications (e.g., Slack, Teams, Gmail): message sent from compromised user with attachment or URL, followed by click and credential access behavior.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1534",
+          "name": "Internal Spearphishing",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1534"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:slack",
+          "channel": "file_upload, message_send, message_click",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserAnomalyThreshold",
+          "description": "Volume or timing of messages sent after compromise"
+        },
+        {
+          "field": "FileRiskScoring",
+          "description": "Whether SaaS DLP assigns risk scores to attachments"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0054",
+        "name": "Internal Spearphishing via Trusted Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0054"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0054#AN0150"
+    },
+    {
+      "analytic_id": "AN0193",
+      "name": "Analytic 0193",
+      "description": "Phishing delivered via SaaS services (chat, collaboration platforms) where messages contain malicious URLs or attachments. Detect anomalous link clicks, suspicious file uploads, or token misuse after SaaS-based phishing attempts.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1566",
+          "name": "Phishing",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1566"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:collaboration",
+          "channel": "MessagePosted: Suspicious links or attachment delivery via collaboration tools (Slack, Teams, Zoom)",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MonitoredSaaSApps",
+          "description": "Scope of SaaS platforms under phishing monitoring."
+        },
+        {
+          "field": "LinkInspectionPolicy",
+          "description": "Threshold for auto-expansion and detonation of URLs sent in SaaS messages."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0070",
+        "name": "Detection Strategy for Phishing across platforms.",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0070"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0070#AN0193"
+    },
+    {
+      "analytic_id": "AN0202",
+      "name": "Analytic 0202",
+      "description": "Session cookie reuse on unmanaged browsers, devices, or client types deviating from user baseline (e.g., switching from Chrome to curl).",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550.004",
+          "name": "Web Session Cookie",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "SessionId reused from different device/browser fingerprint",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "session.impersonation.start",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "BrowserFingerprintMatch",
+          "description": "Tolerance for accepting small differences in user-agent headers"
+        },
+        {
+          "field": "SessionReuseTimeout",
+          "description": "Time gap threshold between valid session creation and reuse"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0074",
+        "name": "Detect Use of Stolen Web Session Cookies Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0074"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0074#AN0202"
+    },
+    {
+      "analytic_id": "AN0270",
+      "name": "Analytic 0270",
+      "description": "Role escalation (e.g., Editor → Owner) in cloud collaboration tools (Google Workspace, O365) or file sharing apps to maintain elevated access.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098",
+          "name": "Account Manipulation",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Admin Activity > Role Change or Sharing Change",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "SharingSensitivityLabel",
+          "description": "Threshold for labeling sensitive document access escalation."
+        },
+        {
+          "field": "CrossOrgChanges",
+          "description": "Track changes made across organizational boundaries (e.g., guest users)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0096",
+        "name": "Account Manipulation Behavior Chain Detection",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0096"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0096#AN0270"
+    },
+    {
+      "analytic_id": "AN0310",
+      "name": "Analytic 0310",
+      "description": "Detection monitors SaaS collaboration tools (e.g., Slack, Zoom, Jira) for messages or files containing credential-like patterns, or for suspicious API calls retrieving bulk chat histories by non-admin users. Identifies adversary behavior chains where chat logs are queried via APIs or integration bots to systematically extract sensitive material.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1552.008",
+          "name": "Chat Messages",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1552/008"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:slack",
+          "channel": "chat.postMessage, files.upload, or discovery API calls involving token/credential regex",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "Unusual OAuth app requesting message-read scopes for Slack/Teams/Jira",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "IntegrationScope",
+          "description": "Tune to ignore known enterprise bots with message-read access (e.g., DLP scanners)"
+        },
+        {
+          "field": "RegexPatterns",
+          "description": "Customizable regex for detecting secret formats (JWT, OAuth tokens, SSH keys)"
+        },
+        {
+          "field": "UserContext",
+          "description": "Correlate with user role to filter developers vs standard users"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0111",
+        "name": "Detect Unsecured Credentials Shared in Chat Messages",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0111"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0111#AN0310"
+    },
+    {
+      "analytic_id": "AN0339",
+      "name": "Analytic 0339",
+      "description": "Deletion or disablement of user accounts in platforms like Okta, Salesforce, or Zoom with anomalies in admin session attributes or mass actions within short duration.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1531",
+          "name": "Account Access Removal",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1531"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:okta",
+          "channel": "user.lifecycle.delete, user.account.lock",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "BulkActionThreshold",
+          "description": "Trigger if multiple deletions occur within a short period"
+        },
+        {
+          "field": "SessionDeviceType",
+          "description": "Alert on deletions initiated from unfamiliar device contexts"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0120",
+        "name": "Account Access Removal via Multi-Platform Audit Correlation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0120"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0120#AN0339"
+    },
+    {
+      "analytic_id": "AN0417",
+      "name": "Analytic 0417",
+      "description": "Adversary gains access to cloud-hosted services such as AWS SES, SNS, or OpenAI API, enables or modifies usage policies, and initiates resource-intensive actions (e.g., mass email/SMS or LLM queries), often from unauthorized regions or under anomalous identity conditions.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1496.004",
+          "name": "Cloud Service Hijacking",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1496/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "PutIdentityPolicy",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "SendEmail",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "AssumeRole",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Define threshold period over which request spikes are measured. E.g., 10 min or 1 hour windows."
+        },
+        {
+          "field": "UserContext",
+          "description": "Alert only if role/user is outside expected automation identity list."
+        },
+        {
+          "field": "RequestVolumeThreshold",
+          "description": "Customize the number of emails/SMS or API calls considered anomalous."
+        },
+        {
+          "field": "GeoVelocityThreshold",
+          "description": "Tune geolocation jump logic (e.g., login from US, then use service in Asia within minutes)."
+        },
+        {
+          "field": "ModelUsageQuotaSpike",
+          "description": "Set maximum allowable deviation from past 7-day average OpenAI/GPT token usage."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0147",
+        "name": "Detection Strategy for Cloud Service Hijacking via SaaS Abuse",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0147"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0147#AN0417"
+    },
+    {
+      "analytic_id": "AN0421",
+      "name": "Analytic 0421",
+      "description": "Forged SAML tokens can appear as SaaS logins where authentication succeeded without MFA, or where tokens contain claims inconsistent with the user profile. Look for concurrent sessions across different geographies with the same SAML assertion ID.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1606.002",
+          "name": "SAML Tokens",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1606/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:access",
+          "channel": "SAML token accepted without preceding login challenge",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Abnormal user claims or unexpected elevated role assignment in SAML assertion",
+          "data_component": "Logon Session Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoVelocityThreshold",
+          "description": "Triggers when same SAML token used in different geographies within short timeframe."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0148",
+        "name": "Detection Strategy for Forged SAML Tokens",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0148"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0148#AN0421"
+    },
+    {
+      "analytic_id": "AN0440",
+      "name": "Analytic 0440",
+      "description": "Suspicious SaaS tenant activity involving webhook configurations pointing to external or untrusted domains. Defender perspective: repeated automated exports or suspicious webhook endpoint registrations.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1567.004",
+          "name": "Exfiltration Over Webhook",
+          "tactics": [
+            "Exfiltration"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1567/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-Mailbox, Add-InboxRule, RegisterWebhook",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:api",
+          "channel": "Webhook registrations or repeated POST activity",
+          "data_component": "Network Traffic Flow"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "WebhookRegistrations",
+          "description": "Monitor new webhook creation events in SaaS environments."
+        },
+        {
+          "field": "ExternalDomains",
+          "description": "Flag webhooks pointing to domains not owned by the enterprise."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0153",
+        "name": "Detection Strategy for Exfiltration Over Webhook",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0153"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0153#AN0440"
+    },
+    {
+      "analytic_id": "AN0443",
+      "name": "Analytic 0443",
+      "description": "Automated and repetitive triggering of SMS messages through OTP/account verification fields on SaaS platforms, leveraging background messaging APIs such as Twilio, AWS SNS, or Amazon Cognito to generate traffic toward attacker-controlled numbers.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1496.003",
+          "name": "SMS Pumping",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1496/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:application",
+          "channel": "High-frequency invocation of SMS-related API endpoints from publicly accessible OTP or verification forms (e.g., Twilio: SendMessage, Cognito: AdminCreateUser) with irregular destination patterns.",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:audit",
+          "channel": "Repeated requests to SMS-generating endpoints using anomalous or new user agents, IP ranges, or geographies.",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Defines the rolling window over which SMS API invocation frequency is measured. Tunable based on average platform traffic."
+        },
+        {
+          "field": "SMSFrequencyThreshold",
+          "description": "Number of SMS requests per endpoint or per user that should trigger investigation. Should align with business logic and user behavior."
+        },
+        {
+          "field": "DestinationCountryCodeFilter",
+          "description": "Monitors if requests target known high-risk, revenue-sharing regions. Tunable to reflect SMS tariff rates or abuse history."
+        },
+        {
+          "field": "UserAgentAnomalyThreshold",
+          "description": "Defines outlier score or list of unknown/automated user agents submitting forms."
+        },
+        {
+          "field": "IPGeoVarianceScore",
+          "description": "Tracks abnormal geographic spread of traffic sourcing OTP triggers."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0156",
+        "name": "Detection Strategy for Resource Hijacking: SMS Pumping via SaaS Application Logs",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0156"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0156#AN0443"
+    },
+    {
+      "analytic_id": "AN0453",
+      "name": "Analytic 0453",
+      "description": "Detect anomalous OAuth or SSO logins that repeatedly generate MFA challenges, particularly where MFA approvals are denied or timed out by the user.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1621",
+          "name": "Multi-Factor Authentication Request Generation",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1621"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:okta",
+          "channel": "MFAChallengeIssued",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MFAProvider",
+          "description": "Identify which MFA service provider logs are in use (Okta, Duo, Microsoft Authenticator)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0160",
+        "name": "Detection Strategy for Multi-Factor Authentication Request Generation (T1621)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0160"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0160#AN0453"
+    },
+    {
+      "analytic_id": "AN0460",
+      "name": "Analytic 0460",
+      "description": "Chain: (1) SaaS admin API or PowerShell remote session reads tenant password/authentication settings (e.g., M365 Unified Audit Log ‘Cmdlet’ with `Get-MsolPasswordPolicy`/`Get-OrganizationConfig` parameters that expose password settings); (2) same session proceeds to mailbox or tenant changes.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1201",
+          "name": "Password Policy Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1201"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Workload=AzureActiveDirectory OR Exchange AND (Operation=Cmdlet AND Parameters contains 'Password' AND (CmdletName='Get-*' OR CmdletName='Get-OrganizationConfig'))",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "SaaSAdminGroup",
+          "description": "Known admin groups or break-glass accounts."
+        },
+        {
+          "field": "SessionAnomalyThreshold",
+          "description": "Rate/volume of read operations per session considered anomalous."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0161",
+        "name": "Password Policy Discovery – cross-platform behavior-chain analytics",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0161"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0161#AN0460"
+    },
+    {
+      "analytic_id": "AN0487",
+      "name": "Analytic 0487",
+      "description": "Forged cookies in SaaS environments manifest as valid web sessions without matching login activity, MFA enforcement bypass, or cookies reused across multiple devices/IPs. Defenders should look for cookie replay, concurrent sessions from multiple geographies, or session tokens generated by unrecognized apps.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1606.001",
+          "name": "Web Cookies",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1606/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Session activity without correlated login event",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "saas:access",
+          "channel": "Multiple concurrent logins using same cookie from different locations",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TokenReplayThreshold",
+          "description": "Number of concurrent uses of a cookie that should trigger an alert."
+        },
+        {
+          "field": "GeoLocationAlerts",
+          "description": "Unusual SaaS logins from geographically distant locations in short timeframes."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0171",
+        "name": "Detection Strategy for Forged Web Cookies",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0171"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0171#AN0487"
+    },
+    {
+      "analytic_id": "AN0528",
+      "name": "Analytic 0528",
+      "description": "Application access tokens used to call APIs (e.g., Google Workspace, Salesforce) without interactive logins, often with unusual scopes or elevated permissions.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550.001",
+          "name": "Application Access Token",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:googleworkspace",
+          "channel": "OAuthTokenGranted, APIRequest",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "saas:salesforce",
+          "channel": "API login using access_token without login history",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ApplicationScopeAllowlist",
+          "description": "Restrict allowed API scopes for enterprise applications"
+        },
+        {
+          "field": "TokenLifetime",
+          "description": "Threshold for detecting unusually long-lived tokens"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0185",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material: Application Access Token (T1550.001)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0185"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0185#AN0528"
+    },
+    {
+      "analytic_id": "AN0534",
+      "name": "Analytic 0534",
+      "description": "Suspicious sign-ins to Graph API or sensitive resources using non-browser scripting agents (e.g., Python, PowerShell), often for programmatic access to mailbox or OneDrive content.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1119",
+          "name": "Automated Collection",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1119"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "azure:signinlogs",
+          "channel": "Operation=UserLogin",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserAgentFilter",
+          "description": "Filter for scripting agents (e.g., Python, PowerShell) which may vary by org."
+        },
+        {
+          "field": "ExpectedClientIPList",
+          "description": "Set of known internal or managed IPs to filter benign automation."
+        },
+        {
+          "field": "DeviceProperties",
+          "description": "Expected managed device profiles used to detect unmanaged devices."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0186",
+        "name": "Automated File and API Collection Detection Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0186"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0186#AN0534"
+    },
+    {
+      "analytic_id": "AN0548",
+      "name": "Analytic 0548",
+      "description": "Detects suspicious MFA method changes, such as registration of weaker factors (e.g., SMS), or removal of MFA requirements for specific accounts or groups.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556.006",
+          "name": "Multi-Factor Authentication",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556/006"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:zoom",
+          "channel": "DisableMFA or RegisterNewFactor",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AcceptedFactors",
+          "description": "Configured MFA factors allowed in SaaS environment; tuned to organizational policies."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0190",
+        "name": "Detect MFA Modification or Disabling Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0190"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0190#AN0548"
+    },
+    {
+      "analytic_id": "AN0626",
+      "name": "Analytic 0626",
+      "description": "Detects cloud-native software deployment or management (e.g., SSM Run Command, Intune) initiating script execution on endpoints outside expected org IDs, admin groups, or maintenance windows.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1072",
+          "name": "Software Deployment Tools",
+          "tactics": [
+            "Execution",
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1072"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "SSM RunCommand",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "IAMRoleAllowList",
+          "description": "Approved deployment administrators or service accounts"
+        },
+        {
+          "field": "ExecutionTargetList",
+          "description": "Expected endpoints targeted by SaaS deployments"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0223",
+        "name": "Detection of Adversary Abuse of Software Deployment Tools",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0223"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0223#AN0626"
+    },
+    {
+      "analytic_id": "AN0680",
+      "name": "Analytic 0680",
+      "description": "Unusual or excessive database/table exports from SaaS database platforms (e.g., Snowflake, Firebase, BigQuery, Airtable) by users or apps not in known analytics or dev groups. Defender observes access patterns outside baseline working hours or with new query templates, and correlates those with audit logs or file downloads.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1213.006",
+          "name": "Databases",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1213/006"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:Snowflake",
+          "channel": "QUERY: Large or repeated SELECT * queries to sensitive tables",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Bulk downloads or API extractions from Microsoft-hosted data repositories (e.g., Dynamics 365)",
+          "data_component": "File Access"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "BaselineQueryTemplates",
+          "description": "Query hash or shape for common BI/ETL jobs to reduce false positives"
+        },
+        {
+          "field": "OffHoursAccessWindow",
+          "description": "Window to define after-hours activity thresholds for DB access"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0242",
+        "name": "Suspicious Database Access and Dump Activity Across Environments (T1213.006)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0242"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0242#AN0680"
+    },
+    {
+      "analytic_id": "AN0697",
+      "name": "Analytic 0697",
+      "description": "Monitors API calls and service-specific logs for enumeration of organizational roles, permissions, and group structure, particularly outside of normal admin behavior baselines.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1069.003",
+          "name": "Cloud Groups",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1069/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:salesforce",
+          "channel": "GET /services/data/vXX.X/groups",
+          "data_component": "Group Enumeration"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OrgScope",
+          "description": "Scope to cross-team access or unfamiliar org enumeration."
+        },
+        {
+          "field": "RequestRate",
+          "description": "Tuning for excessive group-list API calls."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0251",
+        "name": "Behavioral Detection of Cloud Group Enumeration via API and CLI Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0251"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0251#AN0697"
+    },
+    {
+      "analytic_id": "AN0722",
+      "name": "Analytic 0722",
+      "description": "SaaS platforms may show forged credentials as unusual API keys, tokens, or session cookies being used without corresponding authentication. Correlated patterns include simultaneous valid sessions from multiple geographies, unusual API calls with new tokens, or bypass of expected MFA enforcement.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1606",
+          "name": "Forge Web Credentials",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1606"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Session creation without MFA or login event",
+          "data_component": "Web Credential Creation"
+        },
+        {
+          "log_source": "saas:auth",
+          "channel": "API requests made with tokens not associated with expected user logins",
+          "data_component": "Web Credential Usage"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoLocationAlerts",
+          "description": "Trigger on logins from unusual or high-risk geographies."
+        },
+        {
+          "field": "TokenReplayThreshold",
+          "description": "Detect multiple simultaneous uses of the same forged credential."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0260",
+        "name": "Detection Strategy for Forged Web Credentials",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0260"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0260#AN0722"
+    },
+    {
+      "analytic_id": "AN0732",
+      "name": "Analytic 0732",
+      "description": "Anomalous or bulk download activity from private or restricted repositories by non-developer or privileged accounts, often preceded by unusual login behavior (e.g., unfamiliar geo, OAuth token use, elevated API rate).",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1213.003",
+          "name": "Code Repositories",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1213/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:github",
+          "channel": "repo.download, repo.clone, oauth.authorize, repo.getContent",
+          "data_component": "Cloud Service Metadata"
+        },
+        {
+          "log_source": "saas:github",
+          "channel": "Login from unusual IP, device fingerprint, or location; access token creation from new client",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "saas:github",
+          "channel": "Bulk access to multiple files or large volume of repo requests within short time window",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Threshold for file access volume over short duration (e.g., 10+ repos accessed in <5 min)"
+        },
+        {
+          "field": "UserContext",
+          "description": "Role or permission profile expected to interact with repositories (e.g., developers vs. admins)"
+        },
+        {
+          "field": "GeoAnomalyThreshold",
+          "description": "Distance or variance allowed before a login is flagged as anomalous"
+        },
+        {
+          "field": "RepoSensitivityTag",
+          "description": "Whether a repository is labeled sensitive or restricted"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0263",
+        "name": "Detecting Bulk or Anomalous Access to Private Code Repositories via SaaS Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0263"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0263#AN0732"
+    },
+    {
+      "analytic_id": "AN0746",
+      "name": "Analytic 0746",
+      "description": "Abuse of cloud messaging platforms to send mass spam or consume quota-based resources.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1496",
+          "name": "Resource Hijacking",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1496"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "SendMessage",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "saas:application",
+          "channel": "High-volume API calls or traffic via messaging or webhook service",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MessageRateThreshold",
+          "description": "Max allowable outbound message rate per user/account"
+        },
+        {
+          "field": "APIKeyList",
+          "description": "Known authorized API clients for messaging usage"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0267",
+        "name": "Resource Hijacking Detection Strategy",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0267"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0267#AN0746"
+    },
+    {
+      "analytic_id": "AN0795",
+      "name": "Analytic 0795",
+      "description": "Monitor SaaS mail platforms (Google Workspace, M365, Okta-integrated apps) for SendAs/SendOnBehalfOf operations where the delegated permissions are unusual or newly granted. Detect impersonation attempts where adversaries configure rules to auto-forward or auto-reply with impersonated content.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1684.001",
+          "name": "Impersonation",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1684/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "gcp:workspaceaudit",
+          "channel": "SendAs: Outbound messages with alias identities that differ from primary account",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "DelegationBaseline",
+          "description": "Maintain baseline of normal SendAs/SendOnBehalf relationships to reduce false positives."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0286",
+        "name": "Detection Strategy for Impersonation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0286"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0286#AN0795"
+    },
+    {
+      "analytic_id": "AN0804",
+      "name": "Analytic 0804",
+      "description": "Disabling or altering security and audit logs in SaaS admin panels (e.g., Slack, Zoom, Salesforce). Defender view: API calls or admin console changes that stop event exports or logging integrations.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1685.002",
+          "name": "Disable or Modify Cloud Log",
+          "tactics": [
+            "Defense Impairment"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1685/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:audit",
+          "channel": "Log export integration removed or disabled",
+          "data_component": "Cloud Service Disable"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "IntegrationScope",
+          "description": "Define which SaaS log integrations are required and alert if removed."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0289",
+        "name": "Detection Strategy for Disable or Modify Cloud Log",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0289"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0289#AN0804"
+    },
+    {
+      "analytic_id": "AN0811",
+      "name": "Analytic 0811",
+      "description": "Detects SaaS web login followed by dashboard or web GUI page views from unfamiliar locations, devices, or access patterns. Identifies use of sensitive reporting or configuration consoles accessed from high-risk accounts.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1538",
+          "name": "Cloud Service Dashboard",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1538"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:zoom",
+          "channel": "Zoom Admin Dashboard accessed from unfamiliar IP/device",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "saas:salesforce",
+          "channel": "Login",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "saas:box",
+          "channel": "User navigated to admin interface",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "SaaSDashboardViewList",
+          "description": "List of GUI pages or endpoints considered sensitive"
+        },
+        {
+          "field": "IPReputationThreshold",
+          "description": "Reputation score or allowlist of source IPs"
+        },
+        {
+          "field": "LoginBehaviorBaseline",
+          "description": "Typical user/device login pairings or login frequency"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0291",
+        "name": "Detection of Cloud Service Dashboard Usage via GUI-Based Cloud Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0291"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0291#AN0811"
+    },
+    {
+      "analytic_id": "AN0818",
+      "name": "Analytic 0818",
+      "description": "Detects suspicious changes to SAML/OAuth federation configurations, such as new signing certificates, altered endpoints, or claims issuance rules granting elevated privileges.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1556.007",
+          "name": "Hybrid Identity",
+          "tactics": [
+            "Defense Impairment",
+            "Persistence",
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1556/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:okta",
+          "channel": "Federation configuration update or signing certificate change",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "FederationEndpoints",
+          "description": "Federation/SAML endpoints monitored for modification."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0293",
+        "name": "Detect Hybrid Identity Authentication Process Modification",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0293"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0293#AN0818"
+    },
+    {
+      "analytic_id": "AN0901",
+      "name": "Analytic 0901",
+      "description": "Adversaries create SaaS accounts via admin dashboards or integrations (e.g., Zoom, Salesforce, Slack). Monitor lifecycle.create or account provisioning events from non-standard sources or times.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1136.003",
+          "name": "Cloud Account",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1136/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:zoom",
+          "channel": "New user created",
+          "data_component": "User Account Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ApplicationScope",
+          "description": "Trigger only for high-privilege or sensitive applications"
+        },
+        {
+          "field": "AdminUserList",
+          "description": "Compare actor to list of approved SaaS administrators"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0319",
+        "name": "Detection Strategy for T1136.003 - Cloud Account Creation across IaaS, IdP, SaaS, Office",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0319"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0319#AN0901"
+    },
+    {
+      "analytic_id": "AN0957",
+      "name": "Analytic 0957",
+      "description": "Unusual reuse of OAuth access tokens from different geographic regions, without full login events.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550",
+          "name": "Use Alternate Authentication Material",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:googleworkspace",
+          "channel": "access_token issued",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "saas:googleworkspace",
+          "channel": "API access without user login",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoIPDistanceThreshold",
+          "description": "Minimum distance between token reuse events to trigger detection"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0338",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material (T1550)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0338"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0338#AN0957"
+    },
+    {
+      "analytic_id": "AN1019",
+      "name": "Analytic 1019",
+      "description": "Detection of excessive or programmatic access to Confluence spaces or pages, particularly by privileged users, through a combination of access logs, API usage, and identity context. Correlates logon sessions, user roles, and abnormal document viewing or export behavior. Identifies burst access patterns and tools/scripts abusing the Confluence API for mass enumeration or data scraping.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1213.001",
+          "name": "Confluence",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1213/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:confluence",
+          "channel": "access.content",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:confluence",
+          "channel": "logon",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "saas:confluence",
+          "channel": "REST API access from non-browser agents",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Defines the time span (e.g., 5m, 1h) in which excessive access behavior becomes suspicious."
+        },
+        {
+          "field": "UserContext",
+          "description": "Privileged user roles (e.g., domain admins) should be excluded or flagged if found accessing documentation repositories."
+        },
+        {
+          "field": "AccessThreshold",
+          "description": "The number of pages viewed or exported by a single user before triggering detection logic."
+        },
+        {
+          "field": "AgentFilter",
+          "description": "User agent strings that may indicate scripted, automated, or non-interactive access methods."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0358",
+        "name": "Programmatic and Excessive Access to Confluence Documentation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0358"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0358#AN1019"
+    },
+    {
+      "analytic_id": "AN1055",
+      "name": "Analytic 1055",
+      "description": "Track creation or update of SaaS automation scripts (e.g., Google Workspace Apps Script). Detect when these scripts are bound to user events such as file opens or account modifications, and correlate with subsequent abnormal API calls that exfiltrate or modify user data.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1648",
+          "name": "Serverless Execution",
+          "tactics": [
+            "Execution"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1648"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:appsscript",
+          "channel": "Create / Update: Deployment of scripts with event-driven triggers",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "saas:googledrive",
+          "channel": "FileOpen / FileAccess: Event-driven script triggering on user file actions",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ScriptScope",
+          "description": "Which SaaS apps or APIs can be legitimately automated in the environment"
+        },
+        {
+          "field": "TriggerTypes",
+          "description": "Event-driven triggers (e.g., on file open, on user creation) considered suspicious"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0374",
+        "name": "Detection Strategy for Serverless Execution (T1648)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0374"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0374#AN1055"
+    },
+    {
+      "analytic_id": "AN1090",
+      "name": "Analytic 1090",
+      "description": "Access to organizational directories via Google Workspace Directory API, Slack SCIM, or Okta SCIM by apps or identities outside normal roles.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1087.004",
+          "name": "Cloud Account",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1087/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "Google Admin Audit",
+          "channel": "users.list, groups.list",
+          "data_component": "User Account Metadata"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "System API Call: user.read, group.read",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "APIRequestRate",
+          "description": "Detect rapid enumeration attempts or recursive group expansion."
+        },
+        {
+          "field": "AppIntegrationID",
+          "description": "Tag expected SCIM clients and suppress false positives from enterprise sync tools."
+        },
+        {
+          "field": "GeoContext",
+          "description": "Trigger alerts if enumeration occurs from anomalous IPs or regions."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0386",
+        "name": "Cloud Account Enumeration via API, CLI, and Scripting Interfaces",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0386"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0386#AN1090"
+    },
+    {
+      "analytic_id": "AN1130",
+      "name": "Analytic 1130",
+      "description": "Discovery of connected SaaS applications, APIs, or configurations within platforms like Salesforce, Slack, or Zoom. Defender perspective includes enumeration of available integrations, abnormal querying of service metadata, and follow-on attempts to exploit or persist via discovered services.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1526",
+          "name": "Cloud Service Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1526"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:adminapi",
+          "channel": "ListIntegrations, ListServices: Repeated service discovery requests from accounts without administrative responsibilities",
+          "data_component": "Cloud Service Enumeration"
+        },
+        {
+          "log_source": "saas:auth",
+          "channel": "Login, TokenGranted: Discovery actions tied to anomalous login sessions or tokens",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "IntegrationDiscoveryThreshold",
+          "description": "Number of SaaS integrations enumerated before triggering detection."
+        },
+        {
+          "field": "ServiceAccountScope",
+          "description": "Expected permissions for service accounts to distinguish benign from malicious discovery."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0402",
+        "name": "Detection Strategy for Cloud Service Discovery",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0402"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0402#AN1130"
+    },
+    {
+      "analytic_id": "AN1156",
+      "name": "Analytic 1156",
+      "description": "Unusual web-based access or API scraping of password managers, single sign-on sessions, or credential sync services via browser automation or anomalous API tokens.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1552",
+          "name": "Unsecured Credentials",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1552"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:googleworkspace",
+          "channel": "Accessed third-party credential management service",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "saas:zoom",
+          "channel": "unusual web session tokens and automation patterns during login",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TokenAnomalyThreshold",
+          "description": "Scoring threshold for access token entropy, reuse, or bot-like patterns"
+        },
+        {
+          "field": "AccessGeoLocation",
+          "description": "Region anomalies in SaaS portal access"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0412",
+        "name": "Detect Access or Search for Unsecured Credentials Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0412"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0412#AN1156"
+    },
+    {
+      "analytic_id": "AN1162",
+      "name": "Analytic 1162",
+      "description": "Abuse of SaaS platforms such as Confluence, GitHub, SharePoint Online, or Slack to access excessive internal documentation or export source code/data. Includes use of tokens or browser automation from unapproved IPs.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1213",
+          "name": "Data from Information Repositories",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1213"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:confluence",
+          "channel": "access.content",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:slack",
+          "channel": "Exported file or accessed admin API",
+          "data_component": "Cloud Service Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "APIUsageThreshold",
+          "description": "Number of API calls or files accessed before triggering detection."
+        },
+        {
+          "field": "KnownSafeIPs",
+          "description": "Whitelist of internal IPs/users that may be excluded from detection."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0413",
+        "name": "Abuse of Information Repositories for Data Collection",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0413"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0413#AN1162"
+    },
+    {
+      "analytic_id": "AN1266",
+      "name": "Analytic 1266",
+      "description": "Multiple sign-in failures against cloud-based applications using username/password combinations leaked from unrelated domains",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.004",
+          "name": "Credential Stuffing",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas-app:auth",
+          "channel": "login_failure",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserAccountOverlap",
+          "description": "Correlate credentials reused across multiple SaaS platforms"
+        },
+        {
+          "field": "FailedAttemptsPerIP",
+          "description": "Number of failed logins from same IP before alerting"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0460",
+        "name": "Credential Stuffing Detection via Reused Breached Credentials Across Services",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0460"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0460#AN1266"
+    },
+    {
+      "analytic_id": "AN1279",
+      "name": "Analytic 1279",
+      "description": "Excessive login attempts followed by success from SaaS apps like O365, Dropbox, etc.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110",
+          "name": "Brute Force",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "Sign-in logs",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AppName",
+          "description": "Detect brute force attempts targeting specific apps"
+        },
+        {
+          "field": "UserGroup",
+          "description": "Limit alert scope to high-value user groups"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0463",
+        "name": "Brute Force Authentication Failures with Multi-Platform Log Correlation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0463"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0463#AN1279"
+    },
+    {
+      "analytic_id": "AN1301",
+      "name": "Analytic 1301",
+      "description": "Detects upload of malicious or unusual file types into cloud-shared folders, followed by user downloads or interactions.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1080",
+          "name": "Taint Shared Content",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1080"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "gcp:workspaceaudit",
+          "channel": "drive.activity logs",
+          "data_component": "File Creation"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "FileUploaded, FileAccessed",
+          "data_component": "Network Share Access"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserUploadRateThreshold",
+          "description": "Abnormal upload patterns into shared drives."
+        },
+        {
+          "field": "MaliciousFileIndicator",
+          "description": "File hash or known-bad filename pattern matching."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0471",
+        "name": "Detection of Tainted Content Written to Shared Storage",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0471"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0471#AN1301"
+    },
+    {
+      "analytic_id": "AN1329",
+      "name": "Analytic 1329",
+      "description": "OAuth token granted to external app followed by download of high-volume files in OneDrive/Google Drive",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1530",
+          "name": "Data from Cloud Storage",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1530"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "FileAccessed, FileDownloaded, ConsentGranted",
+          "data_component": "Cloud Storage Access"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AppRegistrationNamePattern",
+          "description": "Pattern of suspicious OAuth app names (e.g., `rclone`, `mega`, `backup*`)"
+        },
+        {
+          "field": "DownloadThresholdMB",
+          "description": "Flag file downloads over X MB (e.g., >100MB) within short intervals"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0484",
+        "name": "Multi-Platform Cloud Storage Exfiltration Behavior Chain",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0484"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0484#AN1329"
+    },
+    {
+      "analytic_id": "AN1343",
+      "name": "Analytic 1343",
+      "description": "SaaS applications receiving authentication failures for dozens of accounts using same password or login signature",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.003",
+          "name": "Password Spraying",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:auth",
+          "channel": "signin_failed",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "CloudAppScope",
+          "description": "Restrict detection to identity providers or select high-risk SaaS platforms"
+        },
+        {
+          "field": "UserPopulationSensitivity",
+          "description": "Adjust based on size and role of account pool"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0487",
+        "name": "Distributed Password Spraying via Authentication Failures Across Multiple Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0487"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0487#AN1343"
+    },
+    {
+      "analytic_id": "AN1349",
+      "name": "Analytic 1349",
+      "description": "Behavioral chain: (1) third-party app or admin connects via OAuth/marketplace install; (2) high-privilege scopes granted; (3) anomalous actions (mass read/exports, admin changes).",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1199",
+          "name": "Trusted Relationship",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1199"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:googleworkspace",
+          "channel": "OAuth2 authorization grants / Admin role assignments",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:salesforce",
+          "channel": "ConnectedApp OAuth policy change / Login as user",
+          "data_component": "Logon Session Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ApprovedApps",
+          "description": "Catalog of sanctioned third-party apps and scopes."
+        },
+        {
+          "field": "ExportVolumeThreshold",
+          "description": "Data export size/rate baselines to detect abnormal partner activity."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0488",
+        "name": "Detect abuse of Trusted Relationships (third-party and delegated admin access)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0488"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0488#AN1349"
+    },
+    {
+      "analytic_id": "AN1364",
+      "name": "Analytic 1364",
+      "description": "Monitor SaaS financial systems (e.g., QuickBooks, Workday, SAP S/4HANA cloud) for unauthorized access, rule changes, or mass export of financial data. Detect anomalous transfers initiated via SaaS APIs or new MFA-disabled logins targeting finance apps.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1657",
+          "name": "Financial Theft",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1657"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:finance",
+          "channel": "Transaction/Transfer: Unusual or large transactions initiated outside business hours or by unusual accounts",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TransactionThreshold",
+          "description": "Customizable monetary threshold above which financial transactions should be flagged."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0495",
+        "name": "Detection Strategy for Financial Theft",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0495"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0495#AN1364"
+    },
+    {
+      "analytic_id": "AN1406",
+      "name": "Analytic 1406",
+      "description": "Detects use of session cookies or authentication tokens from unusual user agents or locations. Identifies token reuse without reauthentication or attempts to bypass MFA using previously stolen cookies.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1539",
+          "name": "Steal Web Session Cookie",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1539"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:googleworkspace",
+          "channel": "login with reused session token and mismatched user agent or IP",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "saas:okta",
+          "channel": "session.token.reuse",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TokenReuseTimeWindow",
+          "description": "Max allowed delta between token issuance and second use"
+        },
+        {
+          "field": "UserAgentAnomalyScore",
+          "description": "Deviation score from normal browser/device fingerprint"
+        },
+        {
+          "field": "GeoLocationAnomalyScore",
+          "description": "Deviation in IP region or ASN per user profile"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0509",
+        "name": "Detection of Web Session Cookie Theft via File, Memory, and Network Artifacts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0509"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0509#AN1406"
+    },
+    {
+      "analytic_id": "AN1427",
+      "name": "Analytic 1427",
+      "description": "Programmatic access to user content via stolen access tokens in platforms like Slack, GitHub, Google Workspace — especially from new IPs, apps, or excessive resource access.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1528",
+          "name": "Steal Application Access Token",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1528"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:googleworkspace",
+          "channel": "Access via OAuth credentials with unusual scopes or from anomalous IPs",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "saas:slack",
+          "channel": "OAuth token use by unknown app client_id accessing private channels or files",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "GeoVelocity",
+          "description": "Flag when token use appears across geographically distant logins"
+        },
+        {
+          "field": "OAuthScopeSensitivity",
+          "description": "Weight certain scopes (admin, file.read) as higher risk"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0515",
+        "name": "Detection Strategy for T1528 - Steal Application Access Token",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0515"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0515#AN1427"
+    },
+    {
+      "analytic_id": "AN1471",
+      "name": "Analytic 1471",
+      "description": "Credential-related configuration changes in productivity apps, such as API key creation in Google Workspace, app tokens in Slack, or user-level OAuth credentials in M365.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098.001",
+          "name": "Additional Cloud Credentials",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "gcp:audit",
+          "channel": "API Key Created, OAuth Client Registered",
+          "data_component": "User Account Modification"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-Mailbox, Set-AppPassword, Add-MailboxPermission",
+          "data_component": "Active Directory Object Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OAuthClientRedirectURIBaseline",
+          "description": "Detect suspicious redirect URI mismatches in new clients."
+        },
+        {
+          "field": "TokenScopeSensitivity",
+          "description": "Highlight credentials granting excessive read/write org-wide."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0531",
+        "name": "Detection Strategy for Additional Cloud Credentials in IaaS/IdP/SaaS",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0531"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0531#AN1471"
+    },
+    {
+      "analytic_id": "AN1473",
+      "name": "Analytic 1473",
+      "description": "Detects anomalous CI/CD workflow execution originating from forked repositories, with pull request (PR) metadata or commit messages containing suspicious patterns (e.g., encoded payloads), coupled with the use of insecure pipeline triggers like `pull_request_target` or excessive API usage of CI/CD secrets. Correlation with unusual artifact generation or secret exfiltration via encoded or external network destination URLs confirms suspicious behavior.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1677",
+          "name": "Poisoned Pipeline Execution",
+          "tactics": [
+            "Execution"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1677"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:github",
+          "channel": "Workflow triggered via pull_request_target from forked repo",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "saas:github",
+          "channel": "CI/CD secret accessed or exported",
+          "data_component": "Cloud Service Metadata"
+        },
+        {
+          "log_source": "saas:github",
+          "channel": "Artifact generated includes base64/encoded exfil payload or URL",
+          "data_component": "Cloud Storage Access"
+        },
+        {
+          "log_source": "saas:RepoEvents",
+          "channel": "New file added or modified in PR targeting CI/CD or build config (e.g., `gitlab-ci.yml`, `build.gradle`, `pom.xml`, `.github/workflows/*.yml`)",
+          "data_component": "File Metadata"
+        },
+        {
+          "log_source": "saas:PRMetadata",
+          "channel": "Commit message or branch name contains encoded strings or payload indicators",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Time delta between PR creation and workflow execution to flag rapid attempts"
+        },
+        {
+          "field": "UserContext",
+          "description": "Forked or external user accounts triggering workflows; may differ across orgs"
+        },
+        {
+          "field": "TriggerTypeAllowlist",
+          "description": "CI trigger types (e.g., `pull_request_target`) that should or shouldn't be used for forks"
+        },
+        {
+          "field": "ArtifactEntropyThreshold",
+          "description": "Entropy threshold for detecting encoded payloads in artifacts"
+        },
+        {
+          "field": "SecretAccessRateThreshold",
+          "description": "Rate of secret access in a single workflow run that might indicate abuse"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0533",
+        "name": "Detection Strategy for Poisoned Pipeline Execution via SaaS CI/CD Workflows",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0533"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0533#AN1473"
+    },
+    {
+      "analytic_id": "AN1488",
+      "name": "Analytic 1488",
+      "description": "Detects anomalous SaaS application integration activity across environments such as Slack, Salesforce, or other enterprise SaaS services. Focus is on unauthorized app additions, unusual permission grants, and persistence through service principal tokens.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1671",
+          "name": "Cloud Application Integration",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1671"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:integration",
+          "channel": "New or modified third-party application integrations with elevated permissions",
+          "data_component": "Cloud Service Modification"
+        },
+        {
+          "log_source": "saas:audit",
+          "channel": "Application added or consent granted: Integration persisting after original user disabled",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AppWhitelist",
+          "description": "Defines approved SaaS integrations for the enterprise; deviations indicate suspicious persistence."
+        },
+        {
+          "field": "ConsentDelegationPolicy",
+          "description": "Threshold for which users can self-consent integrations; lowering this may reduce false positives."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0539",
+        "name": "Detection Strategy for Cloud Application Integration",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0539"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0539#AN1488"
+    },
+    {
+      "analytic_id": "AN1505",
+      "name": "Analytic 1505",
+      "description": "Detects unexpected access or usage of cloud productivity tools (e.g., downloading large numbers of files, creating external shares) by internal users.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1078.004",
+          "name": "Cloud Accounts",
+          "tactics": [
+            "Stealth",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1078/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "FileAccessed, SharingSet",
+          "data_component": "Logon Session Metadata"
+        },
+        {
+          "log_source": "gcp:audit",
+          "channel": "drive.activity",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "FileDownloadThreshold",
+          "description": "Defines excessive access based on number or size of downloads."
+        },
+        {
+          "field": "SharingPolicyViolationThreshold",
+          "description": "Defines external sharing behaviors that violate policy."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0546",
+        "name": "Detection of Abused or Compromised Cloud Accounts for Access and Persistence",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0546"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0546#AN1505"
+    },
+    {
+      "analytic_id": "AN1514",
+      "name": "Analytic 1514",
+      "description": "Abnormal API calls from user accounts invoking file upload endpoints outside normal baselines (M365, Google Drive, Box). Defender perspective: monitor unified audit logs for elevated frequency of Upload, Create, or Copy operations from compromised accounts.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1567",
+          "name": "Exfiltration Over Web Service",
+          "tactics": [
+            "Exfiltration"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1567"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "FileUploaded or FileCopied events",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:box",
+          "channel": "API calls exceeding baseline thresholds",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "APICallThreshold",
+          "description": "Maximum number of API calls per user/session before triggering alert."
+        },
+        {
+          "field": "UserBaselineProfiles",
+          "description": "Baseline normal data transfer patterns by user/role."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0548",
+        "name": "Detection Strategy for Exfiltration Over Web Service",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0548"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0548#AN1514"
+    },
+    {
+      "analytic_id": "AN1520",
+      "name": "Analytic 1520",
+      "description": "Anomalous high-volume access to customer records in CRM software by a non-CRM admin user account, especially following initial authentication from a rare location or device. Behavior includes abnormal access to PII fields or data exports within a short time window.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1213.004",
+          "name": "Customer Relationship Management Software",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1213/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:salesforce",
+          "channel": "DataExport, RestAPI, Login, ReportExport",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "UserLoggedIn",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Duration over which bulk CRM queries occur (e.g., 1 minute, 5 minutes); varies by organization usage pattern"
+        },
+        {
+          "field": "UserContext",
+          "description": "User's CRM role, department, or job function (e.g., non-sales user accessing customer PII)"
+        },
+        {
+          "field": "AnomalousExportThreshold",
+          "description": "Number of CRM objects (contacts, deals, logs) accessed or exported above normal"
+        },
+        {
+          "field": "SourceLocation",
+          "description": "Rare or impossible geolocation/IP address for legitimate CRM user access"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0550",
+        "name": "Detecting Suspicious Access to CRM Data in SaaS Environments",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0550"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0550#AN1520"
+    },
+    {
+      "analytic_id": "AN1526",
+      "name": "Analytic 1526",
+      "description": "Password guessing attempts against web-based apps (e.g., Dropbox, Google Workspace) reflected in API or sign-in logs",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.001",
+          "name": "Password Guessing",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "GCPAuditLogs:login.googleapis.com",
+          "channel": "Failed sign-in events",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AppContext",
+          "description": "Which SaaS apps should be monitored for brute force attempts"
+        },
+        {
+          "field": "EmailPattern",
+          "description": "Limit scope to enterprise domains or service accounts"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0551",
+        "name": "Password Guessing via Multi-Source Authentication Failure Correlation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0551"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0551#AN1526"
+    },
+    {
+      "analytic_id": "AN1565",
+      "name": "Analytic 1565",
+      "description": "Atypical access to Slack or Teams conversations via APIs, automation tokens, or bulk message export functionality, particularly after an account takeover or rare sign-in pattern. Often includes mass retrieval of chat history, download of message content, or scraping of workspace/channel metadata.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1213.005",
+          "name": "Messaging Applications",
+          "tactics": [
+            "Collection"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1213/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:slack",
+          "channel": "conversations.history, files.list, users.info, audit_logs",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:signinlogs",
+          "channel": "UserLoggedIn",
+          "data_component": "Logon Session Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Time interval to observe post-login message scraping behavior"
+        },
+        {
+          "field": "MessageExportThreshold",
+          "description": "Number of messages or files accessed/downloaded to flag for review"
+        },
+        {
+          "field": "UserContext",
+          "description": "User privilege level, team membership, or role context to suppress false positives"
+        },
+        {
+          "field": "AccessMethod",
+          "description": "Direct user access vs API token, OAuth app, or bot interaction"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0567",
+        "name": "Detecting Unauthorized Collection from Messaging Applications in SaaS and Office Environments",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0567"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0567#AN1565"
+    },
+    {
+      "analytic_id": "AN1582",
+      "name": "Analytic 1582",
+      "description": "Detects use of built-in SaaS sharing mechanisms to transfer ownership or share access of critical data to external tenants or untrusted users through API calls or link generation features.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1537",
+          "name": "Transfer Data to Cloud Account",
+          "tactics": [
+            "Exfiltration"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1537"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:googledrive",
+          "channel": "drive.permission.add",
+          "data_component": "Cloud Storage Modification"
+        },
+        {
+          "log_source": "saas:box",
+          "channel": "collaboration.invite",
+          "data_component": "Cloud Storage Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserContext",
+          "description": "Whether the user is in a high-privileged or VIP group"
+        },
+        {
+          "field": "DomainReputationList",
+          "description": "Allowlist or blocklist of external SaaS domains"
+        },
+        {
+          "field": "PayloadVolumeThreshold",
+          "description": "Size or number of shared files triggering alert"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0573",
+        "name": "Cross-Platform Detection of Data Transfer to Cloud Account",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0573"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0573#AN1582"
+    },
+    {
+      "analytic_id": "AN1618",
+      "name": "Analytic 1618",
+      "description": "Account enumeration via bulk access to user directory features or hidden APIs.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1087",
+          "name": "Account Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1087"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "gcp:audit",
+          "channel": "Directory API Access",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "EndpointURL",
+          "description": "Tune based on enumeration from directory endpoints such as /users, /groups."
+        },
+        {
+          "field": "UserAgent",
+          "description": "Detect scripted enumeration via curl/wget or unknown tools."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0587",
+        "name": "Enumeration of User or Account Information Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0587"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0587#AN1618"
+    },
+    {
+      "analytic_id": "AN1637",
+      "name": "Analytic 1637",
+      "description": "Detects adversary abuse of SaaS platform vulnerabilities to bypass logging, monitoring, or consent boundaries. Defender perspective focuses on abnormal application integration events, missing audit logs, or API calls from unauthorized service principals that align with exploitation attempts.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1211",
+          "name": "Exploitation for Stealth",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1211"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "m365:unified",
+          "channel": "ApplicationModified, ConsentGranted: Unexpected app consent or modification events linked to security evasion",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MonitoredApps",
+          "description": "Applications and integrations expected in the environment; deviations may be suspect."
+        },
+        {
+          "field": "ConsentAnomalyThreshold",
+          "description": "Threshold for anomalous OAuth or app consent events before flagging exploitation."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0595",
+        "name": "Detection Strategy for Exploitation for Stealth",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0595"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0595#AN1637"
+    },
+    {
+      "analytic_id": "AN2034",
+      "name": "Analytic 2034",
+      "description": "Detects consent grants, password resets, role changes, external sharing, or token creation shortly after user interaction with messages, invites, or help desk workflows. Emphasis is placed on unusual requester relationships, new device context, or off-hours approvals.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1684",
+          "name": "Social Engineering",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1684"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:okta",
+          "channel": "user.account.reset_password; user.mfa.factor.activate; app.oauth2.authorize",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "saas:slack",
+          "channel": "xternal DM or workspace invite preceding credential or approval actions",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "saas:zoom",
+          "channel": "Unexpected contact interaction preceding follow-on admin requests",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RequesterNoveltyDays",
+          "description": "How long since requestor last interacted with user"
+        },
+        {
+          "field": "GeoVelocityThreshold",
+          "description": "Distance/time anomaly for follow-on login"
+        },
+        {
+          "field": "AfterHoursDefinition",
+          "description": "Organization-specific off-hours period"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0899",
+        "name": "Detect Social Engineering",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0899"
+      },
+      "version": "1.0",
+      "modified": "2026-05-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0899#AN2034"
+    },
+    {
+      "analytic_id": "AN2042",
+      "name": "Analytic 2042",
+      "description": "Detects exploitation or abuse of SaaS security workflows resulting in disabled alerts, reduced retention, bypassed enforcement, role escalation, or tokenized persistence that weakens monitoring. Correlates unusual admin/API activity with visibility reduction.",
+      "platforms": [
+        "SaaS"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1687",
+          "name": "Exploitation for Defense Impairment",
+          "tactics": [
+            "Defense Impairment"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1687"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "saas:okta",
+          "channel": "policy.rule.update;system.log.disable;admin.role.assign",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "m365:unified",
+          "channel": "Set-AdminAuditLogConfig;New-ApplicationAccessPolicy;ConsentToApplication",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PrivilegedActorAllowlist",
+          "description": "Approved admins allowed to change controls"
+        },
+        {
+          "field": "RetentionChangeThreshold",
+          "description": "Minimum acceptable logging retention"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0900",
+        "name": "Detection of Defense Impairment",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0900"
+      },
+      "version": "1.0",
+      "modified": "2026-05-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0900#AN2042"
+    }
+  ]
+}

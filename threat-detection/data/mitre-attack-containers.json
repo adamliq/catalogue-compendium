@@ -1,0 +1,3045 @@
+{
+  "metadata": {
+    "title": "MITRE ATT&CK Enterprise - Containers Platform Analytics",
+    "description": "Techniques and formal MITRE ATT&CK Detection Analytics scoped to MITRE's 'Containers' platform (container-orchestration and container-runtime telemetry -- Kubernetes API/pod/workload events and eBPF-based runtime security, as distinct from the underlying host OS or cloud-provider control plane). Extracted from the official MITRE ATT&CK Enterprise STIX dataset. Loaded by the Threat Detection Library app to show ATT&CK coverage for this library's genuinely container-scoped ESCU content -- the 'Kubernetes' (18 entries: pod/DaemonSet/CronJob creation, secret abuse, API scanning/access) and 'Cisco Isovalent' (10 entries: eBPF/Cilium-based Kubernetes runtime security -- host-escape attempts, kprobe activity, offensive-tool detection inside pods) components (28 entries total) -- deliberately excluding this catalogue's host-OS, cloud-control-plane, and network-appliance components (Windows Endpoint, Linux, Cisco Network/ASA/IOS XE, AWS, Azure, Microsoft 365, and many others) even where a shared, broadly-applicable technique ID (e.g. T1078 Valid Accounts, T1190 Exploit Public-Facing Application) would otherwise inflate the coverage count without those entries actually detecting container-orchestration or container-runtime telemetry.",
+    "source": "https://github.com/mitre/cti (enterprise-attack/enterprise-attack.json)",
+    "attack_version_reference": "https://attack.mitre.org/resources/updates/",
+    "attack_spec_version": "3.3.0",
+    "platform": "Containers",
+    "retrieved": "2026-08-20",
+    "technique_count": 48,
+    "analytic_count": 38,
+    "techniques_covered_by_library": 8,
+    "tactic_breakdown": {
+      "Initial Access": 5,
+      "Execution": 8,
+      "Persistence": 13,
+      "Privilege Escalation": 11,
+      "Stealth": 8,
+      "Defense Impairment": 1,
+      "Credential Access": 8,
+      "Discovery": 3,
+      "Lateral Movement": 2,
+      "Impact": 7
+    }
+  },
+  "techniques": [
+    {
+      "attack_id": "T1036",
+      "name": "Masquerading",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to manipulate features of their artifacts to make them appear legitimate or benign to users and/or security tools. Masquerading occurs when the name or location of an object, legitimate or malicious, is manipulated or abused for the sake of evading defenses and observation. This may include manipulating file metadata, tricking users into misidentifying the file type, and gi",
+      "url": "https://attack.mitre.org/techniques/T1036",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1036.005",
+      "name": "Match Legitimate Resource Name or Location",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may match or approximate the name or location of legitimate files, Registry keys, or other resources when naming/placing them. This is done for the sake of evading defenses and observation. ",
+      "url": "https://attack.mitre.org/techniques/T1036/005",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1036.010",
+      "name": "Masquerade Account Name",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may match or approximate the names of legitimate accounts to make newly created ones appear benign. This will typically occur during [Create Account](https://attack.mitre.org/techniques/T1136), although accounts may also be renamed at a later date. This may also coincide with [Account Access Removal](https://attack.mitre.org/techniques/T1531) if the actor first deletes an account befor",
+      "url": "https://attack.mitre.org/techniques/T1036/010",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1046",
+      "name": "Network Service Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to get a listing of services running on remote hosts and local network infrastructure devices, including those that may be vulnerable to remote software exploitation. Common methods to acquire this information include port, vulnerability, and/or wordlist scans using tools that are brought onto a system.(Citation: CISA AR21-126A FIVEHANDS May 2021)   ",
+      "url": "https://attack.mitre.org/techniques/T1046",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1053",
+      "name": "Scheduled Task/Job",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution",
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "description": "Adversaries may abuse task scheduling functionality to facilitate initial or recurring execution of malicious code. Utilities exist within all major operating systems to schedule programs or scripts to be executed at a specified date and time. A task can also be scheduled on a remote system, provided the proper authentication is met (ex: RPC and file and printer sharing in Windows environments). S",
+      "url": "https://attack.mitre.org/techniques/T1053",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1053.007",
+      "name": "Container Orchestration Job",
+      "is_subtechnique": true,
+      "tactics": [
+        "Execution",
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may abuse task scheduling functionality provided by container orchestration tools such as Kubernetes to schedule deployment of containers configured to execute malicious code. Container orchestration jobs run these automated tasks at a specific date and time, similar to cron jobs on a Linux system. Deployments of this type can also be configured to maintain a quantity of containers ove",
+      "url": "https://attack.mitre.org/techniques/T1053/007",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1059",
+      "name": "Command and Scripting Interpreter",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities, for example, macOS and Linux distributions include some flavor of [Unix Shel",
+      "url": "https://attack.mitre.org/techniques/T1059",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1059.013",
+      "name": "Container CLI/API",
+      "is_subtechnique": true,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may abuse built-in CLI tools or API calls to execute malicious commands in containerized environments.",
+      "url": "https://attack.mitre.org/techniques/T1059/013",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1068",
+      "name": "Exploitation for Privilege Escalation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may exploit software vulnerabilities in an attempt to elevate privileges. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. Security constructs such as permission levels will often hinder access to information and u",
+      "url": "https://attack.mitre.org/techniques/T1068",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1069",
+      "name": "Permission Groups Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to discover group and permission settings. This information can help adversaries determine which user accounts and groups are available, the membership of users in particular groups, and which users and groups have elevated permissions.",
+      "url": "https://attack.mitre.org/techniques/T1069",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1070",
+      "name": "Indicator Removal",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "Windows"
+      ],
+      "description": "Adversaries may selectively delete or modify artifacts generated to reduce indications of their presence and blend in with legitimate activity. Rather than broadly removing evidence, adversaries may target specific artifacts that appear anomalous or are likely to draw scrutiny, while leaving sufficient data intact to maintain the appearance of normal system behavior.",
+      "url": "https://attack.mitre.org/techniques/T1070",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1078",
+      "name": "Valid Accounts",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Compromised credentials may be used to bypass access controls placed on various resources on systems within the network and may even be used for persistent access to remote systems and externally available services, such as VPNs, Outlook Web",
+      "url": "https://attack.mitre.org/techniques/T1078",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1078.001",
+      "name": "Default Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Default accounts are those that are built-into an OS, such as the Guest or Administrator accounts on Windows systems. Default accounts also include default factory/provider set accounts on other types of systems, software, or devices, includ",
+      "url": "https://attack.mitre.org/techniques/T1078/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1078.003",
+      "name": "Local Accounts",
+      "is_subtechnique": true,
+      "tactics": [
+        "Stealth",
+        "Persistence",
+        "Privilege Escalation",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "description": "Adversaries may obtain and abuse credentials of a local account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Local accounts are those configured by an organization for use by users, remote support, services, or for administration on a single system or service.",
+      "url": "https://attack.mitre.org/techniques/T1078/003",
+      "analytic_count_total": 3,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1098",
+      "name": "Account Manipulation",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may manipulate accounts to maintain and/or elevate access to victim systems. Account manipulation may consist of any action that preserves or modifies adversary access to a compromised account, such as modifying credentials or permission groups.(Citation: FireEye SMOKEDHAM June 2021) These actions could also include account activity designed to subvert security policies, such as perfor",
+      "url": "https://attack.mitre.org/techniques/T1098",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1098.006",
+      "name": "Additional Container Cluster Roles",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "An adversary may add additional roles or permissions to an adversary-controlled user or service account to maintain persistent access to a container orchestration system. For example, an adversary with sufficient permissions may create a RoleBinding or a ClusterRoleBinding to bind a Role or ClusterRole to a Kubernetes account.(Citation: Kubernetes RBAC)(Citation: Aquasec Kubernetes Attack 2023) Wh",
+      "url": "https://attack.mitre.org/techniques/T1098/006",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1110",
+      "name": "Brute Force",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained.(Citation: TrendMicro Pawn Storm Dec 2020) Without knowledge of the password for an account or set of accounts, an adversary may systematically guess the password using a repetitive or iterative mechanism.(Citation: Dragos Crashoverride 2018) Brute forcing passwords",
+      "url": "https://attack.mitre.org/techniques/T1110",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1110.001",
+      "name": "Password Guessing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries with no prior knowledge of legitimate credentials within the system or environment may guess passwords to attempt access to accounts. Without knowledge of the password for an account, an adversary may opt to systematically guess the password using a repetitive or iterative mechanism. An adversary may guess login credentials without prior knowledge of system or environment passwords dur",
+      "url": "https://attack.mitre.org/techniques/T1110/001",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1110.003",
+      "name": "Password Spraying",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows",
+        "macOS"
+      ],
+      "description": "Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid account credentials. Password spraying uses one password (e.g. 'Password01'), or a small list of commonly used passwords, that may match the complexity policy of the domain. Logins are attempted with that password against many different accounts on a network to avoid ac",
+      "url": "https://attack.mitre.org/techniques/T1110/003",
+      "analytic_count_total": 8,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1110.004",
+      "name": "Credential Stuffing",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use credentials obtained from breach dumps of unrelated accounts to gain access to target accounts through credential overlap. Occasionally, large numbers of username and password pairs are dumped online when a website or service is compromised and the user account credentials accessed. The information may be useful to an adversary attempting to compromise accounts by taking advant",
+      "url": "https://attack.mitre.org/techniques/T1110/004",
+      "analytic_count_total": 9,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1133",
+      "name": "External Remote Services",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence",
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may leverage external-facing remote services to initially access and/or persist within a network. Remote services such as VPNs, Citrix, and other access mechanisms allow users to connect to internal enterprise network resources from external locations. There are often remote service gateways that manage connections and credential authentication for these services. Services such as [Win",
+      "url": "https://attack.mitre.org/techniques/T1133",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1136",
+      "name": "Create Account",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Containers",
+        "SaaS",
+        "Office Suite",
+        "Identity Provider",
+        "ESXi"
+      ],
+      "description": "Adversaries may create an account to maintain access to victim systems.(Citation: Symantec WastedLocker June 2020) With a sufficient level of access, creating such accounts may be used to establish secondary credentialed access that do not require persistent remote access tools to be deployed on the system.",
+      "url": "https://attack.mitre.org/techniques/T1136",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1136.001",
+      "name": "Local Account",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "description": "Adversaries may create a local account to maintain access to victim systems. Local accounts are those configured by an organization for use by users, remote support, services, or for administration on a single system or service. ",
+      "url": "https://attack.mitre.org/techniques/T1136/001",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1190",
+      "name": "Exploit Public-Facing Application",
+      "is_subtechnique": false,
+      "tactics": [
+        "Initial Access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.",
+      "url": "https://attack.mitre.org/techniques/T1190",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1204",
+      "name": "User Execution",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "IaaS",
+        "Containers"
+      ],
+      "description": "An adversary may rely upon specific actions by a user in order to gain execution. Users may be subjected to social engineering to get them to execute malicious code by, for example, opening a malicious document file or link. These user actions will typically be observed as follow-on behavior from forms of [Phishing](https://attack.mitre.org/techniques/T1566).",
+      "url": "https://attack.mitre.org/techniques/T1204",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1204.003",
+      "name": "Malicious Image",
+      "is_subtechnique": true,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "IaaS",
+        "Containers"
+      ],
+      "description": "Adversaries may rely on a user running a malicious image to facilitate execution. Amazon Web Services (AWS) Amazon Machine Images (AMIs), Google Cloud Platform (GCP) Images, and Azure Images as well as popular container runtimes such as Docker can be backdoored. Backdoored images may be uploaded to a public repository via [Upload Malware](https://attack.mitre.org/techniques/T1608/001), and users m",
+      "url": "https://attack.mitre.org/techniques/T1204/003",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1485",
+      "name": "Data Destruction",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may destroy data and files on specific systems or in large numbers on a network to interrupt availability to systems, services, and network resources. Data destruction is likely to render stored data irrecoverable by forensic techniques through overwriting files or data on local and remote drives.(Citation: Symantec Shamoon 2012)(Citation: FireEye Shamoon Nov 2016)(Citation: Palo Alto ",
+      "url": "https://attack.mitre.org/techniques/T1485",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1490",
+      "name": "Inhibit System Recovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "description": "Adversaries may delete or remove built-in data and turn off services designed to aid in the recovery of a corrupted system to prevent recovery.(Citation: Talos Olympic Destroyer 2018)(Citation: FireEye WannaCry 2017) This may deny access to available backups and recovery options.",
+      "url": "https://attack.mitre.org/techniques/T1490",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1496",
+      "name": "Resource Hijacking",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers",
+        "SaaS"
+      ],
+      "description": "Adversaries may leverage the resources of co-opted systems to complete resource-intensive tasks, which may impact system and/or hosted service availability. ",
+      "url": "https://attack.mitre.org/techniques/T1496",
+      "analytic_count_total": 6,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1496.001",
+      "name": "Compute Hijacking",
+      "is_subtechnique": true,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers"
+      ],
+      "description": "Adversaries may leverage the compute resources of co-opted systems to complete resource-intensive tasks, which may impact system and/or hosted service availability. ",
+      "url": "https://attack.mitre.org/techniques/T1496/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1496.002",
+      "name": "Bandwidth Hijacking",
+      "is_subtechnique": true,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Linux",
+        "Windows",
+        "macOS",
+        "IaaS",
+        "Containers"
+      ],
+      "description": "Adversaries may leverage the network bandwidth resources of co-opted systems to complete resource-intensive tasks, which may impact system and/or hosted service availability. ",
+      "url": "https://attack.mitre.org/techniques/T1496/002",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1498",
+      "name": "Network Denial of Service",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Windows",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers"
+      ],
+      "description": "Adversaries may perform Network Denial of Service (DoS) attacks to degrade or block the availability of targeted resources to users. Network DoS can be performed by exhausting the network bandwidth services rely on. Example resources include specific websites, email services, DNS, and web-based applications. Adversaries have been observed conducting network DoS attacks for political purposes(Citat",
+      "url": "https://attack.mitre.org/techniques/T1498",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 0,
+      "has_platform_analytic": false,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1499",
+      "name": "Endpoint Denial of Service",
+      "is_subtechnique": false,
+      "tactics": [
+        "Impact"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "macOS",
+        "Containers",
+        "IaaS"
+      ],
+      "description": "Adversaries may perform Endpoint Denial of Service (DoS) attacks to degrade or block the availability of services to users. Endpoint DoS can be performed by exhausting the system resources those services are hosted on or exploiting the system to cause a persistent crash condition. Example services include websites, email services, DNS, and web-based applications. Adversaries have been observed con",
+      "url": "https://attack.mitre.org/techniques/T1499",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1525",
+      "name": "Implant Internal Image",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence"
+      ],
+      "platforms": [
+        "IaaS",
+        "Containers"
+      ],
+      "description": "Adversaries may implant cloud or container images with malicious code to establish persistence after gaining access to an environment. Amazon Web Services (AWS) Amazon Machine Images (AMIs), Google Cloud Platform (GCP) Images, and Azure Images as well as popular container runtimes such as Docker can be implanted or backdoored. Unlike [Upload Malware](https://attack.mitre.org/techniques/T1608/001),",
+      "url": "https://attack.mitre.org/techniques/T1525",
+      "analytic_count_total": 2,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1528",
+      "name": "Steal Application Access Token",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries can steal application access tokens as a means of acquiring credentials to access remote systems and resources.",
+      "url": "https://attack.mitre.org/techniques/T1528",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1543",
+      "name": "Create or Modify System Process",
+      "is_subtechnique": false,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may create or modify system-level processes to repeatedly execute malicious payloads as part of persistence. When operating systems boot up, they can start processes that perform background system functions. On Windows and Linux, these system processes are referred to as services.(Citation: TechNet Services) On macOS, launchd processes known as [Launch Daemon](https://attack.mitre.org/",
+      "url": "https://attack.mitre.org/techniques/T1543",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1543.005",
+      "name": "Container Service",
+      "is_subtechnique": true,
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may create or modify container or container cluster management tools that run as daemons, agents, or services on individual hosts. These include software for creating and managing individual containers, such as Docker and Podman, as well as container cluster node-level agents such as kubelet. By modifying these services, an adversary may be able to achieve persistence or escalate their",
+      "url": "https://attack.mitre.org/techniques/T1543/005",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550",
+      "name": "Use Alternate Authentication Material",
+      "is_subtechnique": false,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ],
+      "description": "Adversaries may use alternate authentication material, such as password hashes, Kerberos tickets, and application access tokens, in order to move laterally within an environment and bypass normal system access controls. ",
+      "url": "https://attack.mitre.org/techniques/T1550",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1550.001",
+      "name": "Application Access Token",
+      "is_subtechnique": true,
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ],
+      "description": "Adversaries may use stolen application access tokens to bypass the typical authentication process and access restricted accounts, information, or services on remote systems. These tokens are typically stolen from users or services and used in lieu of login credentials.",
+      "url": "https://attack.mitre.org/techniques/T1550/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1552",
+      "name": "Unsecured Credentials",
+      "is_subtechnique": false,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Windows",
+        "SaaS",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Containers",
+        "Network Devices",
+        "Office Suite",
+        "Identity Provider"
+      ],
+      "description": "Adversaries may search compromised systems to find and obtain insecurely stored credentials. These credentials can be stored and/or misplaced in many locations on a system, including plaintext files (e.g. [Shell History](https://attack.mitre.org/techniques/T1552/003)), operating system or application-specific repositories (e.g. [Credentials in Registry](https://attack.mitre.org/techniques/T1552/00",
+      "url": "https://attack.mitre.org/techniques/T1552",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1552.001",
+      "name": "Credentials In Files",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "description": "Adversaries may search local file systems and remote file shares for files containing insecurely stored credentials. These can be files created by users to store their own credentials, shared credential stores for a group of individuals, configuration files containing passwords for a system or service, or source code/binary files containing embedded passwords.",
+      "url": "https://attack.mitre.org/techniques/T1552/001",
+      "analytic_count_total": 5,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1552.007",
+      "name": "Container API",
+      "is_subtechnique": true,
+      "tactics": [
+        "Credential Access"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may gather credentials via APIs within a containers environment. APIs in these environments, such as the Docker API and Kubernetes APIs, allow a user to remotely manage their container resources and cluster components.(Citation: Docker API)(Citation: Kubernetes API)",
+      "url": "https://attack.mitre.org/techniques/T1552/007",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1609",
+      "name": "Container Administration Command",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may abuse a container administration service to execute commands within a container. A container administration service such as the Docker daemon, the Kubernetes API server, or the kubelet may allow remote management of containers within an environment.(Citation: Docker Daemon CLI)(Citation: Kubernetes API)(Citation: Kubernetes Kubelet)",
+      "url": "https://attack.mitre.org/techniques/T1609",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1610",
+      "name": "Deploy Container",
+      "is_subtechnique": false,
+      "tactics": [
+        "Execution"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may deploy a container into an environment to facilitate execution or evade defenses. In some cases, adversaries may deploy a new container to execute processes associated with a particular image or deployment, such as processes that execute or download malware. In others, an adversary may deploy a new container configured without network rules, user limitations, etc. to bypass existin",
+      "url": "https://attack.mitre.org/techniques/T1610",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1611",
+      "name": "Escape to Host",
+      "is_subtechnique": false,
+      "tactics": [
+        "Privilege Escalation"
+      ],
+      "platforms": [
+        "Windows",
+        "Linux",
+        "Containers",
+        "ESXi"
+      ],
+      "description": "Adversaries may break out of a container or virtualized environment to gain access to the underlying host. This can allow an adversary access to other containerized or virtualized resources from the host level or to the host itself. In principle, containerized / virtualized resources should provide a clear separation of application functionality and be isolated from the host environment.(Citation:",
+      "url": "https://attack.mitre.org/techniques/T1611",
+      "analytic_count_total": 4,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": true
+    },
+    {
+      "attack_id": "T1612",
+      "name": "Build Image on Host",
+      "is_subtechnique": false,
+      "tactics": [
+        "Stealth"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may build a container image directly on a host to bypass defenses that monitor for the retrieval of malicious images from a public registry. A remote <code>build</code> request may be sent to the Docker API that includes a Dockerfile that pulls a vanilla base image, such as alpine, from a public or local registry and then builds a custom image upon it.(Citation: Docker Build Image)",
+      "url": "https://attack.mitre.org/techniques/T1612",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1613",
+      "name": "Container and Resource Discovery",
+      "is_subtechnique": false,
+      "tactics": [
+        "Discovery"
+      ],
+      "platforms": [
+        "Containers"
+      ],
+      "description": "Adversaries may attempt to discover containers and other resources that are available within a containers environment. Other resources may include images, deployments, pods, nodes, and other information such as the status of a cluster.",
+      "url": "https://attack.mitre.org/techniques/T1613",
+      "analytic_count_total": 1,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    },
+    {
+      "attack_id": "T1685",
+      "name": "Disable or Modify Tools",
+      "is_subtechnique": false,
+      "tactics": [
+        "Defense Impairment"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ],
+      "description": "Adversaries may disable, degrade, or tamper with security tools or applications (e.g., endpoint detection and response (EDR) tools, intrusion detection systems (IDS), antivirus, logging agents, sensors, etc.) to impair or reduce visibility of defensive capabilities. This may include stopping specific services, killing processes, modifying or deleting tool configuration files and Registry keys, or ",
+      "url": "https://attack.mitre.org/techniques/T1685",
+      "analytic_count_total": 7,
+      "analytic_count_platform": 1,
+      "has_platform_analytic": true,
+      "covered_by_library": false
+    }
+  ],
+  "analytics": [
+    {
+      "analytic_id": "AN0083",
+      "name": "Analytic 0083",
+      "description": "Containerized apps or sidecar containers generating excessive outbound traffic or being leveraged for proxy networks. Includes sudden increases in network interface stats, especially in dormant or low-util apps.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1496.002",
+          "name": "Bandwidth Hijacking",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1496/002"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "containers:osquery",
+          "channel": "bandwidth-intensive command execution from within a container namespace",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "docker:stats",
+          "channel": "unusual network TX/RX byte deltas",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ContainerBaselineNetworkUsage",
+          "description": "Baseline per container must be defined by app purpose and normal traffic."
+        },
+        {
+          "field": "ImageName",
+          "description": "Certain image names or registries may be prone to abuse (e.g., public image hosting mining or proxyware)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0028",
+        "name": "Detect Excessive or Unauthorized Bandwidth Usage for Botnet, Proxyjacking, or Scanning Purposes",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0028"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0028#AN0083"
+    },
+    {
+      "analytic_id": "AN0177",
+      "name": "Analytic 0177",
+      "description": "Defenders may detect abuse of container administration commands by observing anomalous use of management utilities (`docker exec`, `kubectl exec`, or API calls to kubelet) correlated with unexpected process creation inside containers. Behavioral chains include unauthorized API requests followed by command execution within running pods or containers, often originating from unusual user accounts, automation scripts, or IP addresses outside the expected cluster management plane.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1609",
+          "name": "Container Administration Command",
+          "tactics": [
+            "Execution"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1609"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:daemon",
+          "channel": "docker exec or docker run with unexpected command/entrypoint",
+          "data_component": "Command Execution"
+        },
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "kubectl exec or kubelet API calls targeting running pods",
+          "data_component": "Process Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AuthorizedAdminUsers",
+          "description": "Expected admin accounts allowed to use exec commands; anomalies outside this list indicate possible abuse."
+        },
+        {
+          "field": "ExecFrequencyThreshold",
+          "description": "Defines how often `docker exec` or `kubectl exec` is normally observed; sudden spikes may indicate adversary behavior."
+        },
+        {
+          "field": "SourceIPRange",
+          "description": "Expected IP ranges for management actions (e.g., cluster control plane). Requests from external/unexpected ranges may indicate compromise."
+        },
+        {
+          "field": "NamespaceScope",
+          "description": "Defines which namespaces typically allow exec operations; anomalous activity outside these may indicate lateral movement."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0065",
+        "name": "Detection Strategy for Container Administration Command Abuse",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0065"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0065#AN0177"
+    },
+    {
+      "analytic_id": "AN0222",
+      "name": "Analytic 0222",
+      "description": "Adversary exploits containerized app via ingress or service. Chain: (1) suspicious request in ingress/app logs → (2) container process spawns a shell/exec/sidecar (kubectl exec/docker exec) → (3) egress to Internet or metadata service (169.254.169.254).",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1190",
+          "name": "Exploit Public-Facing Application",
+          "tactics": [
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1190"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "ApplicationLog:Ingress",
+          "channel": "Kubernetes NGINX/Envoy ingress controller logs with anomalous payloads and 5xx spikes",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "docker:events",
+          "channel": "Docker/Kubernetes audit of exec/attach (kubectl exec) or unexpected child processes inside container",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "NSM:Flow",
+          "channel": "Requests towards cloud metadata or command & control from pod IPs",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "IngressNamespaces",
+          "description": "Namespaces that are Internet-facing."
+        },
+        {
+          "field": "MetadataEndpoints",
+          "description": "Cloud metadata IPs/hostnames for exfil of credentials."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Join period between ingress request and pod exec/egress."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0080",
+        "name": "Exploit Public-Facing Application – multi-signal correlation (request → error → post-exploit process/egress)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0080"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0080#AN0222"
+    },
+    {
+      "analytic_id": "AN0233",
+      "name": "Analytic 0233",
+      "description": "Execution of container orchestration commands (e.g., `docker exec`, `kubectl exec`) or API-driven interactions with running containers from unauthorized hosts or non-standard user contexts. Defender sees programmatic or interactive command execution within containers outside expected CI/CD tools or automation frameworks, often followed by file writes, privilege escalation, or lateral discovery.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1059.013",
+          "name": "Container CLI/API",
+          "tactics": [
+            "Execution"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1059/013"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "execve: Execution of container management CLIs (docker, crictl, kubectl) or interpreted shells (sh, bash, python) within container context",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "docker:events",
+          "channel": "exec_create: docker exec events targeting running containers from non-CI sources",
+          "data_component": "Container Start"
+        },
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "create/exec: Kubernetes API calls to exec into containers or create pods from curl, kubectl, or SDK clients",
+          "data_component": "Container Creation"
+        },
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "CreatePod: Programmatic creation of new pod resources using container images not seen before in the environment",
+          "data_component": "Pod Creation"
+        },
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "Shell process (e.g., /bin/sh, /bin/bash) spawned in a container without an interactive session attached (i.e., automation anomaly)",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AuthorizedUserAgents",
+          "description": "List of CI/CD pipeline runners, SRE tools, or cluster mgmt agents allowed to invoke API/CLI commands in containers."
+        },
+        {
+          "field": "NewImageThreshold",
+          "description": "Threshold for alerting on unseen container images pulled and executed. Adjust to reduce noise from frequent deploys."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Temporal window to correlate container exec with shell spawn and network activity (default: 2 minutes)."
+        },
+        {
+          "field": "InteractiveSessionExpectation",
+          "description": "Set whether shell spawns without TTY or PTY should be flagged — based on org deployment model."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0083",
+        "name": "Container CLI and API Abuse via Docker/Kubernetes (T1059.013)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0083"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0083#AN0233"
+    },
+    {
+      "analytic_id": "AN0261",
+      "name": "Analytic 0261",
+      "description": "Detects unusual use of `cron` or `sleep` loops inside containers executing unfamiliar scripts or binaries repeatedly.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1053",
+          "name": "Scheduled Task/Job",
+          "tactics": [
+            "Execution",
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1053"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "execve",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "containerd:runtime",
+          "channel": "file change monitoring within /etc/cron.*, /tmp, or mounted volumes",
+          "data_component": "File Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ContainerLabel",
+          "description": "Labels or tags indicating dev/test containers executing scheduled tasks."
+        },
+        {
+          "field": "ScriptFrequency",
+          "description": "Repetitive invocation pattern within short container lifespan."
+        },
+        {
+          "field": "ImageSource",
+          "description": "Unexpected container image sources creating cron entries."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0094",
+        "name": "Cross-Platform Behavioral Detection of Scheduled Task/Job Abuse",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0094"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0094#AN0261"
+    },
+    {
+      "analytic_id": "AN0358",
+      "name": "Analytic 0358",
+      "description": "Adversary uses renamed container images, injects files into containers with misleading names or metadata (e.g., renamed system binaries), and executes them during startup or scheduled jobs.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1036",
+          "name": "Masquerading",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1036"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "containerd:runtime",
+          "channel": "/var/log/containers/*.log",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "docker:events",
+          "channel": "docker.events.json",
+          "data_component": "Image Metadata"
+        },
+        {
+          "log_source": "ebpf:syscalls",
+          "channel": "file_write",
+          "data_component": "File Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ImageLabelMismatch",
+          "description": "Tune detection based on mismatch between image name and labels"
+        },
+        {
+          "field": "StartupScriptLocation",
+          "description": "Detect binaries added or modified in startup path (e.g., /entrypoint.sh)"
+        },
+        {
+          "field": "ProcessNamePattern",
+          "description": "Allow tuning based on suspicious binary naming inside containers"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0127",
+        "name": "Behavioral Detection of Masquerading Across Platforms via Metadata and Execution Discrepancy",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0127"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0127#AN0358"
+    },
+    {
+      "analytic_id": "AN0416",
+      "name": "Analytic 0416",
+      "description": "Container process executes destructive file operations inside volume mounts or host paths. Includes `rm -rf /mnt/volumes/`, container breakout followed by host deletion attempts.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1485",
+          "name": "Data Destruction",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1485"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "unlink, unlinkat, rmdir",
+          "data_component": "File Deletion"
+        },
+        {
+          "log_source": "docker:events",
+          "channel": "container exec rm|container stop --force",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "MountPoint",
+          "description": "Identify when deletions occur inside persistent or shared volume paths."
+        },
+        {
+          "field": "ContainerImage",
+          "description": "Correlate destructive behavior with unknown or untrusted container sources."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0146",
+        "name": "Detection of Data Destruction Across Platforms via Mass Overwrite and Deletion Patterns",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0146"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0146#AN0416"
+    },
+    {
+      "analytic_id": "AN0523",
+      "name": "Analytic 0523",
+      "description": "Monitors tampering with audit logs, volumes, or mounted storage often used for side-channel logging (e.g., /var/log inside containers) post-compromise.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1070",
+          "name": "Indicator Removal",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1070"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:daemon",
+          "channel": "container file operations",
+          "data_component": "File Deletion"
+        },
+        {
+          "log_source": "ebpf:syscalls",
+          "channel": "Unexpected container volume unmount + file deletion",
+          "data_component": "File Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "LogMountPaths",
+          "description": "Tune based on how logs are exported (bind-mount, overlay)"
+        },
+        {
+          "field": "ContainerLabelScope",
+          "description": "Limit detection to suspicious containers or runtime classes"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0184",
+        "name": "Behavioral Detection of Indicator Removal Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0184"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0184#AN0523"
+    },
+    {
+      "analytic_id": "AN0530",
+      "name": "Analytic 0530",
+      "description": "Compromised service account tokens mounted inside containers and reused for external API calls or lateral movement across services.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550.001",
+          "name": "Application Access Token",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "serviceAccount token used in API requests not tied to workload identity",
+          "data_component": "Web Credential Usage"
+        },
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "AssumeRoleWithWebIdentity",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "NamespaceScope",
+          "description": "Restrict token use to specific namespaces or workloads"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0185",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material: Application Access Token (T1550.001)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0185"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0185#AN0530"
+    },
+    {
+      "analytic_id": "AN0571",
+      "name": "Analytic 0571",
+      "description": "Detection correlates anomalous Docker or Kubernetes API requests with access to logs, secrets, or service accounts. Observes unauthorized use of `docker logs`, `kubectl get secrets`, or direct API calls to Kubernetes API server endpoints. Identifies behavioral patterns where adversaries escalate from basic pod/container interaction to privileged API calls exposing sensitive credential material.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1552.007",
+          "name": "Container API",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1552/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:api",
+          "channel": "docker logs access or container inspect commands from non-administrative users",
+          "data_component": "Command Execution"
+        },
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "get/list requests to /api/v1/secrets or /api/v1/namespaces/*/serviceaccounts",
+          "data_component": "User Account Authentication"
+        },
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "exec into pod followed by secret retrieval via API",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "kubernetes:orchestrator",
+          "channel": "Access to orchestrator logs containing credentials (Docker/Kubernetes logs)",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserContext",
+          "description": "Tune to exclude known orchestrator admin service accounts or CI/CD pipelines that legitimately access secrets"
+        },
+        {
+          "field": "NamespaceScope",
+          "description": "Restrict detection to sensitive namespaces (e.g., kube-system, production apps)"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Adjust correlation timing between pod execution and subsequent API secret retrieval"
+        },
+        {
+          "field": "SourceIP",
+          "description": "Filter based on allowed internal API calls vs anomalous external or cross-cluster access"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0198",
+        "name": "Detect Abuse of Container APIs for Credential Access",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0198"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0198#AN0571"
+    },
+    {
+      "analytic_id": "AN0582",
+      "name": "Analytic 0582",
+      "description": "Detects abuse of container orchestration platforms (e.g., Kubernetes) where adversaries create CronJobs to maintain persistence or execute malicious Jobs across the cluster.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1053.007",
+          "name": "Container Orchestration Job",
+          "tactics": [
+            "Execution",
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1053/007"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "verb=create, resource=cronjobs, group=batch",
+          "data_component": "Scheduled Job Creation"
+        },
+        {
+          "log_source": "kubernetes:events",
+          "channel": "container start/stop activity via Docker, containerd, or CRI-O",
+          "data_component": "Container Creation"
+        },
+        {
+          "log_source": "container:proxy",
+          "channel": "outbound/inbound network activity from spawned pods",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "NamespaceScope",
+          "description": "Kubernetes namespace the job is deployed to—scoping this to known trusted namespaces may reduce noise."
+        },
+        {
+          "field": "ImageRepository",
+          "description": "The container image registry or repository the job pulls from—can be filtered by trusted registries."
+        },
+        {
+          "field": "ScheduleWindow",
+          "description": "Time window or frequency of CronJob execution (e.g., ‘@hourly’)—jobs running at odd hours may be suspicious."
+        },
+        {
+          "field": "ExecutionCommand",
+          "description": "The command or entrypoint executed by the Job—unexpected shell commands or interpreters may warrant inspection."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0206",
+        "name": "Detection of Malicious Kubernetes CronJob Scheduling",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0206"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0206#AN0582"
+    },
+    {
+      "analytic_id": "AN0588",
+      "name": "Analytic 0588",
+      "description": "Container orchestrator logs show crashlooping pods, repeated resource exhaustion, or malicious binaries with infinite loops consuming systemd/cgroup limits.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1499",
+          "name": "Endpoint Denial of Service",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1499"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:events",
+          "channel": "CrashLoopBackOff, OOMKilled, container restart count exceeds threshold",
+          "data_component": "Host Status"
+        },
+        {
+          "log_source": "docker:events",
+          "channel": "Container exited with non-zero code repeatedly in short period",
+          "data_component": "Application Log Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RestartCountThreshold",
+          "description": "Number of container restarts within a time window"
+        },
+        {
+          "field": "ContainerImageEntropy",
+          "description": "Payload entropy of container image as an anomaly factor"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0208",
+        "name": "Endpoint Resource Saturation and Crash Pattern Detection Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0208"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0208#AN0588"
+    },
+    {
+      "analytic_id": "AN0612",
+      "name": "Analytic 0612",
+      "description": "Detection of container escape attempts via bind mounts, privileged containers, or abuse of docker.sock. Defenders may observe anomalous volume mount configurations (e.g., hostPath to / or /proc), unexpected privileged container launches, or use of container administration commands to access host resources. These events typically correlate with subsequent process execution on the host outside of normal container isolation.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1611",
+          "name": "Escape to Host",
+          "tactics": [
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1611"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:daemon",
+          "channel": "container create/start with privileged flag or host volume mount",
+          "data_component": "Container Creation"
+        },
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "Pod spec with hostPath or privileged securityContext",
+          "data_component": "Volume Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AllowedHostPaths",
+          "description": "List of directories permitted for hostPath volumes. Any access beyond these paths may be suspicious."
+        },
+        {
+          "field": "PrivilegedContainerThreshold",
+          "description": "Number of privileged container launches expected in the environment. Exceeding this may indicate adversary behavior."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0219",
+        "name": "Detection Strategy for Escape to Host",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0219"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0219#AN0612"
+    },
+    {
+      "analytic_id": "AN0693",
+      "name": "Analytic 0693",
+      "description": "Remote/API driven creation **and** start of a container whose image is not on an allow‑list (or is tagged `latest`), executed by a non-admin principal, and/or started with risky runtime attributes (e.g., `--privileged`, host PID/NET namespaces, sensitive host path mounts, capability adds). Correlates *create* ➜ *start* ➜ first network/process actions from that container within a short time window.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1610",
+          "name": "Deploy Container",
+          "tactics": [
+            "Execution"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1610"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:daemon",
+          "channel": "container_create,container_start",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "containerd:runtime",
+          "channel": "CRI CreateContainer/StartContainer with privileged=true OR added capabilities OR host* namespaces",
+          "data_component": "Container Start"
+        },
+        {
+          "log_source": "ebpf:syscalls",
+          "channel": "process execution or network connect from just-created container PID namespace",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "docker:events",
+          "channel": "remote API calls to /containers/create or /containers/{id}/start",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "known_images",
+          "description": "Environment-specific allow-list of approved images (with digests)."
+        },
+        {
+          "field": "known_admins",
+          "description": "Service accounts or CI/CD users permitted to deploy containers."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Max time between create, start, and first activity to consider events causally linked (default 5m)."
+        },
+        {
+          "field": "RiskThreshold",
+          "description": "Minimum number of risky attributes (e.g., unknown image + privileged) to alert."
+        },
+        {
+          "field": "PrivilegedFlags",
+          "description": "Set of runtime flags considered high risk (e.g., --privileged, --cap-add=SYS_ADMIN, hostPID, hostNetwork, /var/run/docker.sock mount)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0249",
+        "name": "Behavior-chain detection for T1610 Deploy Container across Docker & Kubernetes control/node planes",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0249"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0249#AN0693"
+    },
+    {
+      "analytic_id": "AN0745",
+      "name": "Analytic 0745",
+      "description": "High CPU usage by unauthorized containers running mining binaries or public proxy tools.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1496",
+          "name": "Resource Hijacking",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1496"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "containerd:events",
+          "channel": "New container with suspicious image name or high resource usage",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "prometheus:metrics",
+          "channel": "Container CPU/Memory usage exceeding threshold",
+          "data_component": "Host Status"
+        },
+        {
+          "log_source": "container:cni",
+          "channel": "Outbound network traffic to mining proxies",
+          "data_component": "Network Traffic Flow"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ImageName",
+          "description": "Suspicious or unknown container image used"
+        },
+        {
+          "field": "CPUQuotaThreshold",
+          "description": "Container-level resource limits"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0267",
+        "name": "Resource Hijacking Detection Strategy",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0267"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0267#AN0745"
+    },
+    {
+      "analytic_id": "AN0859",
+      "name": "Analytic 0859",
+      "description": "Container processes accessing mounted secrets or configuration paths (e.g., /run/secrets, /mnt/config) followed by network access or credential use.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1552.001",
+          "name": "Credentials In Files",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1552/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "ebpf:syscalls",
+          "channel": "open/read on secret mount paths",
+          "data_component": "File Access"
+        },
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "process execution involving curl, grep, or awk on secrets",
+          "data_component": "Command Execution"
+        },
+        {
+          "log_source": "cni:netflow",
+          "channel": "outbound connection to internal or external APIs",
+          "data_component": "Network Connection Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "SecretMountPaths",
+          "description": "Customize based on deployment structure (e.g., /mnt/, /run/secrets/)"
+        },
+        {
+          "field": "ProcessBaselineDeviation",
+          "description": "Tune anomaly scoring for container image deviations"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0307",
+        "name": "Detect Access to Unsecured Credential Files Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0307"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0307#AN0859"
+    },
+    {
+      "analytic_id": "AN0889",
+      "name": "Analytic 0889",
+      "description": "Modification of container runtime security profiles (AppArmor, seccomp) or removal of monitoring agents within containers. Detect unauthorized mounting/unmounting of host /proc or /sys to disable logging or auditing.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "seccomp or AppArmor profile changes",
+          "data_component": "Service Metadata"
+        },
+        {
+          "log_source": "docker:runtime",
+          "channel": "Termination of monitoring sidecar or security container",
+          "data_component": "Process Termination"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RuntimeProfiles",
+          "description": "Specify which security profiles should be monitored for modification."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0317",
+        "name": "Detection Strategy for Impair Defenses Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0317"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0317#AN0889"
+    },
+    {
+      "analytic_id": "AN0946",
+      "name": "Analytic 0946",
+      "description": "Implantation of malicious code into container images followed by registry push and use in new deployments.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1525",
+          "name": "Implant Internal Image",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1525"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:daemon",
+          "channel": "docker build or docker commit commands followed by docker push to internal registry",
+          "data_component": "Image Creation"
+        },
+        {
+          "log_source": "docker:registry",
+          "channel": "push event of new image version from unrecognized user or context",
+          "data_component": "Image Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Time threshold between image creation and use in deployment – typically rapid in adversarial activity."
+        },
+        {
+          "field": "UserContext",
+          "description": "The expected users or service accounts performing image pushes."
+        },
+        {
+          "field": "RegistryNameRegex",
+          "description": "Expected naming patterns for trusted registries."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0334",
+        "name": "Detection Strategy for T1525 – Implant Internal Image",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0334"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0334#AN0946"
+    },
+    {
+      "analytic_id": "AN0958",
+      "name": "Analytic 0958",
+      "description": "Container process uses mounted cloud credentials or token cache to authenticate without known orchestration.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1550",
+          "name": "Use Alternate Authentication Material",
+          "tactics": [
+            "Lateral Movement"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1550"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:runtime",
+          "channel": "execution of cloud CLI tool (e.g., aws, az) inside container",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "AWS:CloudTrail",
+          "channel": "AssumeRole",
+          "data_component": "User Account Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ContainerLabel",
+          "description": "Restrict to prod workloads or certain namespaces"
+        },
+        {
+          "field": "CredentialPath",
+          "description": "Path used to mount sensitive tokens (e.g., /.aws/credentials)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0338",
+        "name": "Behavioral Detection Strategy for Use Alternate Authentication Material (T1550)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0338"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0338#AN0958"
+    },
+    {
+      "analytic_id": "AN0986",
+      "name": "Analytic 0986",
+      "description": "Detects malicious containers or pods using names, labels, or namespaces that mimic legitimate workloads; also checks for image layer mismatches and unauthorized resource deployments.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1036.005",
+          "name": "Match Legitimate Resource Name or Location",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1036/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "Resource creation and update logs",
+          "data_component": "Image Metadata"
+        },
+        {
+          "log_source": "containerd:events",
+          "channel": "Docker or containerd image pulls and process executions",
+          "data_component": "Process Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "trusted_namespace_list",
+          "description": "List of namespaces that should not be used by unprivileged users or workloads"
+        },
+        {
+          "field": "image_baseline_hashes",
+          "description": "Reference hashes of approved container images"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0347",
+        "name": "Detection Strategy for Masquerading via Legitimate Resource Name or Location",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0347"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0347#AN0986"
+    },
+    {
+      "analytic_id": "AN1007",
+      "name": "Analytic 1007",
+      "description": "Connections to exposed container services (e.g., Docker API, Kubernetes API server) from unauthorized external IPs → abnormal container creation/start → lateral activity within cluster nodes.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1133",
+          "name": "External Remote Services",
+          "tactics": [
+            "Persistence",
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1133"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "ApplicationLog:API",
+          "channel": "Docker/Kubernetes API access from external sources",
+          "data_component": "Application Log Content"
+        },
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "Unauthorized container creation or kubelet exec logs",
+          "data_component": "Logon Session Metadata"
+        },
+        {
+          "log_source": "NSM:Flow",
+          "channel": "External access to container ports (2375, 6443)",
+          "data_component": "Network Connection Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "AllowedCIDRs",
+          "description": "Approved external IP ranges for container APIs."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Correlation window for API calls and container starts."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0354",
+        "name": "Behavior-chain detection for T1133 External Remote Services across Windows, Linux, macOS, Containers",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0354"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0354#AN1007"
+    },
+    {
+      "analytic_id": "AN1060",
+      "name": "Analytic 1060",
+      "description": "Detects lateral discovery or container breakout attempts using netcat, curl, or custom binaries probing other services within the same namespace or VPC subnet.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1046",
+          "name": "Network Service Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1046"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "ebpf:syscalls",
+          "channel": "socket connect",
+          "data_component": "Network Connection Creation"
+        },
+        {
+          "log_source": "ebpf:syscalls",
+          "channel": "execve",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "containerd:runtime",
+          "channel": "container-level outbound traffic events",
+          "data_component": "Network Traffic Flow"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ExecutablePath",
+          "description": "Custom or renamed versions of tools may use different paths"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Aggregation interval for identifying anomalous traffic"
+        },
+        {
+          "field": "NetworkDestinationCount",
+          "description": "Tunable count of unique destinations to classify discovery"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0376",
+        "name": "Behavioral Detection Strategy for Network Service Discovery Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0376"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0376#AN1060"
+    },
+    {
+      "analytic_id": "AN1080",
+      "name": "Analytic 1080",
+      "description": "Monitors for the creation of accounts inside containers using names that resemble legitimate orchestrator or backup identities to mask adversary persistence.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1036.010",
+          "name": "Masquerade Account Name",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1036/010"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:daemon",
+          "channel": "ExecCreate + usermod or useradd",
+          "data_component": "User Account Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ContainerContextScope",
+          "description": "Limit detection to containers with persistent volumes or specific workloads"
+        },
+        {
+          "field": "MasqueradePatternList",
+          "description": "Custom list of commonly abused names to blend into container environments (e.g., kubelet, cronjob_sync)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0383",
+        "name": "Detection Strategy for Masquerading via Account Name Similarity",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0383"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0383#AN1080"
+    },
+    {
+      "analytic_id": "AN1158",
+      "name": "Analytic 1158",
+      "description": "Access to container image layers or mounted secrets (e.g., Docker secrets) by processes not tied to entrypoint or orchestration context.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1552",
+          "name": "Unsecured Credentials",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1552"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "read of /run/secrets or docker volumes by non-entrypoint process",
+          "data_component": "File Access"
+        },
+        {
+          "log_source": "containerd:Events",
+          "channel": "unusual process spawned from container image context",
+          "data_component": "Process Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "EntrypointAllowlist",
+          "description": "Container entrypoints that are permitted to read secrets"
+        },
+        {
+          "field": "VolumeMountPath",
+          "description": "Paths to credentials/secrets inside container images"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0412",
+        "name": "Detect Access or Search for Unsecured Credentials Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0412"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0412#AN1158"
+    },
+    {
+      "analytic_id": "AN1239",
+      "name": "Analytic 1239",
+      "description": "Account created in a running container (e.g., via 'useradd' or by modifying /etc/passwd directly). Detectable via runtime telemetry (e.g., Falco or eBPF hooks).",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1136.001",
+          "name": "Local Account",
+          "tactics": [
+            "Persistence"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1136/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "ebpf:syscalls",
+          "channel": "useradd or /etc/passwd modified inside container",
+          "data_component": "Command Execution"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ContainerContext",
+          "description": "Distinguish between ephemeral containers and long-lived service containers"
+        },
+        {
+          "field": "NamespaceScope",
+          "description": "Determine if account was added inside host, user, or PID namespace"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0447",
+        "name": "T1136.001 Detection Strategy - Local Account Creation Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0447"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0447#AN1239"
+    },
+    {
+      "analytic_id": "AN1261",
+      "name": "Analytic 1261",
+      "description": "Detection of container image build activity directly on the host using Docker or Kubernetes APIs. Defenders may observe Docker build requests, anomalous Dockerfile instructions (such as downloading code from unknown IPs), or creation of new images followed by immediate deployment. This behavior chain typically consists of an unexpected image creation event correlated with outbound network communication to non-standard or untrusted destinations.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1612",
+          "name": "Build Image on Host",
+          "tactics": [
+            "Stealth"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1612"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:daemon",
+          "channel": "docker build or POST /build API request",
+          "data_component": "Image Creation"
+        },
+        {
+          "log_source": "NSM:Flow",
+          "channel": "outbound connections from host during or immediately after image build",
+          "data_component": "Network Connection Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "RegistryAllowList",
+          "description": "Defines trusted registries for image pulls/builds. Builds referencing unapproved registries may indicate adversary behavior."
+        },
+        {
+          "field": "NewImageThreshold",
+          "description": "Threshold for number of new custom images created in a given time window. Exceeding this threshold may indicate malicious builds."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Defines correlation window (e.g., 5m) between suspicious build activity and subsequent network traffic anomalies."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0459",
+        "name": "Detection Strategy for Build Image on Host",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0459"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0459#AN1261"
+    },
+    {
+      "analytic_id": "AN1268",
+      "name": "Analytic 1268",
+      "description": "Credential stuffing attempts against Kubernetes API or containerized login shells using stolen or leaked user credentials",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.004",
+          "name": "Credential Stuffing",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/004"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "authentication.k8s.io/v1beta1",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "PodAccessScope",
+          "description": "Detect attempts across multiple pods/namespaces using same IP"
+        },
+        {
+          "field": "CredentialSetSize",
+          "description": "Number of username/password pairs used in attack attempt"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0460",
+        "name": "Credential Stuffing Detection via Reused Breached Credentials Across Services",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0460"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0460#AN1268"
+    },
+    {
+      "analytic_id": "AN1304",
+      "name": "Analytic 1304",
+      "description": "Correlate the creation or modification of containers using restart policies (e.g., 'always') or DaemonSets with elevated host access, service account misuse, or privileged container contexts. Watch for manipulation of systemd units involving containers or pod scheduling targeting specific nodes or namespaces.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1543.005",
+          "name": "Container Service",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1543/005"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "execve",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "systemd:unit",
+          "channel": "container run with restart policy set to 'always' or 'unless-stopped'",
+          "data_component": "Container Creation"
+        },
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "create",
+          "data_component": "Pod Creation"
+        },
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "create",
+          "data_component": "Service Creation"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "restartPolicy",
+          "description": "Tune for environments that legitimately use 'always' or 'unless-stopped' in trusted containers"
+        },
+        {
+          "field": "targetNamespace",
+          "description": "Scope detection to high-risk namespaces (e.g., kube-system)"
+        },
+        {
+          "field": "nodeSelector|nodeName",
+          "description": "Adjust if targeting known cluster configurations or test environments"
+        },
+        {
+          "field": "unitFilePath",
+          "description": "Adapt to your OS/systemd hierarchy and container binary references"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Adjust temporal correlation (e.g., container launch → privilege escalation)"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0473",
+        "name": "Detect persistent or elevated container services via container runtime or cluster manipulation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0473"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0473#AN1304"
+    },
+    {
+      "analytic_id": "AN1317",
+      "name": "Analytic 1317",
+      "description": "Cause→effect chain in CI/dev desktops: (1) user triggers container run/pull after opening a doc/link/script, (2) newly created image/container uses unexpected external registry or entrypoint, (3) container starts and immediately egresses to suspicious destinations.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1204",
+          "name": "User Execution",
+          "tactics": [
+            "Execution"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1204"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:events",
+          "channel": "created,started: new container from untrusted registry or unexpected entrypoint",
+          "data_component": "Container Creation"
+        },
+        {
+          "log_source": "docker:events",
+          "channel": "start",
+          "data_component": "Container Start"
+        },
+        {
+          "log_source": "NSM:Flow",
+          "channel": "container egress to unknown IPs/domains",
+          "data_component": "Network Traffic Content"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TrustedRegistries",
+          "description": "Approved registries/namespaces."
+        },
+        {
+          "field": "AllowedEntrypoints",
+          "description": "Expected CMD/ENTRYPOINT for known images."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Correlate user action → docker/podman run within 10 minutes."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0478",
+        "name": "User Execution – multi-surface behavior chain (documents/links → helper/unpacker → LOLBIN/child → egress)",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0478"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0478#AN1317"
+    },
+    {
+      "analytic_id": "AN1341",
+      "name": "Analytic 1341",
+      "description": "Repeated failed authentication attempts to container APIs, control planes, or login shells across many user names using same password",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1110.003",
+          "name": "Password Spraying",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1110/003"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "Failed login",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "OrchestrationScope",
+          "description": "Detect spray attempts scoped to single pod vs full cluster"
+        },
+        {
+          "field": "ServiceAccountFilter",
+          "description": "Limit detection to non-service accounts to reduce noise"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0487",
+        "name": "Distributed Password Spraying via Authentication Failures Across Multiple Accounts",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0487"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0487#AN1341"
+    },
+    {
+      "analytic_id": "AN1352",
+      "name": "Analytic 1352",
+      "description": "Detection of adversary attempts to enumerate containers, pods, nodes, and related resources within containerized environments. Defenders may observe anomalous API calls to Docker or Kubernetes (e.g., 'docker ps', 'kubectl get pods', 'kubectl get nodes'), unusual account activity against the Kubernetes dashboard, or unexpected queries against container metadata endpoints. These events should be correlated with user context and network activity to reveal resource discovery attempts.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1613",
+          "name": "Container and Resource Discovery",
+          "tactics": [
+            "Discovery"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1613"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:apiserver",
+          "channel": "list or get requests against pods, deployments, or nodes",
+          "data_component": "Pod Enumeration"
+        },
+        {
+          "log_source": "docker:daemon",
+          "channel": "docker ps, docker inspect, or docker images commands",
+          "data_component": "Container Enumeration"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserAllowList",
+          "description": "Defines which service accounts and admin roles are expected to perform discovery actions. Activity by non-allowlisted identities may indicate adversary discovery."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Specifies correlation period (e.g., 10m) for linking multiple discovery attempts across API and daemon logs."
+        },
+        {
+          "field": "PodQueryThreshold",
+          "description": "Defines threshold for number of pod/node enumeration requests by a single user. Excessive queries may indicate scanning activity."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0490",
+        "name": "Detection Strategy for Container and Resource Discovery",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0490"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0490#AN1352"
+    },
+    {
+      "analytic_id": "AN1373",
+      "name": "Analytic 1373",
+      "description": "Detects disabling container runtime security controls, removing sidecar sensors, modifying seccomp/AppArmor profiles, mounting host proc/sys paths to interfere with host logging, or killing in-container monitoring agents.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1685",
+          "name": "Disable or Modify Tools",
+          "tactics": [
+            "Defense Impairment"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1685"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "kubectl delete or patch of security pods/admission controllers",
+          "data_component": "Service Metadata"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "NamespaceExclusions",
+          "description": "Exclusion of namespaces where temporary deletion of monitoring tools is legitimate (e.g., staging)."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0497",
+        "name": "Detection of Defense Impairment through Disabled or Modified Tools across OS Platforms.",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0497"
+      },
+      "version": "1.1",
+      "modified": "2026-05-12",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0497#AN1373"
+    },
+    {
+      "analytic_id": "AN1422",
+      "name": "Analytic 1422",
+      "description": "Detects container breakout behavior via exploitation (e.g., DirtyPipe, CVE-2022-0847), followed by host OS interaction or escalated capability assignment.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1068",
+          "name": "Exploitation for Privilege Escalation",
+          "tactics": [
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1068"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "capset or setns",
+          "data_component": "Logon Session Creation"
+        },
+        {
+          "log_source": "containerd:runtime",
+          "channel": "e.g., containerd, Docker events",
+          "data_component": "Container Enumeration"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "NamespaceEscapePattern",
+          "description": "May vary with CVE technique or custom syscall wrapper."
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Controls correlation of breakout → host interaction."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0514",
+        "name": "Detection Strategy for Exploitation for Privilege Escalation",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0514"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0514#AN1422"
+    },
+    {
+      "analytic_id": "AN1423",
+      "name": "Analytic 1423",
+      "description": "Access and retrieval of container service account tokens followed by unauthorized API requests using those tokens to interact with the Kubernetes API server or internal services.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1528",
+          "name": "Steal Application Access Token",
+          "tactics": [
+            "Credential Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1528"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "GET or LIST requests to /var/run/secrets/kubernetes.io/serviceaccount/ followed by access to the Kubernetes API server",
+          "data_component": "File Access"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "TimeWindow",
+          "description": "Adjust based on how quickly tokens are expected to be used post-access"
+        },
+        {
+          "field": "UserContext",
+          "description": "Tuning for known service accounts that legitimately access the API"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0515",
+        "name": "Detection Strategy for T1528 - Steal Application Access Token",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0515"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0515#AN1423"
+    },
+    {
+      "analytic_id": "AN1492",
+      "name": "Analytic 1492",
+      "description": "Ephemeral or unauthorized container instantiation using public images (e.g., from DockerHub) that initiate high CPU usage shortly after startup. Often scheduled via Kubernetes or Docker socket abuse.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1496.001",
+          "name": "Compute Hijacking",
+          "tactics": [
+            "Impact"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1496/001"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "containerd:events",
+          "channel": "create",
+          "data_component": "Container Creation"
+        },
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "execve",
+          "data_component": "Process Creation"
+        },
+        {
+          "log_source": "NSM:Flow",
+          "channel": "Outbound traffic to mining pool upon container launch",
+          "data_component": "Network Traffic Flow"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ImageSource",
+          "description": "May vary depending on where the image is pulled from (registry or custom URL)."
+        },
+        {
+          "field": "Namespace",
+          "description": "Helps differentiate attacker-created namespaces."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0540",
+        "name": "Multi-Platform Behavioral Detection for Compute Hijacking",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0540"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0540#AN1492"
+    },
+    {
+      "analytic_id": "AN1547",
+      "name": "Analytic 1547",
+      "description": "Detection of containerized service accounts or compromised kubeconfigs being used for cluster access from unexpected nodes or IPs.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1078",
+          "name": "Valid Accounts",
+          "tactics": [
+            "Stealth",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1078"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "authentication.k8s.io",
+          "data_component": "User Account Authentication"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "ServiceAccountScope",
+          "description": "Validate access from expected namespaces only."
+        },
+        {
+          "field": "ClusterIPWhitelist",
+          "description": "Permit kubeconfig usage from a limited set of IPs."
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0560",
+        "name": "Detection of Valid Account Abuse Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0560"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0560#AN1547"
+    },
+    {
+      "analytic_id": "AN1578",
+      "name": "Analytic 1578",
+      "description": "Detects creation of new container system processes via `docker run --restart`, `kubectl exec` to init containers, or modification of container init specs. Flags container images that override entrypoints to embed persistence behaviors.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1543",
+          "name": "Create or Modify System Process",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1543"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "docker:events",
+          "channel": "docker run with restart=always or modifying init",
+          "data_component": "Container Creation"
+        },
+        {
+          "log_source": "auditd:SYSCALL",
+          "channel": "modification of entrypoint scripts or init containers",
+          "data_component": "File Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "EntrypointOverridePattern",
+          "description": "Patterns used to detect modified container start scripts"
+        },
+        {
+          "field": "RestartPolicyMatch",
+          "description": "Policy values triggering alert (e.g., always, on-failure)"
+        },
+        {
+          "field": "KubeInitModPath",
+          "description": "Path filters for `/etc/init.d/`-like behaviors inside containers"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0571",
+        "name": "Detection of System Process Creation or Modification Across Platforms",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0571"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0571#AN1578"
+    },
+    {
+      "analytic_id": "AN1579",
+      "name": "Analytic 1579",
+      "description": "Detects assignment of high-privilege roles to user or service accounts via Kubernetes RoleBinding or ClusterRoleBinding objects, especially outside of CI/CD automation or from unknown IPs.",
+      "platforms": [
+        "Containers"
+      ],
+      "techniques": [
+        {
+          "attack_id": "T1098.006",
+          "name": "Additional Container Cluster Roles",
+          "tactics": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "url": "https://attack.mitre.org/techniques/T1098/006"
+        }
+      ],
+      "log_sources": [
+        {
+          "log_source": "kubernetes:audit",
+          "channel": "create or update events for RoleBinding or ClusterRoleBinding objects",
+          "data_component": "User Account Modification"
+        }
+      ],
+      "mutable_elements": [
+        {
+          "field": "UserAgent",
+          "description": "Filter expected sources of automated role assignment (e.g., CI/CD tooling)"
+        },
+        {
+          "field": "RoleName",
+          "description": "Scope to privileged roles like cluster-admin, edit, admin"
+        },
+        {
+          "field": "TimeWindow",
+          "description": "Detect after-hours or irregular-time assignments"
+        },
+        {
+          "field": "UserContext",
+          "description": "Define known service accounts and privileged operators to reduce noise"
+        }
+      ],
+      "detection_strategy": {
+        "id": "DET0572",
+        "name": "Suspicious RoleBinding or ClusterRoleBinding Assignment in Kubernetes",
+        "url": "https://attack.mitre.org/detectionstrategies/DET0572"
+      },
+      "version": "1.0",
+      "modified": "2025-10-21",
+      "url": "https://attack.mitre.org/detectionstrategies/DET0572#AN1579"
+    }
+  ]
+}

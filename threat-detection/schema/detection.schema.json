@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/detection.schema.json",
+  "title": "Threat Detection Library - Detection Entry",
+  "description": "Schema for a single detection entry in data/detections.json.",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "type", "status", "severity", "platform",
+    "mitre_attack", "data_sources", "detection_logic", "spl",
+    "how_to_implement", "known_false_positives", "references",
+    "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "Stable, kebab-case, URL-safe slug. Never reuse or rename once published." },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "analytic_story": { "type": "array", "items": { "type": "string" }, "description": "Named campaign/theme grouping this detection belongs to." },
+    "type": { "type": "string", "enum": ["TTP", "Anomaly", "Hunting", "Correlation"] },
+    "status": { "type": "string", "enum": ["production", "experimental", "deprecated"] },
+    "severity": { "type": "string", "enum": ["critical", "high", "medium", "low", "informational"] },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "platform": { "type": "string" },
+    "product_version": { "type": "string" },
+    "method": { "type": "string", "description": "Interface/technique surface used, e.g. API, ESXCLI, VIM-CMD." },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "mitre_analytics": {
+      "type": "array",
+      "description": "Provenance links to the official MITRE ATT&CK Detection Analytic(s) (x-mitre-analytic objects, see data/mitre-attack-<platform>.json) this entry is grounded in, if any.",
+      "items": {
+        "type": "object",
+        "required": ["id", "url"],
+        "properties": { "id": { "type": "string", "description": "MITRE analytic ID, e.g. AN2044" }, "name": { "type": "string" }, "url": { "type": "string" } }
+      }
+    },
+    "kill_chain_phases": { "type": "array", "items": { "type": "string" } },
+    "data_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } }
+      }
+    },
+    "detection_logic": { "type": "string" },
+    "spl": { "type": "string" },
+    "cli_reference": { "type": "string" },
+    "how_to_implement": { "type": "string" },
+    "known_false_positives": { "type": "string" },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "risk_objects": { "type": "array", "items": { "type": "object", "properties": { "field": { "type": "string" }, "type": { "type": "string" } } } },
+    "references": {
+      "type": "array",
+      "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } }
+    },
+    "related_detections": { "type": "array", "items": { "type": "string" }, "description": "IDs of other entries in this library." },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}

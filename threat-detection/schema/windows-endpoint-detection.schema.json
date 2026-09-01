@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/windows-endpoint-detection.schema.json",
+  "title": "Threat Detection Library - Windows Endpoint Gap-Fill Detection Entry",
+  "description": "Schema for a single detection entry in data/windows-endpoint-detections.json. Like the Cisco Network Device catalogue, this catalogue was built with a specific, documented methodology: every entry closes a gap identified by diffing this library against data/mitre-attack-windows.json (MITRE ATT&CK's official Detection Analytics for the 'Windows' platform) -- specifically the portion of that gap not already closed by the existing AD/RDP/DHCP catalogues or by the ESCU catalogue's 'Windows Endpoint'/'Windows Network Telemetry' components. Every entry's mitre_analytics[] field cites the specific official MITRE Detection Analytic ID(s) it is grounded in, the same provenance pattern used by the ESXi and Cisco MITRE-driven gap-fill batches.",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "component", "severity", "confidence",
+    "detection_type", "mitre_attack", "required_log_sources", "data_sources",
+    "required_fields", "detection_logic", "spl", "search_cost",
+    "false_positive_rating", "tuning_guidance", "investigation_steps", "response_guidance",
+    "telemetry_requirement", "detection_maturity", "risk_scoring", "references",
+    "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^WEND-(INIT|EXEC|PERSIST|PRIV|STEALTH|IMPAIR|CRED|DISC|LM|COLL|C2|EXFIL|IMPACT|RECON|RESDEV)-[0-9]{3}$", "description": "Namespaced sequential ID, one namespace per primary MITRE tactic -- the same fifteen-namespace convention the Splunk ESCU and Cisco catalogues use." },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "component": { "type": "string", "enum": ["Windows Endpoint"], "description": "Single value: this catalogue's whole scope is generic Windows OS endpoint telemetry (registry, process, file, service, WMI, security-log), the same telemetry domain as ESCU's 'Windows Endpoint' component, whose gap this catalogue closes." },
+    "severity": { "type": "string", "enum": ["informational", "low", "medium", "high", "critical"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "detection_type": { "type": "string", "enum": ["TTP", "Anomaly", "Hunting", "Correlation"], "description": "Uses the same TTP/Anomaly/Hunting/Correlation vocabulary as the Splunk ESCU and Cisco catalogues, since this catalogue is built from the same MITRE Detection Analytic source material." },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "mitre_analytics": {
+      "type": "array",
+      "description": "Provenance link(s) to the official MITRE ATT&CK Detection Analytic(s) (data/mitre-attack-windows.json) this entry is grounded in -- same field shape as the ESXi and Cisco catalogues' MITRE-driven gap-fill batches (id = the analytic's ANnnnn identifier, name = its parent Detection Strategy's descriptive name).",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "url"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "analytic_name": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "threat_reference": {
+      "type": "object",
+      "description": "Optional citation to a real, MITRE-documented campaign, intrusion set, or malware family this technique is directly associated with, verified against that STIX object's own MITRE 'uses' relationship.",
+      "required": ["name", "type", "url"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["campaign", "malware", "intrusion-set"] },
+        "url": { "type": "string" }
+      }
+    },
+    "required_log_sources": { "type": "array", "items": { "type": "string" } },
+    "data_sources": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name", "description"], "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } } }
+    },
+    "required_fields": { "type": "array", "items": { "type": "string" } },
+    "detection_logic": { "type": "string" },
+    "spl": { "type": "string" },
+    "search_cost": { "type": "string", "enum": ["Low cost", "Medium cost", "High cost"] },
+    "false_positive_rating": { "type": "string", "enum": ["Low", "Medium", "High"] },
+    "tuning_guidance": { "type": "string" },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "response_guidance": { "type": "string" },
+    "telemetry_requirement": { "type": "string", "enum": ["Essential", "Recommended", "Optional"] },
+    "cim_compatible": { "type": "boolean" },
+    "cim_data_model": { "type": "string" },
+    "detection_maturity": { "type": "string", "enum": ["Level 1 - indicator", "Level 2 - threshold", "Level 3 - behavioral", "Level 4 - correlation", "Level 5 - multi-stage attack chain"] },
+    "risk_scoring": {
+      "type": "object",
+      "required": ["severity", "confidence", "impact", "score"],
+      "properties": {
+        "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "score": { "type": "integer", "minimum": 1, "maximum": 125 }
+      }
+    },
+    "risk_object": { "type": "string" },
+    "risk_object_type": { "type": "string", "enum": ["user", "system", "other"] },
+    "references": { "type": "array", "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } } },
+    "related_detections": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}

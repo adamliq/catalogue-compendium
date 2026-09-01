@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adamliq/Threat-detection-library/schema/splunk-escu-detection.schema.json",
+  "title": "Threat Detection Library - Splunk ESCU (security_content) Detection Entry",
+  "description": "Schema for a single detection entry in data/splunk-escu-detections.json. Unlike every other catalogue in this library, these entries are not authored for this project — they are a curated, schema-converted subset of detections from Splunk's official, Apache-2.0-licensed 'security_content' project (https://github.com/splunk/security_content), also known as Splunk Enterprise Security Content Updates (ESCU). The catalogue spans five upstream source directories: detections/endpoint (Windows-scoped Sysmon/EDR/CrowdStrike/AppLocker telemetry, component 'Windows Endpoint', imported across two batches — an original hand-curated subset plus every remaining qualifying file; Linux-scoped Sysmon-for-Linux telemetry, component 'Linux'; macOS-scoped osquery telemetry, component 'macOS'; and Cisco Isovalent/Cilium-eBPF and Cisco Secure Client NVM container/endpoint-flow telemetry, components 'Cisco Isovalent' and 'Cisco NVM'), detections/application (ESXi syslog, Splunk's own _internal/_audit telemetry, identity-provider telemetry (Okta, PingID), Cisco appliance/MFA telemetry (ASA, Duo, IOS XE, SD-WAN), AI/LLM-abuse telemetry (AWS Bedrock, MCP servers, Microsoft 365 Copilot), and assorted other SaaS/application vendor telemetry), detections/network (Cisco network-device, Zeek/Suricata/Stream network-sensor, and other network-perimeter telemetry), detections/cloud (AWS, Azure, Microsoft 365, Google Cloud Platform, Google Workspace, Kubernetes, and GitHub audit/control-plane telemetry), and detections/web (CVE-specific web-application exploit-signature detections for individual vendor products — Ivanti, Citrix, Confluence, JetBrains TeamCity, etc. — plus Zscaler proxy telemetry) — see each entry's component field and source_url for which. Provenance fields (source_id, source_url, source_version, source_author) trace every entry back to its original file so changes upstream can be reconciled.",
+  "type": "object",
+  "required": [
+    "id", "title", "description", "component", "severity", "confidence",
+    "detection_type", "mitre_attack", "required_log_sources", "data_sources",
+    "required_fields", "detection_logic", "spl", "search_cost",
+    "false_positive_rating", "tuning_guidance", "investigation_steps", "response_guidance",
+    "telemetry_requirement", "detection_maturity", "risk_scoring", "references",
+    "source_id", "source_url", "source_version", "source_author", "analytic_story",
+    "author", "created", "modified", "version"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^ESCU-(INIT|EXEC|PERSIST|PRIV|STEALTH|IMPAIR|CRED|DISC|LM|COLL|C2|EXFIL|IMPACT|RECON|RESDEV)-[0-9]{3}$", "description": "Namespaced sequential ID, one namespace per primary MITRE tactic." },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "component": { "type": "string", "description": "'Windows Endpoint', 'Linux', 'macOS', 'Cisco Isovalent', 'Cisco NVM', 'CrowdStrike', 'ESXi', 'Splunk Platform', 'Okta', 'PingID', 'Cisco ASA', 'Cisco Duo', 'Cisco IOS XE', 'Cisco SD-WAN', 'AWS Bedrock', 'MCP', 'Microsoft 365 Copilot', 'PTC Windchill', 'Application' (generic/vendor-agnostic, detections/application only), 'Cisco Network', 'Windows Network Telemetry', 'F5 BIG-IP', 'Network' (generic/vendor-agnostic), 'AWS', 'Azure', 'Microsoft 365', 'Google Cloud Platform', 'Google Workspace', 'Kubernetes', 'GitHub', 'Cloud' (generic/vendor-agnostic), 'Ivanti', 'Citrix', 'Atlassian Confluence', 'JetBrains TeamCity', 'Zscaler', 'Adobe ColdFusion', 'CrushFTP', 'Apache Tomcat', 'VMware', 'Microsoft SharePoint', 'Microsoft Exchange', 'ConnectWise ScreenConnect', 'Fortinet', or 'Web' (generic/vendor-agnostic) depending on which upstream source_url directory and platform/vendor the entry came from; kept as a field for consistency with the rest of the library's faceting." },
+    "severity": { "type": "string", "enum": ["informational", "low", "medium", "high", "critical"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "detection_type": { "type": "string", "enum": ["TTP", "Anomaly", "Hunting", "Correlation"], "description": "Preserved verbatim from the source project's own `type` field, unlike this library's other catalogues which use a locally-defined vocabulary." },
+    "mitre_attack": {
+      "type": "object",
+      "required": ["tactics", "techniques"],
+      "properties": {
+        "tactics": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" } } } },
+        "techniques": { "type": "array", "items": { "type": "object", "required": ["id", "name"], "properties": { "id": { "type": "string" }, "name": { "type": "string" }, "url": { "type": "string" } } } }
+      }
+    },
+    "attack_mapping_note": { "type": "string" },
+    "required_log_sources": { "type": "array", "items": { "type": "string" } },
+    "data_sources": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name", "description"], "properties": { "name": { "type": "string" }, "path": { "type": "string" }, "description": { "type": "string" } } }
+    },
+    "event_ids": { "type": "array", "items": { "type": "string" } },
+    "required_fields": { "type": "array", "items": { "type": "string" } },
+    "detection_logic": { "type": "string" },
+    "spl": { "type": "string", "description": "The source project's actual production SPL, lightly reformatted. Retains references to security_content app macros (e.g. `security_content_ctime`, per-detection `_filter` macros) that require the security_content/ESCU Splunkbase app to run as-is; see tuning_guidance." },
+    "search_cost": { "type": "string", "enum": ["Low cost", "Medium cost", "High cost"] },
+    "performance_guidance": { "type": "string" },
+    "false_positive_rating": { "type": "string", "enum": ["Low", "Medium", "High"] },
+    "tuning_guidance": { "type": "string" },
+    "investigation_steps": { "type": "array", "items": { "type": "string" } },
+    "response_guidance": { "type": "string" },
+    "telemetry_requirement": { "type": "string", "enum": ["Essential", "Recommended", "Optional"] },
+    "cim_compatible": { "type": "boolean" },
+    "cim_data_model": { "type": "string" },
+    "detection_maturity": { "type": "string", "enum": ["Level 1 - indicator", "Level 2 - threshold", "Level 3 - behavioral", "Level 4 - correlation", "Level 5 - multi-stage attack chain"] },
+    "risk_scoring": {
+      "type": "object",
+      "required": ["severity", "confidence", "impact", "score"],
+      "properties": {
+        "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "score": { "type": "integer", "minimum": 1, "maximum": 125 }
+      }
+    },
+    "risk_object": { "type": "string" },
+    "risk_object_type": { "type": "string", "enum": ["user", "system", "other"] },
+    "risk_message": { "type": "string" },
+    "references": { "type": "array", "items": { "type": "object", "required": ["title", "url"], "properties": { "title": { "type": "string" }, "url": { "type": "string" } } } },
+    "related_detections": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "source_id": { "type": "string", "description": "The detection's stable UUID in the upstream splunk/security_content repository." },
+    "source_url": { "type": "string", "description": "Permalink to the original YAML file in splunk/security_content." },
+    "source_version": { "type": ["string", "integer"], "description": "The upstream detection's own version number at time of import." },
+    "source_author": { "type": "string", "description": "The upstream detection's original author credit, preserved verbatim." },
+    "source_creation_date": { "type": "string", "format": "date" },
+    "analytic_story": { "type": "array", "items": { "type": "string" }, "description": "The upstream security_content 'Analytic Story' tags this detection belongs to (e.g. a ransomware family, APT campaign, or technique-family grouping) — useful for finding every detection relevant to a specific threat." },
+    "author": { "type": "string" },
+    "created": { "type": "string", "format": "date" },
+    "modified": { "type": "string", "format": "date" },
+    "version": { "type": "string" }
+  }
+}
