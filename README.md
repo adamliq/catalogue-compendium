@@ -18,6 +18,20 @@ detail views, reference tables, and so on), running independently side by
 side on the same page. Your last-chosen tab is remembered (`localStorage`)
 across visits.
 
+A **light/dark toggle** at the right of the menu bar switches the whole
+page — the menu bar and Search pill, plus all three embedded apps — between
+light and dark at once (it defaults to your OS preference until you click
+it, then remembers your explicit choice). Threat Detection also ships its
+own theme button in its own header, left over from the source app; the two
+stay in sync — either one flips the whole page, since Threat Detection's
+own button now hands off to the shared toggle rather than only touching
+itself. Every text/background color pairing across all three apps and the
+shell chrome (both light and dark) was checked against the [WCAG contrast
+formula](https://www.w3.org/TR/WCAG21/#contrast-minimum) — not eyeballed —
+and the handful that fell short (a few de-emphasized "faint" tokens, and
+Windows's accent color doubling as body-text link color, all in light
+mode) were darkened just enough to clear AA, keeping the same hue.
+
 **Search** is a fourth, compendium-only pill: a single box that searches
 Windows events, Linux events, and every Threat Detection entry (detections
 and validations) at once, grouped by source with up to 40 results per
@@ -92,6 +106,17 @@ So each app was mechanically namespaced before merging:
   view-mode classes) would silently do nothing. Its eleven
   `data/mitre-attack-*.json` fetch paths are also repointed at
   `threat-detection/data/…` to match this repo's layout (see Structure).
+- The shell's own light/dark toggle sets `data-theme` on `<body>` and on
+  all three app containers at once, so Windows/Linux's existing (but,
+  before this toggle existed, unreachable-without-changing-your-OS-theme)
+  `:root[data-theme="…"]` CSS and Threat Detection's own become live
+  together. Its click handler is the one place this repo reaches back into
+  Threat-detection-library's own code: `td-theme-toggle`'s listener now
+  tries `document.getElementById('shell-theme-toggle').click()` first
+  (falling back to its original self-contained logic if that element is
+  ever absent), so either button drives all three apps and stays
+  persisted under both a shared `compendium-theme` key and the source
+  app's own pre-existing `tdl-theme` key.
 
 Every app's script, and the merged file as a whole, was verified with
 `node --check` and exercised end-to-end in headless Chromium (search,
